@@ -35,14 +35,14 @@
     width: 12rem;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .logo-wrapper {
         width: 16rem;
     }
 }
 
 .title-text {
-    font-family: 'Fredoka One', cursive;
+    font-family: var(--font-family-title);
     font-size: 3rem;
     color: var(--text-main);
     margin-top: -1rem;
@@ -53,7 +53,7 @@
     user-select: none;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .title-text {
         font-size: 4.5rem;
     }
@@ -74,7 +74,7 @@
     text-align: center;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .hero-tagline {
         font-size: 1.5rem;
     }
@@ -112,7 +112,7 @@
 .project-list {
     display: flex;
     flex-direction: column;
-    gap: 6rem;
+    gap: var(--space-3xl);
 }
 
 .feature-grid {
@@ -122,7 +122,7 @@
     align-items: center;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .feature-grid {
         grid-template-columns: 1fr 1fr;
     }
@@ -138,7 +138,7 @@
     order: 2;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .order-mobile-2 {
         order: 1;
     }
@@ -148,7 +148,7 @@
     order: 1;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .order-mobile-1 {
         order: 2;
     }
@@ -185,10 +185,10 @@
     align-items: center;
     gap: var(--space-xs);
     padding: 0.75rem 1.5rem;
-    background: rgba(var(--btn-color-rgb), 10%);
-    border: 1px solid rgba(var(--btn-color-rgb), 30%);
-    border-radius: 0.5rem;
-    color: rgb(var(--btn-color-text-rgb));
+    background: color-mix(in srgb, var(--btn-color), transparent 90%);
+    border: 1px solid color-mix(in srgb, var(--btn-color), transparent 70%);
+    border-radius: var(--radius-base);
+    color: var(--btn-color-text);
     font-weight: 700;
     text-decoration: none;
     text-transform: uppercase;
@@ -198,7 +198,7 @@
 }
 
 .explore-button:hover {
-    background: rgba(var(--btn-color-rgb), 20%);
+    background: color-mix(in srgb, var(--btn-color), transparent 80%);
     transform: scale(1.05);
 }
 
@@ -206,7 +206,7 @@
     position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 25px 50px -12px rgba(var(--btn-color-rgb), 20%);
+    box-shadow: 0 25px 50px -12px color-mix(in srgb, var(--btn-color), transparent 80%);
     border: 1px solid var(--white-10);
     height: 16rem;
     background: var(--bg-main);
@@ -215,7 +215,7 @@
     justify-content: center;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .feature-visual {
         height: 20rem;
     }
@@ -224,7 +224,7 @@
 .visual-bg {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, var(--bg-surface), #0B0F19, var(--bg-main));
+    background: radial-gradient(circle at center, var(--bg-surface), var(--bg-deep), var(--bg-main));
     opacity: 80%;
 }
 

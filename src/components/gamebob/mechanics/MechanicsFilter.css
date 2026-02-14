@@ -5,7 +5,7 @@
     margin-bottom: 1.5rem;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .mechanics-filter-wrapper {
         gap: var(--space-lg);
         margin-bottom: 2rem;
@@ -20,7 +20,7 @@
     gap: var(--space-sm);
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .filter-header {
         flex-direction: row;
         align-items: center;
@@ -37,7 +37,7 @@
     margin: 0;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .filter-title {
         font-size: 2.25rem;
         padding-left: 1rem;
@@ -61,7 +61,7 @@
     cursor: pointer;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .filter-btn {
         font-size: 0.875rem;
     }
@@ -79,7 +79,7 @@
     scrollbar-width: none;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .tag-list {
         margin: 0;
         padding: 0;
@@ -104,7 +104,7 @@
     cursor: pointer;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .tag-filter-btn {
         font-size: 0.75rem;
     }
@@ -120,13 +120,13 @@
 .tag-filter-btn.active {
     background-color: var(--color-gamebob-primary, var(--color-primary));
     color: var(--bg-main);
-    box-shadow: 0 0 20px rgb(29 218 188 / 30%);
+    box-shadow: 0 0 20px var(--primary-30);
     border-color: transparent;
 }
 
 .filter-btn.active:hover,
 .tag-filter-btn.active:hover {
-    background-color: rgb(29 218 188 / 80%);
+    background-color: var(--primary-80);
 }
 
 .filter-icon {
@@ -137,7 +137,7 @@
     vertical-align: middle;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .filter-icon {
         width: 1rem;
         height: 1rem;

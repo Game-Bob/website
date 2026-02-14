@@ -10,9 +10,9 @@
 }
 
 .mechanic-card:hover {
-    border-color: rgb(29 218 188 / 50%);
+    border-color: var(--primary-50);
     transform: scale(1.05);
-    box-shadow: 0 25px 50px -12px rgb(29 218 188 / 20%);
+    box-shadow: 0 25px 50px -12px var(--primary-20);
 }
 
 .card-inner {
@@ -31,8 +31,8 @@
 .icon-box {
     width: 3rem;
     height: 3rem;
-    border-radius: 0.5rem;
-    background: rgb(29 218 188 / 10%);
+    border-radius: var(--radius-md);
+    background: var(--primary-10);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,7 +47,7 @@
 .card-title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--color-gamebob-text);
+    color: var(--text-main);
     margin: 0;
     transition: color 0.3s ease;
 }
@@ -85,7 +85,7 @@
     align-items: center;
     gap: var(--space-xs);
     font-size: 0.75rem;
-    color: rgb(29 218 188 / 70%);
+    color: var(--primary-80);
     padding-top: 0.5rem;
 }
 
@@ -97,7 +97,7 @@
 .hover-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgb(29 218 188 / 5%), transparent);
+    background: linear-gradient(to top, var(--primary-5), transparent);
     opacity: 0%;
     transition: opacity 0.3s ease;
     pointer-events: none;

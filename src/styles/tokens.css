@@ -10,7 +10,8 @@
     /* Semantic Tokens (Dark Theme - Default) */
     --bg-main: #020205;
     --bg-surface: #0a0a0f;
-    --text-main: var(--text-main);
+    --bg-deep: #0b0f19;
+    --text-main: #fff;
     --text-main-rgb: 255, 255, 255;
     --text-muted: #808090;
     --border-subtle: rgba(0, 242, 255, 10%);
@@ -24,11 +25,13 @@
     --space-lg: 2.5rem;
     --space-xl: 4rem;
     --space-2xl: 3rem;
+    --space-3xl: 6rem;
 
     --border-width-thin: 1px;
 
     /* UI Tokens */
     --radius-sm: 0.25rem;
+    --radius-base: 0.5rem;
     --radius-md: 0.75rem;
     --radius-lg: 1rem;
     --radius-xl: 1.5rem;
@@ -38,7 +41,7 @@
 
     /* Alpha/Glass Helpers */
     --white-5: rgba(255, 255, 255, 5%);
-    --white-10: var(--white-10);
+    --white-10: rgba(255, 255, 255, 10%);
     --white-20: rgba(255, 255, 255, 20%);
     --white-30: rgba(255, 255, 255, 30%);
     --white-40: rgba(255, 255, 255, 40%);
@@ -51,6 +54,12 @@
     --black-50: rgba(0, 0, 0, 50%);
     --black-80: rgba(0, 0, 0, 80%);
     --black-90: rgba(0, 0, 0, 90%);
+    --black-95: rgba(0, 0, 0, 95%);
+
+    --color-cyan-bob: #1ddabc;
+    --cyan-bob-10: rgba(29, 218, 188, 10%);
+    --cyan-bob-20: rgba(29, 218, 188, 20%);
+    --cyan-bob-30: rgba(29, 218, 188, 30%);
 
     --primary-5: rgba(0, 242, 255, 5%);
     --primary-10: rgba(0, 242, 255, 10%);
@@ -73,7 +82,28 @@
     --accent-50: rgba(0, 255, 170, 50%);
     --accent-80: rgba(0, 255, 170, 80%);
 
+    --color-purple: #a855f7;
+    --color-purple-rgb: 168, 85, 247;
+    --color-purple-light: #c084fc;
+    --color-blue-alt: #3b82f6;
+    --color-blue-alt-rgb: 59, 130, 246;
+    --color-blue-alt-light: #60a5fa;
+    --color-red-alt: #ef4444;
+    --color-red-alt-rgb: 239, 68, 68;
+    --color-red-alt-light: #f87171;
+
+    --purple-50: rgba(168, 85, 247, 50%);
+    --purple-10: rgba(168, 85, 247, 10%);
+    --blue-alt-80: rgba(96, 165, 250, 80%);
+    --blue-alt-5: rgba(59, 130, 246, 5%);
+
+    /* CRT Scanline Colors */
+    --scanline-red: rgba(255, 0, 0, 6%);
+    --scanline-green: rgba(0, 255, 0, 2%);
+    --scanline-blue: rgba(0, 0, 255, 6%);
+
     /* Typography */
+    --font-family-title: 'Fredoka One', cursive;
     --font-family-base: 'Outfit', system-ui, sans-serif;
     --font-family-mono: ui-monospace, sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
     --font-weight-light: 300;
@@ -84,7 +114,8 @@
 
 [data-theme='light'] {
     --bg-main: #f0f2f5;
-    --bg-surface: var(--text-main);
+    --bg-surface: #fff;
+    --bg-deep: #e5e7eb;
     --text-main: #0a0a0f;
     --text-main-rgb: 10, 10, 15;
     --text-muted: #505060;

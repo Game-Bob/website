@@ -29,7 +29,7 @@ const { title, description, image } = Astro.props;
 
  />
 
-        <style>
+        <style is:global>
             :root {
                 --color-gamebob-primary: var(--color-primary);
                 --color-gamebob-text: var(--text-main);
@@ -44,42 +44,42 @@ const { title, description, image } = Astro.props;
                 color: var(--color-gamebob-text);
             }
 
-            :global(body:not(.menu-open) nav#main-nav) {
-                border-bottom-color: rgb(29 218 188 / 10%) !important;
+            body:not(.menu-open) nav#main-nav {
+                border-bottom-color: var(--cyan-bob-10) !important;
                 background-color: transparent !important;
                 backdrop-filter: blur(120px) !important;
             }
 
-            :global(nav#main-nav > div > div > a) {
+            nav#main-nav > div > div > a {
                 color: var(--color-gamebob-text) !important;
             }
 
-            :global(nav#main-nav > div > div > a:hover) {
+            nav#main-nav > div > div > a:hover {
                 color: var(--color-gamebob-primary) !important;
             }
 
-            :global(nav#main-nav > div > div > a.nav-active) {
+            nav#main-nav > div > div > a.nav-active {
                 color: var(--color-gamebob-primary) !important;
             }
 
-            :global(#theme-toggle) {
+            #theme-toggle {
                 display: none !important;
             }
 
-            :global(#mobile-menu-overlay) {
-                background-color: rgb(0 0 0 / 95%) !important;
+            #mobile-menu-overlay {
+                background-color: var(--black-95) !important;
             }
 
-            :global(.menu-link) {
+            .menu-link {
                 color: var(--color-gamebob-text) !important;
             }
 
-            :global(.link-number) {
+            .link-number {
                 color: var(--color-gamebob-primary) !important;
             }
 
-            :global(body.menu-open) :global(.line-1),
-            :global(body.menu-open) :global(.line-2) {
+            body.menu-open .line-1,
+            body.menu-open .line-2 {
                 background-color: var(--text-main) !important;
             }
         </style>

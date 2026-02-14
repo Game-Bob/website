@@ -27,7 +27,7 @@
     left: -10%;
     width: 40%;
     height: 40%;
-    background: rgb(29 218 188 / 10%);
+    background: var(--cyan-bob-10);
     border-radius: var(--radius-full);
     filter: blur(120px);
     animation: pulse-glow 8s infinite alternate;
@@ -39,7 +39,7 @@
     right: -5%;
     width: 30%;
     height: 30%;
-    background: rgb(168 85 247 / 10%);
+    background: var(--purple-10);
     border-radius: var(--radius-full);
     filter: blur(100px);
     animation: pulse-glow 8s infinite alternate 2s;
@@ -51,7 +51,7 @@
     left: 20%;
     width: 50%;
     height: 50%;
-    background: rgb(59 130 246 / 5%);
+    background: var(--blue-alt-5);
     border-radius: var(--radius-full);
     filter: blur(150px);
     animation: pulse-glow 8s infinite alternate 4s;
@@ -61,7 +61,7 @@
     position: absolute;
     inset: 0;
     opacity: 3%;
-    background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0);
+    background-image: radial-gradient(circle at 2px 2px, var(--text-main) 1px, transparent 0);
     background-size: 40px 40px;
 }
 

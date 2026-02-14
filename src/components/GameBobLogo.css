@@ -14,7 +14,7 @@
     background: var(--text-main);
     color: var(--bg-main);
     padding: 0.25rem 0.75rem;
-    border-radius: 0.5rem;
+    border-radius: var(--radius-base);
     font-weight: 700;
     font-size: 0.875rem;
     pointer-events: none;
@@ -53,8 +53,4 @@
 
 .pupil {
     transition: transform 0.05s linear;
-}
-
-.gamebob-logo-container:hover .ouch-bubble {
-    /* Logic handled by JS in original, but classes are here */
 }

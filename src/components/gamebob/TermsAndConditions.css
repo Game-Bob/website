@@ -20,8 +20,8 @@
     display: inline-block;
     padding: 0.25rem 1rem;
     border-radius: var(--radius-full);
-    border: 1px solid rgb(29 218 188 / 30%);
-    background: rgb(29 218 188 / 5%);
+    border: 1px solid var(--primary-30);
+    background: var(--primary-5);
     color: var(--color-primary);
     font-size: 0.75rem;
     font-weight: 700;
@@ -88,7 +88,7 @@
     background: var(--white-5);
     backdrop-filter: blur(4px);
     border: 1px solid var(--white-10);
-    border-radius: 1.75rem;
+    border-radius: var(--radius-xl);
     padding: 2rem;
 }
 
@@ -114,7 +114,7 @@
 .term-card {
     position: relative;
     padding: 2rem;
-    border-radius: 1.75rem;
+    border-radius: var(--radius-xl);
     border: 1px solid var(--white-5);
     background: var(--white-5);
     backdrop-filter: blur(4px);
@@ -122,16 +122,16 @@
 }
 
 .term-card:hover {
-    background: rgb(255 255 255 / 7%);
+    background: var(--white-10);
 }
 
 .term-card.special {
-    border-color: rgb(16 185 129 / 20%);
-    background: rgb(16 185 129 / 5%);
+    border-color: var(--accent-20);
+    background: var(--accent-5);
 }
 
 .term-card.special:hover {
-    background: rgb(16 185 129 / 10%);
+    background: var(--accent-10);
 }
 
 .card-title-group {
@@ -148,14 +148,14 @@
     width: 2rem;
     height: 2rem;
     border-radius: var(--radius-full);
-    background: rgb(29 218 188 / 20%);
+    background: var(--primary-20);
     color: var(--color-primary);
     font-size: 0.875rem;
     font-weight: 700;
 }
 
 .special .step-number {
-    background: rgb(16 185 129 / 20%);
+    background: var(--accent-20);
     color: var(--color-accent);
 }
 
@@ -207,7 +207,7 @@
     color: var(--color-accent);
     font-weight: 500;
     text-decoration: none;
-    border-bottom: 1px solid rgb(52 211 153 / 30%);
+    border-bottom: 1px solid var(--accent-30);
     transition: all 0.2s ease;
 }
 

@@ -15,7 +15,7 @@ const CODE_URL =
     title="Magnetic Finger"
     description="Controla el magnetismo. Atrae o repele partículas metálicas con tu toque."
     githubUrl={GITHUB_BASE}
-    codeurl={CODE_URL}
+    codeUrl={CODE_URL}
 
     image="/images/gamebob/mechanics/magnetic-finger.webp"
 >
@@ -81,7 +81,7 @@ const CODE_URL =
     }
 
     .active-mode {
-        outline: 2px solid white;
+        outline: 2px solid var(--text-main);
         outline-offset: 2px;
     }
 
@@ -95,7 +95,7 @@ const CODE_URL =
     const btnAttract = document.getElementById("btn-attract");
     const btnRepel = document.getElementById("btn-repel");
 
-    let game: game | null = null;
+    let game: MagneticFingerGame | null = null;
 
     if (canvas && overlay) {
         const rect = canvas.getBoundingClientRect();

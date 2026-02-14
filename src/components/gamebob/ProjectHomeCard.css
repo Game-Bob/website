@@ -14,7 +14,7 @@
     border-top: 0;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .project-card {
         grid-template-columns: 1fr 1fr;
     }
@@ -30,7 +30,7 @@
     order: 2;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .order-right {
         order: 1;
     }
@@ -64,22 +64,22 @@
 }
 
 .status-badge.released {
-    background: rgb(16 185 129 / 10%);
-    border-color: rgb(16 185 129 / 30%);
-    color: rgb(52 211 153);
+    background: var(--accent-10);
+    border-color: var(--accent-30);
+    color: var(--color-accent);
 }
 
 .status-badge.developing,
 .status-badge.planning {
-    background: rgb(59 130 246 / 10%);
-    border-color: rgb(59 130 246 / 30%);
-    color: rgb(96 165 250);
+    background: var(--primary-10);
+    border-color: var(--primary-30);
+    color: var(--color-primary);
 }
 
 .status-badge.qa {
-    background: rgb(245 158 11 / 10%);
-    border-color: rgb(245 158 11 / 30%);
-    color: rgb(251 191 36);
+    background: var(--accent-10);
+    border-color: var(--accent-30);
+    color: var(--color-accent);
 }
 
 .pulse {
@@ -163,7 +163,7 @@
     aspect-ratio: 2/3;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .image-container {
         aspect-ratio: 3/4;
     }

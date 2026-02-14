@@ -38,7 +38,7 @@
     color: var(--text-muted);
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .submenu-link {
         padding: 0.5rem 1.5rem;
     }
@@ -52,5 +52,5 @@
 .submenu-link.active {
     background: var(--color-gamebob-primary, var(--color-primary));
     color: var(--bg-main);
-    box-shadow: 0 0 20px rgb(29 218 188 / 30%);
+    box-shadow: 0 0 20px var(--cyan-bob-30);
 }
