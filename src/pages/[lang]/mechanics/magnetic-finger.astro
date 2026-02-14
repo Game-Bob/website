@@ -1,0 +1,62 @@
+---
+import MechanicPage from "../../../components/gamebob/mechanics/MechanicPage.astro";
+import MechanicCanvas from "../../../components/gamebob/mechanics/MechanicCanvas.astro";
+import { Icon } from "astro-icon/components";
+import { ui } from "../../../i18n/ui";
+import { useTranslations } from "../../../i18n/utils";
+import { getGitHubUrls } from "../../../config/github";
+
+export async function getStaticPaths() {
+    return Object.keys(ui).map((lang) => ({
+        params: { lang }
+    }));
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as any);
+
+const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("magnetic-finger");
+---
+
+<MechanicPage
+    title={t("mechanics.magnetic-finger.title")}
+    description={t("mechanics.magnetic-finger.description")}
+    githubUrl={GITHUB_BASE}
+    codeUrl={CODE_URL}
+    image="/images/gamebob/mechanics/magnetic-finger.webp"
+    lang={lang}
+>
+    <Icon slot="icon" name="mdi:magnet" class="text-red-400" />
+
+    <MechanicCanvas
+        id="game-canvas"
+        instruction={t("mechanics.interactiveDemo")}
+        subInstruction={t("mechanics.demoPlaceholder")}
+    />
+</MechanicPage>
+
+<script>
+    import { MagneticFingerGame } from "../../../lib/mechanics/magnetic-finger/MagneticFingerGame";
+
+    const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
+    const overlay = document.getElementById("game-canvas-overlay");
+    let game: MagneticFingerGame | null = null;
+
+    if (canvas && overlay) {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+
+        overlay.addEventListener("click", () => {
+            overlay.style.opacity = "0";
+            overlay.style.pointerEvents = "none";
+            if (!game) {
+                game = new MagneticFingerGame(canvas);
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (game) game.resize();
+        });
+    }
+</script>

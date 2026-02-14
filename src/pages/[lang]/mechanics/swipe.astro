@@ -1,0 +1,62 @@
+---
+import MechanicPage from "../../../components/gamebob/mechanics/MechanicPage.astro";
+import MechanicCanvas from "../../../components/gamebob/mechanics/MechanicCanvas.astro";
+import { Icon } from "astro-icon/components";
+import { ui } from "../../../i18n/ui";
+import { useTranslations } from "../../../i18n/utils";
+import { getGitHubUrls } from "../../../config/github";
+
+export async function getStaticPaths() {
+    return Object.keys(ui).map((lang) => ({
+        params: { lang }
+    }));
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as any);
+
+const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("swipe");
+---
+
+<MechanicPage
+    title={t("mechanics.swipe.title")}
+    description={t("mechanics.swipe.description")}
+    githubUrl={GITHUB_BASE}
+    codeUrl={CODE_URL}
+    image="/images/gamebob/mechanics/swipe.webp"
+    lang={lang}
+>
+    <Icon slot="icon" name="mdi:gesture-swipe-horizontal" class="text-blue-400" />
+
+    <MechanicCanvas
+        id="game-canvas"
+        instruction={t("mechanics.interactiveDemo")}
+        subInstruction={t("mechanics.demoPlaceholder")}
+    />
+</MechanicPage>
+
+<script>
+    import { SwipeGame } from "../../../lib/mechanics/swipe/SwipeGame";
+
+    const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
+    const overlay = document.getElementById("game-canvas-overlay");
+    let game: SwipeGame | null = null;
+
+    if (canvas && overlay) {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+
+        overlay.addEventListener("click", () => {
+            overlay.style.opacity = "0";
+            overlay.style.pointerEvents = "none";
+            if (!game) {
+                game = new SwipeGame(canvas);
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (game) game.resize();
+        });
+    }
+</script>
