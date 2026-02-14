@@ -49,22 +49,22 @@ const uniqueTags = [...new Set(allTags)].sort();
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 3rem 1rem;
+        padding: var(--space-2xl) var(--space-sm);
     }
 
     .mechanics-header {
         z-index: 10;
         width: 100%;
         max-width: 72rem;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
+        margin-top: var(--space-2xl);
+        margin-bottom: var(--space-2xl);
         text-align: center;
     }
 
     .mechanics-title {
         font-size: 3rem;
-        font-weight: 800;
-        margin-bottom: 1rem;
+        font-weight: var(--font-weight-bold);
+        margin-bottom: var(--space-sm);
         text-transform: uppercase;
         color: var(--text-main);
         letter-spacing: -0.02em;
@@ -73,7 +73,7 @@ const uniqueTags = [...new Set(allTags)].sort();
     .mechanics-subtitle {
         color: var(--text-muted);
         font-size: 1.125rem;
-        font-weight: 300;
+        font-weight: var(--font-weight-light);
         max-width: 40rem;
         margin: 0 auto;
         line-height: 1.6;
@@ -82,14 +82,14 @@ const uniqueTags = [...new Set(allTags)].sort();
     .mechanics-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 2rem;
+        gap: var(--space-lg);
         width: 100%;
         max-width: 72rem;
-        margin-top: 2rem;
+        margin-top: var(--space-lg);
     }
 
     .no-results {
-        margin-top: 4rem;
+        margin-top: var(--space-xl);
         text-align: center;
         color: var(--text-muted);
         font-size: 1.25rem;
