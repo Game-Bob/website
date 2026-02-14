@@ -4,5 +4,6 @@ export default {
         developing: "En Desarrollo",
         qa: "En QA",
         planning: "Planificación"
-    }
+    },
+    overallProgress: "Progreso general"
 }

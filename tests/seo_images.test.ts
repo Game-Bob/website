@@ -1,9 +1,5 @@
 import { describe, it, expect } from "vitest";
-import fs from "node:fs";
-import path from "node:path";
-
-const BASE_URL = "http://localhost:4321";
-const PAGES_DIR = path.join(process.cwd(), "src/pages");
+import { BASE_URL, PAGES_DIR, getPages, generateConcreteRoutes } from "./testUtils";
 
 const FORBIDDEN_IMAGES = [
     "favicon.png",
@@ -13,38 +9,8 @@ const FORBIDDEN_IMAGES = [
     "favicon-96x96.png",
 ];
 
-function getPages(dir: string, baseRoute: string = ""): string[] {
-    const files = fs.readdirSync(dir);
-    let pages: string[] = [];
-
-    files.forEach((file) => {
-        const fullPath = path.join(dir, file);
-        const stat = fs.statSync(fullPath);
-
-        if (stat.isDirectory()) {
-            pages = pages.concat(getPages(fullPath, `${baseRoute}/${file}`));
-        } else if (file.endsWith(".astro") || file.endsWith(".md") || file.endsWith(".html")) {
-            if (file.includes("[") || file.startsWith("_") || file.startsWith(".")) return;
-
-            let route = baseRoute;
-            const name = path.parse(file).name;
-
-            if (name !== "index") {
-                route = `${route}/${name}`;
-            }
-
-            if (route === "") route = "/";
-            else if (!route.endsWith("/")) route = `${route}/`;
-
-            route = route.replace(/\/+/g, "/");
-            pages.push(route);
-        }
-    });
-
-    return pages;
-}
-
-const pages = getPages(PAGES_DIR);
+const pageRoutes = getPages(PAGES_DIR);
+const pages = generateConcreteRoutes(pageRoutes);
 
 describe("SEO: Verificación de Imágenes Open Graph", () => {
     pages.forEach((pagePath) => {

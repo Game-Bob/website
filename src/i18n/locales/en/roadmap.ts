@@ -4,5 +4,6 @@ export default {
         developing: "In Development",
         qa: "In QA",
         planning: "Planning"
-    }
+    },
+    overallProgress: "Overall Progress"
 }

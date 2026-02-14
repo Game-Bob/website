@@ -1,19 +1,19 @@
 ---
 import BasePage from "../../../components/templates/BasePage.astro";
 import { ui } from "../../../i18n/ui";
+import { useTranslations } from "../../../i18n/utils";
 
 export async function getStaticPaths() {
   return Object.keys(ui).map((lang) => ({ params: { lang } }));
 }
 
 const { lang } = Astro.params;
+const t = useTranslations(lang as any);
 
 ---
 
-<BasePage lang={lang as any}
-
- navKey="privacy">
-  <p class="description">How we handle your data.</p>
+<BasePage lang={lang as any} navKey="privacy">
+  <p class="description">{t("privacy.description")}</p>
 </BasePage>
 
 <style>

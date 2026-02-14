@@ -2,10 +2,11 @@
 import { languages, defaultLang, type SupportedLang } from "../i18n/ui";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import Header from "../components/organisms/Header/Header.astro";
+import SEO from "../components/SEO.astro";
 import "../styles/tokens.css";
 import "../styles/global.css";
 
-interface props {
+interface Props {
   title?: string;
   description?: string;
   image?: string;
@@ -29,10 +30,10 @@ const getLocalizedPath = (l: string) => {
 
 const canonicalURL = new URL(pathname, siteUrl);
 
-const { 
-  title = t("site.title"), 
-  description = t("site.description"), 
-  image = "/og-image.png" 
+const {
+  title = t("site.title"),
+  description = t("site.description"),
+  image = "/og-image.webp"
 } = Astro.props;
 
 ---
@@ -42,42 +43,22 @@ const {
 
  data-theme="dark">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator}
+    <SEO title={title} description={description} image={image} canonicalURL={canonicalURL.href} />
 
- />
-
-    <link rel="canonical" href={canonicalURL}
-
- />
     {Object.keys(languages).map((l) => (
-      <link 
-        rel="alternate" 
-        hreflang={l} 
-        href={new URL(getLocalizedPath(l), siteUrl)} 
+      <link
+        rel="alternate"
+        hreflang={l}
+        href={new URL(getLocalizedPath(l), siteUrl)}
       />
     ))}
 
-    <link 
-      rel="alternate" 
-      hreflang="x-default" 
-      href={new URL(getLocalizedPath(defaultLang), siteUrl)} 
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(getLocalizedPath(defaultLang), siteUrl)}
 
     />
-
-    <title>{title}
-
-</title>
-    <meta name="title" content={title}/>
-    <meta name="description" content={description}/>
-
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url}/>
-    <meta property="og:title" content={title}/>
-    <meta property="og:description" content={description}/>
-    <meta property="og:image" content={new URL(image, Astro.url)} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

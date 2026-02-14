@@ -1,9 +1,16 @@
 ---
 import './PrivacyPolicy.css';
 import { Icon } from "astro-icon/components";
-
 import LanguageSelector from "./LanguageSelector.astro";
 import DiscordCTA from "./DiscordCTA.astro";
+import { useTranslations } from "../../i18n/utils";
+
+interface Props {
+    lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang as any);
 ---
 
 <section class="privacy-section" id="privacy-policy-container">
@@ -15,33 +22,21 @@ import DiscordCTA from "./DiscordCTA.astro";
         </div>
 
         <div class="privacy-header">
-            <div
-                data-t="privacy.badge"
-                class="privacy-badge"
-            >
-                Transparencia Total
+            <div class="privacy-badge">
+                {t("privacyPolicy.badge")}
             </div>
             <h1 class="privacy-title">
-                <span data-t="privacy.title_p1">Política de</span><br />
-                <span
-                    data-t="privacy.title_p2"
-                    class="privacy-title-gradient"
-                >
-                    Privacidad
+                <span>{t("privacyPolicy.title_p1")}</span><br />
+                <span class="privacy-title-gradient">
+                    {t("privacyPolicy.title_p2")}
                 </span>
             </h1>
-            <p
-                data-t="privacy.description"
-                class="privacy-description"
-            >
-                Tu tranquilidad es nuestra prioridad. Aquí explicamos cómo cuidamos tus datos con la
-                misma pasión con la que creamos cada píxel de nuestros juegos.
+            <p class="privacy-description">
+                {t("privacyPolicy.description")}
             </p>
             <div class="privacy-update">
                 <span class="update-line"></span>
-                <span data-t="privacy.last_update"
-                    >Última actualización: 24 de diciembre de 2025</span
-                >
+                <span>{t("privacyPolicy.last_update")}</span>
                 <span class="update-line"></span>
             </div>
         </div>
@@ -52,24 +47,15 @@ import DiscordCTA from "./DiscordCTA.astro";
                 <div class="card-layout">
                     <div class="card-icon-box">
                         <div class="icon-container">
-                            <icon name="mdi:hand-wave-outline" class="card-icon" />
+                            <Icon name="mdi:hand-wave-outline" class="card-icon" />
                         </div>
                     </div>
                     <div class="card-content">
-                        <h2
-                            data-t="privacy.sections.intro.title"
-                            class="card-title"
-                        >
-                            introducción
+                        <h2 class="card-title">
+                            {t("privacyPolicy.sections.intro.title")}
                         </h2>
-                        <p
-                            data-t="privacy.sections.intro.content"
-                            class="card-text"
-                        >
-                            en gamebob, nos tomamos muy en serio la privacidad de nuestros usuarios.
-                            esta política describe cómo se manejan los datos en todas nuestras
-                            aplicaciones y juegos. creemos en un desarrollo ético donde la diversión
-                            no dependa de tu información personal.
+                        <p class="card-text">
+                            {t("privacyPolicy.sections.intro.content")}
                         </p>
                     </div>
                 </div>
@@ -80,24 +66,15 @@ import DiscordCTA from "./DiscordCTA.astro";
                 <div class="card-layout">
                     <div class="card-icon-box">
                         <div class="icon-container">
-                            <icon name="mdi:database-off-outline" class="card-icon" />
+                            <Icon name="mdi:database-off-outline" class="card-icon" />
                         </div>
                     </div>
                     <div class="card-content">
-                        <h2
-                            data-t="privacy.sections.collection.title"
-                            class="card-title"
-                        >
-                            recopilación de datos
+                        <h2 class="card-title">
+                            {t("privacyPolicy.sections.collection.title")}
                         </h2>
-                        <p
-                            data-t="privacy.sections.collection.content"
-                            class="card-text"
-                        >
-                            nuestros juegos están diseñados para ser disfrutados sin recopilar datos
-                            personales identificables. no solicitamos nombres, correos electrónicos
-                            ni información sensible. tu progreso es tuyo, y así queremos que siga
-                            siendo.
+                        <p class="card-text">
+                            {t("privacyPolicy.sections.collection.content")}
                         </p>
                     </div>
                 </div>
@@ -108,24 +85,15 @@ import DiscordCTA from "./DiscordCTA.astro";
                 <div class="card-layout">
                     <div class="card-icon-box">
                         <div class="icon-container">
-                            <icon name="mdi:security" class="card-icon" />
+                            <Icon name="mdi:security" class="card-icon" />
                         </div>
                     </div>
                     <div class="card-content">
-                        <h2
-                            data-t="privacy.sections.security.title"
-                            class="card-title"
-                        >
-                            filosofía de seguridad
+                        <h2 class="card-title">
+                            {t("privacyPolicy.sections.security.title")}
                         </h2>
-                        <p
-                            data-t="privacy.sections.security.content"
-                            class="card-text"
-                        >
-                            implementamos una política de 'Zero Data'. no almacenamos información en
-                            servidores externos que no sea estrictamente necesaria para el
-                            funcionamiento técnico local de la aplicación, minimizando cualquier
-                            riesgo de exposición.
+                        <p class="card-text">
+                            {t("privacyPolicy.sections.security.content")}
                         </p>
                     </div>
                 </div>
@@ -136,47 +104,28 @@ import DiscordCTA from "./DiscordCTA.astro";
                 <div class="card-layout">
                     <div class="card-icon-box">
                         <div class="icon-container">
-                            <icon name="mdi:handshake-outline" class="card-icon" />
+                            <Icon name="mdi:handshake-outline" class="card-icon" />
                         </div>
                     </div>
                     <div class="card-content">
-                        <h2
-                            data-t="privacy.sections.third_party.title"
-                            class="card-title"
-                        >
-                            servicios de terceros
+                        <h2 class="card-title">
+                            {t("privacyPolicy.sections.third_party.title")}
                         </h2>
                         <ul class="card-list">
                             <li class="list-item">
                                 <span class="list-dot"></span>
                                 <p class="list-text">
-                                    <span
-                                        data-t="privacy.sections.third_party.admob_title"
-                                        class="list-text-bold">google;
-
- AdMob:</span
-                                    >
-                                    <span data-t="privacy.sections.third_party.admob_content"
-                                        >utilizado para mostrar anuncios que financian nuestro
-                                        desarrollo gratuito. google puede usar identificadores de
-                                        publicidad anónimos para personalizar tu experiencia
-                                        publicitaria.</span
-                                    >
+                                    <span class="list-text-bold">{t("privacyPolicy.sections.third_party.admob_title")}</span>
+                                    {" "}
+                                    <span>{t("privacyPolicy.sections.third_party.admob_content")}</span>
                                 </p>
                             </li>
                             <li class="list-item">
                                 <span class="list-dot"></span>
                                 <p class="list-text">
-                                    <span
-                                        data-t="privacy.sections.third_party.crashlytics_title"
-                                        class="list-text-bold">firebase; Crashlytics:</span
-                                    >
-                                    <span data-t="privacy.sections.third_party.crashlytics_content"
-                                        >herramienta de monitoreo de errores que nos ayuda a
-                                        identificar, priorizar y solucionar problemas de estabilidad
-                                        en la aplicación. recopila datos anónimos sobre fallos y el
-                                        estado de la aplicación en el momento del error.</span
-                                    >
+                                    <span class="list-text-bold">{t("privacyPolicy.sections.third_party.crashlytics_title")}</span>
+                                    {" "}
+                                    <span>{t("privacyPolicy.sections.third_party.crashlytics_content")}</span>
                                 </p>
                             </li>
                         </ul>
@@ -189,24 +138,15 @@ import DiscordCTA from "./DiscordCTA.astro";
                 <div class="card-layout">
                     <div class="card-icon-box">
                         <div class="icon-container">
-                            <icon name="mdi:shield-check-outline" class="card-icon" />
+                            <Icon name="mdi:shield-check-outline" class="card-icon" />
                         </div>
                     </div>
                     <div class="card-content">
-                        <h2
-                            data-t="privacy.sections.children.title"
-                            class="card-title"
-                        >
-                            protección infantil
+                        <h2 class="card-title">
+                            {t("privacyPolicy.sections.children.title")}
                         </h2>
-                        <p
-                            data-t="privacy.sections.children.content"
-                            class="card-text"
-                        >
-                            cumplimos estrictamente con las normativas internacionales de protección
-                            infantil (coppa/gdpr). nuestros juegos son entornos seguros donde no se
-                            recopila información personal de menores de 13 años bajo ningún
-                            concepto.
+                        <p class="card-text">
+                            {t("privacyPolicy.sections.children.content")}
                         </p>
                     </div>
                 </div>
@@ -217,24 +157,15 @@ import DiscordCTA from "./DiscordCTA.astro";
                 <div class="card-layout">
                     <div class="card-icon-box">
                         <div class="icon-container">
-                            <icon name="mdi:email-outline" class="card-icon" />
+                            <Icon name="mdi:email-outline" class="card-icon" />
                         </div>
                     </div>
                     <div class="card-content">
-                        <h2
-                            data-t="privacy.sections.contact.title"
-                            class="card-title"
-                        >
-                            cambios y contacto
+                        <h2 class="card-title">
+                            {t("privacyPolicy.sections.contact.title")}
                         </h2>
-                        <p
-                            data-t="privacy.sections.contact.content"
-                            class="card-text"
-                        >
-                            nuestra política puede evolucionar junto con nuestra tecnología. si
-                            tienes alguna duda sobre cómo protegemos tu experiencia de juego,
-                            estamos a un mensaje de distancia a través de nuestros canales
-                            oficiales.
+                        <p class="card-text">
+                            {t("privacyPolicy.sections.contact.content")}
                         </p>
                     </div>
                 </div>
@@ -244,64 +175,11 @@ import DiscordCTA from "./DiscordCTA.astro";
         <div class="privacy-footer">
             <div class="footer-copy-box">
                 <div class="footer-line"></div>
-                <p data-t="privacy.footer_copy" class="footer-copy">
-                    gamebob studio &copy;
-
- 2026
+                <p class="footer-copy">
+                    {t("privacyPolicy.footer_copy")}
                 </p>
                 <div class="footer-line"></div>
             </div>
         </div>
     </div>
 </section>
-
-<script>
-    import { LEGAL_TRANSLATIONS } from "../../data/gamebob/legal-translations";
-
-    function updateprivacytranslations(lang: string) {
-        const t = LEGAL_TRANSLATIONS[lang] || LEGAL_TRANSLATIONS.es;
-
-        document.querySelectorAll("#privacy-policy-container [data-t]").forEach((el) => {
-            const key = el.getAttribute("data-t");
-            if (!key) return;
-
-            const value = key.split(".").reduce((obj, i) => (obj ? obj[i] : null), t as any);
-
-            if (value && typeof value === "string") {
-                el.textContent = value;
-            }
-        });
-    }
-
-    function initPrivacy() {
-        document.addEventListener("change-language", (e: any) => {
-            updatePrivacyTranslations(e.detail.lang);
-        });
-
-        const userLang = localStorage.getItem("preferred-lang") || navigator.language.split("-")[0];
-        const LANGUAGES = [
-            "en",
-            "es",
-            "de",
-            "fr",
-            "it",
-            "pt",
-            "ja",
-            "ko",
-            "zh",
-            "ru",
-            "tr",
-            "nl",
-            "pl",
-            "sv",
-            "hi",
-        ];
-
-        if (LANGUAGES.includes(userLang) && userLang !== "es") {
-            updatePrivacyTranslations(userLang);
-        }
-    }
-
-    initPrivacy();
-    document.addEventListener("astro:page-load", initPrivacy);
-</script>

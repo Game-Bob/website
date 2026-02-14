@@ -2,7 +2,7 @@
 import './MechanicCard.css';
 import { Icon } from "astro-icon/components";
 import type { MechanicItem } from "../../../data/gamebob/mechanics";
-import { useLanguagePath } from "../../../i18n/utils";
+import { useLanguagePath, useTranslations } from "../../../i18n/utils";
 
 interface Props {
     mechanic: MechanicItem;
@@ -10,6 +10,7 @@ interface Props {
 
 const { lang } = Astro.params;
 const l = useLanguagePath(lang as any);
+const t = useTranslations(lang as any);
 const { mechanic } = Astro.props;
 
 ---
@@ -51,7 +52,7 @@ const { mechanic } = Astro.props;
         </div>
         <div class="card-footer">
             <Icon name="mdi:play-circle-outline" class="footer-icon" />
-            <span>demo interactiva</span>
+            <span>{t("mechanics.interactiveDemo")}</span>
         </div>
     </div>
     <div class="hover-overlay"></div>

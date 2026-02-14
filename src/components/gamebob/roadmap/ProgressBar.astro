@@ -1,16 +1,20 @@
 ---
 import './ProgressBar.css';
-interface props {
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+
+interface Props {
     progress: number;
 }
 
 const { progress } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 ---
 
 <div class="progress-wrapper">
     <div class="progress-header">
-        <span>Progreso general</span>
+        <span>{t("roadmap.overallProgress")}</span>
         <span>{progress}%</span>
     </div>
     <div class="progress-track">
