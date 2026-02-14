@@ -101,7 +101,6 @@ const uniqueTags = [...new Set(allTags)].sort();
 </style>
 
 <script>
-    // Simple client-side filtering logic
     document.addEventListener('astro:page-load', () => {
         const filterButtons = document.querySelectorAll('.filter-btn');
         const cards = document.querySelectorAll('.mechanic-card');
@@ -109,9 +108,7 @@ const uniqueTags = [...new Set(allTags)].sort();
 
         filterButtons.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove active class from all buttons
                 filterButtons.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
                 btn.classList.add('active');
 
                 const filter = btn.getAttribute('data-filter');
@@ -120,10 +117,6 @@ const uniqueTags = [...new Set(allTags)].sort();
 
                 cards.forEach(card => {
                     const tags = card.getAttribute('data-tags')?.split(',') || [];
-                    const platforms = card.getAttribute('data-platform'); // mobile, desktop, all
-
-                    // Logic for filtering can be expanded here depending on requirements
-                    // For now assuming filter is by tag or 'all'
                     
                     if (filter === 'all' || tags.includes(filter || '')) {
                         (card as HTMLElement).style.display = 'block';

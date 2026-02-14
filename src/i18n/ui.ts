@@ -20,14 +20,11 @@ export const languages = {
 export type SupportedLang = keyof typeof languages;
 export const defaultLang: SupportedLang = "en";
 
-// Dynimalically import all translation files from the locales directory
 const modules = import.meta.glob('./locales/**/*.ts', { eager: true });
 
 export const ui: Record<string, Record<string, any>> = {};
 
-// Process each file found by glob
 for (const path in modules) {
-    // Path format: ./locales/{lang}/{module}.ts
     const parts = path.split('/');
     const lang = parts[2];
     const moduleName = parts[3].replace('.ts', '');
@@ -36,6 +33,5 @@ for (const path in modules) {
         ui[lang] = {};
     }
 
-    // Assign the default export of the module to its moduleName key
     ui[lang][moduleName] = (modules[path] as any).default;
 }
