@@ -1,5 +1,5 @@
 ---
-import BasePage from "../../../components/templates/BasePage.astro";
+import CommunityTemplate from "../../../components/templates/community/CommunityTemplate.astro";
 import { ui } from "../../../i18n/ui";
 
 export async function getStaticPaths() {
@@ -7,19 +7,6 @@ export async function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-
 ---
 
-<BasePage lang={lang as any}
-
- navKey="community">
-  <p class="description">Join our growing community of players and developers.</p>
-</BasePage>
-
-<style>
-  .description {
-    color: var(--text-muted);
-    font-size: 1.25rem;
-    margin-top: var(--space-md);
-  }
-</style>
+<CommunityTemplate lang={lang || "en"} />

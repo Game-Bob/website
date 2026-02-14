@@ -1,6 +1,6 @@
 ---
-import HomeTemplate from "../../../components/templates/home/HomeTemplate.astro";
-import { ui } from "../../../i18n/ui";
+import HomeTemplate from "../../components/templates/home/HomeTemplate.astro";
+import { ui } from "../../i18n/ui";
 
 export async function getStaticPaths() {
   return Object.keys(ui).map((lang) => ({ params: { lang } }));

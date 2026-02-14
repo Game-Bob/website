@@ -2,16 +2,16 @@
 import './ProjectTasks.css';
 import { Icon } from "astro-icon/components";
 
-interface task {
+interface Task {
     name: string;
     status: string;
 }
 
-interface props {
-    tasks: task[];
+interface Props {
+    tasks: Task[];
 }
 
-const { tasks } = Astro.props;
+const { tasks = [] } = Astro.props as Props;
 
 const doneTasks = tasks.filter((t) => t.status === "done");
 const activeTask = tasks.find((t) => t.status === "active");

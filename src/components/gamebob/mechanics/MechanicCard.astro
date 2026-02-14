@@ -1,18 +1,21 @@
 ---
 import './MechanicCard.css';
 import { Icon } from "astro-icon/components";
-import type { MechanicItem } from "../../../data/mechanics";
+import type { MechanicItem } from "../../../data/gamebob/mechanics";
+import { useLanguagePath } from "../../../i18n/utils";
 
-interface props {
-    mechanic: mechanicitem;
+interface Props {
+    mechanic: MechanicItem;
 }
 
+const { lang } = Astro.params;
+const l = useLanguagePath(lang as any);
 const { mechanic } = Astro.props;
 
 ---
 
 <a
-    href={mechanic.url}
+    href={l(mechanic.url)}
 
     class="mechanic-card"
     data-tags={mechanic.tags.join(",")}

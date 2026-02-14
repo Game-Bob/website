@@ -2,11 +2,11 @@
 import './MechanicsFilter.css';
 import { Icon } from "astro-icon/components";
 
-interface props {
+interface Props {
     allTags: string[];
 }
 
-const { allTags } = Astro.props;
+const { allTags = [] } = Astro.props as Props;
 
 ---
 

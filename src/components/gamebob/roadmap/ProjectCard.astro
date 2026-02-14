@@ -16,7 +16,7 @@ const description = project.description;
 const image = "media" in project ? project.media.showcase : project.image;
 const statusLabel = "roadmap" in project ? project.roadmap.statusLabel : (project.statusLabel || project.statuslabel || "");
 const progress = "roadmap" in project ? project.roadmap.progress : (project.progress || 0);
-const tasks = "roadmap" in project ? project.roadmap.tasks : (project.tasks || []);
+const tasks = "roadmap" in project && project.roadmap && project.roadmap.tasks ? project.roadmap.tasks : (project.tasks || []);
 
 ---
 

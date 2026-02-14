@@ -3,17 +3,21 @@ import './PostMortemCard.css';
 import { Icon } from "astro-icon/components";
 import type { PostMortemEntry } from "../../../data/gamebob/post-mortem/entries";
 
-interface props {
-    entry: postmortementry;
+import { useLanguagePath } from "../../../i18n/utils";
+
+interface Props {
+    entry: PostMortemEntry;
 }
 
-const { entry } = Astro.props;
+const { lang } = Astro.params;
+const l = useLanguagePath(lang as any);
+const { entry } = Astro.props as Props;
 const imagePath = entry.image ? `/images/gamebob/post-mortem/${entry.image}` : null;
 
 ---
 
 <a
-    href={`/gamebob/post-mortem/${entry.id}/`}
+    href={l(`/postmortem/${entry.id}/`)}
     class="pm-card"
 >
     <div class="pm-card-top-line"></div>

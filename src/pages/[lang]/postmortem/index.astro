@@ -1,5 +1,5 @@
 ---
-import BasePage from "../../../components/templates/BasePage.astro";
+import PostMortemTemplate from "../../../components/templates/postmortem/PostMortemTemplate.astro";
 import { ui } from "../../../i18n/ui";
 
 export async function getStaticPaths() {
@@ -7,19 +7,6 @@ export async function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-
 ---
 
-<BasePage lang={lang as any}
-
- navKey="postmortem">
-  <p class="description">Analysis of our previous projects and lessons learned.</p>
-</BasePage>
-
-<style>
-  .description {
-    color: var(--text-muted);
-    font-size: 1.25rem;
-    margin-top: var(--space-md);
-  }
-</style>
+<PostMortemTemplate lang={lang || "en"} />

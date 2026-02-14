@@ -1,5 +1,5 @@
 ---
-import BasePage from "../../../components/templates/BasePage.astro";
+import MechanicsTemplate from "../../../components/templates/mechanics/MechanicsTemplate.astro";
 import { ui } from "../../../i18n/ui";
 
 export async function getStaticPaths() {
@@ -9,14 +9,4 @@ export async function getStaticPaths() {
 const { lang } = Astro.params;
 ---
 
-<BasePage lang={lang as any} navKey="mechanics">
-  <p class="description">Deep dive into unique game mechanics.</p>
-</BasePage>
-
-<style>
-  .description {
-    color: var(--text-muted);
-    font-size: 1.25rem;
-    margin-top: var(--space-md);
-  }
-</style>
+<MechanicsTemplate lang={lang || "en"} />

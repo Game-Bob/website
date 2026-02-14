@@ -1,0 +1,142 @@
+---
+import GameBobLayout from "../../../layouts/GameBobLayout.astro";
+import MechanicsFilter from "../../../components/gamebob/mechanics/MechanicsFilter.astro";
+import MechanicCard from "../../../components/gamebob/mechanics/MechanicCard.astro";
+import { mechanics } from "../../../data/gamebob/mechanics";
+import { useTranslations } from "../../../i18n/utils";
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang as any);
+
+const allTags = mechanics.flatMap((m) => m.tags);
+const uniqueTags = [...new Set(allTags)].sort();
+---
+
+<GameBobLayout
+    title="Game Mechanics - GameBob"
+    description={t("mechanics.description")}
+    image="/images/gamebob/mechanics/index.webp"
+>
+    <div class="mechanics-page">
+        <header class="mechanics-header">
+            <h1 class="mechanics-title">{t("nav.mechanics")}</h1>
+            <p class="mechanics-subtitle">{t("mechanics.description")}</p>
+        </header>
+
+        <MechanicsFilter allTags={uniqueTags} />
+
+        <div class="mechanics-grid" id="mechanics-grid" role="list" aria-label={t("mechanics.srOnly")}>
+            {
+                mechanics.map((mechanic) => (
+                    <MechanicCard mechanic={mechanic} />
+                ))
+            }
+        </div>
+
+        <div id="no-results" class="no-results hidden">
+            <p>{t("mechanics.noResults")}</p>
+        </div>
+    </div>
+</GameBobLayout>
+
+<style>
+    .mechanics-page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 3rem 1rem;
+    }
+
+    .mechanics-header {
+        z-index: 10;
+        width: 100%;
+        max-width: 72rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .mechanics-title {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        color: var(--text-main);
+        letter-spacing: -0.02em;
+    }
+
+    .mechanics-subtitle {
+        color: var(--text-muted);
+        font-size: 1.125rem;
+        font-weight: 300;
+        max-width: 40rem;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .mechanics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        width: 100%;
+        max-width: 72rem;
+        margin-top: 2rem;
+    }
+
+    .no-results {
+        margin-top: 4rem;
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 1.25rem;
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+
+<script>
+    // Simple client-side filtering logic
+    document.addEventListener('astro:page-load', () => {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.mechanic-card');
+        const noResults = document.getElementById('no-results');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                let visibleCount = 0;
+
+                cards.forEach(card => {
+                    const tags = card.getAttribute('data-tags')?.split(',') || [];
+                    const platforms = card.getAttribute('data-platform'); // mobile, desktop, all
+
+                    // Logic for filtering can be expanded here depending on requirements
+                    // For now assuming filter is by tag or 'all'
+                    
+                    if (filter === 'all' || tags.includes(filter || '')) {
+                        (card as HTMLElement).style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        (card as HTMLElement).style.display = 'none';
+                    }
+                });
+
+                if (noResults) {
+                    noResults.classList.toggle('hidden', visibleCount > 0);
+                }
+            });
+        });
+    });
+</script>

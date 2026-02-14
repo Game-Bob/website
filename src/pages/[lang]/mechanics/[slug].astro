@@ -1,0 +1,42 @@
+---
+import MechanicPage from "../../../components/gamebob/mechanics/MechanicPage.astro";
+import { mechanics } from "../../../data/gamebob/mechanics";
+import { ui } from "../../../i18n/ui";
+
+export async function getStaticPaths() {
+  const paths = [];
+  
+  for (const lang of Object.keys(ui)) {
+    for (const mechanic of mechanics) {
+        // Extract slug from url: /mechanics/slingshot/ -> slingshot
+        const parts = mechanic.url.split('/').filter(Boolean);
+        const slug = parts[parts.length - 1]; // "slingshot"
+        if (slug) {
+            paths.push({ 
+                params: { lang, slug },
+                props: { mechanic } 
+            });
+        }
+    }
+  }
+  
+  return paths;
+}
+
+const { lang, slug } = Astro.params;
+const { mechanic } = Astro.props;
+---
+
+<MechanicPage 
+    title={mechanic.title} 
+    description={mechanic.description}
+    image={`/images/gamebob/mechanics/${slug}.webp`}
+>
+    <!-- Contenido específico de la mecánica aquí -->
+    <!-- En un escenario real, tendríamos un componente dinámico o MDX para cada mecánica -->
+    <div style="padding: 2rem; text-align: center; color: var(--text-muted);">
+        <h2>Demo de {mechanic.title}</h2>
+        <p>Esta es una página generada dinámicamente para la mecánica: {slug}</p>
+        <p>(Aquí iría el canvas o el iframe del prototipo)</p>
+    </div>
+</MechanicPage>
