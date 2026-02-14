@@ -1,23 +1,4 @@
 
-import enSite from "./locales/en/site";
-import enNav from "./locales/en/nav";
-import enHero from "./locales/en/hero";
-
-
-import esSite from "./locales/es/site";
-import esNav from "./locales/es/nav";
-import esHero from "./locales/es/hero";
-import enApps from "./locales/en/apps";
-import esApps from "./locales/es/apps";
-import enRoadmap from "./locales/en/roadmap";
-import esRoadmap from "./locales/es/roadmap";
-import enHome from "./locales/en/home";
-import esHome from "./locales/es/home";
-import enPrototypes from "./locales/en/prototypes";
-import esPrototypes from "./locales/es/prototypes";
-import enMechanics from "./locales/en/mechanics";
-import esMechanics from "./locales/es/mechanics";
-
 export const languages = {
     en: { label: "English", flag: "🇺🇸", dir: "ltr" },
     es: { label: "Español", flag: "🇪🇸", dir: "ltr" },
@@ -39,25 +20,22 @@ export const languages = {
 export type SupportedLang = keyof typeof languages;
 export const defaultLang: SupportedLang = "en";
 
-export const ui: Record<string, Record<string, any>> = {
-    en: {
-        site: enSite,
-        nav: enNav,
-        hero: enHero,
-        apps: enApps,
-        roadmap: enRoadmap,
-        home: enHome,
-        prototypes: enPrototypes,
-        mechanics: enMechanics,
-    },
-    es: {
-        site: esSite,
-        nav: esNav,
-        hero: esHero,
-        apps: esApps,
-        roadmap: esRoadmap,
-        home: esHome,
-        prototypes: esPrototypes,
-        mechanics: esMechanics,
-    },
-};
+// Dynimalically import all translation files from the locales directory
+const modules = import.meta.glob('./locales/**/*.ts', { eager: true });
+
+export const ui: Record<string, Record<string, any>> = {};
+
+// Process each file found by glob
+for (const path in modules) {
+    // Path format: ./locales/{lang}/{module}.ts
+    const parts = path.split('/');
+    const lang = parts[2];
+    const moduleName = parts[3].replace('.ts', '');
+
+    if (!ui[lang]) {
+        ui[lang] = {};
+    }
+
+    // Assign the default export of the module to its moduleName key
+    ui[lang][moduleName] = (modules[path] as any).default;
+}

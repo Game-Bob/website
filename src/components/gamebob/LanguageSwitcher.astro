@@ -1,5 +1,5 @@
 ---
-import { languages, defaultLang } from "../../i18n/ui";
+import { languages, defaultLang, ui } from "../../i18n/ui";
 import { getLangFromUrl, useLanguagePath } from "../../i18n/utils";
 import { Icon } from "astro-icon/components";
 
@@ -34,7 +34,9 @@ const getLocalizedPath = (l: string) => {
 
   <div class="lang-menu" role="menu">
     <div class="lang-grid">
-      {Object.entries(languages).map(([code, info]) => (
+      {Object.entries(languages)
+        .filter(([code]) => Object.keys(ui).includes(code))
+        .map(([code, info]) => (
         <a 
           href={getLocalizedPath(code)}
           class={`lang-item ${currentLang === code ? 'active' : ''}`}
@@ -98,9 +100,9 @@ const getLocalizedPath = (l: string) => {
     backdrop-filter: blur(20px);
     border: 1px solid var(--white-10);
     border-radius: var(--radius-lg);
-    padding: 0.75rem;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    opacity: 0;
+    padding: var(--radius-md);
+    box-shadow: 0 10px 40px var(--black-50);
+    opacity: 0%;
     visibility: hidden;
     transform: translateY(10px);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -108,7 +110,7 @@ const getLocalizedPath = (l: string) => {
   }
 
   .lang-dropdown:hover .lang-menu {
-    opacity: 1;
+    opacity: 100%;
     visibility: visible;
     transform: translateY(0);
   }
@@ -116,14 +118,14 @@ const getLocalizedPath = (l: string) => {
   .lang-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
+    gap: var(--space-xs);
   }
 
   .lang-item {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.5rem;
+    gap: var(--radius-md);
+    padding: var(--space-xs);
     border-radius: var(--radius-base);
     text-decoration: none;
     color: var(--text-muted);
@@ -147,7 +149,7 @@ const getLocalizedPath = (l: string) => {
   .item-info {
     display: flex;
     flex-direction: column;
-    gap: 0.1rem;
+    gap: 0;
   }
 
   .item-label {
@@ -157,7 +159,7 @@ const getLocalizedPath = (l: string) => {
 
   .item-code {
     font-size: 0.65rem;
-    opacity: 0.5;
+    opacity: 50%;
   }
 
   @media (width <= 48rem) {
@@ -167,10 +169,7 @@ const getLocalizedPath = (l: string) => {
     
     .lang-menu {
       position: fixed;
-      top: auto;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      inset: auto 0 0;
       width: 100%;
       border-radius: var(--radius-lg) var(--radius-lg) 0 0;
       padding-bottom: env(safe-area-inset-bottom);

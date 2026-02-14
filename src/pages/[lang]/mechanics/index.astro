@@ -1,20 +1,15 @@
 ---
-import BasePage from "../../../components/templates/BasePage.astro";
-import { languages } from "../../../i18n/ui";
+import BasePage from "../../templates/BasePage.astro";
+import { ui } from "../../i18n/ui";
 
 export async function getStaticPaths() {
-  return Object.keys(languages)
-    .filter((lang) => lang !== "en")
-    .map((lang) => ({ params: { lang } }));
+  return Object.keys(ui).map((lang) => ({ params: { lang } }));
 }
 
 const { lang } = Astro.params;
-
 ---
 
-<BasePage lang={lang as any}
-
- navKey="mechanics">
+<BasePage lang={lang as any} navKey="mechanics">
   <p class="description">Deep dive into unique game mechanics.</p>
 </BasePage>
 

@@ -1,14 +1,17 @@
 ---
-export const prerender = true;
-import "./index.css";
-import GameBobLayout from "../../layouts/GameBobLayout.astro";
+import GameBobLayout from "../../../layouts/GameBobLayout.astro";
 import { Icon } from "astro-icon/components";
-import { prototypes } from "../../data/gamebob/prototypes";
-import { getLangFromUrl, useTranslations, useLanguagePath } from "../../i18n/utils";
+import { prototypes } from "../../../data/gamebob/prototypes";
+import { useTranslations, useLanguagePath } from "../../../i18n/utils";
+import "../../../pages/prototypes/index.css";
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const l = useLanguagePath(lang);
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang as any);
+const l = useLanguagePath(lang as any);
 ---
 
 <GameBobLayout

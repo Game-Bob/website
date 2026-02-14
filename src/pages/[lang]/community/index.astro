@@ -1,9 +1,9 @@
 ---
 import BasePage from "../../../components/templates/BasePage.astro";
-import { languages } from "../../../i18n/ui";
+import { ui } from "../../../i18n/ui";
 
 export async function getStaticPaths() {
-  return Object.keys(languages)
+  return Object.keys(ui)
     .filter((lang) => lang !== "en")
     .map((lang) => ({ params: { lang } }));
 }

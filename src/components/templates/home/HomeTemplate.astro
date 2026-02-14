@@ -5,17 +5,22 @@ import GameBobLogo from "../../components/GameBobLogo.astro";
 import ProjectHomeCard from "../../components/gamebob/ProjectHomeCard.astro";
 import DiscordCTA from "../../components/gamebob/DiscordCTA.astro";
 import { apps } from "../../data/gamebob/apps";
-import { getLangFromUrl, useTranslations, useLanguagePath } from "../../i18n/utils";
+import { useTranslations, useLanguagePath } from "../../i18n/utils";
+import { ui } from "../../i18n/ui";
 import "../index.css";
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const l = useLanguagePath(lang);
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang as any);
+const l = useLanguagePath(lang as any);
 const projects = apps;
 ---
 
 <GameBobLayout
-    title={t("nav.games")}
+    title={t("site.title")}
     description={t("site.description")}
     image="/images/gamebob/index.webp"
 >
