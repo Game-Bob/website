@@ -1,6 +1,7 @@
 ---
 import MechanicPage from "../../../components/gamebob/mechanics/MechanicPage.astro";
 import MechanicCanvas from "../../../components/gamebob/mechanics/MechanicCanvas.astro";
+import MechanicInfo from "../../../components/gamebob/mechanics/MechanicInfo.astro";
 import { Icon } from "astro-icon/components";
 import { ui } from "../../../i18n/ui";
 import { useTranslations } from "../../../i18n/utils";
@@ -33,6 +34,30 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("flocking");
         instruction={t("mechanics.interactiveDemo")}
         subInstruction={t("mechanics.demoPlaceholder")}
     />
+
+    <MechanicInfo>
+        <Fragment slot="how-it-works">
+            <li class="flex items-start gap-2">
+                <span class="text-blue-400 mt-1">•</span>
+                <span>{t("mechanics.flocking.howItWorks.separation")}</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="text-blue-400 mt-1">•</span>
+                <span>{t("mechanics.flocking.howItWorks.alignment")}</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="text-blue-400 mt-1">•</span>
+                <span>{t("mechanics.flocking.howItWorks.cohesion")}</span>
+            </li>
+        </Fragment>
+
+        <Fragment slot="controls">
+            <div class="mechanic-control-item full-width">
+                <span class="mechanic-control-label">{t("mechanics.flocking.controls.observe")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.flocking.controls.simulation")}</span>
+            </div>
+        </Fragment>
+    </MechanicInfo>
 </MechanicPage>
 
 <script>
