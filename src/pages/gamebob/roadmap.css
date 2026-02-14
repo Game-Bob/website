@@ -16,7 +16,7 @@
 .roadmap-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: var(--space-lg);
 }
 
 @media (width >= 1024px) {

@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 1.5rem 1rem;
+    padding: var(--space-md) var(--space-sm);
 }
 
 @media (width >= 768px) {
@@ -17,19 +17,19 @@
     z-index: 10;
     width: 100%;
     max-width: 64rem;
-    margin-top: 1rem;
+    margin-top: var(--space-sm);
 }
 
 @media (width >= 768px) {
     .mechanics-content {
-        margin-top: 2rem;
+        margin-top: var(--space-lg);
     }
 }
 
 .mechanics-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: var(--space-md);
 }
 
 @media (width >= 768px) {
@@ -48,7 +48,7 @@
     display: none;
     text-align: center;
     padding: 3rem 0;
-    color: #71717a;
+    color: var(--text-muted);
 }
 
 .no-results.visible {
@@ -68,8 +68,8 @@
 
 .sr-only {
     position: absolute;
-    width: 1px;
-    height: 1px;
+    width: var(--border-width-thin);
+    height: var(--border-width-thin);
     padding: 0;
     margin: -1px;
     overflow: hidden;

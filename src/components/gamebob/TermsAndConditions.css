@@ -19,10 +19,10 @@
 .terms-badge {
     display: inline-block;
     padding: 0.25rem 1rem;
-    border-radius: 9999px;
+    border-radius: var(--radius-full);
     border: 1px solid rgb(29 218 188 / 30%);
     background: rgb(29 218 188 / 5%);
-    color: #1ddabc;
+    color: var(--color-primary);
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.2em;
@@ -33,7 +33,7 @@
 .terms-title {
     font-size: 3rem;
     font-weight: 900;
-    color: #fff;
+    color: var(--text-main);
     margin-bottom: 2rem;
     letter-spacing: -0.05em;
     line-height: 1;
@@ -46,14 +46,14 @@
 }
 
 .terms-title-gradient {
-    background: linear-gradient(to right, #1ddabc, #34d399, #3b82f6);
+    background: linear-gradient(to right, var(--color-primary), var(--color-accent), var(--color-primary));
     background-clip: text;
     color: transparent;
 }
 
 .terms-description {
     font-size: 1.125rem;
-    color: #9ca3af;
+    color: var(--text-muted);
     font-weight: 300;
     letter-spacing: 0.025em;
     max-width: 36rem;
@@ -66,28 +66,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
-    color: #4b5563;
+    gap: var(--space-xs);
+    color: var(--text-muted);
     font-size: 0.875rem;
     font-style: italic;
 }
 
 .update-line {
     width: 2rem;
-    height: 1px;
-    background: #1f2937;
+    height: var(--border-width-thin);
+    background: var(--bg-surface);
 }
 
 .terms-content-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: var(--space-lg);
 }
 
 .intro-box {
-    background: rgb(255 255 255 / 5%);
+    background: var(--white-5);
     backdrop-filter: blur(4px);
-    border: 1px solid rgb(255 255 255 / 10%);
+    border: 1px solid var(--white-10);
     border-radius: 1.75rem;
     padding: 2rem;
 }
@@ -99,7 +99,7 @@
 }
 
 .intro-text {
-    color: #d1d5db;
+    color: var(--text-main);
     line-height: 1.6;
     font-size: 1.125rem;
     margin: 0;
@@ -108,15 +108,15 @@
 .terms-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: var(--space-md);
 }
 
 .term-card {
     position: relative;
     padding: 2rem;
     border-radius: 1.75rem;
-    border: 1px solid rgb(255 255 255 / 5%);
-    background: rgb(255 255 255 / 5%);
+    border: 1px solid var(--white-5);
+    background: var(--white-5);
     backdrop-filter: blur(4px);
     transition: all 0.3s ease;
 }
@@ -137,7 +137,7 @@
 .card-title-group {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--space-xs);
     margin-bottom: 1rem;
 }
 
@@ -147,39 +147,39 @@
     justify-content: center;
     width: 2rem;
     height: 2rem;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     background: rgb(29 218 188 / 20%);
-    color: #1ddabc;
+    color: var(--color-primary);
     font-size: 0.875rem;
     font-weight: 700;
 }
 
 .special .step-number {
     background: rgb(16 185 129 / 20%);
-    color: #34d399;
+    color: var(--color-accent);
 }
 
 .card-title-text {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--text-main);
     letter-spacing: -0.025em;
     margin: 0;
 }
 
 .special .card-title-text {
-    color: #34d399;
+    color: var(--color-accent);
 }
 
 .card-text {
-    color: #9ca3af;
+    color: var(--text-muted);
     line-height: 1.6;
     font-size: 1rem;
     margin: 0;
 }
 
 .special .card-text {
-    color: #d1d5db;
+    color: var(--text-main);
 }
 
 .card-list {
@@ -188,11 +188,11 @@
     list-style-type: disc;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--space-xs);
 }
 
 .card-list li {
-    color: #9ca3af;
+    color: var(--text-muted);
     font-size: 0.875rem;
 }
 
@@ -203,8 +203,8 @@
 .card-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    color: #34d399;
+    gap: var(--space-xs);
+    color: var(--color-accent);
     font-weight: 500;
     text-decoration: none;
     border-bottom: 1px solid rgb(52 211 153 / 30%);
@@ -212,8 +212,8 @@
 }
 
 .card-link:hover {
-    color: #6ee7b7;
-    border-color: #6ee7b7;
+    color: var(--color-accent);
+    border-color: var(--color-accent);
 }
 
 .link-icon {
@@ -224,13 +224,13 @@
 .contact-info {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--space-xs);
     margin-top: 1rem;
-    color: #d1d5db;
+    color: var(--text-main);
 }
 
 .contact-link {
-    color: #1ddabc;
+    color: var(--color-primary);
     text-decoration: none;
 }
 
@@ -246,14 +246,14 @@
 .footer-copy-box {
     display: inline-flex;
     align-items: center;
-    gap: 1rem;
-    color: #4b5563;
+    gap: var(--space-sm);
+    color: var(--text-muted);
 }
 
 .footer-line {
-    height: 1px;
+    height: var(--border-width-thin);
     width: 3rem;
-    background: #1f2937;
+    background: var(--bg-surface);
 }
 
 .footer-copy {

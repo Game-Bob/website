@@ -17,10 +17,10 @@ body {
     justify-content: center;
     width: 2rem;
     height: 2rem;
-    border-radius: 9999px;
-    background: rgb(255 255 255 / 5%);
-    border: 1px solid rgb(255 255 255 / 10%);
-    color: rgb(255 255 255 / 40%);
+    border-radius: var(--radius-full);
+    background: var(--white-5);
+    border: 1px solid var(--white-10);
+    color: var(--white-40);
     transition: all 0.3s;
     backdrop-filter: blur(4px);
     cursor: none;
@@ -29,8 +29,8 @@ body {
 }
 
 .back-btn:hover {
-    color: white;
-    background: rgb(255 255 255 / 20%);
+    color: var(--text-main);
+    background: var(--white-20);
 }
 
 .icon-arrow {
@@ -41,5 +41,4 @@ body {
 
 .back-btn:hover .icon-arrow {
     transform: translateX(-2px);
-}
 }

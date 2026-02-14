@@ -19,12 +19,12 @@ const CODE_URL =
 
     image="/images/gamebob/mechanics/momentum-transfer.svg"
 >
-    <Icon slot="icon" name="mdi:billiards" style="color: #00ffd2" />
+    <Icon slot="icon" name="mdi:billiards" style="color: var(--color-primary)" />
 
-    <div style="max-width: 80rem; margin: 0 auto; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; gap: 3rem;">
+    <div style="max-width: 80rem; margin: 0 auto; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; gap: var(--space-2xl);">
         <div style="position: relative;">
-            <div style="display: flex; flex-direction: column; background: #050505; border-radius: 3rem; overflow: hidden; border: 1px solid rgb(255 255 255 / 10%); box-shadow: 0 50px 100px -30px rgb(0 0 0 / 90%);">
-                <div style="position: relative; background: black;">
+            <div style="display: flex; flex-direction: column; background: var(--bg-main); border-radius: var(--radius-3xl); overflow: hidden; border: 1px solid var(--white-10); box-shadow: 0 50px 100px -30px var(--black-90);">
+                <div style="position: relative; background: var(--bg-main);">
                     <MechanicCanvas
                         id="game-canvas"
                         instruction="Tú eres la bola AZUL"
@@ -40,15 +40,15 @@ const CODE_URL =
     <MechanicInfo>
         <Fragment slot="how-it-works">
             <li>
-                <span style="color: #00ffd2">•</span>
+                <span style="color: var(--color-primary)">•</span>
                 <span>Arrastra el mouse para lanzar al jugador.</span>
             </li>
             <li>
-                <span style="color: #00ffd2">•</span>
+                <span style="color: var(--color-primary)">•</span>
                 <span>Choca contra enemigos para transferirles tu velocidad y detenerte en seco.</span>
             </li>
             <li>
-                <span style="color: #00ffd2">•</span>
+                <span style="color: var(--color-primary)">•</span>
                 <span>Empuja a los enemigos hacia los pinchos o el vacío para eliminarlos.</span>
             </li>
         </Fragment>
@@ -69,7 +69,7 @@ const CODE_URL =
         max-width: 1100px;
         margin: 0 auto;
         aspect-ratio: 1600 / 1200;
-        background: #000;
+        background: var(--bg-main);
     }
 
     #game-canvas {

@@ -44,12 +44,12 @@
 .title-text {
     font-family: 'Fredoka One', cursive;
     font-size: 3rem;
-    color: #fff;
+    color: var(--text-main);
     margin-top: -1rem;
     z-index: 20;
     position: relative;
     letter-spacing: 0.05em;
-    filter: drop-shadow(0 10px 15px rgb(0 0 0 / 50%));
+    filter: drop-shadow(0 10px 15px var(--black-50));
     user-select: none;
 }
 
@@ -60,7 +60,7 @@
 }
 
 .title-text span {
-    color: #1ddabc;
+    color: var(--color-primary);
 }
 
 .hero-tagline {
@@ -98,15 +98,15 @@
 }
 
 .section-title.purple {
-    border-color: #a855f7;
+    border-color: var(--color-secondary);
 }
 
 .section-title.blue {
-    border-color: #3b82f6;
+    border-color: var(--color-primary);
 }
 
 .section-title.red {
-    border-color: #ef4444;
+    border-color: var(--color-secondary);
 }
 
 .project-list {
@@ -118,7 +118,7 @@
 .feature-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: var(--space-2xl);
     align-items: center;
 }
 
@@ -131,7 +131,7 @@
 .feature-content {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--space-md);
 }
 
 .order-mobile-2 {
@@ -162,15 +162,15 @@
 }
 
 .feature-title span.purple {
-    color: #a855f7;
+    color: var(--color-secondary);
 }
 
 .feature-title span.blue {
-    color: #3b82f6;
+    color: var(--color-primary);
 }
 
 .feature-title span.red {
-    color: #ef4444;
+    color: var(--color-secondary);
 }
 
 .feature-description {
@@ -183,7 +183,7 @@
 .explore-button {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-xs);
     padding: 0.75rem 1.5rem;
     background: rgba(var(--btn-color-rgb), 10%);
     border: 1px solid rgba(var(--btn-color-rgb), 30%);
@@ -204,12 +204,12 @@
 
 .feature-visual {
     position: relative;
-    border-radius: 1rem;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: 0 25px 50px -12px rgba(var(--btn-color-rgb), 20%);
-    border: 1px solid rgb(255 255 255 / 10%);
+    border: 1px solid var(--white-10);
     height: 16rem;
-    background: #0f172a;
+    background: var(--bg-main);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -224,7 +224,7 @@
 .visual-bg {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, #1e293b, #0B0F19, #000);
+    background: radial-gradient(circle at center, var(--bg-surface), #0B0F19, var(--bg-main));
     opacity: 80%;
 }
 
@@ -233,7 +233,7 @@
     z-index: 10;
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: var(--space-lg);
 }
 
 .visual-grid {
@@ -241,7 +241,7 @@
     z-index: 10;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: var(--space-sm);
 }
 
 .icon-xl {
@@ -271,12 +271,12 @@
     margin: 8rem auto 3rem;
     display: flex;
     justify-content: center;
-    border-top: 1px solid rgb(255 255 255 / 5%);
+    border-top: 1px solid var(--white-5);
     padding-top: 2rem;
 }
 
 .footer-link {
-    color: #6b7280;
+    color: var(--text-muted);
     text-decoration: none;
     font-size: 0.875rem;
     text-transform: lowercase;

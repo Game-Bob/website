@@ -4,16 +4,16 @@
 
 .roadmap-project-card {
     position: relative;
-    background: rgb(255 255 255 / 5%);
-    border: 1px solid rgb(255 255 255 / 10%);
-    border-radius: 1.25rem;
+    background: var(--white-5);
+    border: 1px solid var(--white-10);
+    border-radius: var(--radius-xl);
     overflow: hidden;
     transition: all 0.3s ease;
     height: 100%;
 }
 
 .roadmap-project-card:hover {
-    border-color: rgb(29 218 188 / 30%);
+    border-color: var(--primary-30);
 }
 
 .card-bg {
@@ -39,7 +39,7 @@
 .card-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, #000, rgb(0 0 0 / 90%), rgb(0 0 0 / 40%));
+    background: linear-gradient(to top, var(--bg-main), var(--black-90), var(--black-40));
 }
 
 .card-content {
@@ -70,7 +70,7 @@
 .card-title {
     font-size: 1.875rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--text-main);
     margin-bottom: 0.5rem;
 }
 
@@ -82,7 +82,7 @@
 .status-indicator {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-xs);
 }
 
 .dot-shell {
@@ -97,8 +97,8 @@
     display: inline-flex;
     height: 100%;
     width: 100%;
-    border-radius: 9999px;
-    background: #fbbf24;
+    border-radius: var(--radius-full);
+    background: var(--color-accent);
     opacity: 75%;
     animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
@@ -106,10 +106,10 @@
 .status-dot {
     position: relative;
     display: inline-flex;
-    border-radius: 9999px;
+    border-radius: var(--radius-full);
     height: 0.75rem;
     width: 0.75rem;
-    background: #f59e0b;
+    background: var(--color-accent);
 }
 
 @keyframes ping {

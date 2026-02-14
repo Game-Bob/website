@@ -45,21 +45,21 @@ interface props {
 
 <style>
     .lang-btn {
-        background-color: rgb(255 255 255 / 5%);
-        border-color: rgb(255 255 255 / 10%);
-        color: #9ca3af;
+        background-color: var(--white-5);
+        border-color: var(--white-10);
+        color: var(--text-muted);
     }
 
     .lang-btn:hover {
         border-color: rgb(255 255 255 / 30%);
-        background-color: rgb(255 255 255 / 10%);
-        color: white;
+        background-color: var(--white-10);
+        color: var(--text-main);
     }
 
     .lang-btn.active-lang {
         background-color: rgb(29 218 188 / 20%);
-        border-color: #1ddabc;
-        color: #1ddabc;
+        border-color: var(--color-primary);
+        color: var(--color-primary);
         box-shadow: 0 0 15px rgb(29 218 188 / 30%);
     }
 </style>

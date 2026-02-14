@@ -15,7 +15,7 @@ const homeDescription = "homeDescription" in project ? project.homeDescription :
 const image = "media" in project ? project.media.showcase : project.image;
 const statusLabel = "roadmap" in project ? project.roadmap.statusLabel : (project.statusLabel || project.statuslabel || "");
 const statusType = "roadmap" in project ? project.roadmap.statusType : (project.statusType || project.statustype || "released");
-const color = "theme" in project ? project.theme.primary : (project.color || "#1ddabc");
+const color = "theme" in project ? project.theme.primary : (project.color || "var(--color-primary)");
 
 const links = "stores" in project
     ? {

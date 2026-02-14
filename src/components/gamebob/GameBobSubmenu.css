@@ -10,12 +10,12 @@
 .submenu-container {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-xs);
     padding: 0.25rem;
-    background: rgb(255 255 255 / 5%);
+    background: var(--white-5);
     backdrop-filter: blur(12px);
-    border-radius: 9999px;
-    border: 1px solid rgb(255 255 255 / 10%);
+    border-radius: var(--radius-full);
+    border: 1px solid var(--white-10);
     max-width: 100%;
     overflow-x: auto;
     -ms-overflow-style: none;
@@ -28,7 +28,7 @@
 
 .submenu-link {
     padding: 0.5rem 1rem;
-    border-radius: 9999px;
+    border-radius: var(--radius-full);
     font-size: 0.875rem;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -45,12 +45,12 @@
 }
 
 .submenu-link:hover {
-    color: #fff;
-    background: rgb(255 255 255 / 5%);
+    color: var(--text-main);
+    background: var(--white-5);
 }
 
 .submenu-link.active {
     background: var(--color-gamebob-primary, var(--color-primary));
-    color: #000;
+    color: var(--bg-main);
     box-shadow: 0 0 20px rgb(29 218 188 / 30%);
 }

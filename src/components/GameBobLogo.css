@@ -11,14 +11,14 @@
     transform: translateX(-50%);
     opacity: 0%;
     transition: opacity 0.2s ease, transform 0.2s ease;
-    background: #fff;
-    color: #000;
+    background: var(--text-main);
+    color: var(--bg-main);
     padding: 0.25rem 0.75rem;
     border-radius: 0.5rem;
     font-weight: 700;
     font-size: 0.875rem;
     pointer-events: none;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%);
+    box-shadow: 0 10px 15px -3px var(--black-10);
     z-index: 20;
 }
 
@@ -30,7 +30,7 @@
     transform: translateX(-50%) rotate(45deg);
     width: 0.5rem;
     height: 0.5rem;
-    background: #fff;
+    background: var(--text-main);
 }
 
 .gamebob-cat {

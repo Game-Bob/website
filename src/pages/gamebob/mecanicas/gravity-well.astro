@@ -18,7 +18,7 @@ const CODE_URL =
 
     image="/images/gamebob/mechanics/gravity-well.webp"
 >
-    <Icon slot="icon" name="mdi:orbit" style="color: #a855f7" />
+    <Icon slot="icon" name="mdi:orbit" style="color: var(--color-secondary)" />
 
     <MechanicCanvas
         id="game-canvas"
@@ -31,15 +31,15 @@ const CODE_URL =
     <MechanicInfo>
         <Fragment slot="how-it-works">
             <li>
-                <span style="color: #60a5fa">•</span>
+                <span style="color: var(--color-primary)">•</span>
                 <span>Simulación de n-cuerpos simplificada.</span>
             </li>
             <li>
-                <span style="color: #60a5fa">•</span>
+                <span style="color: var(--color-primary)">•</span>
                 <span>Pozos de gravedad temporales que atraen partículas.</span>
             </li>
             <li>
-                <span style="color: #60a5fa">•</span>
+                <span style="color: var(--color-primary)">•</span>
                 <span>Estela visual para mostrar trayectorias.</span>
             </li>
         </Fragment>
@@ -50,7 +50,7 @@ const CODE_URL =
                 <span class="control-desc">Crear Pozo</span>
             </div>
             <div class="control-item" style="cursor: pointer;" id="clear-btn">
-                <span class="control-key" style="color: #f87171;">Limpiar</span>
+                <span class="control-key" style="color: var(--color-secondary);">Limpiar</span>
                 <span class="control-desc">Borrar Pozos</span>
             </div>
         </Fragment>

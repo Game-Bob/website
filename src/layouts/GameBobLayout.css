@@ -4,13 +4,13 @@
     flex-direction: column;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #000;
-    color: #fff;
+    background-color: var(--bg-main);
+    color: var(--text-main);
 }
 
 .gamebob-body::selection {
-    background-color: #1ddabc;
-    color: #fff;
+    background-color: var(--color-primary);
+    color: var(--text-main);
 }
 
 .bg-effects {
@@ -28,7 +28,7 @@
     width: 40%;
     height: 40%;
     background: rgb(29 218 188 / 10%);
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     filter: blur(120px);
     animation: pulse-glow 8s infinite alternate;
 }
@@ -40,7 +40,7 @@
     width: 30%;
     height: 30%;
     background: rgb(168 85 247 / 10%);
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     filter: blur(100px);
     animation: pulse-glow 8s infinite alternate 2s;
 }
@@ -52,7 +52,7 @@
     width: 50%;
     height: 50%;
     background: rgb(59 130 246 / 5%);
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     filter: blur(150px);
     animation: pulse-glow 8s infinite alternate 4s;
 }

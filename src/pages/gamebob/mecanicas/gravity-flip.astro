@@ -18,7 +18,7 @@ const CODE_URL =
 
     image="/images/gamebob/mechanics/gravity-flip.webp"
 >
-    <Icon slot="icon" name="mdi:flip-vertical" style="color: #22d3ee" />
+    <Icon slot="icon" name="mdi:flip-vertical" style="color: var(--color-primary)" />
 
     <MechanicCanvas
         id="game-canvas"
@@ -31,15 +31,15 @@ const CODE_URL =
     <MechanicInfo>
         <Fragment slot="how-it-works">
             <li>
-                <span style="color: #22d3ee">•</span>
+                <span style="color: var(--color-primary)">•</span>
                 <span>Inversión instantánea del vector de gravedad (g → -g).</span>
             </li>
             <li>
-                <span style="color: #22d3ee">•</span>
+                <span style="color: var(--color-primary)">•</span>
                 <span>Generación procedural de obstáculos (pinchos y bloques).</span>
             </li>
             <li>
-                <span style="color: #22d3ee">•</span>
+                <span style="color: var(--color-primary)">•</span>
                 <span>Detección de colisiones AABB (Axis-Aligned Bounding Box).</span>
             </li>
         </Fragment>

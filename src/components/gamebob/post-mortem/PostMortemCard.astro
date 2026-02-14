@@ -51,7 +51,7 @@ const imagePath = entry.image ? `/images/gamebob/post-mortem/${entry.image}` : n
 
         <div class="pm-card-body">
             <div class="pm-row">
-                <Icon name="mdi:close-circle-outline" class="pm-icon-sm" style="color: #ef4444" />
+                <Icon name="mdi:close-circle-outline" class="pm-icon-sm" style="color: var(--color-secondary)" />
                 <p class="pm-error-text">
                     "{entry.error}"
                 </p>
@@ -60,7 +60,7 @@ const imagePath = entry.image ? `/images/gamebob/post-mortem/${entry.image}` : n
                 <Icon
                     name="mdi:check-circle-outline"
                     class="pm-icon-sm"
-                    style="color: #10b981"
+                    style="color: var(--color-accent)"
                 />
                 <p class="pm-lesson-text">
                     {entry.lesson}

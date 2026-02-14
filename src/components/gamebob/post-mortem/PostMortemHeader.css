@@ -1,46 +1,44 @@
 .pm-header {
-    margin-bottom: 5rem;
-    position: relative;
+    margin: 0;
 }
 
 .pm-header-top {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
 }
 
 .pm-icon-box {
     width: 3rem;
     height: 3rem;
-    border-radius: 0.75rem;
-    background: rgb(239 68 68 / 10%);
+    border-radius: var(--radius-md);
+    background: var(--secondary-10);
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgb(239 68 68 / 20%);
-    box-shadow: inset 0 2px 4px rgb(0 0 0 / 10%);
+    border: 1px solid var(--secondary-20);
+    box-shadow: inset 0 2px 4px var(--black-10);
 }
 
 .pm-icon {
     width: 1.75rem;
     height: 1.75rem;
-    color: #ef4444;
+    color: var(--color-secondary);
 }
 
 .pm-header-line {
-    height: 1px;
+    height: var(--border-width-thin);
     flex: 1;
-    background: linear-gradient(to right, rgb(239 68 68 / 30%), transparent);
+    background: linear-gradient(to right, var(--secondary-30), transparent);
 }
 
 .pm-title {
     font-size: 3.75rem;
     font-weight: 900;
-    color: #fff;
+    color: var(--text-main);
     transition: color 0.5s ease;
     cursor: default;
-    margin-bottom: 1rem;
     display: inline-flex;
     align-items: baseline;
     text-transform: uppercase;
@@ -48,27 +46,27 @@
     margin: 0;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .pm-title {
         font-size: 6rem;
     }
 }
 
 .pm-title:hover {
-    color: #ef4444;
+    color: var(--color-secondary);
 }
 
 .pm-dot {
     display: block;
     width: 0.15em;
     height: 0.15em;
-    background: #ef4444;
+    background: var(--color-secondary);
     margin-left: 0.05em;
 }
 
 .pm-description {
     font-size: 1.125rem;
-    color: #9ca3af;
+    color: var(--text-muted);
     font-weight: 500;
     max-width: 40rem;
     line-height: 1.6;

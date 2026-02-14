@@ -2,13 +2,15 @@
     /* Brand Colors (Neon Blue based on current prod) */
     --color-primary: #00f2ff;
     --color-primary-rgb: 0, 242, 255;
-    --color-secondary: #7000ff;
+    --color-secondary: #f43f5e;
+    --color-secondary-rgb: 244, 63, 94;
     --color-accent: #0fa;
+    --color-accent-rgb: 0, 255, 170;
 
     /* Semantic Tokens (Dark Theme - Default) */
     --bg-main: #020205;
     --bg-surface: #0a0a0f;
-    --text-main: #fff;
+    --text-main: var(--text-main);
     --text-main-rgb: 255, 255, 255;
     --text-muted: #808090;
     --border-subtle: rgba(0, 242, 255, 10%);
@@ -21,13 +23,59 @@
     --space-md: 1.5rem;
     --space-lg: 2.5rem;
     --space-xl: 4rem;
+    --space-2xl: 3rem;
+
+    --border-width-thin: 1px;
 
     /* UI Tokens */
+    --radius-sm: 0.25rem;
     --radius-md: 0.75rem;
     --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-2xl: 2rem;
+    --radius-3xl: 3rem;
+    --radius-full: 9999px;
+
+    /* Alpha/Glass Helpers */
+    --white-5: rgba(255, 255, 255, 5%);
+    --white-10: var(--white-10);
+    --white-20: rgba(255, 255, 255, 20%);
+    --white-30: rgba(255, 255, 255, 30%);
+    --white-40: rgba(255, 255, 255, 40%);
+    --white-50: rgba(255, 255, 255, 50%);
+    --white-80: rgba(255, 255, 255, 80%);
+    --black-5: rgba(0, 0, 0, 5%);
+    --black-10: rgba(0, 0, 0, 10%);
+    --black-20: rgba(0, 0, 0, 20%);
+    --black-40: rgba(0, 0, 0, 40%);
+    --black-50: rgba(0, 0, 0, 50%);
+    --black-80: rgba(0, 0, 0, 80%);
+    --black-90: rgba(0, 0, 0, 90%);
+
+    --primary-5: rgba(0, 242, 255, 5%);
+    --primary-10: rgba(0, 242, 255, 10%);
+    --primary-20: rgba(0, 242, 255, 20%);
+    --primary-30: rgba(0, 242, 255, 30%);
+    --primary-40: rgba(0, 242, 255, 40%);
+    --primary-50: rgba(0, 242, 255, 50%);
+    --primary-80: rgba(0, 242, 255, 80%);
+    --secondary-5: rgba(244, 63, 94, 5%);
+    --secondary-10: rgba(244, 63, 94, 10%);
+    --secondary-20: rgba(244, 63, 94, 20%);
+    --secondary-40: rgba(244, 63, 94, 40%);
+    --secondary-50: rgba(244, 63, 94, 50%);
+    --secondary-80: rgba(244, 63, 94, 80%);
+    --accent-5: rgba(0, 255, 170, 5%);
+    --accent-10: rgba(0, 255, 170, 10%);
+    --accent-20: rgba(0, 255, 170, 20%);
+    --accent-30: rgba(0, 255, 170, 30%);
+    --accent-40: rgba(0, 255, 170, 40%);
+    --accent-50: rgba(0, 255, 170, 50%);
+    --accent-80: rgba(0, 255, 170, 80%);
 
     /* Typography */
     --font-family-base: 'Outfit', system-ui, sans-serif;
+    --font-family-mono: ui-monospace, sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
     --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-semibold: 600;
@@ -36,11 +84,14 @@
 
 [data-theme='light'] {
     --bg-main: #f0f2f5;
-    --bg-surface: #fff;
+    --bg-surface: var(--text-main);
     --text-main: #0a0a0f;
     --text-main-rgb: 10, 10, 15;
     --text-muted: #505060;
     --border-subtle: rgba(0, 242, 255, 20%);
     --glass-bg: rgba(0, 0, 0, 3%);
     --glass-border: rgba(0, 0, 0, 8%);
+
+    --discord-color: #5865f2;
+    --discord-green: #23a55a;
 }

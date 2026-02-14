@@ -12,14 +12,14 @@
 
 .progress-track {
     height: 0.5rem;
-    background: rgb(255 255 255 / 5%);
-    border-radius: 9999px;
+    background: var(--white-5);
+    border-radius: var(--radius-full);
     overflow: hidden;
 }
 
 .progress-fill {
     height: 100%;
     background: var(--color-gamebob-primary);
-    border-radius: 9999px;
+    border-radius: var(--radius-full);
     transition: width 0.5s ease-out;
 }

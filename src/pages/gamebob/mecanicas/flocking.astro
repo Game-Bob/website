@@ -18,7 +18,7 @@ const CODE_URL =
 
     image="/images/gamebob/mechanics/flocking.webp"
 >
-    <Icon slot="icon" name="mdi:bird" style="color: #22d3ee" />
+    <Icon slot="icon" name="mdi:bird" style="color: var(--color-primary)" />
 
     <MechanicCanvas
         id="game-canvas"
@@ -31,15 +31,15 @@ const CODE_URL =
     <MechanicInfo>
         <Fragment slot="how-it-works">
             <li>
-                <span style="color: #60a5fa">•</span>
+                <span style="color: var(--color-primary)">•</span>
                 <span>Separación: evitar aglomeraciones locales.</span>
             </li>
             <li>
-                <span style="color: #60a5fa">•</span>
+                <span style="color: var(--color-primary)">•</span>
                 <span>Alineación: dirigirse hacia el promedio de los vecinos.</span>
             </li>
             <li>
-                <span style="color: #60a5fa">•</span>
+                <span style="color: var(--color-primary)">•</span>
                 <span>Cohesión: moverse hacia el centro de masa local.</span>
             </li>
         </Fragment>

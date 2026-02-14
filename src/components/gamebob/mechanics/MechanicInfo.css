@@ -2,7 +2,7 @@
     margin-top: 2rem;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: var(--space-md);
 }
 
 @media (width >= 768px) {
@@ -14,25 +14,25 @@
 .info-box {
     background: rgb(24 24 27 / 50%);
     padding: 1.5rem;
-    border-radius: 0.75rem;
-    border: 1px solid #27272a;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--bg-surface);
 }
 
 .info-title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--text-main);
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-xs);
 }
 
 .how-it-works-list {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    color: #a1a1aa;
+    gap: var(--space-xs);
+    color: var(--text-muted);
     padding: 0;
     margin: 0;
     list-style: none;
@@ -41,22 +41,22 @@
 .how-it-works-list li {
     display: flex;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: var(--space-xs);
 }
 
 .how-it-works-list li span:first-child {
-    color: #60a5fa;
+    color: var(--color-primary);
     margin-top: 0.25rem;
 }
 
 .controls-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: var(--space-sm);
 }
 
 .control-item {
-    background: #27272a;
+    background: var(--bg-surface);
     padding: 0.75rem;
     border-radius: 0.5rem;
     text-align: center;
@@ -65,19 +65,19 @@
 
 .control-key {
     display: block;
-    color: #fff;
+    color: var(--text-main);
     font-weight: 700;
 }
 
 .control-desc {
     font-size: 0.75rem;
-    color: #a1a1aa;
+    color: var(--text-muted);
 }
 
 .info-icon-blue {
-    color: #60a5fa;
+    color: var(--color-primary);
 }
 
 .info-icon-green {
-    color: #4ade80;
+    color: var(--color-accent);
 }

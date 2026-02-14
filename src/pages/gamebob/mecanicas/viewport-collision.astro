@@ -19,7 +19,7 @@ const CODE_URL =
 
     image="/images/gamebob/mechanics/viewport-collision.webp"
 >
-    <Icon slot="icon" name="mdi:arrow-expand-all" style="color: #f59e0b" />
+    <Icon slot="icon" name="mdi:arrow-expand-all" style="color: var(--color-accent)" />
 
     <MechanicCanvas
         id="game-canvas"
@@ -31,15 +31,15 @@ const CODE_URL =
     <MechanicInfo>
         <Fragment slot="how-it-works">
             <li>
-                <span style="color: #f59e0b">•</span>
+                <span style="color: var(--color-accent)">•</span>
                 <span>Los bordes del canvas actúan como paredes físicas rígidas.</span>
             </li>
             <li>
-                <span style="color: #f59e0b">•</span>
+                <span style="color: var(--color-accent)">•</span>
                 <span>Al redimensionar la ventana, las paredes ganan velocidad ('momentum').</span>
             </li>
             <li>
-                <span style="color: #f59e0b">•</span>
+                <span style="color: var(--color-accent)">•</span>
                 <span
                     >La energía cinética de la ventana se transfiere a las partículas al colisionar.</span
                 >
@@ -51,7 +51,7 @@ const CODE_URL =
                 <span class="control-key">Redimensionar Ventana</span>
                 <span class="control-desc">Aplasta y Destruye</span>
             </div>
-            <div class="control-item" style="margin-top: 0.5rem;">
+            <div class="control-item" style="margin-top: var(--space-xs);">
                 <span class="control-key">Solo Escritorio</span>
                 <span class="control-desc">Mejor experiencia</span>
             </div>

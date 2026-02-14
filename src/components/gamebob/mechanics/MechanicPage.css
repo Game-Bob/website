@@ -9,7 +9,7 @@
     margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--space-sm);
 }
 
 @media (width >= 768px) {
@@ -21,10 +21,10 @@
 }
 
 .back-link {
-    color: #a1a1aa;
+    color: var(--text-muted);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-xs);
     margin-bottom: 0.5rem;
     padding: 1.5rem 0;
     transition: color 0.2s ease;
@@ -33,7 +33,7 @@
 }
 
 .back-link:hover {
-    color: #fff;
+    color: var(--text-main);
 }
 
 .back-icon {
@@ -44,10 +44,10 @@
 .mechanic-title {
     font-size: 1.875rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--text-main);
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--space-xs);
     margin: 0;
 }
 
@@ -58,7 +58,7 @@
 }
 
 .mechanic-detail-description {
-    color: #a1a1aa;
+    color: var(--text-muted);
     margin-top: 0.5rem;
     font-size: 0.875rem;
 }
@@ -71,26 +71,26 @@
 
 .mechanic-actions {
     display: flex;
-    gap: 0.75rem;
+    gap: var(--space-xs);
 }
 
 .action-btn {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-xs);
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
-    background: #27272a;
-    color: #fff;
+    background: var(--bg-surface);
+    color: var(--text-main);
     transition: background 0.2s ease;
     font-size: 0.875rem;
     font-weight: 500;
-    border: 1px solid #3f3f46;
+    border: 1px solid var(--bg-surface);
     text-decoration: none;
 }
 
 .action-btn:hover {
-    background: #3f3f46;
+    background: var(--bg-surface);
 }
 
 .action-icon {

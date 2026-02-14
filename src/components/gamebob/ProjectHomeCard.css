@@ -5,7 +5,7 @@
     gap: var(--space-lg);
     margin-top: var(--space-xl);
     padding-top: var(--space-xl);
-    border-top: 1px solid rgb(255 255 255 / 5%);
+    border-top: 1px solid var(--white-5);
 }
 
 .project-card:first-child {
@@ -107,14 +107,14 @@
     height: 3rem;
     padding: 0 var(--space-md);
     background: var(--text-main);
-    color: #000;
+    color: var(--bg-main);
     text-decoration: none;
     border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     gap: var(--space-xs);
     transition: background 0.2s ease;
-    box-shadow: 0 4px 12px rgb(0 0 0 / 20%);
+    box-shadow: 0 4px 12px var(--black-20);
 }
 
 .store-button:hover {
@@ -122,7 +122,7 @@
 }
 
 .store-button-disabled {
-    background: rgb(255 255 255 / 10%);
+    background: var(--white-10);
     color: var(--text-main);
     opacity: 50%;
     filter: grayscale(100%);
@@ -149,12 +149,12 @@
     position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 50%);
-    border: 1px solid rgb(255 255 255 / 10%);
+    box-shadow: 0 25px 50px -12px var(--black-50);
+    border: 1px solid var(--white-10);
 }
 
 .image-container {
-    background: #0f172a;
+    background: var(--bg-main);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -183,7 +183,7 @@
 }
 
 .image-placeholder {
-    color: rgb(255 255 255 / 10%);
+    color: var(--white-10);
     font-weight: 900;
     font-size: 3.75rem;
     text-transform: uppercase;
@@ -201,7 +201,7 @@
 .bottom-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgb(0 0 0 / 80%), transparent, transparent);
+    background: linear-gradient(to top, var(--black-80), transparent, transparent);
     opacity: 60%;
     z-index: 20;
 }

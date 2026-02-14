@@ -34,7 +34,7 @@ const { base_elements, recipes } = evolutionData;
                 <h2 class="sidebar-title">Laboratorio</h2>
                 <p class="sidebar-subtitle">Elementos Primordiales</p>
                 <div class="mobile-icon-center">
-                    <Icon name="mdi:flask" style="width: 2rem; height: 2rem; color: #818cf8;" />
+                    <Icon name="mdi:flask" style="width: 2rem; height: 2rem; color: var(--color-primary);" />
                 </div>
             </div>
 
@@ -74,25 +74,25 @@ const { base_elements, recipes } = evolutionData;
                 <div class="tutorial-layout">
                     <div class="tutorial-row">
                         <div class="tutorial-egg-box">
-                            <Icon name="mdi:egg-outline" class="carved-icon" style="width: 6rem; height: 6rem; color: #1c1917;" />
-                            <Icon name="mdi:fire" class="carved-icon tutorial-inner-icon" style="width: 2.5rem; height: 2.5rem; color: rgb(194 65 12 / 70%);" />
+                            <Icon name="mdi:egg-outline" class="carved-icon" style="width: 6rem; height: 6rem; color: var(--bg-main);" />
+                            <Icon name="mdi:fire" class="carved-icon tutorial-inner-icon" style="width: 2.5rem; height: 2.5rem; color: var(--white-50);" />
                         </div>
 
                         <div class="tutorial-egg-box">
-                            <Icon name="mdi:egg-outline" class="carved-icon" style="width: 6rem; height: 6rem; color: #1c1917;" />
-                            <Icon name="mdi:water" class="carved-icon tutorial-inner-icon" style="width: 2.5rem; height: 2.5rem; color: rgb(37 99 235 / 70%);" />
+                            <Icon name="mdi:egg-outline" class="carved-icon" style="width: 6rem; height: 6rem; color: var(--bg-main);" />
+                            <Icon name="mdi:water" class="carved-icon tutorial-inner-icon" style="width: 2.5rem; height: 2.5rem; color: var(--white-50);" />
                         </div>
                     </div>
 
                     <div class="tutorial-row" style="opacity: 90%; display: flex; align-items: center; justify-content: center; margin-left: -2rem;">
                          <div class="tutorial-egg-box" style="transform: rotate(12deg); z-index: 10;">
-                            <Icon name="mdi:egg-outline" class="carved-icon" style="width: 6rem; height: 6rem; color: #1c1917;" />
-                            <Icon name="mdi:fire" class="carved-icon tutorial-inner-icon" style="width: 2.5rem; height: 2.5rem; color: rgb(194 65 12 / 70%);" />
+                            <Icon name="mdi:egg-outline" class="carved-icon" style="width: 6rem; height: 6rem; color: var(--bg-main);" />
+                            <Icon name="mdi:fire" class="carved-icon tutorial-inner-icon" style="width: 2.5rem; height: 2.5rem; color: var(--white-50);" />
                         </div>
-                        <Icon name="mdi:flash" class="carved-icon" style="width: 4rem; height: 4rem; color: #e7e5e4; z-index: 30; margin-top: -2rem;" />
+                        <Icon name="mdi:flash" class="carved-icon" style="width: 4rem; height: 4rem; color: var(--text-main); z-index: 30; margin-top: -2rem;" />
                         <div class="tutorial-egg-box" style="transform: rotate(-12deg); z-index: 20;">
-                            <Icon name="mdi:egg-outline" class="carved-icon" style="width: 6rem; height: 6rem; color: #1c1917;" />
-                            <Icon name="mdi:water" class="carved-icon tutorial-inner-icon" style="width: 2.5rem; height: 2.5rem; color: rgb(37 99 235 / 70%);" />
+                            <Icon name="mdi:egg-outline" class="carved-icon" style="width: 6rem; height: 6rem; color: var(--bg-main);" />
+                            <Icon name="mdi:water" class="carved-icon tutorial-inner-icon" style="width: 2.5rem; height: 2.5rem; color: var(--white-50);" />
                         </div>
                     </div>
                 </div>
@@ -102,46 +102,46 @@ const { base_elements, recipes } = evolutionData;
         </main>
 
         <div id="encyclopedia-modal" class="battle-overlay">
-            <div style="width: 100%; max-width: 56rem; background: #0f172a; border: 1px solid rgb(255 255 255 / 10%); border-radius: 1rem; display: flex; flex-direction: column; max-height: 85vh;">
-                <div style="padding: 1.5rem; border-bottom: 1px solid rgb(255 255 255 / 10%); display: flex; justify-content: space-between; align-items: center;">
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                        <Icon name="mdi:book-open-variant" style="width: 1.5rem; height: 1.5rem; color: #818cf8;" />
-                        <h2 style="font-size: 1.5rem; font-weight: 700; color: #fff; margin: 0;">Enciclopedia</h2>
+            <div style="width: 100%; max-width: 56rem; background: var(--bg-main); border: 1px solid var(--white-10); border-radius: var(--radius-lg); display: flex; flex-direction: column; max-height: 85vh;">
+                <div style="padding: 1.5rem; border-bottom: 1px solid var(--white-10); display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                        <Icon name="mdi:book-open-variant" style="width: 1.5rem; height: 1.5rem; color: var(--color-primary);" />
+                        <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--text-main); margin: 0;">Enciclopedia</h2>
                     </div>
-                    <button id="close-encyclopedia" style="background: transparent; border: none; cursor: pointer; color: #94a3b8; padding: 0.5rem;">
+                    <button id="close-encyclopedia" style="background: transparent; border: none; cursor: pointer; color: var(--text-muted); padding: 0.5rem;">
                         <Icon name="mdi:close" style="width: 1.5rem; height: 1.5rem;" />
                     </button>
                 </div>
-                <div id="encyclopedia-grid" style="padding: 1.5rem; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); gap: 1rem;"></div>
+                <div id="encyclopedia-grid" style="padding: 1.5rem; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); gap: var(--space-sm);"></div>
             </div>
         </div>
 
         <div id="battle-overlay" class="battle-overlay">
             <div style="width: 100%; max-width: 72rem; display: flex; flex-direction: column; align-items: center; height: 100%;">
-                 <h2 style="font-size: 2.25rem; font-weight: 900; font-style: italic; color: #fff; text-shadow: 0 0 15px rgb(255 255 255 / 50%); margin-bottom: 2rem;">ARENA DE COMBATE</h2>
+                 <h2 style="font-size: 2.25rem; font-weight: 900; font-style: italic; color: var(--text-main); text-shadow: 0 0 15px var(--white-50); margin-bottom: 2rem;">ARENA DE COMBATE</h2>
                  
-                 <div style="width: 100%; display: flex; justify-content: space-around; align-items: center; gap: 2rem;">
+                 <div style="width: 100%; display: flex; justify-content: space-around; align-items: center; gap: var(--space-lg);">
                     <div id="fighter-1" style="display: flex; flex-direction: column; align-items: center;">
                         <div id="f1-visual" style="width: 14rem; height: 14rem; font-size: 10rem;"></div>
-                        <h3 id="f1-name" style="font-size: 1.5rem; font-weight: 700; color: #fff;"></h3>
-                        <div style="width: 12rem; height: 1rem; background: #1e293b; border-radius: 999px; overflow: hidden; border: 1px solid rgb(255 255 255 / 10%);">
-                            <div id="f1-hp-bar" style="height: 100%; background: #10b981; width: 100%;"></div>
+                        <h3 id="f1-name" style="font-size: 1.5rem; font-weight: 700; color: var(--text-main);"></h3>
+                        <div style="width: 12rem; height: 1rem; background: var(--bg-surface); border-radius: var(--radius-full); overflow: hidden; border: 1px solid var(--white-10);">
+                            <div id="f1-hp-bar" style="height: 100%; background: var(--color-accent); width: 100%;"></div>
                         </div>
                     </div>
 
-                    <div style="font-size: 5rem; font-weight: 900; font-style: italic; color: #ef4444; animation: pulse 1s infinite;">VS</div>
+                    <div style="font-size: 5rem; font-weight: 900; font-style: italic; color: var(--color-secondary); animation: pulse 1s infinite;">VS</div>
 
                     <div id="fighter-2" style="display: flex; flex-direction: column; align-items: center;">
                         <div id="f2-visual" style="width: 14rem; height: 14rem; font-size: 10rem;"></div>
-                        <h3 id="f2-name" style="font-size: 1.5rem; font-weight: 700; color: #fff;"></h3>
-                        <div style="width: 12rem; height: 1rem; background: #1e293b; border-radius: 999px; overflow: hidden; border: 1px solid rgb(255 255 255 / 10%);">
-                            <div id="f2-hp-bar" style="height: 100%; background: #ef4444; width: 100%;"></div>
+                        <h3 id="f2-name" style="font-size: 1.5rem; font-weight: 700; color: var(--text-main);"></h3>
+                        <div style="width: 12rem; height: 1rem; background: var(--bg-surface); border-radius: var(--radius-full); overflow: hidden; border: 1px solid var(--white-10);">
+                            <div id="f2-hp-bar" style="height: 100%; background: var(--color-secondary); width: 100%;"></div>
                         </div>
                     </div>
                  </div>
 
-                 <p id="battle-action-text" style="margin-top: 2rem; font-size: 1.5rem; font-weight: 700; color: rgb(255 255 255 / 80%); height: 3rem;"></p>
-                 <button id="close-battle" style="display: none; padding: 1rem 3rem; background: #fff; color: #0f172a; font-weight: 900; border: none; border-radius: 999px; cursor: pointer; box-shadow: 0 0 30px rgb(255 255 255 / 40%);">CERRAR ARENA</button>
+                 <p id="battle-action-text" style="margin-top: 2rem; font-size: 1.5rem; font-weight: 700; color: var(--white-80); height: 3rem;"></p>
+                 <button id="close-battle" style="display: none; padding: 1rem 3rem; background: var(--text-main); color: var(--bg-main); font-weight: 900; border: none; border-radius: var(--radius-full); cursor: pointer; box-shadow: 0 0 30px var(--white-40);">CERRAR ARENA</button>
             </div>
         </div>
     </div>

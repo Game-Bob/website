@@ -1,7 +1,7 @@
 .tasks-container {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--space-xs);
 }
 
 .history-details {
@@ -13,16 +13,16 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-xs);
     font-size: 0.75rem;
-    color: #6b7280;
+    color: var(--text-muted);
     transition: color 0.2s ease;
     padding: 0.5rem 0;
     user-select: none;
 }
 
 .history-summary:hover {
-    color: #d1d5db;
+    color: var(--text-main);
 }
 
 .summary-icon {
@@ -40,8 +40,8 @@
     padding-top: 0.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    border-left: 1px solid rgb(255 255 255 / 5%);
+    gap: var(--space-xs);
+    border-left: 1px solid var(--white-5);
     margin-left: 0.5rem;
     margin-bottom: 1rem;
 }
@@ -49,22 +49,22 @@
 .task-item {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-sm);
     padding: 0.75rem;
-    border-radius: 0.5rem;
+    border-radius: var(--radius-md);
     border: 1px solid transparent;
 }
 
 .task-item.done {
-    background: rgb(255 255 255 / 5%);
-    border-color: rgb(255 255 255 / 5%);
+    background: var(--white-5);
+    border-color: var(--white-5);
     opacity: 70%;
 }
 
 .task-item.active {
-    background: rgb(234 179 8 / 10%);
-    border-color: rgb(234 179 8 / 30%);
-    box-shadow: 0 0 15px rgb(234 179 8 / 10%);
+    background: var(--accent-10);
+    border-color: var(--accent-30);
+    box-shadow: 0 0 15px var(--accent-10);
     transform: scale(1.02);
 }
 
@@ -75,7 +75,7 @@
 .task-icon-box {
     width: 1.5rem;
     height: 1.5rem;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,31 +84,31 @@
 
 .task-icon-box.done {
     background: var(--color-gamebob-primary);
-    color: #000;
+    color: var(--bg-main);
 }
 
 .task-icon-box.active {
-    border: 2px solid #eab308;
-    color: #eab308;
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
 }
 
 .task-icon-box.pending {
-    border: 1px solid #374151;
+    border: 1px solid var(--border-subtle);
 }
 
 .task-dot {
     width: 0.5rem;
     height: 0.5rem;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
 }
 
 .task-dot.active {
-    background: #eab308;
+    background: var(--color-accent);
     animation: pulse-animation 2s infinite;
 }
 
 .task-dot.pending {
-    background: #1f2937;
+    background: var(--bg-surface);
 }
 
 .task-text {
@@ -116,18 +116,18 @@
 }
 
 .task-text.done {
-    color: #9ca3af;
+    color: var(--text-muted);
     text-decoration: line-through;
 }
 
 .task-text.active {
     font-size: 1rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--text-main);
 }
 
 .task-text.pending {
-    color: #6b7280;
+    color: var(--text-muted);
 }
 
 .icon-4 {

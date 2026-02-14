@@ -13,8 +13,8 @@
     gap: var(--space-sm);
     padding: var(--space-sm);
     border-radius: var(--radius-lg);
-    background: rgb(88 101 242 / 5%);
-    border: 1px solid rgb(88 101 242 / 20%);
+    background: var(--white-5);
+    border: 1px solid var(--white-10);
     transition: all 0.5s ease;
     overflow: hidden;
     width: 100%;
@@ -22,16 +22,16 @@
     backdrop-filter: blur(12px);
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .discord-cta {
         gap: var(--space-md);
         padding: var(--space-lg);
-        border-radius: 2rem;
+        border-radius: var(--radius-2xl);
     }
 }
 
 .discord-cta:hover {
-    border-color: rgb(88 101 242 / 40%);
+    border-color: var(--discord-color);
 }
 
 .discord-glow {
@@ -40,10 +40,11 @@
     bottom: 0;
     width: 6rem;
     height: 6rem;
-    background: rgb(88 101 242 / 20%);
+    background: var(--discord-color);
     filter: blur(50px);
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     pointer-events: none;
+    opacity: 20%;
 }
 
 .discord-icon-wrapper {
@@ -57,26 +58,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #5865f2;
-    border-radius: 0.75rem;
-    box-shadow: 0 10px 30px rgb(88 101 242 / 30%);
+    background: var(--discord-color);
+    border-radius: var(--radius-md);
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .discord-icon-container {
         width: 5rem;
         height: 5rem;
-        border-radius: 1.25rem;
+        border-radius: var(--radius-xl);
     }
 }
 
 .discord-icon {
     width: 1.75rem;
     height: 1.75rem;
-    color: #fff;
+    color: var(--text-main);
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .discord-icon {
         width: 3rem;
         height: 3rem;
@@ -89,14 +89,13 @@
     right: -0.25rem;
     width: 1rem;
     height: 1rem;
-    background: #23a55a;
-    border: 3px solid #050505;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgb(35 165 90 / 60%);
+    background: var(--discord-green);
+    border: 3px solid var(--bg-main);
+    border-radius: var(--radius-full);
     animation: pulse-animation 2s infinite;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .discord-online-dot {
         width: 1.25rem;
         height: 1.25rem;
@@ -111,25 +110,19 @@
 }
 
 .discord-subtitle {
-    font-size: 0.5625rem;
-    font-bold: 700;
-    color: #5865f2;
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: var(--discord-color);
     text-transform: uppercase;
     letter-spacing: 0.2em;
     margin-bottom: 0.125rem;
     opacity: 80%;
 }
 
-@media (width >= 768px) {
-    .discord-subtitle {
-        font-size: 0.625rem;
-    }
-}
-
 .discord-title {
-    font-size: 0.875rem;
+    font-size: 1.125rem;
     font-weight: 900;
-    color: #fff;
+    color: var(--text-main);
     letter-spacing: -0.02em;
     line-height: 1.2;
     text-transform: uppercase;
@@ -137,41 +130,20 @@
     margin: 0;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .discord-title {
         font-size: 1.875rem;
     }
 }
 
-.online-label {
-    font-size: 0.625rem;
-    font-weight: bold;
-    font-family: monospace;
-    color: #1ddabc;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-}
-
-.discord-subtitle {
-    font-size: 1.125rem;
-    font-weight: 900;
-    color: #fff;
-    margin-bottom: 0.25rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
 .discord-description {
     font-size: 0.875rem;
-    color: #9ca3af;
+    color: var(--text-muted);
     display: -webkit-box;
     -webkit-line-clamp: 1;
-    line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    margin-top: 0.25rem;
 }
 
 .discord-arrow-container {
@@ -181,7 +153,7 @@
     display: none;
 }
 
-@media (width >= 640px) {
+@media (width >=640px) {
     .discord-arrow-container {
         display: block;
     }
@@ -193,13 +165,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgb(88 101 242 / 30%);
-    border-radius: 50%;
-    color: #5865f2;
+    border: 1px solid var(--white-10);
+    border-radius: var(--radius-full);
+    color: var(--discord-color);
     transition: all 0.3s ease;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .discord-arrow {
         width: 3rem;
         height: 3rem;
@@ -207,9 +179,9 @@
 }
 
 .discord-cta:hover .discord-arrow {
-    background: #5865f2;
-    border-color: #5865f2;
-    color: #fff;
+    background: var(--discord-color);
+    border-color: var(--discord-color);
+    color: var(--text-main);
 }
 
 .arrow-icon {
@@ -217,7 +189,7 @@
     height: 1.25rem;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     .arrow-icon {
         width: 1.5rem;
         height: 1.5rem;

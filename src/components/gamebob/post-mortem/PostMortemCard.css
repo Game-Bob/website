@@ -3,17 +3,17 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    background: #0a0f1a;
-    border-radius: 1rem;
-    border: 1px solid rgb(255 255 255 / 5%);
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--white-5);
     overflow: hidden;
     transition: all 0.5s ease;
     text-decoration: none;
 }
 
 .pm-card:hover {
-    border-color: rgb(239 68 68 / 40%);
-    box-shadow: 0 0 30px rgb(239 68 68 / 10%);
+    border-color: var(--secondary-40);
+    box-shadow: 0 0 30px var(--secondary-10);
     transform: translateY(-0.5rem);
 }
 
@@ -22,8 +22,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 1px;
-    background: linear-gradient(to right, rgb(239 68 68 / 50%), rgb(16 185 129 / 50%), rgb(59 130 246 / 50%));
+    height: var(--border-width-thin);
+    background: linear-gradient(to right, var(--secondary-50), var(--primary-50), var(--primary-50));
     opacity: 30%;
     transition: opacity 0.3s ease;
     z-index: 10;
@@ -37,8 +37,8 @@
     position: relative;
     height: 12rem;
     overflow: hidden;
-    background: #0f172a;
-    border-bottom: 1px solid rgb(255 255 255 / 5%);
+    background: var(--bg-main);
+    border-bottom: 1px solid var(--white-5);
 }
 
 .pm-image {
@@ -66,21 +66,21 @@
 .pm-placeholder-icon {
     width: 4rem;
     height: 4rem;
-    color: #ef4444;
+    color: var(--color-secondary);
 }
 
 .pm-id-badge {
     position: absolute;
     top: 1rem;
     left: 1rem;
-    background: #dc2626;
-    color: #fff;
+    background: var(--color-secondary);
+    color: var(--text-main);
     font-size: 0.625rem;
     font-weight: 900;
-    font-family: monospace;
+    font-family: var(--font-family-mono);
     padding: 0.25rem 0.75rem;
-    border-radius: 0.25rem;
-    box-shadow: 0 10px 15px -3px rgb(127 29 29 / 40%);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 10px 15px -3px var(--black-40);
     z-index: 20;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -91,13 +91,13 @@
     bottom: 1rem;
     right: 1rem;
     font-size: 0.625rem;
-    font-family: monospace;
-    color: #9ca3af;
-    background: rgb(0 0 0 / 60%);
+    font-family: var(--font-family-mono);
+    color: var(--text-muted);
+    background: var(--black-80);
     backdrop-filter: blur(8px);
     padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    border: 1px solid rgb(255 255 255 / 10%);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--white-10);
     z-index: 20;
 }
 
@@ -106,13 +106,13 @@
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--space-sm);
 }
 
 .pm-card-title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--text-main);
     transition: color 0.3s ease;
     line-height: 1.2;
     margin: 0;
@@ -123,19 +123,19 @@
 }
 
 .pm-card:hover .pm-card-title {
-    color: #f87171;
+    color: var(--color-secondary);
 }
 
 .pm-card-body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: var(--space-xs);
 }
 
 .pm-row {
     display: flex;
-    gap: 0.5rem;
+    gap: var(--space-xs);
 }
 
 .pm-icon-sm {
@@ -147,7 +147,7 @@
 
 .pm-error-text {
     font-size: 0.75rem;
-    color: #9ca3af;
+    color: var(--text-muted);
     font-style: italic;
     line-height: 1.5;
     margin: 0;
@@ -159,7 +159,7 @@
 
 .pm-lesson-text {
     font-size: 0.75rem;
-    color: #d1d5db;
+    color: var(--text-main);
     line-height: 1.5;
     margin: 0;
     display: -webkit-box;
@@ -170,20 +170,20 @@
 
 .pm-card-footer {
     padding-top: 1rem;
-    border-top: 1px solid rgb(255 255 255 / 5%);
+    border-top: 1px solid var(--white-5);
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: var(--space-xs);
 }
 
 .pm-tag {
     padding: 0.125rem 0.5rem;
-    border-radius: 9999px;
-    background: rgb(255 255 255 / 5%);
-    color: #6b7280;
+    border-radius: var(--radius-full);
+    background: var(--white-5);
+    color: var(--text-muted);
     font-size: 0.625rem;
-    font-family: monospace;
-    border: 1px solid rgb(255 255 255 / 5%);
+    font-family: var(--font-family-mono);
+    border: 1px solid var(--white-5);
 }
 
 .pm-scan-overlay {
@@ -192,7 +192,7 @@
     pointer-events: none;
     opacity: 0%;
     transition: opacity 0.3s ease;
-    background-image: linear-gradient(rgb(18 16 16 / 0%) 50%, rgb(0 0 0 / 25%) 50%), linear-gradient(90deg, rgb(255 0 0 / 6%), rgb(0 255 0 / 2%), rgb(0 0 255 / 6%));
+    background-image: linear-gradient(rgb(18 16 16 / 0%) 50%, var(--black-20) 50%), linear-gradient(90deg, rgb(255 0 0 / 6%), rgb(0 255 0 / 2%), rgb(0 0 255 / 6%));
     background-size: 100% 4px, 3px 100%;
 }
 

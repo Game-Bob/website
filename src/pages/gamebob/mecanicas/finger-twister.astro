@@ -18,7 +18,7 @@ const CODE_URL =
 
     image="/images/gamebob/mechanics/finger-twister.webp"
 >
-    <Icon slot="icon" name="mdi:hand-back-right" style="color: #ec4899" />
+    <Icon slot="icon" name="mdi:hand-back-right" style="color: var(--color-secondary)" />
 
     <MechanicCanvas
         id="game-canvas"
@@ -31,15 +31,15 @@ const CODE_URL =
     <MechanicInfo>
         <Fragment slot="how-it-works">
             <li>
-                <span style="color: #ec4899">•</span>
+                <span style="color: var(--color-secondary)">•</span>
                 <span>Requiere pantalla táctil (multitouch).</span>
             </li>
             <li>
-                <span style="color: #ec4899">•</span>
+                <span style="color: var(--color-secondary)">•</span>
                 <span>Cada nodo debe ser mantenido pulsado.</span>
             </li>
             <li>
-                <span style="color: #ec4899">•</span>
+                <span style="color: var(--color-secondary)">•</span>
                 <span>Si sueltas un nodo activo, pierdes.</span>
             </li>
         </Fragment>

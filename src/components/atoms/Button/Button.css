@@ -14,12 +14,12 @@
 .button-primary {
     background: var(--color-primary);
     color: var(--bg-main);
-    box-shadow: 0 0 calc(var(--space-md) * 0.8) rgba(var(--color-primary-rgb), 30%);
+    box-shadow: 0 0 calc(var(--space-md) * 0.8) var(--primary-30);
 }
 
 .button-primary:hover {
     transform: translateY(calc(var(--space-xs) * -0.5));
-    box-shadow: 0 0 var(--space-md) rgba(var(--color-primary-rgb), 50%);
+    box-shadow: 0 0 var(--space-md) var(--primary-50);
     filter: brightness(110%);
 }
 
@@ -31,6 +31,6 @@
 }
 
 .button-glass:hover {
-    background: rgba(var(--text-main-rgb), 10%);
+    background: var(--white-10);
     border-color: var(--color-primary);
 }
