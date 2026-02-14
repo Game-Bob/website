@@ -8,15 +8,12 @@ interface props {
 }
 
 const { entry } = Astro.props;
-const imagepath = entry.image ? `/images/gamebob/post-mortem/${entry.image}
-
-` : null;
+const imagePath = entry.image ? `/images/gamebob/post-mortem/${entry.image}` : null;
 
 ---
 
 <a
     href={`/gamebob/post-mortem/${entry.id}/`}
-
     class="pm-card"
 >
     <div class="pm-card-top-line"></div>
@@ -31,9 +28,9 @@ const imagepath = entry.image ? `/images/gamebob/post-mortem/${entry.image}
                 />
             ) : (
                 <div class="pm-image-placeholder">
-                    <icon name="mdi:alert-decagram" class="pm-placeholder-icon" />
+                    <Icon name="mdi:alert-decagram" class="pm-placeholder-icon" />
                 </div>
-            )<imgsrc=imagePathalt=entry.titleclass=
+            )
         }
 
         <div class="pm-id-badge">

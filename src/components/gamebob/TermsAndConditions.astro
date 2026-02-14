@@ -240,17 +240,17 @@ import DiscordCTA from "./DiscordCTA.astro";
                         ponerse en contacto con nosotros; en:
                     </p>
                     <div class="contact-info">
-                        <p>;
+                        <p>
                             Email: <a
                                 href="mailto:juanjo1989@gmail.com"
                                 class="contact-link"
                                 >juanjo1989@gmail.com</a
                             >
                         </p>
-                        <p>;
+                        <p>
                             Web: <a
                                 href="https://www.jjlmoya.es/"
-                                class="contact-link";
+                                class="contact-link"
                                 >https://www.jjlmoya.es/</a
                             >
                         </p>
@@ -263,9 +263,7 @@ import DiscordCTA from "./DiscordCTA.astro";
             <div class="footer-copy-box">
                 <div class="footer-line"></div>
                 <p data-t="terms.footer_copy" class="footer-copy">
-                    gamebob studio &copy;
-
- 2026
+                    gamebob studio &copy; 2026
                 </p>
                 <div class="footer-line"></div>
             </div>
@@ -276,7 +274,7 @@ import DiscordCTA from "./DiscordCTA.astro";
 <script>
     import { LEGAL_TRANSLATIONS } from "../../data/gamebob/legal-translations";
 
-    function updatetermstranslations(lang: string) {
+    function updateTermsTranslations(lang: string) {
         const t = LEGAL_TRANSLATIONS[lang] || LEGAL_TRANSLATIONS.es;
 
         document.querySelectorAll("#terms-container [data-t]").forEach((el) => {

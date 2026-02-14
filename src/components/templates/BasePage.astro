@@ -5,8 +5,8 @@ import Heading from "../../components/atoms/Typography/Heading.astro";
 import { type SupportedLang } from "../../i18n/ui";
 import { useTranslations } from "../../i18n/utils";
 
-interface props {
-  lang: supportedlang;
+interface Props {
+  lang: SupportedLang;
   navKey: string;
 }
 
@@ -15,12 +15,11 @@ const { lang, navKey } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<layout title={t(`nav.${navKey}`)} lang={lang}
+<Layout title={t(`nav.${navKey}`)} lang={lang}>
 
->
   <main class="base-page-main">
     <section class="base-page-container">
-      <heading level="h1">{t(`nav.${navKey}`)}</Heading>
+      <Heading level="h1">{t(`nav.${navKey}`)}</Heading>
       <slot />
     </section>
   </main>

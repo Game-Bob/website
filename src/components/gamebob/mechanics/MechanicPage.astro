@@ -3,7 +3,7 @@ import './MechanicPage.css';
 import GameBobLayout from "../../../layouts/GameBobLayout.astro";
 import { Icon } from "astro-icon/components";
 
-interface props {
+interface Props {
     title: string;
     description: string;
     githubUrl?: string;
@@ -15,9 +15,8 @@ const { title, description, githubUrl, codeUrl, image } = Astro.props;
 
 ---
 
-<gameboblayout title={title} description={description} image={image}
+<GameBobLayout title={title} description={description} image={image}>
 
->
     <div class="mechanic-detail-container">
         <div class="mechanic-detail-header">
             <div>

@@ -4,20 +4,19 @@ import ProgressBar from "./ProgressBar.astro";
 import ProjectTasks from "./ProjectTasks.astro";
 
 import type { Project } from "../../../data/gamebob/roadmap/types";
-import type { Application } from "../../../types/apps";
 
-interface props {
-    project: project | application;
+interface Props {
+    project: any;
 }
 
 const { project } = Astro.props;
 
-const name = "title" in project ? project.title : project.name;nameinprojectproject.title
+const name = "title" in project ? project.title : project.name;
 const description = project.description;
-const image = "media" in project ? project.media.showcase : project.image;imageinprojectproject.media.showcase
-const statusLabel = "roadmap" in project ? project.roadmap.statusLabel : project.statuslabel;statusLabelinprojectproject.roadmap.statusLabel
-const progress = "roadmap" in project ? project.roadmap.progress : project.progress;progressinprojectproject.roadmap.progress
-const tasks = "roadmap" in project ? project.roadmap.tasks : project.tasks;tasksinprojectproject.roadmap.tasks
+const image = "media" in project ? project.media.showcase : project.image;
+const statusLabel = "roadmap" in project ? project.roadmap.statusLabel : (project.statusLabel || project.statuslabel || "");
+const progress = "roadmap" in project ? project.roadmap.progress : (project.progress || 0);
+const tasks = "roadmap" in project ? project.roadmap.tasks : (project.tasks || []);
 
 ---
 
@@ -41,15 +40,11 @@ const tasks = "roadmap" in project ? project.roadmap.tasks : project.tasks;tasks
                 <div>
                     <div class="status-label">
                         {statusLabel}
-
                     </div>
                     <h2 class="card-title">
                         {name}
-
                     </h2>
-                    <p class="card-description">{description}
-
-</p>
+                    <p class="card-description">{description}</p>
                 </div>
 
                 <div class="status-indicator">
@@ -61,9 +56,7 @@ const tasks = "roadmap" in project ? project.roadmap.tasks : project.tasks;tasks
             </div>
 
             <div class="card-body">
-                <ProgressBar progress={progress}
-
- />
+                <ProgressBar progress={progress} />
                 <ProjectTasks tasks={tasks} />
             </div>
         </div>

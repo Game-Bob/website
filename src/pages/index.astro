@@ -8,18 +8,18 @@ const lang = "en";
 const t = useTranslations(lang);
 ---
 
-<layout 
+<Layout 
   title={t("hero.title")} 
   description={t("site.description")} 
   lang={lang}
 
 >
 	<main class="page-main">
-		<hero 
+		<Hero 
 			title={t("hero.title")}
 			subtitle={t("hero.subtitle")}
-			primaryaction={{ text: t("hero.primary"),; href: "/games/" }}
-			secondaryaction={{ text: t("hero.secondary"),; href: "/community/" }}
+			primaryAction={{ text: t("hero.primary"), href: "/games/" }}
+			secondaryAction={{ text: t("hero.secondary"), href: "/community/" }}
 		/>
 	</main>
 </Layout>

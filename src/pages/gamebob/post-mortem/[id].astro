@@ -17,9 +17,7 @@ export function getStaticPaths() {
 
 const { entry, prev, next } = Astro.props;
 
-const imagepath = entry.image ? `/images/gamebob/post-mortem/${entry.image}
-
-` : null;
+const imagePath = entry.image ? `/images/gamebob/post-mortem/${entry.image}` : null;
 const ogImage = imagePath || "/images/gamebob/post-mortem/og-post-mortem.webp";
 
 const jsonld = {
@@ -31,25 +29,21 @@ const jsonld = {
     datePublished: entry.date,
     author: {
         "@type": "Person",
-        name: "jjlmoya"namename
-    }
-
-,
-    articleSection: "Post-Mortem",;articleSection
+        name: "jjlmoya"
+    },
+    articleSection: "Post-Mortem",
     keywords: entry.tags?.join(", "),
 };
 
 ---
 
-<gameboblayout
+<GameBobLayout
     title={`${entry.title} | Post Mortem`}
     description={`Post-Mortem técnico: ${entry.title}. Análisis del error y lecciones aprendidas.`}
     image={ogImage}
 
 >
-    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)}
-
- />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonld)} />
 
     <div class="min-h-screen flex flex-col items-center justify-center py-12 px-4 relative">
         <div class="absolute inset-0 overflow-hidden pointer-events-none">

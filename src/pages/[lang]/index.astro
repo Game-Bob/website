@@ -16,18 +16,18 @@ const { lang } = Astro.params;
 const t = useTranslations(lang as any);
 ---
 
-<layout 
+<Layout 
   title={t("hero.title")} 
   description={t("site.description")} 
   lang={lang as any}
 
 >
 	<main class="page-main">
-		<hero 
+		<Hero 
 			title={t("hero.title")}
 			subtitle={t("hero.subtitle")}
-			primaryaction={{ text: t("hero.primary"),; href: "/games/" }}
-			secondaryaction={{ text: t("hero.secondary"),; href: "/community/" }}
+			primaryAction={{ text: t("hero.primary"), href: "/games/" }}
+			secondaryAction={{ text: t("hero.secondary"), href: "/community/" }}
 		/>
 	</main>
 </Layout>

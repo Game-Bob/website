@@ -18,13 +18,12 @@ const {
     verticalOnMobile = false,
 } = Astro.props;
 
-const aspectratioclass = `aspect-${aspectRatio}`;
+const aspectRatioClass = `aspect-${aspectRatio}`;
 
 ---
 
 <div class:list={[
-    "canvas-container",;
-
+    "canvas-container",
     aspectRatioClass,
     { "vertical-mobile": verticalOnMobile }
 ]}>
