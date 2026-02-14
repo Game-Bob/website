@@ -34,7 +34,10 @@ const description = t(`mechanics.${mechanic.id}.description`);
 <MechanicPage
     title={title}
     description={description}
+    githubUrl={mechanic.githubUrl}
+    codeUrl={mechanic.codeUrl}
     image={`/images/gamebob/mechanics/${slug}.webp`}
+    lang={lang}
 >
     <div style="padding: 2rem; text-align: center; color: var(--text-muted);">
         <h2>{t("mechanics.demoTitle")} {title}</h2>

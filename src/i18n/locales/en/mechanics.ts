@@ -6,6 +6,9 @@ export default {
     demoTitle: "Demo of",
     demoDescription: "This is a dynamically generated page for the mechanic:",
     demoPlaceholder: "(The canvas or iframe of the prototype would go here)",
+    backLink: "Back to Mechanics",
+    github: "GitHub",
+    code: "Code",
 
     slingshot: {
         title: "Slingshot",

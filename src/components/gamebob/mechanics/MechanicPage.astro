@@ -2,6 +2,7 @@
 import './MechanicPage.css';
 import GameBobLayout from "../../../layouts/GameBobLayout.astro";
 import { Icon } from "astro-icon/components";
+import { useTranslations, useLanguagePath } from "../../../i18n/utils";
 
 interface Props {
     title: string;
@@ -9,9 +10,12 @@ interface Props {
     githubUrl?: string;
     codeUrl?: string;
     image?: string;
+    lang: string;
 }
 
-const { title, description, githubUrl, codeUrl, image } = Astro.props;
+const { title, description, githubUrl, codeUrl, image, lang } = Astro.props;
+const t = useTranslations(lang as any);
+const l = useLanguagePath(lang as any);
 
 ---
 
@@ -21,11 +25,11 @@ const { title, description, githubUrl, codeUrl, image } = Astro.props;
         <div class="mechanic-detail-header">
             <div>
                 <a
-                    href="/gamebob/mecanicas/"
+                    href={l("/mechanics/")}
                     class="back-link"
                 >
                     <Icon name="mdi:arrow-left" class="back-icon" />
-                    Volver a Mecánicas
+                    {t("mechanics.backLink")}
                 </a>
                 <h1 class="mechanic-title">
                     <slot name="icon" />
@@ -48,7 +52,7 @@ const { title, description, githubUrl, codeUrl, image } = Astro.props;
                             class="action-btn"
                         >
                             <Icon name="mdi:github" class="action-icon" />
-                            GitHub
+                            {t("mechanics.github")}
                         </a>
                     )
                 }
@@ -62,7 +66,7 @@ const { title, description, githubUrl, codeUrl, image } = Astro.props;
                             class="action-btn"
                         >
                             <Icon name="mdi:code-tags" class="action-icon" />
-                            Código
+                            {t("mechanics.code")}
                         </a>
                     )
                 }

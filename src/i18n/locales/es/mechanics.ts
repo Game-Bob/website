@@ -6,6 +6,9 @@ export default {
     demoTitle: "Demo de",
     demoDescription: "Esta es una página generada dinámicamente para la mecánica:",
     demoPlaceholder: "(Aquí iría el canvas o el iframe del prototipo)",
+    backLink: "Volver a Mecánicas",
+    github: "GitHub",
+    code: "Código",
 
     slingshot: {
         title: "Slingshot",

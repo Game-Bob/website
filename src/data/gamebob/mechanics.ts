@@ -3,6 +3,8 @@ export interface MechanicItem {
     url: string;
     icon: string;
     platforms: "mobile" | "desktop" | "all";
+    githubUrl?: string;
+    codeUrl?: string;
 }
 
 export const mechanics: MechanicItem[] = [
