@@ -1,0 +1,170 @@
+---
+export const prerender = true;
+import "./gamebob.css";
+import GameBobLayout from "../layouts/GameBobLayout.astro";
+import { Icon } from "astro-icon/components";
+import GameBobLogo from "../components/GameBobLogo.astro";
+import ProjectHomeCard from "../components/gamebob/ProjectHomeCard.astro";
+import DiscordCTA from "../components/gamebob/DiscordCTA.astro";
+import { apps } from "../data/apps/index";
+
+const projects = apps.filter((app) => app.isGame);
+---
+
+<GameBobLayout
+    title="GameBob: La cruda realidad del desarrollo de juegos indie"
+    description="¿Por qué es tan difícil hacer un juego? Descubre prototipos, fallos de diseño y las tripas de GameBob. El único estudio que documenta el caos."
+    image="/images/gamebob/index.webp"
+>
+    <div class="gamebob-home">
+        <div class="logo-section animate-box">
+            <div class="logo-wrapper">
+                <GameBobLogo />
+            </div>
+            <h1 class="title-text">
+                Game<span>Bob</span>
+            </h1>
+        </div>
+
+        <p class="hero-tagline">
+            Pequeño estudio de desarrollo de juegos casuales indies.
+        </p>
+
+        <DiscordCTA title="Únete a la comunidad" />
+
+        <div class="section-container">
+            <h2 class="section-title">
+                juegos
+            </h2>
+
+            <div class="project-list">
+                {
+                    projects.map((project, index) => (
+                        <ProjectHomeCard project={project} index={index} />
+                    ))
+                }
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title purple">
+                prototipos
+            </h2>
+
+            <div class="feature-grid">
+                <div class="feature-content order-mobile-2">
+                    <h3 class="feature-title">
+                        EVO<span class="purple">LUCIÓN</span>
+                    </h3>
+                    <p class="feature-description">
+                        alquimia del caos. combina elementos primordiales, crea criaturas únicas y
+                        enfréntalas en la arena de combate. un experimento de generación procedural.
+                    </p>
+
+                    <div class="button-row">
+                        <a
+                            href="/gamebob/prototipos/"
+                            class="explore-button"
+                            style="--btn-color-rgb: 168, 85, 247; --btn-color-text-rgb: 192, 132, 252;"
+                        >
+                            <Icon name="mdi:flask-empty-outline" class="icon-sm" />
+                            Explorar Prototipos
+                        </a>
+                    </div>
+                </div>
+
+                <div class="feature-visual order-mobile-1" style="--btn-color-rgb: 168, 85, 247;">
+                    <div class="visual-bg"></div>
+                    <div class="visual-content animate-float">
+                        <Icon name="mdi:egg-outline" class="icon-xl" style="color: rgba(168, 85, 247, 0.5)" />
+                        <Icon name="mdi:arrow-right" class="icon-md" style="color: rgba(255, 255, 255, 0.2)" />
+                        <Icon name="mdi:dna" class="icon-xl" style="color: #c084fc; filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.5))" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title blue">
+                mecánicas
+            </h2>
+
+            <div class="feature-grid">
+                <div class="feature-visual" style="--btn-color-rgb: 59, 130, 246;">
+                    <div class="visual-bg"></div>
+                    <div class="visual-grid animate-pulse">
+                        <Icon name="mdi:gesture-tap" class="icon-md" style="color: rgba(96, 165, 250, 0.8)" />
+                        <Icon name="mdi:run-fast" class="icon-md" style="color: rgba(96, 165, 250, 0.8)" />
+                        <Icon name="mdi:target" class="icon-md" style="color: rgba(96, 165, 250, 0.8)" />
+                        <Icon name="mdi:controller" class="icon-md" style="color: rgba(96, 165, 250, 0.8)" />
+                    </div>
+                </div>
+
+                <div class="feature-content">
+                    <h3 class="feature-title">
+                        LAB<span class="blue">ORATORIO</span>
+                    </h3>
+                    <p class="feature-description">
+                        librería de componentes aislados. mecánicas de movimiento, sistemas de
+                        física y controles experimentales listos para testear.
+                    </p>
+
+                    <div class="button-row">
+                        <a
+                            href="/gamebob/mecanicas/"
+                            class="explore-button"
+                            style="--btn-color-rgb: 59, 130, 246; --btn-color-text-rgb: 96, 165, 250;"
+                        >
+                            <Icon name="mdi:code-braces" class="icon-sm" />
+                            Explorar Mecánicas
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title red">
+                post mortem
+            </h2>
+
+            <div class="feature-grid">
+                <div class="feature-content order-mobile-2">
+                    <h3 class="feature-title">
+                        POST<span class="red">MORTEM</span>
+                    </h3>
+                    <p class="feature-description">
+                        el cementerio de las buenas intenciones. análisis forense de proyectos
+                        fallidos, errores de diseño y lecciones aprendidas a base de golpes.
+                    </p>
+
+                    <div class="button-row">
+                        <a
+                            href="/gamebob/post-mortem/"
+                            class="explore-button"
+                            style="--btn-color-rgb: 239, 68, 68; --btn-color-text-rgb: 248, 113, 113;"
+                        >
+                            <Icon name="mdi:skull-scan-outline" class="icon-sm" />
+                            Leer Memorándums
+                        </a>
+                    </div>
+                </div>
+
+                <div class="feature-visual order-mobile-1" style="--btn-color-rgb: 239, 68, 68;">
+                    <div class="visual-bg"></div>
+                    <div class="visual-content animate-pulse">
+                        <Icon name="mdi:alert-decagram" class="icon-xl" style="color: rgba(239, 68, 68, 0.5)" />
+                        <Icon name="mdi:arrow-right" class="icon-md" style="color: rgba(255, 255, 255, 0.2)" />
+                        <Icon name="mdi:book-open-page-variant" class="icon-xl" style="color: #f87171; filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.5))" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-nav">
+        <a href="/gamebob/privacidad/" class="footer-link">
+            política de privacidad
+        </a>
+    </div>
+</GameBobLayout>

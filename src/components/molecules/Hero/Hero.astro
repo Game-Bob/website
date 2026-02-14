@@ -1,0 +1,41 @@
+---
+import './Hero.css';
+import Heading from "../../atoms/Typography/Heading.astro";
+import Button from "../../atoms/Button/Button.astro";
+
+interface props {
+  title: string;
+  subtitle: string;
+  primaryAction: { text: string; href: string };
+  secondaryAction: { text: string; href: string };
+}
+
+const { title, subtitle, primaryAction, secondaryAction } = Astro.props;
+
+---
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="glow-sphere"></div>
+    <Heading level="h1">{title}
+
+</Heading>
+    <p class="hero-subtitle">{subtitle}
+
+</p>
+    
+    <div class="hero-actions">
+      <Button href={primaryAction.href}
+
+ variant="primary">
+        {primaryAction.text}
+
+      </Button>
+      <Button href={secondaryAction.href}
+
+ variant="glass">
+        {secondaryAction.text}
+      </Button>
+    </div>
+  </div>
+</section>

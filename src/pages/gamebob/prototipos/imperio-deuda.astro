@@ -1,0 +1,109 @@
+---
+export const prerender = true;
+import SEO from "../../../components/SEO.astro";
+import { Icon } from "astro-icon/components";
+import "./imperio-deuda.css";
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap"
+            rel="stylesheet"
+        />
+        <SEO
+            title="IMPERIO DE DEUDA"
+            description="El simulador definitivo de expansión urbana y gestión de deuda."
+        />
+    </head>
+    <body>
+        <div class="phone-container">
+            <header class="master-hud">
+                <div class="counter-group">
+                    <div id="debt-count-val" class="val-debt">1.00B</div>
+                    <div id="debt-growth-val" class="growth-tag">+0.1%/s</div>
+                </div>
+
+                <div class="sub-stats">
+                    <div class="stat-pill">
+                        <span class="pill-label">Cash</span>
+                        <span id="bank-count-val" class="pill-val">0</span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="pill-label">Renta</span>
+                        <span id="income-count-val" class="pill-val">+0/s</span>
+                    </div>
+                </div>
+            </header>
+
+            <div id="passives-icons-bar" class="passives-tray scrollbar-hide"></div>
+
+            <main class="city-engine" id="city-viewport">
+                <div id="city-map"></div>
+                <div id="buildings-layer"></div>
+
+                <div class="zoom-controls">
+                    <button class="zoom-btn" onclick="Game.ui.zoom(1.2)">+</button>
+                    <button class="zoom-btn" onclick="Game.ui.zoom(0.8)">-</button>
+                    <button class="zoom-btn" onclick="Game.ui.centerMap()">⌖</button>
+                </div>
+            </main>
+
+            <div id="action-hint">
+                <div class="action-hint-text">Clica en la ciudad para extraer fondos</div>
+            </div>
+
+            <footer class="management-drawer">
+                <div class="drawer-handle"></div>
+
+                <div class="tab-bar">
+                    <button class="tab-btn active" data-tab="biz" onclick="setTab('biz')"
+                        >Distritos</button
+                    >
+                    <button class="tab-btn" data-tab="passives" onclick="setTab('passives')"
+                        >Protocolos</button
+                    >
+                    <button class="tab-btn" data-tab="ops" onclick="setTab('ops')"
+                        >Operaciones</button
+                    >
+                </div>
+
+                <div class="drawer-header">
+                    <div class="drawer-meta">
+                        <Icon name="mdi:office-building-cog" class="drawer-icon" />
+                        <span class="label-tag" style="margin:0; font-size: 8px;"
+                            >Sistema de Activos</span
+                        >
+                    </div>
+                    <span
+                        id="biz-summary"
+                        class="label-tag"
+                        style="color: var(--accent); font-size: 8px;">0 Sedes</span
+                    >
+                </div>
+
+                <div id="biz-list-ui" class="biz-scroller scrollbar-hide"></div>
+            </footer>
+        </div>
+
+        <script>
+            
+            
+            
+
+            const script = document.createElement("script");
+            script.src = "https://code.iconify.design/3/3.1.0/iconify.min.js";
+            document.head.appendChild(script);
+
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,149 @@
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.history-details {
+    margin-bottom: 1rem;
+}
+
+.history-summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #6b7280;
+    transition: color 0.2s ease;
+    padding: 0.5rem 0;
+    user-select: none;
+}
+
+.history-summary:hover {
+    color: #d1d5db;
+}
+
+.summary-icon {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.history-details[open] .summary-icon {
+    transform: rotate(90deg);
+}
+
+.history-list {
+    padding-left: 1.5rem;
+    padding-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    border-left: 1px solid rgb(255 255 255 / 5%);
+    margin-left: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid transparent;
+}
+
+.task-item.done {
+    background: rgb(255 255 255 / 5%);
+    border-color: rgb(255 255 255 / 5%);
+    opacity: 70%;
+}
+
+.task-item.active {
+    background: rgb(234 179 8 / 10%);
+    border-color: rgb(234 179 8 / 30%);
+    box-shadow: 0 0 15px rgb(234 179 8 / 10%);
+    transform: scale(1.02);
+}
+
+.task-item.pending {
+    opacity: 50%;
+}
+
+.task-icon-box {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.task-icon-box.done {
+    background: var(--color-gamebob-primary);
+    color: #000;
+}
+
+.task-icon-box.active {
+    border: 2px solid #eab308;
+    color: #eab308;
+}
+
+.task-icon-box.pending {
+    border: 1px solid #374151;
+}
+
+.task-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+}
+
+.task-dot.active {
+    background: #eab308;
+    animation: pulse-animation 2s infinite;
+}
+
+.task-dot.pending {
+    background: #1f2937;
+}
+
+.task-text {
+    font-size: 0.875rem;
+}
+
+.task-text.done {
+    color: #9ca3af;
+    text-decoration: line-through;
+}
+
+.task-text.active {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.task-text.pending {
+    color: #6b7280;
+}
+
+.icon-4 {
+    width: 1rem;
+    height: 1rem;
+}
+
+@keyframes pulse-animation {
+    0%,
+    100% {
+        opacity: 100%;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 50%;
+        transform: scale(0.9);
+    }
+}

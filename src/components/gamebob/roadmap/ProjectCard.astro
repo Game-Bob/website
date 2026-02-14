@@ -1,0 +1,71 @@
+---
+import './ProjectCard.css';
+import ProgressBar from "./ProgressBar.astro";
+import ProjectTasks from "./ProjectTasks.astro";
+
+import type { Project } from "../../../data/gamebob/roadmap/types";
+import type { Application } from "../../../types/apps";
+
+interface props {
+    project: project | application;
+}
+
+const { project } = Astro.props;
+
+const name = "title" in project ? project.title : project.name;nameinprojectproject.title
+const description = project.description;
+const image = "media" in project ? project.media.showcase : project.image;imageinprojectproject.media.showcase
+const statusLabel = "roadmap" in project ? project.roadmap.statusLabel : project.statuslabel;statusLabelinprojectproject.roadmap.statusLabel
+const progress = "roadmap" in project ? project.roadmap.progress : project.progress;progressinprojectproject.roadmap.progress
+const tasks = "roadmap" in project ? project.roadmap.tasks : project.tasks;tasksinprojectproject.roadmap.tasks
+
+---
+
+<div class="roadmap-project-card-wrapper">
+    <div class="roadmap-project-card">
+        <div class="card-bg">
+            {
+                image && (
+                    <div
+                        class="card-bg-image"
+                        style={`background-image: url('${image}');`}
+                    />
+                )
+            }
+
+            <div class="card-overlay"></div>
+        </div>
+
+        <div class="card-content">
+            <div class="card-header">
+                <div>
+                    <div class="status-label">
+                        {statusLabel}
+
+                    </div>
+                    <h2 class="card-title">
+                        {name}
+
+                    </h2>
+                    <p class="card-description">{description}
+
+</p>
+                </div>
+
+                <div class="status-indicator">
+                    <span class="dot-shell">
+                        <span class="ping-inner"></span>
+                        <span class="status-dot"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <ProgressBar progress={progress}
+
+ />
+                <ProjectTasks tasks={tasks} />
+            </div>
+        </div>
+    </div>
+</div>

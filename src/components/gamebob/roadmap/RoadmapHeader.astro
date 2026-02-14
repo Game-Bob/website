@@ -1,0 +1,21 @@
+---
+import './RoadmapHeader.css';
+
+interface props {
+    title: string;
+    description: string;
+}
+
+const { title, description } = Astro.props;
+
+---
+
+<header class="roadmap-header">
+    <h1 class="roadmap-header-title">
+        {title}
+
+    </h1>
+    <p class="roadmap-header-description">
+        {description}
+    </p>
+</header>

@@ -1,0 +1,16 @@
+---
+import './Heading.css';
+
+interface props {
+  level?: 'h1' | 'h2' | 'h3';
+  className?: string;
+}
+
+const { level = 'h1', className = '' } = Astro.props;
+
+const Tag = level;
+---
+
+<Tag class:list={['heading', `heading-${level}`, className]}>
+  <slot />
+</Tag><Tagclass

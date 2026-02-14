@@ -1,0 +1,30 @@
+.pm-page {
+    min-height: 100vh;
+    padding: 3rem 1rem;
+    position: relative;
+}
+
+.pm-container {
+    z-index: 10;
+    width: 100%;
+    max-width: 72rem;
+    margin: 2rem auto 0;
+}
+
+.pm-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (width >= 768px) {
+    .pm-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (width >= 1024px) {
+    .pm-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

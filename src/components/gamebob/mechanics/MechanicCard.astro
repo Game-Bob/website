@@ -1,0 +1,55 @@
+---
+import './MechanicCard.css';
+import { Icon } from "astro-icon/components";
+import type { MechanicItem } from "../../../data/mechanics";
+
+interface props {
+    mechanic: mechanicitem;
+}
+
+const { mechanic } = Astro.props;
+
+---
+
+<a
+    href={mechanic.url}
+
+    class="mechanic-card"
+    data-tags={mechanic.tags.join(",")}
+    data-platforms={mechanic.platforms}
+
+>
+    <div class="card-inner">
+        <div class="card-header">
+            <div class="icon-box">
+                <icon name={mechanic.icon}
+
+ class="card-icon" />
+            </div>
+            <h3 class="card-title">
+                {mechanic.title}
+
+            </h3>
+        </div>
+        <p class="card-description">
+            {mechanic.description}
+
+        </p>
+        <div class="card-tags">
+            {
+                mechanic.tags
+                    .slice(0, 3)
+                    .map((tag) => (
+                        <span class="tag-badge">
+                            {tag}
+                        </span>
+                    ))
+            }
+        </div>
+        <div class="card-footer">
+            <Icon name="mdi:play-circle-outline" class="footer-icon" />
+            <span>demo interactiva</span>
+        </div>
+    </div>
+    <div class="hover-overlay"></div>
+</a>

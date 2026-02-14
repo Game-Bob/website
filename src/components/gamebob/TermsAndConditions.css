@@ -1,0 +1,264 @@
+.terms-section {
+    position: relative;
+    min-height: 100vh;
+    padding: 6rem 1.5rem;
+}
+
+.terms-container {
+    max-width: 56rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.terms-header {
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.terms-badge {
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid rgb(29 218 188 / 30%);
+    background: rgb(29 218 188 / 5%);
+    color: #1ddabc;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.terms-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 2rem;
+    letter-spacing: -0.05em;
+    line-height: 1;
+}
+
+@media (width >= 768px) {
+    .terms-title {
+        font-size: 4.5rem;
+    }
+}
+
+.terms-title-gradient {
+    background: linear-gradient(to right, #1ddabc, #34d399, #3b82f6);
+    background-clip: text;
+    color: transparent;
+}
+
+.terms-description {
+    font-size: 1.125rem;
+    color: #9ca3af;
+    font-weight: 300;
+    letter-spacing: 0.025em;
+    max-width: 36rem;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.terms-update {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4b5563;
+    font-size: 0.875rem;
+    font-style: italic;
+}
+
+.update-line {
+    width: 2rem;
+    height: 1px;
+    background: #1f2937;
+}
+
+.terms-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.intro-box {
+    background: rgb(255 255 255 / 5%);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgb(255 255 255 / 10%);
+    border-radius: 1.75rem;
+    padding: 2rem;
+}
+
+@media (width >= 768px) {
+    .intro-box {
+        padding: 2.5rem;
+    }
+}
+
+.intro-text {
+    color: #d1d5db;
+    line-height: 1.6;
+    font-size: 1.125rem;
+    margin: 0;
+}
+
+.terms-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.term-card {
+    position: relative;
+    padding: 2rem;
+    border-radius: 1.75rem;
+    border: 1px solid rgb(255 255 255 / 5%);
+    background: rgb(255 255 255 / 5%);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+.term-card:hover {
+    background: rgb(255 255 255 / 7%);
+}
+
+.term-card.special {
+    border-color: rgb(16 185 129 / 20%);
+    background: rgb(16 185 129 / 5%);
+}
+
+.term-card.special:hover {
+    background: rgb(16 185 129 / 10%);
+}
+
+.card-title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: rgb(29 218 188 / 20%);
+    color: #1ddabc;
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.special .step-number {
+    background: rgb(16 185 129 / 20%);
+    color: #34d399;
+}
+
+.card-title-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.025em;
+    margin: 0;
+}
+
+.special .card-title-text {
+    color: #34d399;
+}
+
+.card-text {
+    color: #9ca3af;
+    line-height: 1.6;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.special .card-text {
+    color: #d1d5db;
+}
+
+.card-list {
+    padding: 0;
+    margin: 1rem 0 0 1rem;
+    list-style-type: disc;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-list li {
+    color: #9ca3af;
+    font-size: 0.875rem;
+}
+
+.card-link-wrapper {
+    margin-top: 1.5rem;
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #34d399;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid rgb(52 211 153 / 30%);
+    transition: all 0.2s ease;
+}
+
+.card-link:hover {
+    color: #6ee7b7;
+    border-color: #6ee7b7;
+}
+
+.link-icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    color: #d1d5db;
+}
+
+.contact-link {
+    color: #1ddabc;
+    text-decoration: none;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+}
+
+.terms-footer {
+    margin-top: 6rem;
+    text-align: center;
+}
+
+.footer-copy-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    color: #4b5563;
+}
+
+.footer-line {
+    height: 1px;
+    width: 3rem;
+    background: #1f2937;
+}
+
+.footer-copy {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin: 0;
+}

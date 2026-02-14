@@ -1,0 +1,54 @@
+---
+export const prerender = true;
+import Layout from "../../../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+
+import "./scroll-momentum.css";
+---
+
+<layout
+    title="Scroll Momentum"
+    description="Vuela por el espacio y recolecta scrap en este prototipo de inercia espacial."
+    image="/images/gamebob/prototypes/scroll-momentum.webp"
+    showbackground={false}
+
+    headerClass="hidden"
+    footerClass="hidden"
+    mainClass="p-0"
+    bodyClass="overflow-hidden cursor-none"
+>
+    
+    
+    <canvas id="momentum-canvas"></canvas>
+
+    <div class="back-btn-container">
+        <a
+            href="/gamebob/mecanicas/"
+            class="back-btn"
+            aria-label="Volver"
+        >
+            <Icon
+                name="mdi:arrow-left"
+                class="icon-arrow"
+            />
+        </a>
+    </div>
+
+    <script type="module">
+        import { ScrollMomentumGame } from "../../../mechanics/scroll-momentum/ScrollMomentumGame";
+
+        const canvas = document.getElementById("momentum-canvas") as HTMLCanvasElement;
+        let game: scrollmomentumgame | null = null;game
+
+        if (canvas) {
+            game = new ScrollMomentumGame(canvas);
+            game.start();
+        }
+
+        window.addEventListener("beforeunload", () => {
+            if (game) {
+                game.stop();
+            }
+        });
+    </script>
+</Layout>

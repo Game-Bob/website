@@ -1,0 +1,26 @@
+.roadmap-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1rem;
+}
+
+.roadmap-content {
+    z-index: 10;
+    width: 100%;
+    max-width: 64rem;
+    margin-top: 2rem;
+}
+
+.roadmap-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (width >= 1024px) {
+    .roadmap-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}

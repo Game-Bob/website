@@ -1,0 +1,55 @@
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+    cursor: none;
+    touch-action: none;
+
+body {
+    overflow: hidden;
+    cursor: none;
+    margin: 0;
+}
+
+.back-btn-container {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 50;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    background: rgb(255 255 255 / 5%);
+    border: 1px solid rgb(255 255 255 / 10%);
+    color: rgb(255 255 255 / 40%);
+    transition: all 0.3s;
+    backdrop-filter: blur(4px);
+    cursor: none;
+
+    /* Keep consistent custom cursor */
+}
+
+.back-btn:hover {
+    color: white;
+    background: rgb(255 255 255 / 20%);
+}
+
+.icon-arrow {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.2s;
+}
+
+.back-btn:hover .icon-arrow {
+    transform: translateX(-2px);
+}
+}

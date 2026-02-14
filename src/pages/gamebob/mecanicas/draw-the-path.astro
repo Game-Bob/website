@@ -1,0 +1,88 @@
+---
+export const prerender = true;
+import MechanicPage from "../../../components/gamebob/mechanics/MechanicPage.astro";
+import MechanicCanvas from "../../../components/gamebob/mechanics/MechanicCanvas.astro";
+import MechanicInfo from "../../../components/gamebob/mechanics/MechanicInfo.astro";
+import { Icon } from "astro-icon/components";
+
+const title = "Draw The Path";
+const description =
+    "Protege al corredor. Dibuja escudos contra meteoritos y puentes sobre el vacío.";
+const GITHUB_BASE = "https://github.com/Game-Bob/website/tree/main/src/mechanics/draw-the-path";
+const CODE_URL =
+    "https://github.com/Game-Bob/website/blob/main/src/mechanics/draw-the-path/DrawThePathMechanic.ts";
+---
+
+<mechanicpage
+    title={title}
+    description={description}
+    githuburl={GITHUB_BASE}
+    codeurl={CODE_URL}
+
+    image="/images/gamebob/mechanics/draw-the-path.webp"
+>
+    <Icon slot="icon" name="mdi:draw" style="color: #ec4899" />
+
+    <MechanicCanvas
+        id="draw-path-canvas"
+        instruction="Dibuja / Arrastra"
+        subInstruction="Crear camino o escudo"
+        verticalOnMobile={true}
+
+    />
+
+    <MechanicInfo>
+        <Fragment slot="how-it-works">
+            <li>
+                <span style="color: #ec4899">•</span>
+                <span>El personaje corre ciegamente. ¡No dejes que caiga!</span>
+            </li>
+            <li>
+                <span style="color: #f97316">•</span>
+                <span>Dibuja techos para bloquear los meteoritos.</span>
+            </li>
+            <li>
+                <span style="color: #22c55e">•</span>
+                <span>Bloquea o redirige a los enemigos saltarines.</span>
+            </li>
+        </Fragment>
+
+        <Fragment slot="controls">
+            <div class="control-item">
+                <span class="control-key">Arrastrar</span>
+                <span class="control-desc">Dibujar Línea</span>
+            </div>
+        </Fragment>
+    </MechanicInfo>
+</MechanicPage>
+
+<script>
+    import { DrawThePathGame } from "../../../mechanics/draw-the-path/DrawThePathGame";
+
+    const canvas = document.getElementById("draw-path-canvas") as HTMLCanvasElement;
+    const overlay = document.getElementById("draw-path-canvas-overlay");
+    let game: game | null = null;game
+
+    if (canvas && overlay) {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+
+        overlay.addEventListener("click", () => {
+            overlay.style.opacity = "0";
+            overlay.style.pointerEvents = "none";
+            if (!game) {
+                game = new DrawThePathGame(canvas);
+                game.start();
+            }
+        });
+
+        document.addEventListener(
+            "astro:before-swap",
+            () => {
+                game?.stop();
+            },
+            { once: true }
+        );
+    }
+</script>

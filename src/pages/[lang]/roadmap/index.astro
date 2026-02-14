@@ -1,0 +1,27 @@
+---
+import BasePage from "../../../components/templates/BasePage.astro";
+import { languages } from "../../../i18n/ui";
+
+export async function getStaticPaths() {
+  return Object.keys(languages)
+    .filter((lang) => lang !== "en")
+    .map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+
+---
+
+<basepage lang={lang as any}
+
+ navKey="roadmap">
+  <p class="description">Our future plans and upcoming features.</p>
+</BasePage>
+
+<style>
+  .description {
+    color: var(--text-muted);
+    font-size: 1.25rem;
+    margin-top: var(--space-md);
+  }
+</style>

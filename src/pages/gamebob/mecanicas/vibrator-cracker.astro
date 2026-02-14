@@ -1,0 +1,132 @@
+---
+export const prerender = true;
+import MechanicPage from "../../../components/gamebob/mechanics/MechanicPage.astro";
+import MechanicCanvas from "../../../components/gamebob/mechanics/MechanicCanvas.astro";
+import MechanicInfo from "../../../components/gamebob/mechanics/MechanicInfo.astro";
+import { Icon } from "astro-icon/components";
+
+const GITHUB_BASE =
+    "https://github.com/Game-Bob/website/tree/main/src/mechanics/vibrator-cracker";
+const CODE_URL =
+    "https://github.com/Game-Bob/website/blob/main/src/mechanics/vibrator-cracker/VibratorCrackerGame.ts";
+---
+
+<mechanicpage
+    title="Vibrator Cracker"
+    description="Siente el mecanismo. Usa la vibración de tu dispositivo para encontrar la combinación correcta y abrir la caja fuerte."
+    githuburl={GITHUB_BASE}
+    codeurl={CODE_URL}
+
+    image="/images/gamebob/mechanics/vibrator-cracker.webp"
+>
+    <Icon slot="icon" name="mdi:safe" style="color: #f43f5e" />
+
+    <MechanicCanvas
+        id="game-canvas"
+        instruction="Gira el dial"
+        subInstruction="Siente los clicks y mantén para abrir"
+        verticalOnMobile={true}
+
+    />
+
+    <MechanicInfo>
+        <Fragment slot="how-it-works">
+            <li>
+                <span style="color: #f43f5e">•</span>
+                <span>Gira el dial arrastrando con el dedo o mouse.</span>
+            </li>
+            <li>
+                <span style="color: #f43f5e">•</span>
+                <span>Tu dispositivo vibrará ligeramente al pasar números.</span>
+            </li>
+            <li>
+                <span style="color: #f43f5e">•</span>
+                <span>Una vibración distinta indica el número correcto.</span>
+            </li>
+            <li>
+                <span style="color: #f43f5e">•</span>
+                <span>Mantén el dial en la posición correcta unos segundos para confirmar.</span>
+            </li>
+            <li>
+                <span style="color: #f43f5e">•</span>
+                <span>Encuentra 3 números para abrir la caja.</span>
+            </li>
+        </Fragment>
+
+        <Fragment slot="controls">
+            <div class="control-item">
+                <span class="control-key">Arrastrar / Touch</span>
+                <span class="control-desc">Girar Dial</span>
+            </div>
+        </Fragment>
+    </MechanicInfo>
+
+    <div style="margin-top: 1rem; padding: 1rem; background: rgba(146, 64, 14, 0.2); border: 1px solid rgba(180, 83, 9, 0.5); border-radius: 0.5rem; max-width: 28rem; margin-inline: auto; text-align: center;">
+        <p style="color: #fef08a; font-size: 0.875rem;">
+            <Icon name="mdi:alert" style="display: inline-block; width: 1rem; height: 1rem; margin-right: 0.25rem; margin-bottom: 0.25rem;" />
+            Soporte experimental de vibración en iOS activado.
+        </p>
+        <div style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+            <button
+                id="test-vibrate-btn"
+                style="padding: 0.25rem 0.75rem; background: #3f3f46; color: white; font-size: 0.75rem; border-radius: 0.25rem; border: none; cursor: pointer; transition: background 0.1s;"
+                onmouseover="this.style.background='#52525b'"
+                onmouseout="this.style.background='#3f3f46'"
+            >
+                Test Vibration
+            </button>
+            <p id="debug-log" style="font-size: 0.75rem; color: #71717a; font-family: monospace;"></p>
+        </div>
+    </div>
+</MechanicPage>
+
+<script>
+    import { VibratorCrackerGame } from "../../../mechanics/vibrator-cracker/VibratorCrackerGame";
+
+    const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
+    const overlay = document.getElementById("game-canvas-overlay");
+    const testBtn = document.getElementById("test-vibrate-btn");
+    const debugLog = document.getElementById("debug-log");
+    let game: game | null = null;game
+
+    function log(msg: string) {
+        if (debugLog) debugLog.textContent = msg;
+        console.log(msg);
+    }
+
+    if (testBtn) {
+        testBtn.addEventListener("click", () => {
+            if (navigator.vibrate) {
+                const success = navigator.vibrate([200]);
+                log(`Vibrate called: ${success ? "Success" : "Failed"}`);
+            } else {
+                log("navigator.vibrate not supported");
+            }
+        });
+    }
+
+    if (canvas && overlay) {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+
+        overlay.addEventListener("click", () => {
+            overlay.style.opacity = "0";
+            overlay.style.pointerEvents = "none";
+            if (!game) {
+                game = new VibratorCrackerGame(canvas);
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (game) game.resize();
+        });
+    }
+
+</script>
+
+<style>
+    #game-canvas {
+        touch-action: pan-y !important;
+    }
+</style>

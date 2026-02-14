@@ -1,0 +1,25 @@
+---
+import './NavLink.css';
+import { getLangFromUrl, useLanguagePath } from "../../../i18n/utils";
+
+interface props {
+  href: string;
+  className?: string;
+  activeClassName?: string;
+}
+
+const { href, className = '', activeClassName = 'nav-link-active' } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useLanguagePath(lang);
+
+const localizedPath = translatePath(href);
+const isCurrentPath = Astro.url.pathname === localizedPath || 
+                     (localizedPath !== '/' && Astro.url.pathname.startsWith(localizedPath));
+---
+
+<a 
+  href={localizedPath} 
+  class:list={['nav-link', className, { [activeClassName]: isCurrentPath }]}
+>
+  <slot />
+</a>

@@ -1,0 +1,80 @@
+---
+export const prerender = true;
+import MechanicPage from "../../../components/gamebob/mechanics/MechanicPage.astro";
+import MechanicCanvas from "../../../components/gamebob/mechanics/MechanicCanvas.astro";
+import MechanicInfo from "../../../components/gamebob/mechanics/MechanicInfo.astro";
+import { Icon } from "astro-icon/components";
+
+const GITHUB_BASE = "https://github.com/Game-Bob/website/tree/main/src/mechanics/slingshot";
+const CODE_URL =
+    "https://github.com/Game-Bob/website/blob/main/src/mechanics/slingshot/SlingshotMechanic.ts";
+---
+
+<mechanicpage
+    title="Slingshot"
+    description="Tensa la cuerda y dispara. Física elástica para lanzamientos precisos y rebotes satisfactorios."
+    githuburl={GITHUB_BASE}
+    codeurl={CODE_URL}
+
+    image="/images/gamebob/mechanics/slingshot.webp"
+>
+    <Icon slot="icon" name="mdi:gesture-swipe" style="color: #facc15" />
+
+    <MechanicCanvas
+        id="game-canvas"
+        instruction="Arrastra y Suelta"
+        subInstruction="Lanza al personaje"
+        verticalOnMobile={true}
+
+    />
+
+    <MechanicInfo>
+        <Fragment slot="how-it-works">
+            <li>
+                <span style="color: #60a5fa">•</span>
+                <span>Física de muelles para el lanzamiento (Ley de Hooke).</span>
+            </li>
+            <li>
+                <span style="color: #60a5fa">•</span>
+                <span>Rebotes con pérdida de energía (amortiguación).</span>
+            </li>
+            <li>
+                <span style="color: #60a5fa">•</span>
+                <span>Deformación visual (Squash & Stretch) basada en la velocidad.</span>
+            </li>
+        </Fragment>
+
+        <Fragment slot="controls">
+            <div class="control-item">
+                <span class="control-key">Arrastrar / Drag</span>
+                <span class="control-desc">Tensar y Apuntar</span>
+            </div>
+        </Fragment>
+    </MechanicInfo>
+</MechanicPage>
+
+<script>
+    import { SlingshotGame } from "../../../mechanics/slingshot/SlingshotGame";
+
+    const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
+    const overlay = document.getElementById("game-canvas-overlay");
+    let game: game | null = null;game
+
+    if (canvas && overlay) {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+
+        overlay.addEventListener("click", () => {
+            overlay.style.opacity = "0";
+            overlay.style.pointerEvents = "none";
+            if (!game) {
+                game = new SlingshotGame(canvas);
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (game) game.resize();
+        });
+    }
+</script>

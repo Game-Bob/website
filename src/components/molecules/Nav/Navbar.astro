@@ -1,0 +1,28 @@
+---
+import './Navbar.css';
+import NavLink from "../../atoms/Link/NavLink.astro";
+import { useTranslations, getLangFromUrl } from "../../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const navItems = [
+  { key: 'home', href: '/' },
+  { key: 'games', href: '/games/' },
+  { key: 'prototypes', href: '/prototypes/' },
+  { key: 'mechanics', href: '/mechanics/' },
+  { key: 'roadmap', href: '/roadmap/' },
+  { key: 'postmortem', href: '/postmortem/' },
+  { key: 'community', href: '/community/' },
+];
+---
+
+<nav class="navbar">
+  <div class="nav-list">
+    {navItems.map(item => (
+      <NavLink href={item.href}>
+        {t(`nav.${item.key}`)}
+      </NavLink>
+    ))}
+  </div>
+</nav>

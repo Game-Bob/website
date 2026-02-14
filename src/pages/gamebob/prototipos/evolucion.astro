@@ -1,0 +1,169 @@
+---
+export const prerender = true;
+import Layout from "../../../layouts/Layout.astro";
+import "./evolucion.css";
+import { Icon } from "astro-icon/components";
+import evolutionData from "../../../data/gamebob/evolution-data.json";
+
+const { base_elements, recipes } = evolutionData;
+
+---
+
+<layout
+    title="Evolución Infinita"
+    description="Alquimia del caos. Combina elementos, crea criaturas y enfréntalas en la arena."
+    bodyclass="bg-slate-950 text-white overflow-hidden"
+    showbackground={false}
+
+    mainClass="p-0"
+    headerClass="text-white mix-blend-difference"
+    image="/images/gamebob/prototipos/evolution.webp"
+>
+    <div class="evolution-bg-layers">
+        <div class="evo-bg-gradient"></div>
+        <div class="evo-glow-1"></div>
+        <div class="evo-glow-2"></div>
+        <div class="evo-grid-pattern"></div>
+    </div>
+
+    <div class="evolution-page">
+        <aside class="evo-sidebar">
+            <div class="sidebar-glow"></div>
+
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">Laboratorio</h2>
+                <p class="sidebar-subtitle">Elementos Primordiales</p>
+                <div class="mobile-icon-center">
+                    <Icon name="mdi:flask" style="width: 2rem; height: 2rem; color: #818cf8;" />
+                </div>
+            </div>
+
+            <div class="sidebar-actions">
+                <button id="spawn-egg-btn" class="evo-btn-primary">
+                    <div class="btn-hover-overlay"></div>
+                    <Icon name="mdi:egg" class="btn-icon" />
+                    <span class="btn-text">Crear Huevo</span>
+                </button>
+            </div>
+
+            <div class="inventory-divider">
+                <div class="divider-line"></div>
+                <span class="divider-text">Elementos</span>
+                <div class="divider-line"></div>
+            </div>
+
+            <div id="inventory" class="inventory-section"></div>
+
+            <div class="sidebar-footer">
+                <button id="encyclopedia-btn" class="evo-btn-secondary">
+                    <Icon name="mdi:book-open-page-variant" style="width: 1.25rem; height: 1.25rem;" />
+                    <span class="btn-text">Enciclopedia</span>
+                </button>
+
+                <button id="clear-btn" class="evo-btn-danger">
+                    <Icon name="mdi:delete-sweep" style="width: 1.25rem; height: 1.25rem;" />
+                    <span class="btn-text">Limpiar Todo</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="evo-main" id="playground">
+            <div class="main-texture"></div>
+
+            <div id="stone-tutorial" class="evo-tutorial">
+                <div class="tutorial-layout">
+                    <div class="tutorial-row">
+                        <div class="tutorial-egg-box">
+                            <Icon name="mdi:egg-outline" class="carved-icon" style="width: 6rem; height: 6rem; color: #1c1917;" />
+                            <Icon name="mdi:fire" class="carved-icon tutorial-inner-icon" style="width: 2.5rem; height: 2.5rem; color: rgba(194, 65, 12, 0.7);" />
+                        </div>
+
+                        <div class="tutorial-egg-box">
+                            <Icon name="mdi:egg-outline" class="carved-icon" style="width: 6rem; height: 6rem; color: #1c1917;" />
+                            <Icon name="mdi:water" class="carved-icon tutorial-inner-icon" style="width: 2.5rem; height: 2.5rem; color: rgba(37, 99, 235, 0.7);" />
+                        </div>
+                    </div>
+
+                    <div class="tutorial-row" style="opacity: 0.9; display: flex; align-items: center; justify-content: center; margin-left: -2rem;">
+                         <div class="tutorial-egg-box" style="transform: rotate(12deg); z-index: 10;">
+                            <Icon name="mdi:egg-outline" class="carved-icon" style="width: 6rem; height: 6rem; color: #1c1917;" />
+                            <Icon name="mdi:fire" class="carved-icon tutorial-inner-icon" style="width: 2.5rem; height: 2.5rem; color: rgba(194, 65, 12, 0.7);" />
+                        </div>
+                        <Icon name="mdi:flash" class="carved-icon" style="width: 4rem; height: 4rem; color: #e7e5e4; z-index: 30; margin-top: -2rem;" />
+                        <div class="tutorial-egg-box" style="transform: rotate(-12deg); z-index: 20;">
+                            <Icon name="mdi:egg-outline" class="carved-icon" style="width: 6rem; height: 6rem; color: #1c1917;" />
+                            <Icon name="mdi:water" class="carved-icon tutorial-inner-icon" style="width: 2.5rem; height: 2.5rem; color: rgba(37, 99, 235, 0.7);" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="entities-layer" style="position: absolute; inset: 0; z-index: 10;"></div>
+        </main>
+
+        <div id="encyclopedia-modal" class="battle-overlay">
+            <div style="width: 100%; max-width: 56rem; background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1rem; display: flex; flex-direction: column; max-height: 85vh;">
+                <div style="padding: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <Icon name="mdi:book-open-variant" style="width: 1.5rem; height: 1.5rem; color: #818cf8;" />
+                        <h2 style="font-size: 1.5rem; font-weight: 700; color: #fff; margin: 0;">Enciclopedia</h2>
+                    </div>
+                    <button id="close-encyclopedia" style="background: transparent; border: none; cursor: pointer; color: #94a3b8; padding: 0.5rem;">
+                        <Icon name="mdi:close" style="width: 1.5rem; height: 1.5rem;" />
+                    </button>
+                </div>
+                <div id="encyclopedia-grid" style="padding: 1.5rem; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); gap: 1rem;"></div>
+            </div>
+        </div>
+
+        <div id="battle-overlay" class="battle-overlay">
+            <div style="width: 100%; max-width: 72rem; display: flex; flex-direction: column; align-items: center; height: 100%;">
+                 <h2 style="font-size: 2.25rem; font-weight: 900; font-style: italic; color: #fff; text-shadow: 0 0 15px rgba(255,255,255,0.5); margin-bottom: 2rem;">ARENA DE COMBATE</h2>
+                 
+                 <div style="width: 100%; display: flex; justify-content: space-around; align-items: center; gap: 2rem;">
+                    <div id="fighter-1" style="display: flex; flex-direction: column; align-items: center;">
+                        <div id="f1-visual" style="width: 14rem; height: 14rem; font-size: 10rem;"></div>
+                        <h3 id="f1-name" style="font-size: 1.5rem; font-weight: 700; color: #fff;"></h3>
+                        <div style="width: 12rem; height: 1rem; background: #1e293b; border-radius: 999px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+                            <div id="f1-hp-bar" style="height: 100%; background: #10b981; width: 100%;"></div>
+                        </div>
+                    </div>
+
+                    <div style="font-size: 5rem; font-weight: 900; font-style: italic; color: #ef4444; animation: pulse 1s infinite;">VS</div>
+
+                    <div id="fighter-2" style="display: flex; flex-direction: column; align-items: center;">
+                        <div id="f2-visual" style="width: 14rem; height: 14rem; font-size: 10rem;"></div>
+                        <h3 id="f2-name" style="font-size: 1.5rem; font-weight: 700; color: #fff;"></h3>
+                        <div style="width: 12rem; height: 1rem; background: #1e293b; border-radius: 999px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+                            <div id="f2-hp-bar" style="height: 100%; background: #ef4444; width: 100%;"></div>
+                        </div>
+                    </div>
+                 </div>
+
+                 <p id="battle-action-text" style="margin-top: 2rem; font-size: 1.5rem; font-weight: 700; color: rgba(255,255,255,0.8); height: 3rem;"></p>
+                 <button id="close-battle" style="display: none; padding: 1rem 3rem; background: #fff; color: #0f172a; font-weight: 900; border: none; border-radius: 999px; cursor: pointer; box-shadow: 0 0 30px rgba(255,255,255,0.4);">CERRAR ARENA</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { Game } from "../../../logic/gamebob/evolution/Game.js";
+
+        const dataScript = document.getElementById("evolution-data");
+        if (dataScript && dataScript.textContent) {
+            const { base_elements, recipes } = JSON.parse(dataScript.textContent);
+            new Game({ base_elements, recipes });
+        }
+
+        const script = document.createElement("script");
+        script.src = "https://code.iconify.design/3/3.1.0/iconify.min.js";
+        document.head.appendChild(script);
+    </script>
+
+    <script
+        is:inline
+        id="evolution-data"
+        type="application/json"
+        set:html={JSON.stringify({ base_elements, recipes })}
+    />
+</Layout>

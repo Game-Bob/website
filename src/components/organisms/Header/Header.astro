@@ -1,0 +1,21 @@
+---
+import './Header.css';
+import Navbar from "../../molecules/Nav/Navbar.astro";
+import { getLangFromUrl } from "../../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+---
+
+<header class="main-header">
+  <div class="header-container">
+    <a href={lang === 'en' ? '/' : `/${lang}/`} class="logo">
+      <span>GAME</span>BOB
+    </a>
+    
+    <Navbar />
+    
+    <div class="header-actions">
+      <div class="dot"></div>
+    </div>
+  </div>
+</header>

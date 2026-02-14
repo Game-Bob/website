@@ -1,0 +1,58 @@
+---
+import './DiscordCTA.css';
+import { Icon } from "astro-icon/components";
+
+interface props {
+    title?: string;
+    subtitle?: string;
+    description?: string;
+    class?: string;
+}
+
+const {
+    title = "Únete a la comunidad",
+    subtitle = "Servidor Oficial",
+    description,
+    class: classname = "",subtitledescription,class
+} = Astro.props;
+
+---
+
+<div class:list={["discord-cta-wrapper", className]}>
+    <a
+        href="https://discord.gg/uJ7NJEj7sf"
+        target="_blank"
+        class="discord-cta"
+    >
+        <div class="discord-glow"></div>
+
+        <div class="discord-icon-wrapper">
+            <div class="discord-icon-container">
+                <Icon name="mdi:discord" class="discord-icon" />
+            </div>
+            <div class="discord-online-dot"></div>
+        </div>
+
+        <div class="discord-content">
+            <div class="discord-subtitle">
+                {subtitle}
+            </div>
+            <h2 class="discord-title">
+                {title}
+            </h2>
+            {
+                description && (
+                    <p class="discord-description">
+                        {description}
+                    </p>
+                )
+            }
+        </div>
+
+        <div class="discord-arrow-container">
+            <div class="discord-arrow">
+                <Icon name="mdi:chevron-right" class="arrow-icon" />
+            </div>
+        </div>
+    </a>
+</div><divclass

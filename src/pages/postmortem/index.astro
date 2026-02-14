@@ -1,0 +1,19 @@
+---
+import BasePage from "../../components/templates/BasePage.astro";
+
+const lang = "en";
+---
+
+<basepage lang={lang}
+
+ navKey="postmortem">
+  <p class="description">Analysis of our previous projects and lessons learned.</p>
+</BasePage>
+
+<style>
+  .description {
+    color: var(--text-muted);
+    font-size: 1.25rem;
+    margin-top: var(--space-md);
+  }
+</style>

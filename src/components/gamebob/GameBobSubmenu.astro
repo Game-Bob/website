@@ -1,0 +1,39 @@
+---
+import './GameBobSubmenu.css';
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1);
+
+const links = [
+    { href: "/gamebob/", label: "inicio" },
+    { href: "/gamebob/prototipos/", label: "prototipos" },
+    { href: "/gamebob/mecanicas/", label: "mecánicas" },
+    { href: "/gamebob/roadmap/", label: "roadmap" },
+    { href: "/gamebob/post-mortem/", label: "post mortem" },
+    { href: "/gamebob/privacidad/", label: "privacidad" },
+];
+---
+
+<nav class="gamebob-submenu">
+    <div class="submenu-container">
+        {
+            links.map((link) => {
+                const isActive =
+                    link.href === "/gamebob/"
+                        ? currentPath === "gamebob" || currentPath === "gamebob/"
+                        : currentPath.startsWith(link.href.slice(1));
+
+                return (
+                    <a
+                        href={link.href}
+                        class:list={[
+                            "submenu-link",
+                            { "active": isActive }
+                        ]}
+                    >
+                        {link.label}
+                    </a>
+                );
+            })
+        }
+    </div>
+</nav>

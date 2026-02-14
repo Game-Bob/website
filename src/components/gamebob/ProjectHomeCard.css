@@ -1,0 +1,212 @@
+.project-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid rgb(255 255 255 / 5%);
+}
+
+.project-card:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+}
+
+@media (width >= 768px) {
+    .project-card {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.project-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.order-right {
+    order: 2;
+}
+
+@media (width >= 768px) {
+    .order-right {
+        order: 1;
+    }
+}
+
+.project-card-title {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    color: var(--color-gamebob-text, var(--text-main));
+    text-transform: uppercase;
+    line-height: 1;
+    margin: 0;
+}
+
+.project-card-description {
+    color: var(--text-muted);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    text-transform: lowercase;
+    margin: 0;
+}
+
+.status-badge {
+    display: inline-flex;
+    padding: var(--space-xs) var(--space-sm);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-badge.released {
+    background: rgb(16 185 129 / 10%);
+    border-color: rgb(16 185 129 / 30%);
+    color: rgb(52 211 153);
+}
+
+.status-badge.developing,
+.status-badge.planning {
+    background: rgb(59 130 246 / 10%);
+    border-color: rgb(59 130 246 / 30%);
+    color: rgb(96 165 250);
+}
+
+.status-badge.qa {
+    background: rgb(245 158 11 / 10%);
+    border-color: rgb(245 158 11 / 30%);
+    color: rgb(251 191 36);
+}
+
+.pulse {
+    animation: pulse-animation 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-animation {
+    0%,
+    100% {
+        opacity: 100%;
+    }
+
+    50% {
+        opacity: 50%;
+    }
+}
+
+.project-links {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+
+.store-button {
+    height: 3rem;
+    padding: 0 var(--space-md);
+    background: var(--text-main);
+    color: #000;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    transition: background 0.2s ease;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 20%);
+}
+
+.store-button:hover {
+    background: var(--color-gamebob-primary, var(--color-primary));
+}
+
+.store-button-disabled {
+    background: rgb(255 255 255 / 10%);
+    color: var(--text-main);
+    opacity: 50%;
+    filter: grayscale(100%);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.button-stack {
+    text-align: left;
+}
+
+.button-stack-top {
+    font-size: 0.625rem;
+    line-height: 1;
+}
+
+.button-stack-main {
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.image-wrapper {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 50%);
+    border: 1px solid rgb(255 255 255 / 10%);
+}
+
+.image-container {
+    background: #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 2/3;
+}
+
+@media (width >= 768px) {
+    .image-container {
+        aspect-ratio: 3/4;
+    }
+}
+
+.project-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.image-wrapper:hover .project-image {
+    transform: scale(1.1);
+}
+
+.image-placeholder {
+    color: rgb(255 255 255 / 10%);
+    font-weight: 900;
+    font-size: 3.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+    padding: 0 var(--space-sm);
+}
+
+.gradient-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+}
+
+.bottom-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(0 0 0 / 80%), transparent, transparent);
+    opacity: 60%;
+    z-index: 20;
+}
+
+.icon-6 {
+    width: 1.5rem;
+    height: 1.5rem;
+}

@@ -1,0 +1,19 @@
+---
+import BasePage from "../../components/templates/BasePage.astro";
+
+const lang = "en";
+---
+
+<basepage lang={lang}
+
+ navKey="community">
+  <p class="description">Join our growing community of players and developers.</p>
+</BasePage>
+
+<style>
+  .description {
+    color: var(--text-muted);
+    font-size: 1.25rem;
+    margin-top: var(--space-md);
+  }
+</style>

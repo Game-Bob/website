@@ -1,0 +1,53 @@
+---
+import './MechanicsFilter.css';
+import { Icon } from "astro-icon/components";
+
+interface props {
+    allTags: string[];
+}
+
+const { allTags } = Astro.props;
+
+---
+
+<div class="mechanics-filter-wrapper">
+    <div class="filter-header">
+        <h1 class="filter-title">
+            mecánicas
+        </h1>
+
+        <div class="filter-group" id="filters">
+            <button
+                class="filter-btn active"
+                data-filter="all"
+            >
+                Todos
+            </button>
+            <button
+                class="filter-btn"
+                data-filter="mobile"
+            >
+                <Icon name="mdi:cellphone" class="filter-icon" /> Mobile
+            </button>
+            <button
+                class="filter-btn"
+                data-filter="desktop"
+            >
+                <Icon name="mdi:monitor" class="filter-icon" /> Desktop
+            </button>
+        </div>
+    </div>
+
+    <div class="tag-list">
+        {
+            allTags.map((tag) => (
+                <button
+                    class="tag-filter-btn"
+                    data-tag={tag}
+                >
+                    #{tag}
+                </button>
+            ))
+        }
+    </div>
+</div>

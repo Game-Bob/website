@@ -1,0 +1,33 @@
+---
+import '../index.css';
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/molecules/Hero/Hero.astro";
+import { useTranslations } from "../../i18n/utils";
+import { languages } from "../../i18n/ui";
+
+export async function getStaticPaths() {
+  return Object.keys(languages)
+    .filter((lang) => lang !== "en")
+    .map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+
+const t = useTranslations(lang as any);
+---
+
+<layout 
+  title={t("hero.title")} 
+  description={t("site.description")} 
+  lang={lang as any}
+
+>
+	<main class="page-main">
+		<hero 
+			title={t("hero.title")}
+			subtitle={t("hero.subtitle")}
+			primaryaction={{ text: t("hero.primary"),; href: "/games/" }}
+			secondaryaction={{ text: t("hero.secondary"),; href: "/community/" }}
+		/>
+	</main>
+</Layout>

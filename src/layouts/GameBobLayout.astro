@@ -1,0 +1,104 @@
+---
+import "./GameBobLayout.css";
+import SEO from "../components/SEO.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+import "@fontsource/inter/300.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/900.css";
+import "@fontsource/fredoka-one";
+
+import GameBobSubmenu from "../components/gamebob/GameBobSubmenu.astro";
+
+interface props {
+    title: string;
+    description?: string;
+    image?: string;
+}
+
+const { title, description, image } = Astro.props;
+
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+    <head>
+        <SEO title={title} description={description} image={image}
+
+ />
+
+        <style>
+            :root {
+                --color-gamebob-primary: #1ddabc;
+                --color-gamebob-text: #f9f9f9;
+                --color-gamebob-bg: #000;
+                --color-bg: var(--color-gamebob-bg);
+                --color-text: var(--color-gamebob-text);
+                --color-accent: var(--color-gamebob-primary);
+            }
+
+            body {
+                background-color: var(--color-gamebob-bg);
+                color: var(--color-gamebob-text);
+            }
+
+            :global(body:not(.menu-open) nav#main-nav) {
+                border-bottom-color: rgb(29 218 188 / 10%) !important;
+                background-color: transparent !important;
+                backdrop-filter: blur(120px) !important;
+            }
+
+            :global(nav#main-nav > div > div > a) {
+                color: var(--color-gamebob-text) !important;
+            }
+
+            :global(nav#main-nav > div > div > a:hover) {
+                color: var(--color-gamebob-primary) !important;
+            }
+
+            :global(nav#main-nav > div > div > a.nav-active) {
+                color: var(--color-gamebob-primary) !important;
+            }
+
+            :global(#theme-toggle) {
+                display: none !important;
+            }
+
+            :global(#mobile-menu-overlay) {
+                background-color: rgb(0 0 0 / 95%) !important;
+            }
+
+            :global(.menu-link) {
+                color: var(--color-gamebob-text) !important;
+            }
+
+            :global(.link-number) {
+                color: var(--color-gamebob-primary) !important;
+            }
+
+            :global(body.menu-open) :global(.line-1),
+            :global(body.menu-open) :global(.line-2) {
+                background-color: #fff !important;
+            }
+        </style>
+    </head>
+    <body class="gamebob-body">
+        <div class="bg-effects">
+            <div class="glow-1"></div>
+            <div class="glow-2"></div>
+            <div class="glow-3"></div>
+            <div class="grid-overlay"></div>
+        </div>
+
+        <Header />
+
+        <main class="gamebob-main">
+            <GameBobSubmenu />
+            <slot />
+        </main>
+
+        <Footer />
+    </body>
+</html>

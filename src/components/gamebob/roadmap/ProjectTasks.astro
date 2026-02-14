@@ -1,0 +1,85 @@
+---
+import './ProjectTasks.css';
+import { Icon } from "astro-icon/components";
+
+interface task {
+    name: string;
+    status: string;
+}
+
+interface props {
+    tasks: task[];
+}
+
+const { tasks } = Astro.props;
+
+const doneTasks = tasks.filter((t) => t.status === "done");
+const activeTask = tasks.find((t) => t.status === "active");
+const pendingTasks = tasks.filter((t) => t.status === "pending");
+
+const visibleDoneTask = doneTasks[doneTasks.length - 1];
+const hiddenDoneTasks = doneTasks.slice(0, doneTasks.length - 1);
+---
+
+<div class="tasks-container">
+    {
+        hiddenDoneTasks.length > 0 && (
+            <details class="history-details">
+                <summary class="history-summary">
+                    <Icon
+                        name="mdi:chevron-right"
+                        class="summary-icon"
+                    />
+                    <span>Ver historial completo ({hiddenDoneTasks.length} pasos completados)</span>
+                </summary>
+                <div class="history-list">
+                    {hiddenDoneTasks.map((task) => (
+                        <div class="task-item pending">
+                            <Icon
+                                name="mdi:check"
+                                class="icon-4"
+                                style="color: var(--color-gamebob-primary)"
+                            />
+                            <span class="task-text done">{task.name}</span>
+                        </div>
+                    ))}
+                </div>
+            </details>
+        )
+    }
+
+    {
+        visibleDoneTask && (
+            <div class="task-item done">
+                <div class="task-icon-box done">
+                    <Icon name="mdi:check" class="icon-4" />
+                </div>
+                <span class="task-text done">
+                    {visibleDoneTask.name}
+                </span>
+            </div>
+        )
+    }
+
+    {
+        activeTask && (
+            <div class="task-item active">
+                <div class="task-icon-box active">
+                    <div class="task-dot active" />
+                </div>
+                <span class="task-text active">{activeTask.name}</span>
+            </div>
+        )
+    }
+
+    {
+        pendingTasks.map((task) => (
+            <div class="task-item">
+                <div class="task-icon-box pending">
+                    <div class="task-dot pending" />
+                </div>
+                <span class="task-text pending">{task.name}</span>
+            </div>
+        ))
+    }
+</div>

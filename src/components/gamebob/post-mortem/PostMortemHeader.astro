@@ -1,0 +1,31 @@
+---
+import './PostMortemHeader.css';
+import { Icon } from "astro-icon/components";
+
+interface props {
+    title: string;
+    description: string;
+}
+
+const { title, description } = Astro.props;
+
+---
+
+<header class="pm-header">
+    <div class="pm-header-top">
+        <div class="pm-icon-box">
+            <Icon name="mdi:skull-scan" class="pm-icon" />
+        </div>
+        <div class="pm-header-line"></div>
+    </div>
+
+    <h1 class="pm-title">
+        {title}
+
+<span class="pm-dot"></span>
+    </h1>
+
+    <p class="pm-description">
+        {description}
+    </p>
+</header>

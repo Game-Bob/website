@@ -1,0 +1,25 @@
+---
+import './index.css';
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/molecules/Hero/Hero.astro";
+import { useTranslations } from "../i18n/utils";
+
+const lang = "en";
+const t = useTranslations(lang);
+---
+
+<layout 
+  title={t("hero.title")} 
+  description={t("site.description")} 
+  lang={lang}
+
+>
+	<main class="page-main">
+		<hero 
+			title={t("hero.title")}
+			subtitle={t("hero.subtitle")}
+			primaryaction={{ text: t("hero.primary"),; href: "/games/" }}
+			secondaryaction={{ text: t("hero.secondary"),; href: "/community/" }}
+		/>
+	</main>
+</Layout>

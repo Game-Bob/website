@@ -1,0 +1,60 @@
+.gamebob-logo-container {
+    position: relative;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ouch-bubble {
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0%;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    background: #fff;
+    color: #000;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+    pointer-events: none;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%);
+    z-index: 20;
+}
+
+.ouch-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -0.25rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 0.5rem;
+    height: 0.5rem;
+    background: #fff;
+}
+
+.gamebob-cat {
+    width: 100%;
+    height: auto;
+}
+
+.eye-group {
+    cursor: pointer;
+}
+
+.open-eye {
+    transition: opacity 0.1s ease;
+}
+
+.closed-eye {
+    opacity: 0%;
+    transition: opacity 0.1s ease;
+}
+
+.pupil {
+    transition: transform 0.05s linear;
+}
+
+.gamebob-logo-container:hover .ouch-bubble {
+    /* Logic handled by JS in original, but classes are here */
+}

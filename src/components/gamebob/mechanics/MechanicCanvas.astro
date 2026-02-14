@@ -1,0 +1,43 @@
+---
+import './MechanicCanvas.css';
+import { Icon } from "astro-icon/components";
+
+interface props {
+    id: string;
+    instruction?: string;
+    subInstruction?: string;
+    aspectRatio?: "video" | "square" | "portrait";
+    verticalOnMobile?: boolean;
+}
+
+const {
+    id,
+    instruction = "Haz click para empezar",
+    subInstruction = "Click / Tap para interactuar",
+    aspectRatio = "video",
+    verticalOnMobile = false,
+} = Astro.props;
+
+const aspectratioclass = `aspect-${aspectRatio}`;
+
+---
+
+<div class:list={[
+    "canvas-container",;
+
+    aspectRatioClass,
+    { "vertical-mobile": verticalOnMobile }
+]}>
+    <canvas id={id} class="canvas-element"></canvas>
+
+    <div
+        id={`${id}-overlay`}
+        class="canvas-overlay"
+    >
+        <Icon name="mdi:cursor-default-click" class="overlay-icon" />
+        <p class="overlay-instruction">{instruction}</p>
+        <p class="overlay-subinstruction">{subInstruction}</p>
+    </div>
+
+    <slot />
+</div>

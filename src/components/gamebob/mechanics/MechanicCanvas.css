@@ -1,0 +1,91 @@
+.canvas-container {
+    position: relative;
+    width: 100%;
+    background: #18181b;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    border: 1px solid #27272a;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 50%);
+}
+
+.canvas-element {
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+}
+
+.canvas-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgb(0 0 0 / 80%);
+    z-index: 10;
+    transition: opacity 0.3s ease;
+    align-items: center;
+}
+
+.overlay-hidden {
+    opacity: 0%;
+    pointer-events: none;
+}
+
+.overlay-icon {
+    width: 4rem;
+    height: 4rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    animation: bounce 1s infinite;
+}
+
+.overlay-instruction {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 0 1rem;
+    margin: 0;
+}
+
+.overlay-subinstruction {
+    color: #a1a1aa;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    text-align: center;
+    padding: 0 1rem;
+    margin-bottom: 0;
+}
+
+/* Aspect Ratio Utilities */
+.aspect-video {
+    aspect-ratio: 16 / 9;
+}
+
+.aspect-square {
+    aspect-ratio: 1 / 1;
+}
+
+.aspect-portrait {
+    aspect-ratio: 9 / 16;
+}
+
+@media (width <= 767px) {
+    .vertical-mobile {
+        height: 60vh;
+    }
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(-25%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+
+    50% {
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+}

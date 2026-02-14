@@ -1,0 +1,23 @@
+---
+import './ProgressBar.css';
+interface props {
+    progress: number;
+}
+
+const { progress } = Astro.props;
+
+---
+
+<div class="progress-wrapper">
+    <div class="progress-header">
+        <span>Progreso general</span>
+        <span>{progress}%</span>
+    </div>
+    <div class="progress-track">
+        <div
+            class="progress-fill"
+            style={`width: ${progress}%`}
+        >
+        </div>
+    </div>
+</div>

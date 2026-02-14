@@ -1,0 +1,26 @@
+---
+import './MechanicInfo.css';
+import { Icon } from "astro-icon/components";
+---
+
+<div class="mechanic-info-grid">
+    <div class="info-box">
+        <h2 class="info-title">
+            <Icon name="mdi:code-braces" class="info-icon-blue" />
+            Cómo funciona
+        </h2>
+        <ul class="how-it-works-list">
+            <slot name="how-it-works" />
+        </ul>
+    </div>
+
+    <div class="info-box">
+        <h2 class="info-title">
+            <Icon name="mdi:controller" class="info-icon-green" />
+            Controles
+        </h2>
+        <div class="controls-grid">
+            <slot name="controls" />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+---
+export const prerender = true;
+import MechanicPage from "../../../components/gamebob/mechanics/MechanicPage.astro";
+import MechanicCanvas from "../../../components/gamebob/mechanics/MechanicCanvas.astro";
+import MechanicInfo from "../../../components/gamebob/mechanics/MechanicInfo.astro";
+import { Icon } from "astro-icon/components";
+
+const GITHUB_BASE = "https://github.com/Game-Bob/website/tree/main/src/mechanics/gravity-well";
+const CODE_URL =
+    "https://github.com/Game-Bob/website/blob/main/src/mechanics/gravity-well/GravityWellMechanic.ts";
+---
+
+<mechanicpage
+    title="Gravity Well"
+    description="Dobla el espacio-tiempo. Atrae partículas y crea caos orbital con la punta de tus dedos."
+    githuburl={GITHUB_BASE}
+    codeurl={CODE_URL}
+
+    image="/images/gamebob/mechanics/gravity-well.webp"
+>
+    <Icon slot="icon" name="mdi:orbit" style="color: #a855f7" />
+
+    <MechanicCanvas
+        id="game-canvas"
+        instruction="Toca para crear gravedad"
+        subInstruction="Las partículas orbitarán tus puntos de gravedad"
+        verticalOnMobile={true}
+
+    />
+
+    <MechanicInfo>
+        <Fragment slot="how-it-works">
+            <li>
+                <span style="color: #60a5fa">•</span>
+                <span>Simulación de n-cuerpos simplificada.</span>
+            </li>
+            <li>
+                <span style="color: #60a5fa">•</span>
+                <span>Pozos de gravedad temporales que atraen partículas.</span>
+            </li>
+            <li>
+                <span style="color: #60a5fa">•</span>
+                <span>Estela visual para mostrar trayectorias.</span>
+            </li>
+        </Fragment>
+
+        <Fragment slot="controls">
+            <div class="control-item">
+                <span class="control-key">Click / Tap</span>
+                <span class="control-desc">Crear Pozo</span>
+            </div>
+            <div class="control-item" style="cursor: pointer;" id="clear-btn">
+                <span class="control-key" style="color: #f87171;">Limpiar</span>
+                <span class="control-desc">Borrar Pozos</span>
+            </div>
+        </Fragment>
+    </MechanicInfo>
+</MechanicPage>
+
+<script>
+    import { GravityWellGame } from "../../../mechanics/gravity-well/GravityWellGame";
+
+    const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
+    const overlay = document.getElementById("game-canvas-overlay");
+    const clearBtn = document.getElementById("clear-btn");
+    let game: game | null = null;game
+
+    if (canvas && overlay) {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+
+        overlay.addEventListener("click", () => {
+            overlay.style.opacity = "0";
+            overlay.style.pointerEvents = "none";
+            if (!game) {
+                game = new GravityWellGame(canvas);
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (game) game.resize();
+        });
+
+        if (clearBtn) {
+            clearBtn.addEventListener("click", () => {
+                if (game) game.clearWells();
+            });
+        }
+    }
+</script>

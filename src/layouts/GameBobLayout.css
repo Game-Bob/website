@@ -1,0 +1,85 @@
+.gamebob-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #000;
+    color: #fff;
+}
+
+.gamebob-body::selection {
+    background-color: #1ddabc;
+    color: #fff;
+}
+
+.bg-effects {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.glow-1 {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 40%;
+    height: 40%;
+    background: rgb(29 218 188 / 10%);
+    border-radius: 50%;
+    filter: blur(120px);
+    animation: pulse-glow 8s infinite alternate;
+}
+
+.glow-2 {
+    position: absolute;
+    top: 20%;
+    right: -5%;
+    width: 30%;
+    height: 30%;
+    background: rgb(168 85 247 / 10%);
+    border-radius: 50%;
+    filter: blur(100px);
+    animation: pulse-glow 8s infinite alternate 2s;
+}
+
+.glow-3 {
+    position: absolute;
+    bottom: -10%;
+    left: 20%;
+    width: 50%;
+    height: 50%;
+    background: rgb(59 130 246 / 5%);
+    border-radius: 50%;
+    filter: blur(150px);
+    animation: pulse-glow 8s infinite alternate 4s;
+}
+
+.grid-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 3%;
+    background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0);
+    background-size: 40px 40px;
+}
+
+@keyframes pulse-glow {
+    0% {
+        transform: scale(1);
+        opacity: 50%;
+    }
+
+    100% {
+        transform: scale(1.1);
+        opacity: 100%;
+    }
+}
+
+.gamebob-main {
+    flex-grow: 1;
+    padding-top: 6rem;
+    position: relative;
+    z-index: 10;
+}

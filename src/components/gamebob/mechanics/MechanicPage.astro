@@ -1,0 +1,75 @@
+---
+import './MechanicPage.css';
+import GameBobLayout from "../../../layouts/GameBobLayout.astro";
+import { Icon } from "astro-icon/components";
+
+interface props {
+    title: string;
+    description: string;
+    githubUrl?: string;
+    codeUrl?: string;
+    image?: string;
+}
+
+const { title, description, githubUrl, codeUrl, image } = Astro.props;
+
+---
+
+<gameboblayout title={title} description={description} image={image}
+
+>
+    <div class="mechanic-detail-container">
+        <div class="mechanic-detail-header">
+            <div>
+                <a
+                    href="/gamebob/mecanicas/"
+                    class="back-link"
+                >
+                    <Icon name="mdi:arrow-left" class="back-icon" />
+                    Volver a Mecánicas
+                </a>
+                <h1 class="mechanic-title">
+                    <slot name="icon" />
+                    {title}
+
+                </h1>
+                <p class="mechanic-detail-description">
+                    {description}
+
+                </p>
+            </div>
+
+            <div class="mechanic-actions">
+                {
+                    githubUrl && (
+                        <a
+                            href={githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="action-btn"
+                        >
+                            <Icon name="mdi:github" class="action-icon" />
+                            GitHub
+                        </a>
+                    )
+                }
+
+                {
+                    codeUrl && (
+                        <a
+                            href={codeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="action-btn"
+                        >
+                            <Icon name="mdi:code-tags" class="action-icon" />
+                            Código
+                        </a>
+                    )
+                }
+            </div>
+        </div>
+
+        <slot />
+    </div>
+</GameBobLayout>

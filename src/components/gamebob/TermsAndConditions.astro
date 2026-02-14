@@ -1,0 +1,332 @@
+---
+
+import './TermsAndConditions.css';
+import LanguageSelector from "./LanguageSelector.astro";
+import DiscordCTA from "./DiscordCTA.astro";
+---
+
+<section class="terms-section" id="terms-container">
+    <div class="terms-container">
+        <LanguageSelector baseUrl="/gamebob/terminos-y-condiciones/" />
+
+        <div class="cta-wrapper">
+            <DiscordCTA />
+        </div>
+
+        <div class="terms-header">
+            <div
+                data-t="terms.badge"
+                class="terms-badge"
+            >
+                Marco Legal
+            </div>
+            <h1 class="terms-title">
+                <span data-t="terms.title_p1">Términos y</span>
+                <br />
+                <span
+                    data-t="terms.title_p2"
+                    class="terms-title-gradient"
+                >
+                    Condiciones
+                </span>
+            </h1>
+            <p
+                data-t="terms.description"
+                class="terms-description"
+            >
+                Las reglas del juego. Transparencia y claridad para una mejor experiencia.
+            </p>
+            <div class="terms-update">
+                <span class="update-line"></span>
+                <span data-t="terms.last_update">Última actualización: 02 de enero de 2026</span>
+                <span class="update-line"></span>
+            </div>
+        </div>
+
+        <div class="terms-content-wrapper">
+            <div class="intro-box">
+                <p class="intro-text">
+                    <span data-t="terms.intro_p1"
+                        >bienvenido a los servicios proporcionados por game bob (jjlmoya).</span
+                    >
+                    <br /><br />
+                    <span data-t="terms.intro_p2"
+                        >al descargar, instalar o utilizar cualquiera de nuestras aplicaciones
+                        móviles ("la Aplicación") o acceder a nuestro sitio web, usted acepta estar
+                        sujeto a los siguientes términos y condiciones. si no está de acuerdo con
+                        estos términos, le rogamos que no utilice la aplicación.</span
+                    >
+                </p>
+            </div>
+
+            <div class="terms-grid">
+                <div class="term-card">
+                    <div class="card-title-group">
+                        <span class="step-number">1</span>
+                        <h3 class="card-title-text" data-t="terms.sections.license.title">licencia de uso</h3>
+                    </div>
+                    <p
+                        data-t="terms.sections.license.content"
+                        class="card-text"
+                    >
+                        se concede al usuario una licencia personal, no exclusiva, intransferible y
+                        revocable para utilizar la aplicación en dispositivos móviles compatibles,
+                        exclusivamente para fines personales y no comerciales.
+                    </p>
+                </div>
+
+                <div class="term-card">
+                    <div class="card-title-group">
+                        <span class="step-number">2</span>
+                        <h3 class="card-title-text" data-t="terms.sections.acceptable.title">uso aceptable</h3>
+                    </div>
+                    <p
+                        data-t="terms.sections.acceptable.content"
+                        class="card-text"
+                    >
+                        usted se compromete a utilizar la aplicación únicamente para fines legales y
+                        de acuerdo con estos términos. queda;
+
+ prohibido:
+                    </p>
+                    <ul
+                        class="card-list"
+                        id="terms-acceptable-list"
+                    >
+                        <li>
+                            realizar ingeniería inversa, descompilar o intentar extraer el código
+                            fuente de la aplicación.
+                        </li>
+                        <li>
+                            utilizar la aplicación de manera que pueda dañar, deshabilitar o
+                            sobrecargar nuestros servidores o redes.
+                        </li>
+                        <li>
+                            eludir cualquier medida de seguridad o restricción técnica de la
+                            aplicación.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="term-card">
+                    <div class="card-title-group">
+                        <span class="step-number">3</span>
+                        <h3 class="card-title-text" data-t="terms.sections.intellectual.title">propiedad intelectual</h3>
+                    </div>
+                    <p
+                        data-t="terms.sections.intellectual.content"
+                        class="card-text"
+                    >
+                        todos los derechos de propiedad intelectual sobre el diseño, código fuente,
+                        gráficos, logotipos y contenido de nuestras aplicaciones son propiedad
+                        exclusiva de jjlmoya o se utilizan bajo licencia. no se transfiere ningún
+                        derecho de propiedad al usuario.
+                    </p>
+                </div>
+
+                <div class="term-card special">
+                    <div class="card-title-group">
+                        <span class="step-number">4</span>
+                        <h3 class="card-title-text" data-t="terms.sections.privacy.title">privacidad y protección de datos</h3>
+                    </div>
+                    <p
+                        data-t="terms.sections.privacy.content"
+                        class="card-text"
+                    >
+                        su privacidad es importante para nosotros. el uso de la aplicación también
+                        se rige por nuestra política de privacidad, que describe cómo recopilamos,
+                        utilizamos y compartimos la información (por ejemplo, identificadores de
+                        publicidad o datos anónimos de uso).
+                    </p>
+                    <div class="card-link-wrapper">
+                        <a
+                            href="/gamebob/privacidad/"
+                            class="card-link"
+                        >
+                            <span data-t="terms.sections.privacy.link_text"
+                                >leer política de privacidad completa</span
+                            >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="link-icon"
+                                viewbox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7 7"></path></svg
+                            >
+                        </a>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="card-title-group">
+                        <span class="step-number">5</span>
+                        <h3 class="card-title-text" data-t="terms.sections.third_party.title">servicios de terceros</h3>
+                    </div>
+                    <p
+                        data-t="terms.sections.third_party.content"
+                        class="card-text"
+                    >
+                        la aplicación puede integrar servicios de terceros (como google admob para
+                        publicidad o firebase para análisis). el uso de estos servicios está sujeto
+                        a los términos y políticas de dichos proveedores. game bob no controla ni
+                        asume responsabilidad por el contenido o las prácticas de estos servicios
+                        externos.
+                    </p>
+                </div>
+
+                <div class="term-card">
+                    <div class="card-title-group">
+                        <span class="step-number">6</span>
+                        <h3 class="card-title-text" data-t="terms.sections.liability.title">limitación de responsabilidad</h3>
+                    </div>
+                    <p
+                        data-t="terms.sections.liability.content"
+                        class="card-text"
+                    >
+                        la aplicación se proporciona "tal cual". game bob no garantiza que la
+                        aplicación esté libre de errores o funcione sin interrupciones. en la medida
+                        máxima permitida por la ley, no seremos responsables de ningún daño directo,
+                        indirecto o consecuente derivado del uso o la imposibilidad de uso de la
+                        aplicación, incluidos los resultados de los cálculos teóricos o estimaciones
+                        de juego.
+                    </p>
+                </div>
+
+                <div class="term-card">
+                    <div class="card-title-group">
+                        <span class="step-number">7</span>
+                        <h3 class="card-title-text" data-t="terms.sections.modifications.title">modificaciones</h3>
+                    </div>
+                    <p
+                        data-t="terms.sections.modifications.content"
+                        class="card-text"
+                    >
+                        nos reservamos el derecho de actualizar o modificar estos términos en
+                        cualquier momento. las modificaciones entrarán en vigor en el momento de su
+                        publicación. el uso continuado de la aplicación constituirá su aceptación de
+                        dichas modificaciones.
+                    </p>
+                </div>
+
+                <div class="term-card">
+                    <div class="card-title-group">
+                        <span class="step-number">8</span>
+                        <h3 class="card-title-text" data-t="terms.sections.jurisdiction.title">legislación y jurisdicción</h3>
+                    </div>
+                    <p
+                        data-t="terms.sections.jurisdiction.content"
+                        class="card-text"
+                    >
+                        estos términos se regirán e interpretarán de acuerdo con las leyes de
+                        españa. cualquier disputa que surja en relación con estos términos estará
+                        sujeta a la jurisdicción exclusiva de los tribunales españoles.
+                    </p>
+                </div>
+
+                <div class="term-card">
+                    <div class="card-title-group">
+                        <span class="step-number">9</span>
+                        <h3 class="card-title-text" data-t="terms.sections.contact.title">contacto</h3>
+                    </div>
+                    <p
+                        data-t="terms.sections.contact.content"
+                        class="card-text"
+                    >
+                        si tiene alguna pregunta o duda sobre estos términos y condiciones, puede
+                        ponerse en contacto con nosotros; en:
+                    </p>
+                    <div class="contact-info">
+                        <p>;
+                            Email: <a
+                                href="mailto:juanjo1989@gmail.com"
+                                class="contact-link"
+                                >juanjo1989@gmail.com</a
+                            >
+                        </p>
+                        <p>;
+                            Web: <a
+                                href="https://www.jjlmoya.es/"
+                                class="contact-link";
+                                >https://www.jjlmoya.es/</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="terms-footer">
+            <div class="footer-copy-box">
+                <div class="footer-line"></div>
+                <p data-t="terms.footer_copy" class="footer-copy">
+                    gamebob studio &copy;
+
+ 2026
+                </p>
+                <div class="footer-line"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import { LEGAL_TRANSLATIONS } from "../../data/gamebob/legal-translations";
+
+    function updatetermstranslations(lang: string) {
+        const t = LEGAL_TRANSLATIONS[lang] || LEGAL_TRANSLATIONS.es;
+
+        document.querySelectorAll("#terms-container [data-t]").forEach((el) => {
+            const key = el.getAttribute("data-t");
+            if (!key) return;
+
+            const value = key.split(".").reduce((obj, i) => (obj ? obj[i] : null), t as any);
+
+            if (value && typeof value === "string") {
+                el.textContent = value;
+            }
+        });
+
+        const listContainer = document.getElementById("terms-acceptable-list");
+        if (listContainer && t.terms.sections.acceptable.items) {
+            listContainer.innerHTML = t.terms.sections.acceptable.items
+                .map((item: string) => `<li>${item}</li>`)
+                .join("");
+        }
+    }
+
+    function initTerms() {
+        document.addEventListener("change-language", (e: any) => {
+            updateTermsTranslations(e.detail.lang);
+        });
+
+        const userLang = localStorage.getItem("preferred-lang") || navigator.language.split("-")[0];
+        const LANGUAGES = [
+            "en",
+            "es",
+            "de",
+            "fr",
+            "it",
+            "pt",
+            "ja",
+            "ko",
+            "zh",
+            "ru",
+            "tr",
+            "nl",
+            "pl",
+            "sv",
+            "hi",
+        ];
+
+        if (LANGUAGES.includes(userLang) && userLang !== "es") {
+            updateTermsTranslations(userLang);
+        }
+    }
+
+    initTerms();
+    document.addEventListener("astro:page-load", initTerms);
+</script>

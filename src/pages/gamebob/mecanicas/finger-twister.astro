@@ -1,0 +1,87 @@
+---
+export const prerender = true;
+import MechanicPage from "../../../components/gamebob/mechanics/MechanicPage.astro";
+import MechanicCanvas from "../../../components/gamebob/mechanics/MechanicCanvas.astro";
+import MechanicInfo from "../../../components/gamebob/mechanics/MechanicInfo.astro";
+import { Icon } from "astro-icon/components";
+
+const GITHUB_BASE = "https://github.com/Game-Bob/website/tree/main/src/mechanics/finger-twister";
+const CODE_URL =
+    "https://github.com/Game-Bob/website/blob/main/src/mechanics/finger-twister/FingerTwisterMechanic.ts";
+---
+
+<mechanicpage
+    title="Finger Twister"
+    description="Caos multitáctil. Mantén pulsados los nodos sin soltar ninguno mientras aparecen más."
+    githuburl={GITHUB_BASE}
+    codeurl={CODE_URL}
+
+    image="/images/gamebob/mechanics/finger-twister.webp"
+>
+    <Icon slot="icon" name="mdi:hand-back-right" style="color: #ec4899" />
+
+    <MechanicCanvas
+        id="game-canvas"
+        instruction="Mantén pulsados los círculos"
+        subInstruction="¡No sueltes ninguno! Usa múltiples dedos."
+        verticalOnMobile={true}
+
+    />
+
+    <MechanicInfo>
+        <Fragment slot="how-it-works">
+            <li>
+                <span style="color: #ec4899">•</span>
+                <span>Requiere pantalla táctil (multitouch).</span>
+            </li>
+            <li>
+                <span style="color: #ec4899">•</span>
+                <span>Cada nodo debe ser mantenido pulsado.</span>
+            </li>
+            <li>
+                <span style="color: #ec4899">•</span>
+                <span>Si sueltas un nodo activo, pierdes.</span>
+            </li>
+        </Fragment>
+
+        <Fragment slot="controls">
+            <div class="control-item">
+                <span class="control-key">Hold</span>
+                <span class="control-desc">Mantener Pulsado</span>
+            </div>
+        </Fragment>
+    </MechanicInfo>
+</MechanicPage>
+
+<script>
+    import { FingerTwisterGame } from "../../../mechanics/finger-twister/FingerTwisterGame";
+
+    const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
+    const overlay = document.getElementById("game-canvas-overlay");
+
+    let game: game | null = null;game
+
+    if (canvas && overlay) {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+        const startgame = () => {
+            overlay.style.opacity = "0";
+            overlay.style.pointerEvents = "none";
+            if (!game) {
+                game = new FingerTwisterGame(canvas);
+            }
+        };
+
+        overlay.addEventListener("click", startGame);
+
+        overlay.addEventListener("touchstart", (e) => {
+            e.preventDefault();
+            startGame();
+        });
+
+        window.addEventListener("resize", () => {
+            if (game) game.resize();
+        });
+    }
+</script>

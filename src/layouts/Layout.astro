@@ -1,0 +1,100 @@
+---
+import { languages, defaultLang, type SupportedLang } from "../i18n/ui";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Header from "../components/organisms/Header/Header.astro";
+import "../styles/tokens.css";
+import "../styles/global.css";
+
+interface props {
+  title?: string;
+  description?: string;
+  image?: string;
+  lang?: supportedlang;
+}
+
+const { pathname } = Astro.url;
+const { lang } = Astro.props;
+const currentLang = lang || getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+const siteUrl = "https://www.gamebob.dev";
+
+const getlocalizedpath = (l: string) => {
+  const pathWithoutLang = pathname.replace(new RegExp(`^/${currentLang}(/|$)`), "/");
+  const cleanPath = pathWithoutLang.startsWith("/") ? pathWithoutLang : `/${pathWithoutLang}`;
+  
+  if (l === defaultLang) return cleanPath;
+  return `/${l}${cleanPath}`.replace(/\/$/, ""); 
+};
+
+const canonicalURL = new URL(pathname, siteUrl);
+
+const { 
+  title = t("site.title"), 
+  description = t("site.description"), 
+  image = "/og-image.png" 
+} = Astro.props;
+
+---
+
+<!doctype html>
+<html lang={currentLang}
+
+ data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator}
+
+ />
+
+    <link rel="canonical" href={canonicalURL}
+
+ />
+    {Object.keys(languages).map((l) => (
+      <link 
+        rel="alternate" 
+        hreflang={l} 
+        href={new URL(getLocalizedPath(l), siteUrl)} 
+      />
+    ))}
+
+    <link 
+      rel="alternate" 
+      hreflang="x-default" 
+      href={new URL(getLocalizedPath(defaultLang), siteUrl)} 
+
+    />
+
+    <title>{title}
+
+</title>
+    <meta name="title" content={title}
+
+ />
+    <meta name="description" content={description}
+
+ />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url}
+
+ />
+    <meta property="og:title" content={title}
+
+ />
+    <meta property="og:description" content={description}
+
+ />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  </head>
+  <body class="theme-aware">
+    <Header />
+    <slot />
+  </body>
+</html>

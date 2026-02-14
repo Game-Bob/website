@@ -1,0 +1,80 @@
+---
+export const prerender = true;
+import MechanicPage from "../../../components/gamebob/mechanics/MechanicPage.astro";
+import MechanicCanvas from "../../../components/gamebob/mechanics/MechanicCanvas.astro";
+import MechanicInfo from "../../../components/gamebob/mechanics/MechanicInfo.astro";
+import { Icon } from "astro-icon/components";
+
+const GITHUB_BASE = "https://github.com/Game-Bob/website/tree/main/src/mechanics/autorunner";
+const CODE_URL =
+    "https://github.com/Game-Bob/website/blob/main/src/mechanics/autorunner/AutorunnerMechanic.ts";
+---
+
+<mechanicpage
+    title="Autorunner"
+    description="Corre sin mirar atrás. Un mundo infinito generado paso a paso bajo tus pies."
+    githuburl={GITHUB_BASE}
+    codeurl={CODE_URL}
+
+    image="/images/gamebob/mechanics/autorunner.webp"
+>
+    <Icon slot="icon" name="mdi:run-fast" style="color: #4ade80" />
+
+    <MechanicCanvas
+        id="game-canvas"
+        instruction="Toca para Saltar"
+        subInstruction="Evita los obstáculos"
+        verticalOnMobile={true}
+
+    />
+
+    <MechanicInfo>
+        <Fragment slot="how-it-works">
+            <li>
+                <span>•</span>
+                <span>Generación procedural de plataformas y obstáculos.</span>
+            </li>
+            <li>
+                <span>•</span>
+                <span>Velocidad constante con saltos basados en física.</span>
+            </li>
+            <li>
+                <span>•</span>
+                <span>Detección de colisiones precisa (AABB).</span>
+            </li>
+        </Fragment>
+
+        <Fragment slot="controls">
+            <div class="control-item">
+                <span class="control-key">Click / Tap / Espacio</span>
+                <span class="control-desc">Saltar / Doble Salto</span>
+            </div>
+        </Fragment>
+    </MechanicInfo>
+</MechanicPage>
+
+<script>
+    import { AutorunnerGame } from "../../../mechanics/autorunner/AutorunnerGame";
+
+    const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
+    const overlay = document.getElementById("game-canvas-overlay");
+    let game: game | null = null;game
+
+    if (canvas && overlay) {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+
+        overlay.addEventListener("click", () => {
+            overlay.style.opacity = "0";
+            overlay.style.pointerEvents = "none";
+            if (!game) {
+                game = new AutorunnerGame(canvas);
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (game) game.resize();
+        });
+    }
+</script>

@@ -1,0 +1,46 @@
+:root {
+    /* Brand Colors (Neon Blue based on current prod) */
+    --color-primary: #00f2ff;
+    --color-primary-rgb: 0, 242, 255;
+    --color-secondary: #7000ff;
+    --color-accent: #0fa;
+
+    /* Semantic Tokens (Dark Theme - Default) */
+    --bg-main: #020205;
+    --bg-surface: #0a0a0f;
+    --text-main: #fff;
+    --text-main-rgb: 255, 255, 255;
+    --text-muted: #808090;
+    --border-subtle: rgba(0, 242, 255, 10%);
+    --glass-bg: rgba(255, 255, 255, 3%);
+    --glass-border: rgba(255, 255, 255, 8%);
+
+    /* Spacing & Sizes (Tokens only in px allowed here) */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2.5rem;
+    --space-xl: 4rem;
+
+    /* UI Tokens */
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+
+    /* Typography */
+    --font-family-base: 'Outfit', system-ui, sans-serif;
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 800;
+}
+
+[data-theme='light'] {
+    --bg-main: #f0f2f5;
+    --bg-surface: #fff;
+    --text-main: #0a0a0f;
+    --text-main-rgb: 10, 10, 15;
+    --text-muted: #505060;
+    --border-subtle: rgba(0, 242, 255, 20%);
+    --glass-bg: rgba(0, 0, 0, 3%);
+    --glass-border: rgba(0, 0, 0, 8%);
+}

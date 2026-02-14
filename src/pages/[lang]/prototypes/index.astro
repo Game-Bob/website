@@ -1,0 +1,18 @@
+---
+import '../../shared-page.css';
+import BasePage from "../../../components/templates/BasePage.astro";
+import { languages } from "../../../i18n/ui";
+
+export async function getStaticPaths() {
+  return Object.keys(languages)
+    .filter((lang) => lang !== "en")
+    .map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+
+---
+
+<basepage lang={lang as any} navKey="prototypes">
+  <p class="page-description">Early concepts and experimental mechanics.</p>
+</BasePage>

@@ -1,0 +1,56 @@
+.gamebob-submenu {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 30;
+    position: relative;
+    padding: 0 var(--space-sm);
+}
+
+.submenu-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem;
+    background: rgb(255 255 255 / 5%);
+    backdrop-filter: blur(12px);
+    border-radius: 9999px;
+    border: 1px solid rgb(255 255 255 / 10%);
+    max-width: 100%;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.submenu-container::-webkit-scrollbar {
+    display: none;
+}
+
+.submenu-link {
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-decoration: none;
+    color: var(--text-muted);
+}
+
+@media (width >= 768px) {
+    .submenu-link {
+        padding: 0.5rem 1.5rem;
+    }
+}
+
+.submenu-link:hover {
+    color: #fff;
+    background: rgb(255 255 255 / 5%);
+}
+
+.submenu-link.active {
+    background: var(--color-gamebob-primary, var(--color-primary));
+    color: #000;
+    box-shadow: 0 0 20px rgb(29 218 188 / 30%);
+}
