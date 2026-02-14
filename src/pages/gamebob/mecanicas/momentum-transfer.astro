@@ -14,7 +14,7 @@ const CODE_URL =
 <MechanicPage
     title="Momentum Transfer"
     description="No matas enemigos golpeándolos, sino transfiriéndoles tu velocidad."
-    githuburl={GITHUB_BASE}
+    githubUrl={GITHUB_BASE}
     codeurl={CODE_URL}
 
     image="/images/gamebob/mechanics/momentum-transfer.svg"
@@ -23,7 +23,7 @@ const CODE_URL =
 
     <div style="max-width: 80rem; margin: 0 auto; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; gap: 3rem;">
         <div style="position: relative;">
-            <div style="display: flex; flex-direction: column; background: #050505; border-radius: 3rem; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 50px 100px -30px rgba(0,0,0,0.9);">
+            <div style="display: flex; flex-direction: column; background: #050505; border-radius: 3rem; overflow: hidden; border: 1px solid rgb(255 255 255 / 10%); box-shadow: 0 50px 100px -30px rgb(0 0 0 / 90%);">
                 <div style="position: relative; background: black;">
                     <MechanicCanvas
                         id="game-canvas"
@@ -89,7 +89,7 @@ const CODE_URL =
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");
 
-    let game: game | null = null;game
+    let game: game | null = null;
 
     if (canvas && overlay) {
         canvas.width = 1600;

@@ -13,7 +13,7 @@ const CODE_URL =
 <MechanicPage
     title="Finger Twister"
     description="Caos multitáctil. Mantén pulsados los nodos sin soltar ninguno mientras aparecen más."
-    githuburl={GITHUB_BASE}
+    githubUrl={GITHUB_BASE}
     codeurl={CODE_URL}
 
     image="/images/gamebob/mechanics/finger-twister.webp"
@@ -59,7 +59,7 @@ const CODE_URL =
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");
 
-    let game: game | null = null;game
+    let game: game | null = null;
 
     if (canvas && overlay) {
         const rect = canvas.getBoundingClientRect();

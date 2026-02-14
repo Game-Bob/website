@@ -14,7 +14,7 @@ const CODE_URL =
 <MechanicPage
     title="Ecolocalización"
     description="Navega en la oscuridad absoluta. Usa el sonido para revelar tu entorno y encontrar la salida."
-    githuburl={GITHUB_BASE}
+    githubUrl={GITHUB_BASE}
     codeurl={CODE_URL}
 
     image="/images/gamebob/mechanics/echolocation.webp"
@@ -59,7 +59,7 @@ const CODE_URL =
 
     <div
         id="winMessage"
-        style="display: none; position: absolute; inset: 0; align-items: center; justify-content: center; background: rgba(0,0,0,0.8); z-index: 50; pointer-events: none;"
+        style="display: none; position: absolute; inset: 0; align-items: center; justify-content: center; background: rgb(0 0 0 / 80%); z-index: 50; pointer-events: none;"
     >
         <div style="text-align: center; pointer-events: auto;">
             <h2 style="font-size: 2.25rem; font-weight: 700; color: #34d399; margin-bottom: 1rem;">¡Salida Encontrada!</h2>
@@ -86,7 +86,7 @@ const CODE_URL =
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");
-    let game: game | null = null;game
+    let game: game | null = null;
 
     if (canvas && overlay) {
         const rect = canvas.getBoundingClientRect();

@@ -13,7 +13,7 @@ const CODE_URL =
 <MechanicPage
     title="Hold to Jump"
     description="Calcula, carga y salta. La tensión de la energía potencial liberada en el momento exacto."
-    githuburl={GITHUB_BASE}
+    githubUrl={GITHUB_BASE}
     codeurl={CODE_URL}
 
     image="/images/gamebob/mechanics/hold-to-jump.webp"
@@ -58,7 +58,7 @@ const CODE_URL =
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");
-    let game: game | null = null;game
+    let game: game | null = null;
 
     if (canvas && overlay) {
         const rect = canvas.getBoundingClientRect();

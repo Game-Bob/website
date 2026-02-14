@@ -13,7 +13,7 @@ const CODE_URL =
 <MechanicPage
     title="Plataformas"
     description="Demo de mecánicas fluidas: salto, doble salto, deslizamiento y partículas."
-    githuburl={GITHUB_BASE}
+    githubUrl={GITHUB_BASE}
     codeurl={CODE_URL}
 
     image="/images/gamebob/mechanics/platformer.webp"
@@ -62,7 +62,7 @@ const CODE_URL =
 
     <div
         class="mechanic-debug-overlay"
-        style="position: absolute; top: 1rem; right: 1rem; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); padding: 0.5rem; border-radius: 0.25rem; font-family: monospace; font-size: 0.75rem; color: white; pointer-events: none; z-index: 20; display: none;"
+        style="position: absolute; top: 1rem; right: 1rem; background: rgb(0 0 0 / 50%); backdrop-filter: blur(8px); padding: 0.5rem; border-radius: 0.25rem; font-family: monospace; font-size: 0.75rem; color: white; pointer-events: none; z-index: 20; display: none;"
     >
         <div>State: <span id="debug-state" style="color: #4ade80;">Idle</span></div>
         <div>VX: <span id="debug-vel-x" style="color: #60a5fa;">0.00</span></div>
@@ -71,7 +71,7 @@ const CODE_URL =
 </MechanicPage>
 
 <style>
-    @media (min-width: 768px) {
+    @media (width >= 768px) {
         .mechanic-debug-overlay {
             display: block !important;
         }
@@ -84,7 +84,7 @@ const CODE_URL =
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");
-    let game: game | null = null;game
+    let game: game | null = null;
 
     if (canvas && overlay) {
         const rect = canvas.getBoundingClientRect();

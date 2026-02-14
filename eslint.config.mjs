@@ -21,12 +21,6 @@ const customCommentsPlugin = {
                             context.report({
                                 loc: sourceCode.getLocFromIndex(match.index),
                                 message: "HTML comments are forbidden.",
-                                fix(fixer) {
-                                    return fixer.removeRange([
-                                        match.index,
-                                        match.index + match[0].length,
-                                    ]);
-                                },
                             });
                         }
                     },
@@ -50,12 +44,6 @@ const customCommentsPlugin = {
                             context.report({
                                 loc: sourceCode.getLocFromIndex(match.index),
                                 message: "CSS/Block comments are forbidden.",
-                                fix(fixer) {
-                                    return fixer.removeRange([
-                                        match.index,
-                                        match.index + match[0].length,
-                                    ]);
-                                },
                             });
                         }
                     },

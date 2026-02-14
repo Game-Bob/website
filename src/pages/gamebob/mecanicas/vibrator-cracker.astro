@@ -14,7 +14,7 @@ const CODE_URL =
 <MechanicPage
     title="Vibrator Cracker"
     description="Siente el mecanismo. Usa la vibración de tu dispositivo para encontrar la combinación correcta y abrir la caja fuerte."
-    githuburl={GITHUB_BASE}
+    githubUrl={GITHUB_BASE}
     codeurl={CODE_URL}
 
     image="/images/gamebob/mechanics/vibrator-cracker.webp"
@@ -61,7 +61,7 @@ const CODE_URL =
         </Fragment>
     </MechanicInfo>
 
-    <div style="margin-top: 1rem; padding: 1rem; background: rgba(146, 64, 14, 0.2); border: 1px solid rgba(180, 83, 9, 0.5); border-radius: 0.5rem; max-width: 28rem; margin-inline: auto; text-align: center;">
+    <div style="margin-top: 1rem; padding: 1rem; background: rgb(146 64 14 / 20%); border: 1px solid rgb(180 83 9 / 50%); border-radius: 0.5rem; max-width: 28rem; margin-inline: auto; text-align: center;">
         <p style="color: #fef08a; font-size: 0.875rem;">
             <Icon name="mdi:alert" style="display: inline-block; width: 1rem; height: 1rem; margin-right: 0.25rem; margin-bottom: 0.25rem;" />
             Soporte experimental de vibración en iOS activado.
@@ -87,7 +87,7 @@ const CODE_URL =
     const overlay = document.getElementById("game-canvas-overlay");
     const testBtn = document.getElementById("test-vibrate-btn");
     const debugLog = document.getElementById("debug-log");
-    let game: game | null = null;game
+    let game: game | null = null;
 
     function log(msg: string) {
         if (debugLog) debugLog.textContent = msg;

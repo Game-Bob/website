@@ -14,7 +14,7 @@ const CODE_URL =
 <MechanicPage
     title="Magnetic Finger"
     description="Controla el magnetismo. Atrae o repele partículas metálicas con tu toque."
-    githuburl={GITHUB_BASE}
+    githubUrl={GITHUB_BASE}
     codeurl={CODE_URL}
 
     image="/images/gamebob/mechanics/magnetic-finger.webp"
@@ -95,7 +95,7 @@ const CODE_URL =
     const btnAttract = document.getElementById("btn-attract");
     const btnRepel = document.getElementById("btn-repel");
 
-    let game: game | null = null;game
+    let game: game | null = null;
 
     if (canvas && overlay) {
         const rect = canvas.getBoundingClientRect();

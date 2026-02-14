@@ -32,21 +32,21 @@ const CODE_URL =
                 <button
                     id="click-btn"
                     class="click-btn"
-                    style="width: 12rem; height: 12rem; border-radius: 9999px; background: linear-gradient(to bottom right, #fbbf24, #d97706); box-shadow: 0 0 50px rgba(251,191,36,0.3); transition: transform 0.075s; display: flex; align-items: center; justify-content: center; pointer-events: auto; cursor: pointer; border: none;"
+                    style="width: 12rem; height: 12rem; border-radius: 9999px; background: linear-gradient(to bottom right, #fbbf24, #d97706); box-shadow: 0 0 50px rgb(251 191 36 / 30%); transition: transform 0.075s; display: flex; align-items: center; justify-content: center; pointer-events: auto; cursor: pointer; border: none;"
                 >
                     <Icon
                         name="mdi:cursor-default-click"
-                        style="width: 6rem; height: 6rem; color: white; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));"
+                        style="width: 6rem; height: 6rem; color: white; filter: drop-shadow(0 4px 6px rgb(0 0 0 / 10%));"
                     />
                 </button>
             </div>
 
             <div style="position: absolute; top: 2rem; left: 0; right: 0; text-align: center; z-index: 20; pointer-events: none;">
-                <h2 id="currency-display" style="font-size: 2.25rem; font-weight: 900; color: #fbbf24; filter: drop-shadow(0 10px 8px rgba(0,0,0,0.04)); margin: 0;">
+                <h2 id="currency-display" style="font-size: 2.25rem; font-weight: 900; color: #fbbf24; filter: drop-shadow(0 10px 8px rgb(0 0 0 / 4%)); margin: 0;">
                     0
                 </h2>
-                <p style="color: rgba(255,255,255,0.5); font-family: monospace; font-size: 0.75rem; margin-top: 0.25rem; text-transform: uppercase;">MONEDAS</p>
-                <p id="gps-display" style="color: rgba(251,191,36,0.7); font-family: monospace; font-size: 0.75rem; margin-top: 0.125rem;">
+                <p style="color: rgb(255 255 255 / 50%); font-family: monospace; font-size: 0.75rem; margin-top: 0.25rem; text-transform: uppercase;">MONEDAS</p>
+                <p id="gps-display" style="color: rgb(251 191 36 / 70%); font-family: monospace; font-size: 0.75rem; margin-top: 0.125rem;">
                     0 por segundo
                 </p>
             </div>
@@ -87,7 +87,7 @@ const CODE_URL =
 </MechanicPage>
 
 <style>
-    @media (min-width: 768px) {
+    @media (width >= 768px) {
         #upgrades-list {
             grid-template-columns: repeat(2, 1fr) !important;
         }
