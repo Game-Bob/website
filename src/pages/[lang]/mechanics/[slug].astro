@@ -26,15 +26,18 @@ export async function getStaticPaths() {
 const { slug, lang } = Astro.params;
 const { mechanic } = Astro.props;
 const t = useTranslations(lang as SupportedLang);
+
+const title = t(`mechanics.${mechanic.id}.title`);
+const description = t(`mechanics.${mechanic.id}.description`);
 ---
 
 <MechanicPage
-    title={mechanic.title}
-    description={mechanic.description}
+    title={title}
+    description={description}
     image={`/images/gamebob/mechanics/${slug}.webp`}
 >
     <div style="padding: 2rem; text-align: center; color: var(--text-muted);">
-        <h2>{t("mechanics.demoTitle")} {mechanic.title}</h2>
+        <h2>{t("mechanics.demoTitle")} {title}</h2>
         <p>{t("mechanics.demoDescription")} {slug}</p>
         <p>{t("mechanics.demoPlaceholder")}</p>
     </div>

@@ -13,35 +13,33 @@ const l = useLanguagePath(lang as any);
 const t = useTranslations(lang as any);
 const { mechanic } = Astro.props;
 
+const title = t(`mechanics.${mechanic.id}.title`);
+const description = t(`mechanics.${mechanic.id}.description`);
+const tags = t(`mechanics.${mechanic.id}.tags`) as unknown as string[];
+
 ---
 
 <a
     href={l(mechanic.url)}
-
     class="mechanic-card"
-    data-tags={mechanic.tags.join(",")}
+    data-tags={tags.join(",")}
     data-platforms={mechanic.platforms}
-
 >
     <div class="card-inner">
         <div class="card-header">
             <div class="icon-box">
-                <icon name={mechanic.icon}
-
- class="card-icon" />
+                <Icon name={mechanic.icon} class="card-icon" />
             </div>
             <h3 class="card-title">
-                {mechanic.title}
-
+                {title}
             </h3>
         </div>
         <p class="card-description">
-            {mechanic.description}
-
+            {description}
         </p>
         <div class="card-tags">
             {
-                mechanic.tags
+                tags
                     .slice(0, 3)
                     .map((tag) => (
                         <span class="tag-badge">

@@ -1,35 +1,29 @@
 export interface Prototype {
-    title: string;
+    id: string;
     slug: string;
     icon: string;
     themeColor: string;
-    description: string;
     verdict?: "liked" | "disliked";
 }
 
 export const prototypes: Prototype[] = [
     {
-        title: "Evolución",
+        id: "evolution",
         slug: "evolution",
         icon: "mdi:dna",
         themeColor: "#a855f7",
-        description: "Alquimia del caos. Combina elementos, crea criaturas y enfréntalas.",
         verdict: "liked",
     },
     {
-        title: "Scroll Velocity Momentum",
+        id: "scroll-momentum",
         slug: "scroll-momentum",
         icon: "mdi:mouse-move-vertical",
         themeColor: "#0ea5e9",
-        description:
-            "Propulsión inercial. Usa la velocidad del scroll como motor en un mundo sin fricción.",
     },
     {
-        title: "Imperio de Deuda",
+        id: "debt-empire",
         slug: "debt-empire",
         icon: "mdi:office-building",
         themeColor: "#3b82f6",
-        description:
-            "Domina el mercado global. Construye distritos, gestiona sinergias y liquida una deuda billonaria.",
     },
 ];

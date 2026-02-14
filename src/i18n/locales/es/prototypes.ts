@@ -17,5 +17,18 @@ export default {
     },
     legend: {
         title: "Leyenda de Veredictos"
+    },
+
+    evolution: {
+        title: "Evolución",
+        description: "Alquimia del caos. Combina elementos, crea criaturas y enfréntalas."
+    },
+    "scroll-momentum": {
+        title: "Scroll Velocity Momentum",
+        description: "Propulsión inercial. Usa la velocidad del scroll como motor en un mundo sin fricción."
+    },
+    "debt-empire": {
+        title: "Imperio de Deuda",
+        description: "Domina el mercado global. Construye distritos, gestiona sinergias y liquida una deuda billonaria."
     }
 }

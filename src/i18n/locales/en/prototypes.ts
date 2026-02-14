@@ -17,5 +17,18 @@ export default {
     },
     legend: {
         title: "Verdict Legend"
+    },
+
+    evolution: {
+        title: "Evolution",
+        description: "Chaos alchemy. Combine elements, create creatures and make them fight."
+    },
+    "scroll-momentum": {
+        title: "Scroll Velocity Momentum",
+        description: "Inertial propulsion. Use scroll velocity as an engine in a frictionless world."
+    },
+    "debt-empire": {
+        title: "Debt Empire",
+        description: "Dominate the global market. Build districts, manage synergies and liquidate a billionaire debt."
     }
 }
