@@ -103,9 +103,7 @@
     --scanline-blue: rgba(0, 0, 255, 6%);
 
     /* Typography */
-    --font-family-title: 'Fredoka One', cursive;
-    --font-family-base: 'Outfit', system-ui, sans-serif;
-    --font-family-mono: ui-monospace, sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
     --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-semibold: 600;

@@ -10,7 +10,7 @@ export function useTranslations(lang: SupportedLang) {
     return function t(keyPath: string): string {
         const keys = keyPath.split(".");
 
-        
+
         const getVal = (obj: any, path: string[]) => {
             return path.reduce((prev, curr) => (prev && prev[curr] !== undefined ? prev[curr] : undefined), obj);
         };
@@ -25,6 +25,11 @@ export function useLanguagePath(lang: SupportedLang) {
     return (path: string) => {
         const cleanPath = path.startsWith("/") ? path : `/${path}`;
         const finalPath = cleanPath.endsWith("/") ? cleanPath : `${cleanPath}/`;
-        return lang === defaultLang ? finalPath : `/${lang}${finalPath}`;
+
+        if (lang === defaultLang) return finalPath;
+
+        if (finalPath.startsWith(`/${lang}/`)) return finalPath;
+
+        return `/${lang}${finalPath}`;
     };
 }

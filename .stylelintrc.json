@@ -49,17 +49,22 @@
         "alpha-value-notation": "percentage",
         "color-function-notation": "modern",
         "no-duplicate-selectors": true,
-        "no-invalid-double-slash-comments": true
+        "no-invalid-double-slash-comments": true,
+        "property-disallowed-list": [
+            "font-family"
+        ]
     },
     "overrides": [
         {
             "files": [
+                "src/styles/global.css",
                 "src/styles/tokens.css",
                 "src/styles/themes/**/*.css",
                 "src/pages/gamebob/mecanicas/**/*.css",
                 "src/pages/gamebob/prototipos/**/*.css"
             ],
             "rules": {
+                "property-disallowed-list": null,
                 "color-no-hex": null,
                 "function-disallowed-list": null,
                 "unit-disallowed-list": null,

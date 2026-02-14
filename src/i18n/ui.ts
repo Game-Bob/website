@@ -7,6 +7,16 @@ import enHero from "./locales/en/hero";
 import esSite from "./locales/es/site";
 import esNav from "./locales/es/nav";
 import esHero from "./locales/es/hero";
+import enApps from "./locales/en/apps";
+import esApps from "./locales/es/apps";
+import enRoadmap from "./locales/en/roadmap";
+import esRoadmap from "./locales/es/roadmap";
+import enHome from "./locales/en/home";
+import esHome from "./locales/es/home";
+import enPrototypes from "./locales/en/prototypes";
+import esPrototypes from "./locales/es/prototypes";
+import enMechanics from "./locales/en/mechanics";
+import esMechanics from "./locales/es/mechanics";
 
 export const languages = {
     en: { label: "English", flag: "🇺🇸", dir: "ltr" },
@@ -34,10 +44,20 @@ export const ui: Record<string, Record<string, any>> = {
         site: enSite,
         nav: enNav,
         hero: enHero,
+        apps: enApps,
+        roadmap: enRoadmap,
+        home: enHome,
+        prototypes: enPrototypes,
+        mechanics: enMechanics,
     },
     es: {
         site: esSite,
         nav: esNav,
         hero: esHero,
+        apps: esApps,
+        roadmap: esRoadmap,
+        home: esHome,
+        prototypes: esPrototypes,
+        mechanics: esMechanics,
     },
 };

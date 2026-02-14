@@ -1,19 +1,13 @@
 ---
-import BasePage from "../../components/templates/BasePage.astro";
-
-const lang = "en";
+export const prerender = true;
+import GameBobLayout from "../../layouts/GameBobLayout.astro";
+import TermsAndConditions from "../../components/gamebob/TermsAndConditions.astro";
 ---
 
-<BasePage lang={lang}
-
- navKey="terms">
-  <p class="description">Standard terms and conditions for our services.</p>
-</BasePage>
-
-<style>
-  .description {
-    color: var(--text-muted);
-    font-size: 1.25rem;
-    margin-top: var(--space-md);
-  }
-</style>
+<GameBobLayout
+    title="Términos y Condiciones | GameBob"
+    description="Términos y condiciones de uso de las aplicaciones y servicios de GameBob. Información legal y normativa."
+    image="/images/gamebob/privacidad.webp"
+>
+    <TermsAndConditions />
+</GameBobLayout>

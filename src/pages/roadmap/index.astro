@@ -1,19 +1,29 @@
 ---
-import BasePage from "../../components/templates/BasePage.astro";
+export const prerender = true;
+import "./roadmap.css";
+import GameBobLayout from "../../layouts/GameBobLayout.astro";
+import RoadmapHeader from "../../components/gamebob/roadmap/RoadmapHeader.astro";
+import ProjectCard from "../../components/gamebob/roadmap/ProjectCard.astro";
+import { apps } from "../../data/gamebob/apps";
 
-const lang = "en";
+const roadmapApps = apps.filter((app) => app.isGame);
 ---
 
-<BasePage lang={lang}
+<GameBobLayout
+    title="Roadmap: ¿En qué estoy invirtiendo el tiempo ahora mismo?"
+    description="Próximos lanzamientos, actualizaciones de juegos y planes futuros. Transparencia total sobre lo que estoy construyendo."
+    image="/images/gamebob/roadmap/index.webp"
+>
+    <div class="roadmap-page">
+        <div class="roadmap-content">
+            <RoadmapHeader
+                title="roadmap"
+                description="Transparencia total sobre lo que estoy construyendo y lo que vendrá después."
+            />
 
- navKey="roadmap">
-  <p class="description">Our future plans and upcoming features.</p>
-</BasePage>
-
-<style>
-  .description {
-    color: var(--text-muted);
-    font-size: 1.25rem;
-    margin-top: var(--space-md);
-  }
-</style>
+            <div class="roadmap-grid">
+                {roadmapApps.map((app) => <ProjectCard project={app} />)}
+            </div>
+        </div>
+    </div>
+</GameBobLayout>

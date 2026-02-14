@@ -1,6 +1,7 @@
 ---
 import './Header.css';
 import Navbar from "../../molecules/Nav/Navbar.astro";
+import LanguageSwitcher from "../../gamebob/LanguageSwitcher.astro";
 import { getLangFromUrl } from "../../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -16,6 +17,7 @@ const lang = getLangFromUrl(Astro.url);
     
     <div class="header-actions">
       <div class="dot"></div>
+      <LanguageSwitcher />
     </div>
   </div>
 </header>

@@ -10,7 +10,7 @@ export interface Prototype {
 export const prototypes: Prototype[] = [
     {
         title: "Evolución",
-        slug: "evolucion",
+        slug: "evolution",
         icon: "mdi:dna",
         themeColor: "#a855f7",
         description: "Alquimia del caos. Combina elementos, crea criaturas y enfréntalas.",
@@ -26,7 +26,7 @@ export const prototypes: Prototype[] = [
     },
     {
         title: "Imperio de Deuda",
-        slug: "imperio-deuda",
+        slug: "debt-empire",
         icon: "mdi:office-building",
         themeColor: "#3b82f6",
         description:

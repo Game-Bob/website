@@ -3,14 +3,15 @@ import "./GameBobLayout.css";
 import SEO from "../components/SEO.astro";
 import Header from "../components/organisms/Header/Header.astro";
 import Footer from "../components/Footer.astro";
+import "../styles/tokens.css";
+import "../styles/global.css";
 
 import "@fontsource/inter/300.css";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/600.css";
 import "@fontsource/inter/900.css";
-import "@fontsource/fredoka-one";
 
-import GameBobSubmenu from "../components/gamebob/GameBobSubmenu.astro";
+import { getLangFromUrl } from "../i18n/utils";
 
 interface props {
     title: string;
@@ -19,11 +20,12 @@ interface props {
 }
 
 const { title, description, image } = Astro.props;
+const currentLang = getLangFromUrl(Astro.url);
 
 ---
 
 <!doctype html>
-<html lang="es" class="dark">
+<html lang={currentLang} class="dark" data-theme="dark">
     <head>
         <SEO title={title} description={description} image={image}
 
@@ -40,8 +42,8 @@ const { title, description, image } = Astro.props;
             }
 
             body {
-                background-color: var(--color-gamebob-bg);
-                color: var(--color-gamebob-text);
+                background-color: var(--bg-main);
+                color: var(--text-main);
             }
 
             body:not(.menu-open) nav#main-nav {
@@ -95,7 +97,6 @@ const { title, description, image } = Astro.props;
         <Header />
 
         <main class="gamebob-main">
-            <GameBobSubmenu />
             <slot />
         </main>
 

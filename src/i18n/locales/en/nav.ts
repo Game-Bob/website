@@ -7,5 +7,10 @@ export default {
     "postmortem": "Post-Mortem",
     "privacy": "Privacy",
     "terms": "Terms & Conditions",
-    "community": "Community"
+    "community": "Community",
+    "stores": {
+        "available_on": "AVAILABLE ON",
+        "coming_soon": "COMING SOON",
+        "download_on": "DOWNLOAD ON"
+    }
 };

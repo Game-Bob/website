@@ -1,10 +1,113 @@
 ---
-import '../shared-page.css';
-import BasePage from "../../components/templates/BasePage.astro";
+export const prerender = true;
+import "./index.css";
+import GameBobLayout from "../../layouts/GameBobLayout.astro";
+import { Icon } from "astro-icon/components";
+import { prototypes } from "../../data/gamebob/prototypes";
+import { getLangFromUrl, useTranslations, useLanguagePath } from "../../i18n/utils";
 
-const lang = "en";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const l = useLanguagePath(lang);
 ---
 
-<BasePage lang={lang} navKey="prototypes">
-  <p class="page-description">Early concepts and experimental mechanics.</p>
-</BasePage>
+<GameBobLayout
+    title={t("nav.prototypes") + " - GameBob"}
+    description={t("prototypes.description")}
+    image="/images/gamebob/prototipos/index.webp"
+>
+    <div class="prototypes-page">
+        <div class="prototypes-header">
+            <h1 class="prototypes-title">
+                {t("nav.prototypes")}
+            </h1>
+            <p class="prototypes-subtitle">
+                {t("prototypes.subtitle")}
+            </p>
+        </div>
+
+        <div class="warning-box">
+            <Icon name="mdi:alert-decagram" class="warning-icon" />
+            <div class="warning-content">
+                <h3 class="warning-title">
+                    {t("prototypes.warning.title")}
+                </h3>
+                <p class="warning-text">
+                    {t("prototypes.warning.text")}
+                </p>
+            </div>
+        </div>
+
+        <div class="prototypes-grid">
+            {
+                prototypes.map((proto) => (
+                    <a
+                        href={l(`/prototypes/${proto.slug}/`)}
+                        class="prototype-card"
+                        style={`border-color: ${proto.themeColor}33;`}
+                    >
+                        <div class="card-arrow">
+                            <Icon name="mdi:arrow-top-right" class="arrow-icon-sm" />
+                        </div>
+
+                        <div class="proto-icon-container">
+                            <Icon name={proto.icon} class="proto-icon" style={`color: ${proto.themeColor}`} />
+                        </div>
+
+                        <h2 class="proto-title">
+                            {proto.title}
+                        </h2>
+                        <p class="proto-description">
+                            {proto.description}
+                        </p>
+
+                        {proto.verdict === "liked" && (
+                            <div class="verdict-badge verdict-liked">
+                                <Icon name="mdi:thumb-up" class="footer-icon" />
+                                {t("prototypes.verdict.liked.label")}
+                            </div>
+                        )}
+
+                        {proto.verdict === "disliked" && (
+                            <div class="verdict-badge verdict-disliked">
+                                <Icon name="mdi:thumb-down" class="footer-icon" />
+                                {t("prototypes.verdict.disliked.label")}
+                            </div>
+                        )}
+                    </a>
+                ))
+            }
+        </div>
+
+        <div class="proto-legend">
+            <h3 class="legend-title">
+                {t("prototypes.legend.title")}
+            </h3>
+            <div class="legend-grid">
+                <div class="legend-item liked">
+                    <Icon name="mdi:thumb-up" class="legend-icon liked" />
+                    <div class="legend-content">
+                        <div class="legend-label verdict-liked">
+                            {t("prototypes.verdict.liked.label")}
+                        </div>
+                        <p class="legend-text">
+                            {t("prototypes.verdict.liked.text")}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="legend-item disliked">
+                    <Icon name="mdi:thumb-down" class="legend-icon disliked" />
+                    <div class="legend-content">
+                        <div class="legend-label verdict-disliked">
+                            {t("prototypes.verdict.disliked.label")}
+                        </div>
+                        <p class="legend-text">
+                            {t("prototypes.verdict.disliked.text")}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</GameBobLayout>

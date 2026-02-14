@@ -1,19 +1,13 @@
 ---
-import BasePage from "../../components/templates/BasePage.astro";
-
-const lang = "en";
+export const prerender = true;
+import GameBobLayout from "../../layouts/GameBobLayout.astro";
+import PrivacyPolicy from "../../components/gamebob/PrivacyPolicy.astro";
 ---
 
-<BasePage lang={lang}
-
- navKey="privacy">
-  <p class="description">How we handle your data.</p>
-</BasePage>
-
-<style>
-  .description {
-    color: var(--text-muted);
-    font-size: 1.25rem;
-    margin-top: var(--space-md);
-  }
-</style>
+<GameBobLayout
+    title="Política de Privacidad | GameBob"
+    description="Política de privacidad de las aplicaciones y juegos de GameBob. Transparencia y seguridad para nuestros jugadores."
+    image="/images/gamebob/privacidad.webp"
+>
+    <PrivacyPolicy />
+</GameBobLayout>

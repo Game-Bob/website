@@ -7,5 +7,10 @@ export default {
     "postmortem": "Postmortem",
     "privacy": "Privacidad",
     "terms": "Términos y Condiciones",
-    "community": "Comunidad"
+    "community": "Comunidad",
+    "stores": {
+        "available_on": "DISPONIBLE EN",
+        "coming_soon": "PRÓXIMAMENTE EN",
+        "download_on": "DESCÁRGALO EN EL"
+    }
 };

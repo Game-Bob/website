@@ -1,0 +1,188 @@
+---
+import { languages, defaultLang } from "../../i18n/ui";
+import { getLangFromUrl, useLanguagePath } from "../../i18n/utils";
+import { Icon } from "astro-icon/components";
+
+const currentLang = getLangFromUrl(Astro.url);
+const langPath = useLanguagePath(currentLang);
+const { pathname } = Astro.url;
+
+const currentInfo = languages[currentLang as keyof typeof languages];
+
+const getLocalizedPath = (l: string) => {
+  const pathParts = pathname.split('/').filter(Boolean);
+  const firstPart = pathParts[0];
+  
+  let cleanPath = pathname;
+  if (Object.keys(languages).includes(firstPart)) {
+    cleanPath = '/' + pathParts.slice(1).join('/');
+  }
+
+  if (!cleanPath.startsWith('/')) cleanPath = '/' + cleanPath;
+
+  const switcherPath = useLanguagePath(l as any);
+  return switcherPath(cleanPath);
+};
+---
+
+<div class="lang-dropdown">
+  <button class="lang-trigger" aria-haspopup="true" aria-expanded="false" id="lang-trigger">
+    <span class="flag-icon">{currentInfo.flag}</span>
+    <span class="lang-label">{currentInfo.label}</span>
+    <Icon name="mdi:chevron-down" class="chevron" />
+  </button>
+
+  <div class="lang-menu" role="menu">
+    <div class="lang-grid">
+      {Object.entries(languages).map(([code, info]) => (
+        <a 
+          href={getLocalizedPath(code)}
+          class={`lang-item ${currentLang === code ? 'active' : ''}`}
+          role="menuitem"
+        >
+          <span class="item-flag">{info.flag}</span>
+          <div class="item-info">
+            <span class="item-label">{info.label}</span>
+            <span class="item-code">{code.toUpperCase()}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .lang-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .lang-trigger {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 0.5rem 1rem;
+    background: var(--white-5);
+    border: 1px solid var(--white-10);
+    border-radius: var(--radius-full);
+    color: var(--text-main);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .lang-trigger:hover {
+    background: var(--white-10);
+    border-color: var(--white-30);
+    box-shadow: 0 0 15px var(--cyan-bob-10);
+  }
+
+  .chevron {
+    width: 1rem;
+    height: 1rem;
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+  }
+
+  .lang-dropdown:hover .chevron {
+    transform: rotate(180deg);
+  }
+
+  .lang-menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    width: 18rem;
+    background: color-mix(in srgb, var(--bg-surface), transparent 5%);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--white-10);
+    border-radius: var(--radius-lg);
+    padding: 0.75rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1000;
+  }
+
+  .lang-dropdown:hover .lang-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .lang-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .lang-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    border-radius: var(--radius-base);
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+  }
+
+  .lang-item:hover {
+    background: var(--white-5);
+    color: var(--text-main);
+  }
+
+  .lang-item.active {
+    background: var(--primary-10);
+    color: var(--color-primary);
+  }
+
+  .item-flag {
+    font-size: 1.25rem;
+  }
+
+  .item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .item-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .item-code {
+    font-size: 0.65rem;
+    opacity: 0.5;
+  }
+
+  @media (width <= 48rem) {
+    .lang-label {
+      display: none;
+    }
+    
+    .lang-menu {
+      position: fixed;
+      top: auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      padding-bottom: env(safe-area-inset-bottom);
+      transform: translateY(100%);
+    }
+
+    .lang-dropdown:hover .lang-menu {
+      transform: translateY(0);
+    }
+    
+    .lang-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

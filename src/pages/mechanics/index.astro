@@ -1,19 +1,108 @@
 ---
-import BasePage from "../../components/templates/BasePage.astro";
+export const prerender = true;
+import "./index.css";
+import GameBobLayout from "../../layouts/GameBobLayout.astro";
+import { Icon } from "astro-icon/components";
+import { mechanics } from "../../data/gamebob/mechanics";
+import MechanicCard from "../../components/gamebob/mechanics/MechanicCard.astro";
+import MechanicsFilter from "../../components/gamebob/mechanics/MechanicsFilter.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
-const lang = "en";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const allTags = [...new Set(mechanics.flatMap((m) => m.tags))];
 ---
 
-<BasePage lang={lang}
+<GameBobLayout
+    title={t("nav.mechanics") + " - GameBob"}
+    description={t("mechanics.description")}
+    image="/images/gamebob/mechanics/index.webp"
+>
+    <div class="mechanics-page">
+        <div class="mechanics-content">
+            <h1 class="sr-only">{t("mechanics.srOnly")}</h1>
+            <MechanicsFilter allTags={allTags} />
 
- navKey="mechanics">
-  <p class="description">Deep dive into unique game mechanics.</p>
-</BasePage>
+            <div class="mechanics-grid" id="mechanics-grid">
+                {mechanics.map((mechanic) => <MechanicCard mechanic={mechanic} />)}
+            </div>
 
-<style>
-  .description {
-    color: var(--text-muted);
-    font-size: 1.25rem;
-    margin-top: var(--space-md);
-  }
-</style>
+            <div id="no-results" class="no-results">
+                <Icon name="mdi:ghost-off" class="no-results-icon" />
+                <p>{t("mechanics.noResults")}</p>
+            </div>
+        </div>
+    </div>
+</GameBobLayout>
+
+<script>
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    const tagBtns = document.querySelectorAll(".tag-filter-btn");
+    const cards = document.querySelectorAll(".mechanic-card");
+    const noResults = document.getElementById("no-results");
+
+    let currentPlatform = "all";
+    let activeTags: string[] = [];
+
+    function filterCards() {
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+            const cardEl = card as HTMLElement;
+            const platforms = cardEl.dataset.platforms;
+            const tags = cardEl.dataset.tags?.split(",") || [];
+
+            const platformMatch =
+                currentPlatform === "all" || platforms === "all" || platforms === currentPlatform;
+            const tagsMatch =
+                activeTags.length === 0 || activeTags.every((tag) => tags.includes(tag));
+
+            if (platformMatch && tagsMatch) {
+                cardEl.style.display = "block";
+                visibleCount++;
+            } else {
+                cardEl.style.display = "none";
+            }
+        });
+
+        if (noResults) {
+            if (visibleCount > 0) {
+                noResults.classList.remove("visible");
+            } else {
+                noResults.classList.add("visible");
+            }
+        }
+    }
+
+    filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            filterBtns.forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+
+            currentPlatform = (btn as HTMLElement).dataset.filter || "all";
+            filterCards();
+        });
+    });
+
+    tagBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const btnEl = btn as HTMLElement;
+            const tag = btnEl.dataset.tag;
+            if (!tag) return;
+
+            if (activeTags.includes(tag)) {
+                activeTags = activeTags.filter((t) => t !== tag);
+                btnEl.classList.remove("active");
+            } else {
+                activeTags.push(tag);
+                btnEl.classList.add("active");
+            }
+
+            filterCards();
+        });
+    });
+
+    const allBtn = document.querySelector('[data-filter="all"]');
+    if (allBtn) allBtn.classList.add("active");
+</script>

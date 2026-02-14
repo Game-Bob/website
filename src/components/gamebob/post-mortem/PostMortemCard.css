@@ -77,7 +77,6 @@
     color: var(--text-main);
     font-size: 0.625rem;
     font-weight: 900;
-    font-family: var(--font-family-mono);
     padding: 0.25rem 0.75rem;
     border-radius: var(--radius-sm);
     box-shadow: 0 10px 15px -3px var(--black-40);
@@ -91,7 +90,6 @@
     bottom: 1rem;
     right: 1rem;
     font-size: 0.625rem;
-    font-family: var(--font-family-mono);
     color: var(--text-muted);
     background: var(--black-80);
     backdrop-filter: blur(8px);
@@ -185,7 +183,6 @@
     background: var(--white-5);
     color: var(--text-muted);
     font-size: 0.625rem;
-    font-family: var(--font-family-mono);
     border: 1px solid var(--white-5);
 }
 

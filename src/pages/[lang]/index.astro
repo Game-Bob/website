@@ -1,9 +1,13 @@
 ---
-import '../index.css';
-import Layout from "../../layouts/Layout.astro";
-import Hero from "../../components/molecules/Hero/Hero.astro";
-import { useTranslations } from "../../i18n/utils";
+import GameBobLayout from "../../layouts/GameBobLayout.astro";
+import { Icon } from "astro-icon/components";
+import GameBobLogo from "../../components/GameBobLogo.astro";
+import ProjectHomeCard from "../../components/gamebob/ProjectHomeCard.astro";
+import DiscordCTA from "../../components/gamebob/DiscordCTA.astro";
+import { apps } from "../../data/gamebob/apps";
+import { useTranslations, useLanguagePath } from "../../i18n/utils";
 import { languages } from "../../i18n/ui";
+import "../index.css";
 
 export async function getStaticPaths() {
   return Object.keys(languages)
@@ -12,22 +16,118 @@ export async function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-
 const t = useTranslations(lang as any);
+const l = useLanguagePath(lang as any);
+const projects = apps;
 ---
 
-<Layout 
-  title={t("hero.title")} 
-  description={t("site.description")} 
-  lang={lang as any}
-
+<GameBobLayout
+    title={t("site.title")}
+    description={t("site.description")}
+    image="/images/gamebob/index.webp"
 >
-	<main class="page-main">
-		<Hero 
-			title={t("hero.title")}
-			subtitle={t("hero.subtitle")}
-			primaryAction={{ text: t("hero.primary"), href: "/games/" }}
-			secondaryAction={{ text: t("hero.secondary"), href: "/community/" }}
-		/>
-	</main>
-</Layout>
+    <div class="gamebob-home">
+        <header class="hero-header animate-box">
+            <div class="header-content">
+                <div class="logo-main">
+                    <GameBobLogo />
+                </div>
+                <div class="header-text">
+                    <h1 class="main-title">
+                        GAME<span class="accent-text">BOB</span>
+                    </h1>
+                    <div class="status-line">
+                        <span class="status-dot"></span>
+                        <span class="status-text">{t("home.tagline")}</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-actions">
+                <DiscordCTA 
+                    title={t("hero.discord.title")} 
+                    subtitle={t("hero.discord.subtitle")}
+                />
+            </div>
+        </header>
+
+        <main class="dashboard-grid">
+            
+            <div class="section-header">
+                <h2 class="cyber-title">
+                    <span class="bracket">[</span>
+                    {t("home.sections.projects")}
+                    <span class="bracket">]</span>
+                </h2>
+                <div class="title-line"></div>
+            </div>
+
+            <div class="project-list">
+                {
+                    projects.map((project: any, index: number) => (
+                        <ProjectHomeCard project={project} index={index} />
+                    ))
+                }
+            </div>
+
+            <div class="resources-grid">
+                <section class="feature-panel purple">
+                    <div class="panel-header">
+                        <Icon name="mdi:flask-outline" class="panel-icon" />
+                        <h3>{t("home.sections.prototypes")}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <h4>{t("home.features.evolution.title")}{t("home.features.evolution.titleAccent")}</h4>
+                        <p>{t("home.features.evolution.description")}</p>
+                        <a href={l("/prototypes/")} class="panel-link">
+                            {t("nav.prototypes")}
+                            <Icon name="mdi:arrow-right" />
+                        </a>
+                    </div>
+                </section>
+
+                <section class="feature-panel blue">
+                    <div class="panel-header">
+                        <Icon name="mdi:code-braces" class="panel-icon" />
+                        <h3>{t("home.sections.mechanics")}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <h4>{t("home.features.lab.title")}{t("home.features.lab.titleAccent")}</h4>
+                        <p>{t("home.features.lab.description")}</p>
+                        <a href={l("/mechanics/")} class="panel-link">
+                            {t("nav.mechanics")}
+                            <Icon name="mdi:arrow-right" />
+                        </a>
+                    </div>
+                </section>
+
+                <section class="feature-panel red">
+                    <div class="panel-header">
+                        <Icon name="mdi:skull-scan-outline" class="panel-icon" />
+                        <h3>{t("home.sections.postmortem")}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <h4>{t("home.features.postmortem.title")}{t("home.features.postmortem.titleAccent")}</h4>
+                        <p>{t("home.features.postmortem.description")}</p>
+                        <a href={l("/postmortem/")} class="panel-link">
+                            {t("nav.postmortem")}
+                            <Icon name="mdi:arrow-right" />
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="gamebob-footer">
+            <div class="footer-separator"></div>
+            <div class="footer-bottom">
+                <a href={l("/privacy/")} class="footer-nav-link">
+                    {t("home.footer.privacy")}
+                </a>
+                <div class="footer-copy">
+                    &copy; {new Date().getFullYear()} GAMEBOB STUDIO
+                </div>
+            </div>
+        </footer>
+    </div>
+</GameBobLayout>

@@ -1,7 +1,7 @@
 ---
 import './ProjectHomeCard.css';
 import { Icon } from "astro-icon/components";
-import type { Project } from "../../data/gamebob/roadmap/types";
+import { useTranslations, getLangFromUrl } from "../../i18n/utils";
 
 interface Props {
     project: any;
@@ -9,20 +9,18 @@ interface Props {
 }
 
 const { project, index } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
-const name = "name" in project ? project.name : project.title;
-const homeDescription = "homeDescription" in project ? project.homeDescription : project.description;
+const name = t(`apps.${project.slug}.title`);
+const homeDescription = t(`apps.${project.slug}.description`);
 const image = "media" in project ? project.media.showcase : project.image;
-const statusLabel = "roadmap" in project ? project.roadmap.statusLabel : (project.statusLabel || project.statuslabel || "");
-const statusType = "roadmap" in project ? project.roadmap.statusType : (project.statusType || project.statustype || "released");
-const color = "theme" in project ? project.theme.primary : (project.color || "var(--color-primary)");
 
-const links = "stores" in project
-    ? {
-          googlePlay: project.stores.googlePlay || project.stores.googleplay,
-          appStore: project.stores.appStore || project.stores.appstore,
-      }
-    : project.links;
+const statusType = project.roadmap?.statusType || project.statusType || "released";
+const statusLabel = t(`roadmap.status.${statusType}`);
+const color = project.theme?.primary || project.color || "var(--color-primary)";
+
+const links = project.stores || project.links;
 
 const isEven = index % 2 === 0;
 const nameParts = name ? (name.includes(":") ? [name.split(":")[0], name.split(":")[1]] : [name, ""]) : ["", ""];
@@ -61,7 +59,7 @@ const nameParts = name ? (name.includes(":") ? [name.split(":")[0], name.split("
                     >
                         <Icon name="mdi:google-play" class="icon-6" />
                         <div class="button-stack">
-                            <div class="button-stack-top">DISPONIBLE EN</div>
+                            <div class="button-stack-top">{t("nav.stores.available_on")}</div>
                             <div class="button-stack-main">Google Play</div>
                         </div>
                     </a>
@@ -69,23 +67,40 @@ const nameParts = name ? (name.includes(":") ? [name.split(":")[0], name.split("
                     <div class="store-button store-button-disabled">
                         <Icon name="mdi:google-play" class="icon-6" />
                         <div class="button-stack">
-                            <div class="button-stack-top">próximamente en</div>
+                            <div class="button-stack-top">{t("nav.stores.coming_soon")}</div>
                             <div class="button-stack-main">google play</div>
                         </div>
                     </div>
                 )
             }
 
-            <button
-                class="store-button store-button-disabled"
-                title="Próximamente en App Store"
-            >
-                <Icon name="mdi:apple" class="icon-6" />
-                <div class="button-stack">
-                    <div class="button-stack-top">descárgalo en el</div>
-                    <div class="button-stack-main">app store</div>
-                </div>
-            </button>
+            {
+                links?.appStore ? (
+                    <a
+                        href={links.appStore}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="store-button"
+                    >
+                        <Icon name="mdi:apple" class="icon-6" />
+                        <div class="button-stack">
+                            <div class="button-stack-top">{t("nav.stores.available_on")}</div>
+                            <div class="button-stack-main">App Store</div>
+                        </div>
+                    </a>
+                ) : (
+                    <button
+                        class="store-button store-button-disabled"
+                        title={t("nav.stores.coming_soon")}
+                    >
+                        <Icon name="mdi:apple" class="icon-6" />
+                        <div class="button-stack">
+                            <div class="button-stack-top">{t("nav.stores.download_on")}</div>
+                            <div class="button-stack-main">app store</div>
+                        </div>
+                    </button>
+                )
+            }
         </div>
     </div>
 

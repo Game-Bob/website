@@ -1,0 +1,81 @@
+---
+export const prerender = true;
+import MechanicPage from "../../components/gamebob/mechanics/MechanicPage.astro";
+import MechanicCanvas from "../../components/gamebob/mechanics/MechanicCanvas.astro";
+import MechanicInfo from "../../components/gamebob/mechanics/MechanicInfo.astro";
+import { Icon } from "astro-icon/components";
+
+const GITHUB_BASE = "https://github.com/Game-Bob/website/tree/main/src/mechanics/the-barrier";
+const CODE_URL =
+    "https://github.com/Game-Bob/website/blob/main/src/mechanics/the-barrier/TheBarrierMechanic.ts";
+---
+
+<MechanicPage
+    title="The Barrier"
+    description="Redirige el flujo. Dibuja barreras para controlar la cascada de partículas."
+    githubUrl={GITHUB_BASE}
+    codeurl={CODE_URL}
+
+    image="/images/gamebob/mechanics/the-barrier.webp"
+>
+    <Icon slot="icon" name="mdi:vector-line" style="color: var(--color-primary)" />
+
+    <MechanicCanvas
+        id="game-canvas"
+        instruction="Arrastra para dibujar líneas"
+        subInstruction="Las barreras desaparecen con el tiempo"
+        verticalOnMobile={true}
+
+    />
+
+    <MechanicInfo>
+        <Fragment slot="how-it-works">
+            <li>
+                <span style="color: var(--color-primary)">•</span>
+                <span>Partículas caen bajo gravedad simulada.</span>
+            </li>
+            <li>
+                <span style="color: var(--color-primary)">•</span>
+                <span>Detección de colisión rayo-segmento.</span>
+            </li>
+            <li>
+                <span style="color: var(--color-primary)">•</span>
+                <span>Cálculo de vector de reflexión para rebotes.</span>
+            </li>
+        </Fragment>
+
+        <Fragment slot="controls">
+            <div class="control-item">
+                <span class="control-key">Drag</span>
+                <span class="control-desc">Dibujar Barrera</span>
+            </div>
+        </Fragment>
+    </MechanicInfo>
+</MechanicPage>
+
+<script>
+    import { TheBarrierGame } from "../../../mechanics/the-barrier/TheBarrierGame";
+
+    const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
+    const overlay = document.getElementById("game-canvas-overlay");
+
+    let game: game | null = null;
+
+    if (canvas && overlay) {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+
+        overlay.addEventListener("click", () => {
+            overlay.style.opacity = "0";
+            overlay.style.pointerEvents = "none";
+            if (!game) {
+                game = new TheBarrierGame(canvas);
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (game) game.resize();
+        });
+    }
+</script>
