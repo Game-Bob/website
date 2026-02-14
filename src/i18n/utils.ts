@@ -26,8 +26,6 @@ export function useLanguagePath(lang: SupportedLang) {
         const cleanPath = path.startsWith("/") ? path : `/${path}`;
         const finalPath = cleanPath.endsWith("/") ? cleanPath : `${cleanPath}/`;
 
-        if (lang === defaultLang) return finalPath;
-
         if (finalPath.startsWith(`/${lang}/`)) return finalPath;
 
         return `/${lang}${finalPath}`;

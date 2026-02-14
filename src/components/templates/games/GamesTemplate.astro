@@ -1,12 +1,12 @@
 ---
 import GameBobLayout from "../../../layouts/GameBobLayout.astro";
 import { Icon } from "astro-icon/components";
-import GameBobLogo from "../../GameBobLogo.astro";
-import ProjectHomeCard from "../../gamebob/ProjectHomeCard.astro";
-import DiscordCTA from "../../gamebob/DiscordCTA.astro";
+import GameBobLogo from "../../../components/GameBobLogo.astro";
+import ProjectHomeCard from "../../../components/gamebob/ProjectHomeCard.astro";
+import DiscordCTA from "../../../components/gamebob/DiscordCTA.astro";
 import { apps } from "../../../data/gamebob/apps";
 import { useTranslations, useLanguagePath } from "../../../i18n/utils";
-import "../../../pages/index.css";
+import "../../templates/home/HomeTemplate.css";
 
 interface Props {
   lang: string;

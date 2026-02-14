@@ -1,6 +1,6 @@
 ---
-import GamesTemplate from "../../components/templates/games/GamesTemplate.astro";
-import { ui } from "../../i18n/ui";
+import GamesTemplate from "../../../components/templates/games/GamesTemplate.astro";
+import { ui } from "../../../i18n/ui";
 
 export async function getStaticPaths() {
   return Object.keys(ui).map((lang) => ({ params: { lang } }));

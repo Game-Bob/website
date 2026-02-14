@@ -3,9 +3,7 @@ import BasePage from "../../../components/templates/BasePage.astro";
 import { ui } from "../../../i18n/ui";
 
 export async function getStaticPaths() {
-  return Object.keys(ui)
-    .filter((lang) => lang !== "en")
-    .map((lang) => ({ params: { lang } }));
+  return Object.keys(ui).map((lang) => ({ params: { lang } }));
 }
 
 const { lang } = Astro.params;

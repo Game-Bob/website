@@ -1,6 +1,6 @@
 ---
-import PrototypesTemplate from "../../components/templates/prototypes/PrototypesTemplate.astro";
-import { ui } from "../../i18n/ui";
+import PrototypesTemplate from "../../../components/templates/prototypes/PrototypesTemplate.astro";
+import { ui } from "../../../i18n/ui";
 
 export async function getStaticPaths() {
   return Object.keys(ui).map((lang) => ({ params: { lang } }));
