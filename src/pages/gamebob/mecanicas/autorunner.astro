@@ -10,11 +10,11 @@ const CODE_URL =
     "https://github.com/Game-Bob/website/blob/main/src/mechanics/autorunner/AutorunnerMechanic.ts";
 ---
 
-<mechanicpage
+<MechanicPage
     title="Autorunner"
     description="Corre sin mirar atrás. Un mundo infinito generado paso a paso bajo tus pies."
-    githuburl={GITHUB_BASE}
-    codeurl={CODE_URL}
+    githubUrl={GITHUB_BASE}
+    codeUrl={CODE_URL}
 
     image="/images/gamebob/mechanics/autorunner.webp"
 >
@@ -58,7 +58,7 @@ const CODE_URL =
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");
-    let game: game | null = null;game
+    let game: AutorunnerGame | null = null;
 
     if (canvas && overlay) {
         const rect = canvas.getBoundingClientRect();
