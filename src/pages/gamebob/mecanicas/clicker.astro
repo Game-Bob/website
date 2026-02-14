@@ -10,11 +10,11 @@ const CODE_URL =
     "https://github.com/Game-Bob/website/blob/main/src/mechanics/clicker/ClickerMechanic.ts";
 ---
 
-<mechanicpage
+<MechanicPage
     title="Clicker"
     description="El poder del crecimiento exponencial. Un click hoy, un imperio mañana."
-    githuburl={GITHUB_BASE}
-    codeurl={CODE_URL}
+    githubUrl={GITHUB_BASE}
+    codeUrl={CODE_URL}
 
     image="/images/gamebob/mechanics/clicker.webp"
 >
@@ -109,7 +109,7 @@ const CODE_URL =
     const gpsDisplay = document.getElementById("gps-display");
     const upgradesList = document.getElementById("upgrades-list");
 
-    let game: game | null = null;game
+    let game: ClickerGame | null = null;
 
     if (canvas && overlay && clickBtn && currencyDisplay && gpsDisplay && upgradesList) {
         game = new ClickerGame(canvas);
@@ -135,7 +135,7 @@ const CODE_URL =
         });
 
         
-        const setstyle = (el, styles) => {
+        const setStyle = (el: HTMLElement, styles: Partial<CSSStyleDeclaration>) => {
             Object.assign(el.style, styles);
         };
 
@@ -203,7 +203,7 @@ const CODE_URL =
             const state = game.state;
             if (currencyDisplay) currencyDisplay.innerText = formatNumber(state.currency);
             if (gpsDisplay)
-                gpsdisplay.innerText = `${formatNumber(state.autoClickRate)} por segundo`;
+                gpsDisplay.innerText = `${formatNumber(state.autoClickRate)} por segundo`;
 
             state.upgrades.forEach((u) => {
                 const btn = document.getElementById(`upgrade-btn-${u.id}`) as HTMLButtonElement;

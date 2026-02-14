@@ -11,11 +11,11 @@ const CODE_URL =
     "https://github.com/Game-Bob/website/blob/main/src/mechanics/bullet-time-painting/BulletTimeGame.ts";
 ---
 
-<mechanicpage
+<MechanicPage
     title="Bullet-Time Painting"
     description="Planifica tus tácticas y disparos en tiempo pausado. Ejecútalo en ráfagas de 1 segundo de acción pura."
-    githuburl={GITHUB_BASE}
-    codeurl={CODE_URL}
+    githubUrl={GITHUB_BASE}
+    codeUrl={CODE_URL}
 
     image="/images/gamebob/mechanics/bullet-time-painting.webp"
 >
@@ -188,7 +188,7 @@ const CODE_URL =
     const phaseDisplay = document.getElementById("phase-display");
     const statusDot = document.getElementById("status-dot");
 
-    let game: game | null = null;game
+    let game: BulletTimeGame | null = null;
 
     if (canvas && overlay) {
         overlay.addEventListener("click", () => {
@@ -218,10 +218,10 @@ const CODE_URL =
                 const state = (game as any).state;
                 if (state) {
                     if (sectorDisplay)
-                        sectordisplay.textContent = `sector ${state.level.toString().padStart(3, "0")}`;
-                    if (energyBarFill) energybarfill.style.width = `${state.energy}%`;
-                    if (energyPercent) energypercent.textContent = `${Math.round(state.energy)}%`;
-                    if (hpBarFill) hpbarfill.style.width = `${(state.hp / state.maxHp) * 100}%`;
+                        sectorDisplay.textContent = `sector ${state.level.toString().padStart(3, "0")}`;
+                    if (energyBarFill) energyBarFill.style.width = `${state.energy}%`;
+                    if (energyPercent) energyPercent.textContent = `${Math.round(state.energy)}%`;
+                    if (hpBarFill) hpBarFill.style.width = `${(state.hp / state.maxHp) * 100}%`;
 
                     if (hpSegments) {
                         const segments = hpSegments.children;
@@ -240,13 +240,13 @@ const CODE_URL =
                     if (phaseDisplay) {
                         phaseDisplay.textContent = state.isExecutionPhase
                             ? "Tactical_Blitz"
-                            : "Planning_Routine";state.isExecutionPhase
-                        phaseDisplay.style.color = state.isExecutionPhase ? "#00ffd2" : "#ffffff";state.isExecutionPhase
+                            : "Planning_Routine";
+                        phaseDisplay.style.color = state.isExecutionPhase ? "#00ffd2" : "#ffffff";
                     }
                     if (statusDot) {
                         statusDot.style.backgroundColor = state.isExecutionPhase
                             ? "#f43f5e"
-                            : "#00ffd2";state.isExecutionPhase
+                            : "#00ffd2";
                     }
                 }
             }
