@@ -4,49 +4,32 @@ import path from "node:path";
 
 const SRC_DIR = path.join(process.cwd(), "src");
 
-// Global namespaces allowed in any file
 const ALLOWED_GLOBAL_NAMESPACES = [
-    "nav",         // Navigation links
-    "site",        // Site metadata
-    "hero",        // Hero sections
-    "apps",        // App/project data
-    "home",        // Home page content
-    "mechanics",   // Mechanics section content
-    "prototypes",  // Prototypes section content
-    "roadmap",     // Roadmap section content
+    "nav",
+    "site",
+    "hero",
+    "apps",
+    "home",
+    "mechanics",
+    "prototypes",
+    "roadmap",
 ];
 
-/**
- * Converts a file path to expected namespace(s)
- * Examples:
- * - TermsAndConditions.astro -> termsAndConditions
- * - ProjectHomeCard.astro -> projectHomeCard
- * - MechanicsTemplate.astro -> mechanicsTemplate
- * - pages/[lang]/privacy/index.astro -> privacy
- * - pages/[lang]/terms/index.astro -> terms
- */
 function getExpectedNamespaces(filePath: string): string[] {
     const relativePath = path.relative(SRC_DIR, filePath);
 
-    // For pages/[lang]/privacy/index.astro -> privacy
-    // For pages/[lang]/terms/index.astro -> terms
     if (relativePath.startsWith("pages/[lang]/")) {
         const parts = relativePath.split("/");
-        const pageName = parts[2]; // privacy, terms, etc.
+        const pageName = parts[2];
         return [pageName, ...ALLOWED_GLOBAL_NAMESPACES];
     }
 
-    // For regular components: extract filename and convert to camelCase
     const filename = path.basename(filePath, ".astro");
     const camelCased = filename.charAt(0).toLowerCase() + filename.slice(1);
 
     return [camelCased, ...ALLOWED_GLOBAL_NAMESPACES];
 }
 
-/**
- * Extract all t() calls from Astro file content
- * Returns array of namespace.key pairs found in t() calls
- */
 function extractTranslationCalls(content: string): string[] {
     const tCallRegex = /\{t\(["']([^"']+)["']\)/g;
     const matches: string[] = [];
@@ -59,10 +42,6 @@ function extractTranslationCalls(content: string): string[] {
     return matches;
 }
 
-/**
- * Get namespace from translation key
- * Example: "termsAndConditions.badge" -> "termsAndConditions"
- */
 function getNamespace(translationKey: string): string {
     return translationKey.split(".")[0];
 }
@@ -104,13 +83,10 @@ function checkNamespaceUsage(filePath: string): NamespaceViolation[] {
     const expectedNamespaces = getExpectedNamespaces(filePath);
     const translationCalls = extractTranslationCalls(content);
 
-    // Find line numbers for each translation call
     translationCalls.forEach(key => {
         const namespace = getNamespace(key);
 
-        // Check if namespace is one of the expected ones
         if (!expectedNamespaces.includes(namespace)) {
-            // Find line number
             const lineIndex = lines.findIndex(line => line.includes(`t("${key}`)  || line.includes(`t('${key}`));
             violations.push({
                 key,
@@ -125,7 +101,6 @@ function checkNamespaceUsage(filePath: string): NamespaceViolation[] {
 
 const astroFiles = getAllAstroFiles(SRC_DIR);
 
-// Filter only files that use translations (have t() calls)
 const filesWithTranslations = astroFiles.filter(filePath => {
     const content = fs.readFileSync(filePath, 'utf-8');
     return content.includes('{t(') && content.includes('useTranslations');
@@ -135,7 +110,7 @@ describe("i18n: Namespace Enforcement", () => {
     filesWithTranslations.forEach((filePath) => {
         const relativePath = path.relative(SRC_DIR, filePath);
         const expectedNamespaces = getExpectedNamespaces(filePath);
-        const ownNamespace = expectedNamespaces[0]; // First one is the file's own namespace
+        const ownNamespace = expectedNamespaces[0];
 
         it(`${relativePath} must use its own namespace "${ownNamespace}" (or global: ${ALLOWED_GLOBAL_NAMESPACES.join(', ')})`, () => {
             const violations = checkNamespaceUsage(filePath);

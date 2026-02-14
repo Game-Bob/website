@@ -2,7 +2,7 @@
 import './MechanicCanvas.css';
 import { Icon } from "astro-icon/components";
 
-interface props {
+interface Props {
     id: string;
     instruction?: string;
     subInstruction?: string;
@@ -18,24 +18,18 @@ const {
     verticalOnMobile = false,
 } = Astro.props;
 
-const aspectRatioClass = `aspect-${aspectRatio}`;
-
+const aspectClass = `aspect-${aspectRatio}`;
+const verticalClass = verticalOnMobile ? "vertical-mobile" : "";
+const containerClass = `mechanic-canvas-container ${aspectClass} ${verticalClass}`.trim();
 ---
 
-<div class:list={[
-    "canvas-container",
-    aspectRatioClass,
-    { "vertical-mobile": verticalOnMobile }
-]}>
-    <canvas id={id} class="canvas-element"></canvas>
+<div class={containerClass}>
+    <canvas id={id} class="mechanic-canvas"></canvas>
 
-    <div
-        id={`${id}-overlay`}
-        class="canvas-overlay"
-    >
-        <Icon name="mdi:cursor-default-click" class="overlay-icon" />
-        <p class="overlay-instruction">{instruction}</p>
-        <p class="overlay-subinstruction">{subInstruction}</p>
+    <div id={`${id}-overlay`} class="mechanic-canvas-overlay">
+        <Icon name="mdi:cursor-default-click" class="mechanic-canvas-icon" />
+        <p class="mechanic-canvas-instruction">{instruction}</p>
+        <p class="mechanic-canvas-subinstruction">{subInstruction}</p>
     </div>
 
     <slot />

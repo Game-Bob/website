@@ -12,7 +12,10 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang as any);
 
-const allTags = mechanics.flatMap((m) => m.tags);
+const allTags = mechanics.flatMap((m) => {
+    const tags = t(`mechanics.${m.id}.tags`);
+    return Array.isArray(tags) ? tags : [];
+});
 const uniqueTags = [...new Set(allTags)].sort();
 ---
 

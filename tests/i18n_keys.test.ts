@@ -25,15 +25,14 @@ function getAllKeys(obj: TranslationObject, prefix = ""): string[] {
     return keys.sort();
 }
 
-function loadTranslationFile(lang: string, file: string): TranslationObject {
+async function loadTranslationFile(lang: string, file: string): Promise<TranslationObject> {
     const filePath = path.join(LOCALES_DIR, lang, file);
 
     if (!fs.existsSync(filePath)) {
         return {};
     }
 
-    delete require.cache[require.resolve(filePath)];
-    const module = require(filePath);
+    const module = await import(filePath);
     return module.default || module;
 }
 
@@ -68,9 +67,9 @@ describe("i18n: Translation Keys Consistency", () => {
             });
 
             baseFiles.forEach((file) => {
-                it(`${file} should have the same keys as ${BASE_LANG}`, () => {
-                    const baseTranslations = loadTranslationFile(BASE_LANG, file);
-                    const langTranslations = loadTranslationFile(lang, file);
+                it(`${file} should have the same keys as ${BASE_LANG}`, async () => {
+                    const baseTranslations = await loadTranslationFile(BASE_LANG, file);
+                    const langTranslations = await loadTranslationFile(lang, file);
 
                     const baseKeys = getAllKeys(baseTranslations);
                     const langKeys = getAllKeys(langTranslations);

@@ -1,83 +1,82 @@
-.mechanic-info-grid {
+.mechanic-info-container {
     margin-top: 2rem;
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-md);
 }
 
-@media (width >=768px) {
-    .mechanic-info-grid {
-        grid-template-columns: 1fr 1fr;
+@media (width >= 768px) {
+    .mechanic-info-container {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-.info-box {
-    background: var(--black-50);
-    padding: 1.5rem;
+.mechanic-info-section {
+    background: var(--glass-bg);
+    padding: var(--space-md);
     border-radius: var(--radius-md);
-    border: 1px solid var(--bg-surface);
+    border: 1px solid var(--glass-border);
 }
 
-.info-title {
+.mechanic-info-title {
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--text-main);
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-sm);
     display: flex;
     align-items: center;
     gap: var(--space-xs);
 }
 
-.how-it-works-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    color: var(--text-muted);
+.mechanic-info-title-icon {
+    width: var(--space-md);
+    height: var(--space-md);
+}
+
+.mechanic-info-title-icon.blue {
+    color: var(--color-blue-alt-light);
+}
+
+.mechanic-info-title-icon.green {
+    color: var(--color-accent);
+}
+
+.mechanic-info-list {
+    list-style: none;
     padding: 0;
     margin: 0;
-    list-style: none;
-}
-
-.how-it-works-list li {
     display: flex;
-    align-items: flex-start;
-    gap: var(--space-xs);
+    flex-direction: column;
+    gap: var(--space-md);
+    color: var(--text-muted);
 }
 
-.how-it-works-list li span:first-child {
-    color: var(--color-primary);
-    margin-top: 0.25rem;
-}
-
-.controls-grid {
+.mechanic-info-controls {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-sm);
 }
 
-.control-item {
+.mechanic-control-item {
     background: var(--bg-surface);
-    padding: 0.75rem;
-    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    border-radius: var(--radius-base);
     text-align: center;
+}
+
+.mechanic-control-item.full-width {
     grid-column: span 2;
 }
 
-.control-key {
+.mechanic-control-label {
     display: block;
     color: var(--text-main);
     font-weight: 700;
 }
 
-.control-desc {
-    font-size: 0.75rem;
+.mechanic-control-sublabel {
+    display: block;
     color: var(--text-muted);
-}
-
-.info-icon-blue {
-    color: var(--color-primary);
-}
-
-.info-icon-green {
-    color: var(--color-accent);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
 }

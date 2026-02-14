@@ -58,10 +58,10 @@ const l = useLanguagePath(lang as any);
                         </div>
 
                         <h2 class="proto-title">
-                            {proto.title}
+                            {t(`prototypes.${proto.id}.title`)}
                         </h2>
                         <p class="proto-description">
-                            {proto.description}
+                            {t(`prototypes.${proto.id}.description`)}
                         </p>
 
                         {proto.verdict === "liked" && (

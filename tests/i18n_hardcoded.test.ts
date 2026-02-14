@@ -6,11 +6,11 @@ const SRC_DIR = path.join(process.cwd(), "src");
 
 const ALLOWED_BRAND_TEXTS = ["jjlmoya", "GameBob", "GAME", "BOB", "GameBoy"];
 const ALLOWED_PATTERNS = [
-    /^[a-z0-9\-_\.\/]+$/i,  // identifiers, paths, classes
-    /^[0-9\s,\.%\(\)]+$/,    // numbers, percentages
-    /^(px|rem|em|vh|vw|%)$/, // CSS units
-    /^M[0-9\s,\.A-ZLlHhVvCcSsQqTtAa\-]+$/, // SVG paths
-    /^\s*$/,                  // whitespace only
+    /^[a-z0-9\-_\.\/]+$/i,
+    /^[0-9\s,\.%\(\)]+$/,
+    /^(px|rem|em|vh|vw|%)$/,
+    /^M[0-9\s,\.A-ZLlHhVvCcSsQqTtAa\-]+$/,
+    /^\s*$/,
 ];
 
 const TEXT_ATTRIBUTES = ['alt', 'placeholder', 'title', 'aria-label', 'aria-description'];
@@ -20,10 +20,8 @@ function isAllowedText(text: string): boolean {
 
     if (!text || text.length < 2) return true;
 
-    // Allow brand names
     if (ALLOWED_BRAND_TEXTS.some(brand => text === brand)) return true;
 
-    // Allow common patterns
     if (ALLOWED_PATTERNS.some(pattern => pattern.test(text))) return true;
 
     return false;
@@ -32,7 +30,6 @@ function isAllowedText(text: string): boolean {
 function extractHtmlVisibleText(htmlContent: string): Array<{ text: string; line: number; context: string }> {
     const results: Array<{ text: string; line: number; context: string }> = [];
 
-    // Remove script and style sections
     const scriptIndex = htmlContent.indexOf('<script');
     const styleIndex = htmlContent.indexOf('<style');
     let processContent = htmlContent;
@@ -47,10 +44,8 @@ function extractHtmlVisibleText(htmlContent: string): Array<{ text: string; line
     lines.forEach((line, index) => {
         const lineNumber = index + 1;
 
-        // Skip lines with translation functions
         if (line.includes('{t(') || line.includes('${t(')) return;
 
-        // 1. Check for text in HTML attributes (alt, placeholder, title, etc.)
         TEXT_ATTRIBUTES.forEach(attr => {
             const attrRegex = new RegExp(`${attr}=["']([^"'{]+)["']`, 'g');
             let match;
@@ -66,13 +61,11 @@ function extractHtmlVisibleText(htmlContent: string): Array<{ text: string; line
             }
         });
 
-        // 2. Check for text between HTML tags (but not inside {})
         const betweenTagsRegex = />([^<{]+)</g;
         let match;
         while ((match = betweenTagsRegex.exec(line)) !== null) {
             const text = match[1].trim();
 
-            // Skip if it's a translation function call
             if (text.includes('t(')) continue;
 
             if (!isAllowedText(text) && /[a-zA-Z]{2,}/.test(text)) {

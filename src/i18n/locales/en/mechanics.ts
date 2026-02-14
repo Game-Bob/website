@@ -9,11 +9,24 @@ export default {
     backLink: "Back to Mechanics",
     github: "GitHub",
     code: "Code",
+    howItWorksTitle: "How it works",
+    controlsTitle: "Controls",
 
     slingshot: {
         title: "Slingshot",
         description: "drag, stretch, and launch. slingshot physics with dynamic bounces and precise touch control.",
-        tags: ["physics", "touch", "arcade"]
+        tags: ["physics", "touch", "arcade"],
+        instruction: "Drag and Release",
+        subInstruction: "Launch the character",
+        howItWorks: {
+            spring: "Spring physics for launching (Hooke's Law).",
+            bounce: "Bounces with energy loss (damping).",
+            deformation: "Visual deformation (Squash & Stretch) based on velocity."
+        },
+        controls: {
+            drag: "Drag",
+            aim: "Tension and Aim"
+        }
     },
     swipe: {
         title: "Swipe Gesture",

@@ -9,11 +9,24 @@ export default {
     backLink: "Volver a Mecánicas",
     github: "GitHub",
     code: "Código",
+    howItWorksTitle: "Cómo funciona",
+    controlsTitle: "Controles",
 
     slingshot: {
         title: "Slingshot",
         description: "arrastra, estira y lanza. física de tirachinas con rebotes dinámicos y control táctil preciso.",
-        tags: ["física", "táctil", "arcade"]
+        tags: ["física", "táctil", "arcade"],
+        instruction: "Arrastra y Suelta",
+        subInstruction: "Lanza al personaje",
+        howItWorks: {
+            spring: "Física de muelles para el lanzamiento (Ley de Hooke).",
+            bounce: "Rebotes con pérdida de energía (amortiguación).",
+            deformation: "Deformación visual (Squash & Stretch) basada en la velocidad."
+        },
+        controls: {
+            drag: "Arrastrar / Drag",
+            aim: "Tensar y Apuntar"
+        }
     },
     swipe: {
         title: "Swipe Gesture",

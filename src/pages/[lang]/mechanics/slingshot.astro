@@ -1,0 +1,89 @@
+---
+export const prerender = true;
+import MechanicPage from "../../../components/gamebob/mechanics/MechanicPage.astro";
+import MechanicCanvas from "../../../components/gamebob/mechanics/MechanicCanvas.astro";
+import MechanicInfo from "../../../components/gamebob/mechanics/MechanicInfo.astro";
+import { Icon } from "astro-icon/components";
+import { ui } from "../../../i18n/ui";
+import { useTranslations } from "../../../i18n/utils";
+import { getGitHubUrls } from "../../../config/github";
+
+export async function getStaticPaths() {
+    return Object.keys(ui).map((lang) => ({
+        params: { lang }
+    }));
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as any);
+
+const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("slingshot");
+---
+
+<MechanicPage
+    title={t("mechanics.slingshot.title")}
+    description={t("mechanics.slingshot.description")}
+    githubUrl={GITHUB_BASE}
+    codeUrl={CODE_URL}
+    image="/images/gamebob/mechanics/slingshot.webp"
+    lang={lang}
+>
+    <Icon slot="icon" name="mdi:gesture-swipe" class="text-yellow-400" />
+
+    <MechanicCanvas
+        id="game-canvas"
+        instruction={t("mechanics.slingshot.instruction")}
+        subInstruction={t("mechanics.slingshot.subInstruction")}
+        verticalOnMobile={true}
+    />
+
+    <MechanicInfo>
+        <Fragment slot="how-it-works">
+            <li class="flex items-start gap-2">
+                <span class="text-blue-400 mt-1">•</span>
+                <span>{t("mechanics.slingshot.howItWorks.spring")}</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="text-blue-400 mt-1">•</span>
+                <span>{t("mechanics.slingshot.howItWorks.bounce")}</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="text-blue-400 mt-1">•</span>
+                <span>{t("mechanics.slingshot.howItWorks.deformation")}</span>
+            </li>
+        </Fragment>
+
+        <Fragment slot="controls">
+            <div class="mechanic-control-item full-width">
+                <span class="mechanic-control-label">{t("mechanics.slingshot.controls.drag")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.slingshot.controls.aim")}</span>
+            </div>
+        </Fragment>
+    </MechanicInfo>
+</MechanicPage>
+
+<script>
+    import { SlingshotGame } from "../../../lib/mechanics/slingshot/SlingshotGame";
+
+    const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
+    const overlay = document.getElementById("game-canvas-overlay");
+    let game: SlingshotGame | null = null;
+
+    if (canvas && overlay) {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+
+        overlay.addEventListener("click", () => {
+            overlay.style.opacity = "0";
+            overlay.style.pointerEvents = "none";
+            if (!game) {
+                game = new SlingshotGame(canvas);
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (game) game.resize();
+        });
+    }
+</script>

@@ -1,25 +1,29 @@
 ---
 import './MechanicInfo.css';
 import { Icon } from "astro-icon/components";
+import { useTranslations, getLangFromUrl } from "../../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<div class="mechanic-info-grid">
-    <div class="info-box">
-        <h2 class="info-title">
-            <Icon name="mdi:code-braces" class="info-icon-blue" />
-            Cómo funciona
+<div class="mechanic-info-container">
+    <div class="mechanic-info-section">
+        <h2 class="mechanic-info-title">
+            <Icon name="mdi:code-braces" class="mechanic-info-title-icon blue" />
+            {t("mechanics.howItWorksTitle")}
         </h2>
-        <ul class="how-it-works-list">
+        <ul class="mechanic-info-list">
             <slot name="how-it-works" />
         </ul>
     </div>
 
-    <div class="info-box">
-        <h2 class="info-title">
-            <Icon name="mdi:controller" class="info-icon-green" />
-            Controles
+    <div class="mechanic-info-section">
+        <h2 class="mechanic-info-title">
+            <Icon name="mdi:controller" class="mechanic-info-title-icon green" />
+            {t("mechanics.controlsTitle")}
         </h2>
-        <div class="controls-grid">
+        <div class="mechanic-info-controls">
             <slot name="controls" />
         </div>
     </div>

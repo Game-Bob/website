@@ -1,42 +1,46 @@
-.mechanic-detail-container {
+.mechanic-page-container {
     width: 100%;
     max-width: 80rem;
     margin: 0 auto;
-    padding: 0 1rem 3rem;
+    padding: 0 var(--space-sm) 3rem;
 }
 
-.mechanic-detail-header {
+.mechanic-header {
     margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
 }
 
-@media (width >=768px) {
-    .mechanic-detail-header {
+@media (width >= 768px) {
+    .mechanic-header {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
     }
 }
 
-.back-link {
-    color: var(--text-muted);
+.mechanic-header-content {
+    flex: 1;
+}
+
+.mechanic-back-link {
     display: flex;
     align-items: center;
     gap: var(--space-xs);
-    margin-bottom: 0.5rem;
-    padding: 1.5rem 0;
-    transition: color 0.2s ease;
+    color: var(--text-muted);
     text-decoration: none;
+    margin-bottom: var(--space-xs);
+    padding: var(--space-md) 0;
     width: fit-content;
+    transition: color 0.2s;
 }
 
-.back-link:hover {
+.mechanic-back-link:hover {
     color: var(--text-main);
 }
 
-.back-icon {
+.mechanic-back-icon {
     width: 1.25rem;
     height: 1.25rem;
 }
@@ -47,53 +51,53 @@
     color: var(--text-main);
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
+    gap: var(--space-md);
     margin: 0;
 }
 
-@media (width >=768px) {
+@media (width >= 768px) {
     .mechanic-title {
         font-size: 2.25rem;
     }
 }
 
-.mechanic-detail-description {
+.mechanic-description {
     color: var(--text-muted);
-    margin-top: 0.5rem;
+    margin-top: var(--space-xs);
     font-size: 0.875rem;
 }
 
-@media (width >=768px) {
-    .mechanic-detail-description {
+@media (width >= 768px) {
+    .mechanic-description {
         font-size: 1rem;
     }
 }
 
 .mechanic-actions {
     display: flex;
-    gap: var(--space-xs);
+    gap: var(--space-md);
 }
 
-.action-btn {
+.mechanic-action-btn {
     display: flex;
     align-items: center;
     gap: var(--space-xs);
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-md);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-base);
     background: var(--bg-surface);
     color: var(--text-main);
-    transition: background 0.2s ease;
+    text-decoration: none;
     font-size: 0.875rem;
     font-weight: 500;
-    border: 1px solid var(--bg-surface);
-    text-decoration: none;
+    border: 1px solid var(--glass-border);
+    transition: background 0.2s;
 }
 
-.action-btn:hover {
-    background: var(--bg-surface);
+.mechanic-action-btn:hover {
+    background: var(--glass-bg);
 }
 
-.action-icon {
+.mechanic-action-icon {
     width: 1.25rem;
     height: 1.25rem;
 }

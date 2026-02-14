@@ -3,7 +3,7 @@ import './PostMortemCard.css';
 import { Icon } from "astro-icon/components";
 import type { PostMortemEntry } from "../../../data/gamebob/post-mortem/entries";
 
-import { useLanguagePath } from "../../../i18n/utils";
+import { useLanguagePath, useTranslations } from "../../../i18n/utils";
 
 interface Props {
     entry: PostMortemEntry;
@@ -11,6 +11,7 @@ interface Props {
 
 const { lang } = Astro.params;
 const l = useLanguagePath(lang as any);
+const t = useTranslations(lang as any);
 const { entry } = Astro.props as Props;
 const imagePath = entry.image ? `/images/gamebob/post-mortem/${entry.image}` : null;
 
@@ -27,7 +28,7 @@ const imagePath = entry.image ? `/images/gamebob/post-mortem/${entry.image}` : n
             imagePath ? (
                 <img
                     src={imagePath}
-                    alt={entry.title}
+                    alt={t(`postMortem.${entry.id}.title`)}
                     class="pm-image"
                 />
             ) : (
@@ -43,21 +44,21 @@ const imagePath = entry.image ? `/images/gamebob/post-mortem/${entry.image}` : n
         </div>
 
         <div class="pm-date-badge">
-            {entry.date}
+            {t(`postMortem.${entry.id}.date`)}
 
         </div>
     </div>
 
     <div class="pm-card-content">
         <h2 class="pm-card-title">
-            {entry.title}
+            {t(`postMortem.${entry.id}.title`)}
         </h2>
 
         <div class="pm-card-body">
             <div class="pm-row">
                 <Icon name="mdi:close-circle-outline" class="pm-icon-sm" style="color: var(--color-secondary)" />
                 <p class="pm-error-text">
-                    "{entry.error}"
+                    "{t(`postMortem.${entry.id}.error`)}"
                 </p>
             </div>
             <div class="pm-row">
@@ -67,7 +68,7 @@ const imagePath = entry.image ? `/images/gamebob/post-mortem/${entry.image}` : n
                     style="color: var(--color-accent)"
                 />
                 <p class="pm-lesson-text">
-                    {entry.lesson}
+                    {t(`postMortem.${entry.id}.lesson`)}
 
                 </p>
             </div>
@@ -75,14 +76,17 @@ const imagePath = entry.image ? `/images/gamebob/post-mortem/${entry.image}` : n
 
         <div class="pm-card-footer">
             {
-                entry.tags &&
-                    entry.tags
-                        .slice(0, 3)
-                        .map((tag) => (
+                (() => {
+                    const tags = t(`postMortem.${entry.id}.tags`);
+                    if (Array.isArray(tags)) {
+                        return (tags as string[]).slice(0, 3).map((tag: string) => (
                             <span class="pm-tag">
                                 #{tag}
                             </span>
-                        ))
+                        ));
+                    }
+                    return null;
+                })()
             }
         </div>
     </div>
