@@ -22,7 +22,7 @@ describe("Page Availability Tests", () => {
 
             const text = await response.text();
 
-            expect(text).toContain("jjlmoya");
+            expect(text.toLowerCase()).toContain("gamebob");
 
             expect(text.toLowerCase()).toContain("<html");
             expect(text).toContain("</html>");
