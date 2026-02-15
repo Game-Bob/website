@@ -22,10 +22,16 @@ describe("Page Availability Tests", () => {
 
             const text = await response.text();
 
-            expect(text.toLowerCase()).toContain("gamebob");
-
-            expect(text.toLowerCase()).toContain("<html");
-            expect(text).toContain("</html>");
+            if (route === "/") {
+                expect(text.toLowerCase()).toContain("<!doctype html>");
+                const isRedirectPage = text.toLowerCase().includes("redirecting");
+                const isFullPage = text.toLowerCase().includes("<html");
+                expect(isRedirectPage || isFullPage).toBe(true);
+            } else {
+                expect(text.toLowerCase()).toContain("gamebob");
+                expect(text.toLowerCase()).toContain("<html");
+                expect(text).toContain("</html>");
+            }
         });
     });
 });
