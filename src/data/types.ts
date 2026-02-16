@@ -20,7 +20,7 @@ export interface ProjectStores {
 export interface ProjectRoadmap {
     statusType: ProjectStatus;
     progress: number;
-    // Future expansion: milestones, version history, etc.
+
 }
 
 export interface Project {

@@ -17,10 +17,7 @@
     cursor: pointer;
 }
 
-.project-links {
-    position: relative;
-    z-index: 20;
-}
+
 
 .project-card:first-child {
     margin-top: 0;
@@ -101,7 +98,6 @@
 }
 
 @keyframes pulse-animation {
-
     0%,
     100% {
         opacity: 100%;
@@ -116,6 +112,8 @@
     display: flex;
     gap: var(--space-sm);
     margin-top: var(--space-sm);
+    position: relative;
+    z-index: 20;
 }
 
 .store-button {

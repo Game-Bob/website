@@ -27,7 +27,7 @@ const links = project.stores || project.links;
 const isEven = index % 2 === 0;
 const nameParts = name ? (name.includes(":") ? [name.split(":")[0], name.split(":")[1]] : [name, ""]) : ["", ""];
 
-// Route logic: games go to /games/, utilities to /utilities/
+
 const detailUrl = l(project.isGame ? `/games/${project.slug}` : `/utilities/${project.slug}`);
 
 ---

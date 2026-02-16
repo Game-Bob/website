@@ -9,7 +9,7 @@
     text-decoration: none;
     color: var(--text-main);
     transition: all 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--black-10);
     min-width: 140px;
     position: relative;
     overflow: hidden;
@@ -19,7 +19,7 @@
     background: var(--white-10);
     border-color: var(--color-primary);
     transform: translateY(-2px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2), 0 0 15px var(--cyan-bob-10);
+    box-shadow: 0 8px 12px var(--black-20), 0 0 15px var(--cyan-bob-10);
 }
 
 .store-button:not(.disabled):active {
@@ -27,7 +27,7 @@
 }
 
 .store-button.disabled {
-    opacity: 0.5;
+    opacity: 50%;
     cursor: not-allowed;
     background: var(--bg-surface);
     border-color: var(--white-5);
@@ -65,11 +65,10 @@
     color: var(--text-main);
 }
 
-/* Specific Store Colors on Hover (Optional, can be removed for uniform look) */
 .store-button.google-play:hover {
-    border-color: #00D2FF;
+    border-color: var(--color-primary);
 }
 
 .store-button.app-store:hover {
-    border-color: #FFF;
+    border-color: var(--white);
 }

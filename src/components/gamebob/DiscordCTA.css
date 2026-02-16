@@ -20,7 +20,7 @@
     width: 100%;
     text-decoration: none;
     backdrop-filter: blur(12px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 6px -1px var(--black-10), 0 2px 4px -1px var(--black-5);
     transform: translateY(0);
 }
 
@@ -34,7 +34,7 @@
 
 .discord-cta:hover {
     border-color: var(--discord-color);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 25px -5px var(--black-20), 0 10px 10px -5px var(--black-10);
     background: var(--white-10);
 }
 
@@ -68,8 +68,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--discord-color), #4752c4);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, var(--discord-color), var(--color-primary));
+    box-shadow: 0 4px 6px -1px var(--black-10);
     border-radius: var(--radius-md);
 }
 
@@ -210,14 +210,14 @@
 
 @keyframes pulse-animation {
     0% {
-        box-shadow: 0 0 0 0 rgba(35, 165, 90, 0.7);
+        box-shadow: 0 0 0 0 color-mix(in srgb, var(--discord-green), transparent 30%);
     }
 
     70% {
-        box-shadow: 0 0 0 6px rgba(35, 165, 90, 0);
+        box-shadow: 0 0 0 6px transparent;
     }
 
     100% {
-        box-shadow: 0 0 0 0 rgba(35, 165, 90, 0);
+        box-shadow: 0 0 0 0 transparent;
     }
 }
