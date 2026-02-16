@@ -1,0 +1,33 @@
+---
+import { prototypes, type Prototype } from "../../../data/gamebob/prototypes";
+import { ui } from "../../../i18n/ui";
+import EvolutionPrototype from "../../../components/templates/prototypes/EvolutionPrototype.astro";
+
+export async function getStaticPaths() {
+  const paths = [];
+  const languages = Object.keys(ui);
+  
+  for (const lang of languages) {
+    for (const proto of prototypes) {
+      paths.push({
+        params: { lang, slug: proto.slug },
+      });
+    }
+  }
+  return paths;
+}
+
+const { lang, slug } = Astro.params;
+
+const prototype = prototypes.find((p: Prototype) => p.slug === slug);
+---
+
+{slug === "evolution" ? (
+  <EvolutionPrototype lang={lang || "en"} />
+) : (
+  <div style="color: var(--text-main); padding: var(--space-md);">
+    <h1>Prototype {slug}</h1>
+    <p>This prototype is defined but its template is not implemented yet.</p>
+    <a href={`/${lang}/prototypes/`} style="color: var(--color-primary);">Back to Prototypes</a>
+  </div>
+)}

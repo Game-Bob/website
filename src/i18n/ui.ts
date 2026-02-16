@@ -24,14 +24,49 @@ const modules = import.meta.glob('./locales/**/*.ts', { eager: true });
 
 export const ui: Record<string, Record<string, any>> = {};
 
+const isObject = (item: any) => (item && typeof item === 'object' && !Array.isArray(item));
+
+const deepMerge = (target: any, source: any) => {
+    const output = { ...target };
+    if (isObject(target) && isObject(source)) {
+        Object.keys(source).forEach(key => {
+            if (isObject(source[key])) {
+                if (!(key in target)) {
+                    Object.assign(output, { [key]: source[key] });
+                } else {
+                    output[key] = deepMerge(target[key], source[key]);
+                }
+            } else {
+                Object.assign(output, { [key]: source[key] });
+            }
+        });
+    }
+    return output;
+};
+
 for (const path in modules) {
     const parts = path.split('/');
     const lang = parts[2];
-    const moduleName = parts[3].replace('.ts', '');
 
     if (!ui[lang]) {
         ui[lang] = {};
     }
 
-    ui[lang][moduleName] = (modules[path] as any).default;
+    let current = ui[lang];
+    for (let i = 3; i < parts.length; i++) {
+        const part = parts[i].replace('.ts', '');
+        if (i === parts.length - 1) {
+            const val = (modules[path] as any).default;
+            if (isObject(val) && isObject(current[part])) {
+                current[part] = deepMerge(current[part], val);
+            } else {
+                current[part] = val;
+            }
+        } else {
+            if (!current[part]) {
+                current[part] = {};
+            }
+            current = current[part];
+        }
+    }
 }

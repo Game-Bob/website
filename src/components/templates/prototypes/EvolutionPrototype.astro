@@ -1,0 +1,176 @@
+---
+import GameBobLayout from "../../../layouts/GameBobLayout.astro";
+import { Icon } from "astro-icon/components";
+import evolutionData from "../../../data/gamebob/evolution-data.json";
+import { useTranslations } from "../../../i18n/utils";
+import "./EvolutionPrototype.css";
+
+const { base_elements, recipes } = evolutionData;
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang as any);
+---
+
+<GameBobLayout
+    title={`${t("prototypes.evolution.labTitle")} - Prototype`}
+    description={t("prototypes.evolution.description")}
+>
+    <div class="evolution-container">
+        <div class="evolution-bg">
+            <div class="evolution-bg-gradient"></div>
+            <div class="evolution-bg-glow-1"></div>
+            <div class="evolution-bg-glow-2"></div>
+            <div class="evolution-bg-grid"></div>
+        </div>
+
+        <aside class="evolution-sidebar">
+            <div class="sidebar-header">
+                <h2 class="hidden-mobile sidebar-title">{t("prototypes.evolution.labTitle")}</h2>
+                <p class="hidden-mobile sidebar-subtitle">{t("prototypes.evolution.labSubtitle")}</p>
+                <div class="show-mobile">
+                    <Icon name="mdi:flask" class="mobile-header-icon" />
+                </div>
+            </div>
+
+            <div class="spawn-btn-container">
+                <button id="spawn-egg-btn" class="spawn-btn">
+                    <Icon name="mdi:egg" class="spawn-btn-icon" />
+                    <span class="hidden-mobile">{t("prototypes.evolution.createEgg")}</span>
+                </button>
+            </div>
+
+            <div class="inventory-section">
+                <div class="inventory-label-container">
+                    <div class="inventory-line"></div>
+                    <span class="inventory-label">{t("prototypes.evolution.elementsLabel")}</span>
+                    <div class="inventory-line"></div>
+                </div>
+            </div>
+
+            <div id="inventory" class="inventory-grid"></div>
+
+            <div class="sidebar-footer">
+                <button id="encyclopedia-btn" class="footer-btn btn-encyclopedia">
+                    <Icon name="mdi:book-open-page-variant" class="footer-btn-icon" />
+                    <span class="hidden-mobile">{t("prototypes.evolution.encyclopediaBtn")}</span>
+                </button>
+
+                <button id="clear-btn" class="footer-btn btn-clear">
+                    <Icon name="mdi:delete-sweep" class="footer-btn-icon" />
+                    <span class="hidden-mobile">{t("prototypes.evolution.clearBtn")}</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="playground-area" id="playground">
+            <div class="playground-texture"></div>
+
+            <div id="instructions" class="tutorial-overlay">
+                <div class="tutorial-symbols">
+                    <Icon name="mdi:mouse-move-vertical" style="font-size: 4rem; color: rgb(255 255 255 / 20%)" />
+                    <p style="color: rgb(255 255 255 / 40%); margin-top: 1rem;">{t("prototypes.evolution.dragInstructions")}</p>
+                </div>
+            </div>
+
+            <div id="entities-layer" class="entities-layer"></div>
+        </main>
+
+        <div id="encyclopedia-modal" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <Icon name="mdi:book-open-variant" style="font-size: 2rem; color: #818cf8" />
+                        <div>
+                            <h2 style="font-size: 1.5rem; font-weight: 700;">{t("prototypes.evolution.encyclopediaTitle")}</h2>
+                            <p id="encyclopedia-stats" style="font-size: 0.875rem; color: #94a3b8; font-family: monospace;">{t("prototypes.evolution.discoveredCount")}: 0/0</p>
+                        </div>
+                    </div>
+                    <button id="close-encyclopedia" style="background: none; border: none; cursor: pointer; color: #94a3b8;">
+                        <Icon name="mdi:close" style="font-size: 1.5rem;" />
+                    </button>
+                </div>
+
+                <div id="encyclopedia-grid" class="modal-grid"></div>
+            </div>
+        </div>
+
+        <div id="battle-overlay" class="battle-overlay">
+            <div class="battle-container">
+                <h2 class="battle-title">{t("prototypes.evolution.battleTitle")}</h2>
+
+                <div class="battle-vs-row">
+                    <div class="fighter-card" id="fighter-1">
+                        <div class="fighter-visual-container">
+                            <div style="position: absolute; inset: 0; background: rgb(79 70 229 / 20%); filter: blur(30px); border-radius: 50%;"></div>
+                            <div id="f1-visual" style="position: relative; z-index: 1; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;"></div>
+                        </div>
+                        <h3 id="f1-name" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">C1</h3>
+                        <div class="hp-bar-outer">
+                            <div id="f1-hp-bar" style="height: 100%; background: linear-gradient(to right, #10b981, #34d399); width: 100%;"></div>
+                        </div>
+                        <p id="f1-hp-text" style="font-family: monospace; font-size: 0.75rem; color: #94a3b8; margin-top: 0.25rem;">100/100</p>
+                    </div>
+
+                    <div class="vs-text">VS</div>
+
+                    <div class="fighter-card" id="fighter-2">
+                        <div class="fighter-visual-container">
+                            <div style="position: absolute; inset: 0; background: rgb(239 68 68 / 20%); filter: blur(30px); border-radius: 50%;"></div>
+                            <div id="f2-visual" style="position: relative; z-index: 1; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;"></div>
+                        </div>
+                        <h3 id="f2-name" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">C2</h3>
+                        <div class="hp-bar-outer">
+                            <div id="f2-hp-bar" style="height: 100%; background: linear-gradient(to right, #ef4444, #f87171); width: 100%;"></div>
+                        </div>
+                        <p id="f2-hp-text" style="font-family: monospace; font-size: 0.75rem; color: #94a3b8; margin-top: 0.25rem;">100/100</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem; height: 3rem; display: flex; align-items: center; justify-content: center;">
+                    <p id="battle-action-text" style="font-weight: 700; font-family: monospace; text-align: center; color: rgb(255 255 255 / 80%);"></p>
+                </div>
+
+                <button id="close-battle" style="margin-top: 1.5rem; padding: 0.75rem 2rem; background: #fff; color: #020617; font-weight: 900; border: none; border-radius: 9999px; cursor: pointer; display: none;">
+                    {t("prototypes.evolution.closeArena")}
+                </button>
+            </div>
+        </div>
+    </div>
+</GameBobLayout>
+
+<style>
+    @media (width <= 767px) {
+        .hidden-mobile { display: none; }
+        .show-mobile { display: block; }
+        .mobile-header-icon { font-size: 2rem; color: #818cf8; margin: 0 auto; display: block; }
+    }
+
+    @media (width >= 768px) {
+        .show-mobile { display: none; }
+    }
+</style>
+
+<script>
+    import { Game } from "../../../scripts/evolution/Game.js";
+
+    const dataScript = document.getElementById("evolution-data") as HTMLScriptElement;
+    if (dataScript && dataScript.textContent) {
+        const { base_elements, recipes, i18n } = JSON.parse(dataScript.textContent);
+        new Game({ base_elements, recipes, i18n });
+    }
+</script>
+
+<script
+    is:inline
+    id="evolution-data"
+    type="application/json"
+    set:html={JSON.stringify({ 
+        base_elements, 
+        recipes, 
+        i18n: t("prototypes.evolution") 
+    })}
+/>
