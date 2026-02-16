@@ -2,8 +2,8 @@
 
 A tactical shooter mechanic where time only moves when you take action, featuring a painting-like aesthetic and sector-based progression.
 
-> **[🎮 Play Live Demo](https://gamebob.jjlmoya.es/gamebob/mecanicas/bullet-time-painting/)**
-> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/lib/mechanics/bullet-time-painting/BulletTimeGame.ts)**
+> **[🎮 Play Live Demo](https://gamebob.gamebob.dev/gamebob/mecanicas/bullet-time-painting/)**
+> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/mechanics/bullet-time-painting/BulletTimeGame.ts)**
 
 ## 🕹️ How it Works
 

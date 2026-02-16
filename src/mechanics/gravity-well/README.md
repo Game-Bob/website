@@ -2,8 +2,8 @@
 
 A particle physics simulation where users can place gravity wells that attract floating particles.
 
-> **[🎮 Play Live Demo](https://gamebob.jjlmoya.es/gamebob/mecanicas/gravity-well/)**
-> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/lib/mechanics/gravity-well/GravityWellMechanic.ts)**
+> **[🎮 Play Live Demo](https://gamebob.gamebob.dev/gamebob/mecanicas/gravity-well/)**
+> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/mechanics/gravity-well/GravityWellMechanic.ts)**
 
 ## How it works
 

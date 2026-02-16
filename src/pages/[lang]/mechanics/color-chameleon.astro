@@ -53,7 +53,7 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("color-chameleon");
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.color-chameleon.controls.tap")}</span>
+                <span class="mechanic-control-label">{t("mechanics.color-chameleon.controls.clickTap")}</span>
                 <span class="mechanic-control-sublabel">{t("mechanics.color-chameleon.controls.cycle")}</span>
             </div>
         </Fragment>
@@ -61,7 +61,7 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("color-chameleon");
 </MechanicPage>
 
 <script>
-    import { ColorChameleonGame } from "../../../lib/mechanics/color-chameleon/ColorChameleonGame";
+    import { ColorChameleonGame } from "../../../mechanics/color-chameleon/ColorChameleonGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");

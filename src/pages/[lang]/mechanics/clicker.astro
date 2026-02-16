@@ -1,6 +1,6 @@
 ---
 import MechanicPage from "../../../components/gamebob/mechanics/MechanicPage.astro";
-import MechanicCanvas from "../../../components/gamebob/mechanics/MechanicCanvas.astro";
+import ClickerUI from "../../../components/gamebob/mechanics/ClickerUI.astro";
 import MechanicInfo from "../../../components/gamebob/mechanics/MechanicInfo.astro";
 import { Icon } from "astro-icon/components";
 import { ui } from "../../../i18n/ui";
@@ -29,11 +29,7 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("clicker");
 >
     <Icon slot="icon" name="mdi:cursor-default-click" class="text-green-400" />
 
-    <MechanicCanvas
-        id="game-canvas"
-        instruction={t("mechanics.interactiveDemo")}
-        subInstruction={t("mechanics.demoPlaceholder")}
-    />
+    <ClickerUI lang={lang} />
 
     <MechanicInfo>
         <Fragment slot="how-it-works">
@@ -60,28 +56,100 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("clicker");
     </MechanicInfo>
 </MechanicPage>
 
+<script is:inline define:vars={{
+    perClick: t("mechanics.clicker.ui.perClick"),
+    upgradeNames: {
+        cursor: t("mechanics.clicker.upgradeNames.cursor"),
+        power: t("mechanics.clicker.upgradeNames.power"),
+        farm: t("mechanics.clicker.upgradeNames.farm"),
+        factory: t("mechanics.clicker.upgradeNames.factory")
+    }
+}}>
+    window.clickerTranslations = { perClick, upgradeNames };
+</script>
+
 <script>
-    import { ClickerGame } from "../../../lib/mechanics/clicker/ClickerGame";
+    import { ClickerGame, formatNumber } from "../../../mechanics/clicker/ClickerGame";
 
-    const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
-    const overlay = document.getElementById("game-canvas-overlay");
-    let game: ClickerGame | null = null;
+    const canvas = document.getElementById("clicker-canvas") as HTMLCanvasElement;
+    const button = document.getElementById("clicker-button") as HTMLButtonElement;
+    const currencyEl = document.getElementById("clicker-currency");
+    const rateEl = document.getElementById("clicker-rate");
+    const upgradesEl = document.getElementById("clicker-upgrades");
 
-    if (canvas && overlay) {
+    if (canvas && button && currencyEl && rateEl && upgradesEl) {
         const rect = canvas.getBoundingClientRect();
         canvas.width = rect.width;
         canvas.height = rect.height;
 
-        overlay.addEventListener("click", () => {
-            overlay.style.opacity = "0";
-            overlay.style.pointerEvents = "none";
-            if (!game) {
-                game = new ClickerGame(canvas);
+        const game = new ClickerGame(canvas);
+
+        function updateUI() {
+            const state = game.state;
+            currencyEl!.textContent = formatNumber(state.currency);
+            rateEl!.textContent = formatNumber(state.autoClickRate);
+            renderUpgrades(state.upgrades, state.currency);
+        }
+
+        function renderUpgrades(upgrades: any[], currency: number) {
+            const translations = (window as any).clickerTranslations || {
+                perClick: 'per click',
+                upgradeNames: {}
+            };
+            upgradesEl!.innerHTML = upgrades.map(upgrade => {
+                const canAfford = currency >= upgrade.cost;
+                const powerText = upgrade.type === 'click'
+                    ? `+${upgrade.power} ${translations.perClick}`
+                    : `+${upgrade.power}/s`;
+                const upgradeName = translations.upgradeNames[upgrade.id] || upgrade.name;
+
+                return `
+                    <div class="clicker-upgrade ${canAfford ? '' : 'disabled'}" data-upgrade="${upgrade.id}">
+                        <div class="clicker-upgrade-header">
+                            <span class="clicker-upgrade-name">${upgradeName}</span>
+                            <span class="clicker-upgrade-count">${upgrade.count}</span>
+                        </div>
+                        <div class="clicker-upgrade-footer">
+                            <span class="clicker-upgrade-cost">${formatNumber(upgrade.cost)}</span>
+                            <span class="clicker-upgrade-power">${powerText}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        button.addEventListener("click", (e) => {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const canvasRect = canvas.getBoundingClientRect();
+            const buttonRect = button.getBoundingClientRect();
+            const canvasX = buttonRect.left - canvasRect.left + x;
+            const canvasY = buttonRect.top - canvasRect.top + y;
+
+            game.click(canvasX, canvasY);
+            updateUI();
+        });
+
+        upgradesEl.addEventListener("click", (e) => {
+            const target = (e.target as HTMLElement).closest(".clicker-upgrade") as HTMLElement;
+            if (target && !target.classList.contains("disabled")) {
+                const upgradeId = target.dataset.upgrade;
+                if (upgradeId && game.buyUpgrade(upgradeId)) {
+                    updateUI();
+                }
             }
         });
 
         window.addEventListener("resize", () => {
-            if (game) game.resize();
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+            game.resize();
         });
+
+        setInterval(updateUI, 100);
+        updateUI();
     }
 </script>

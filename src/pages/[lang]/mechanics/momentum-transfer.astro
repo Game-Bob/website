@@ -53,15 +53,15 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("momentum-transfer")
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.momentum-transfer.controls.move")}</span>
-                <span class="mechanic-control-sublabel">{t("mechanics.momentum-transfer.controls.collide")}</span>
+                <span class="mechanic-control-label">{t("mechanics.momentum-transfer.controls.drag")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.momentum-transfer.controls.aim")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { MomentumTransferGame } from "../../../lib/mechanics/momentum-transfer/MomentumTransferGame";
+    import { MomentumTransferGame } from "../../../mechanics/momentum-transfer/MomentumTransferGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");
@@ -77,6 +77,7 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("momentum-transfer")
             overlay.style.pointerEvents = "none";
             if (!game) {
                 game = new MomentumTransferGame(canvas);
+                game.start();
             }
         });
     }

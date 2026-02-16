@@ -53,15 +53,15 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("gravity-flip");
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.gravity-flip.controls.tap")}</span>
-                <span class="mechanic-control-sublabel">{t("mechanics.gravity-flip.controls.flip")}</span>
+                <span class="mechanic-control-label">{t("mechanics.gravity-flip.controls.flip")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.gravity-flip.controls.flipAction")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { GravityFlipGame } from "../../../lib/mechanics/gravity-flip/GravityFlipGame";
+    import { GravityFlipGame } from "../../../mechanics/gravity-flip/GravityFlipGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");

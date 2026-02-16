@@ -13,6 +13,10 @@ const ALLOWED_GLOBAL_NAMESPACES = [
     "mechanics",
     "prototypes",
     "roadmap",
+    "postmortem",
+    "postMortem",
+    "privacy",
+    "terms",
 ];
 
 function getExpectedNamespaces(filePath: string): string[] {
@@ -20,7 +24,7 @@ function getExpectedNamespaces(filePath: string): string[] {
 
     if (relativePath.startsWith("pages/[lang]/")) {
         const parts = relativePath.split("/");
-        const pageName = parts[2];
+        const pageName = parts[1] === '[lang]' ? parts[2] : parts[1];
         return [pageName, ...ALLOWED_GLOBAL_NAMESPACES];
     }
 
@@ -87,7 +91,7 @@ function checkNamespaceUsage(filePath: string): NamespaceViolation[] {
         const namespace = getNamespace(key);
 
         if (!expectedNamespaces.includes(namespace)) {
-            const lineIndex = lines.findIndex(line => line.includes(`t("${key}`)  || line.includes(`t('${key}`));
+            const lineIndex = lines.findIndex(line => line.includes(`t("${key}`) || line.includes(`t('${key}`));
             violations.push({
                 key,
                 namespace,

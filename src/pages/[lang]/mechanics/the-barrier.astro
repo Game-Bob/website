@@ -53,15 +53,15 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("the-barrier");
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.the-barrier.controls.draw")}</span>
-                <span class="mechanic-control-sublabel">{t("mechanics.the-barrier.controls.redirect")}</span>
+                <span class="mechanic-control-label">{t("mechanics.the-barrier.controls.drag")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.the-barrier.controls.draw")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { TheBarrierGame } from "../../../lib/mechanics/the-barrier/TheBarrierGame";
+    import { TheBarrierGame } from "../../../mechanics/the-barrier/TheBarrierGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");

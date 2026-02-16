@@ -2,8 +2,8 @@
 
 A fast-paced arcade mechanic where the player must match their color to absorb incoming enemies.
 
-> **[🎮 Play Live Demo](https://gamebob.jjlmoya.es/gamebob/mecanicas/color-chameleon/)**
-> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/lib/mechanics/color-chameleon/ColorChameleonMechanic.ts)**
+> **[🎮 Play Live Demo](https://gamebob.gamebob.dev/gamebob/mecanicas/color-chameleon/)**
+> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/mechanics/color-chameleon/ColorChameleonMechanic.ts)**
 
 ## How it works
 

@@ -53,15 +53,15 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("flocking");
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.flocking.controls.observe")}</span>
-                <span class="mechanic-control-sublabel">{t("mechanics.flocking.controls.simulation")}</span>
+                <span class="mechanic-control-label">{t("mechanics.flocking.controls.mouseMove")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.flocking.controls.interact")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { FlockingGame } from "../../../lib/mechanics/flocking/FlockingGame";
+    import { FlockingGame } from "../../../mechanics/flocking/FlockingGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");

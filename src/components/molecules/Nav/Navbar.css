@@ -6,6 +6,40 @@
 .nav-list {
     display: flex;
     gap: var(--space-md);
-    flex-wrap: wrap;
-    justify-content: center;
+    align-items: center;
+}
+
+/* Vertical layout for mobile sidebar */
+[is-mobile="true"] .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+
+    /* We use padding on links for touch area instead of gap */
+    width: 100%;
+}
+
+[is-mobile="true"] .nav-link {
+    font-size: 1.25rem;
+
+    /* Slightly smaller for density */
+    font-weight: var(--font-weight-semibold);
+    width: 100%;
+    padding: var(--space-sm) 0;
+
+    /* Compact vertical space */
+    border-bottom: 1px solid var(--white-5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+[is-mobile="true"] .nav-link:last-child {
+    border-bottom: none;
+}
+
+@media (width <= 1024px) {
+    .nav-list {
+        gap: var(--space-sm);
+    }
 }

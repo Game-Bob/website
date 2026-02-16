@@ -53,15 +53,15 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("draw-the-path");
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.draw-the-path.controls.draw")}</span>
-                <span class="mechanic-control-sublabel">{t("mechanics.draw-the-path.controls.create")}</span>
+                <span class="mechanic-control-label">{t("mechanics.draw-the-path.controls.drag")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.draw-the-path.controls.draw")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { DrawThePathGame } from "../../../lib/mechanics/draw-the-path/DrawThePathGame";
+    import { DrawThePathGame } from "../../../mechanics/draw-the-path/DrawThePathGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");
@@ -77,6 +77,7 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("draw-the-path");
             overlay.style.pointerEvents = "none";
             if (!game) {
                 game = new DrawThePathGame(canvas);
+                game.start();
             }
         });
     }

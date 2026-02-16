@@ -2,8 +2,8 @@
 
 **Rhythm Jump** is a precision runner where you must switch your character's color to interact with matching platforms.
 
-> **[🎮 Play Live Demo](https://gamebob.jjlmoya.es/gamebob/mecanicas/rhythm-jump/)**
-> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/lib/mechanics/rhythm-jump/RhythmJumpMechanic.ts)**
+> **[🎮 Play Live Demo](https://gamebob.gamebob.dev/gamebob/mecanicas/rhythm-jump/)**
+> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/mechanics/rhythm-jump/RhythmJumpMechanic.ts)**
 
 ## Concept
 

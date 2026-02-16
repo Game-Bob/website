@@ -3,6 +3,11 @@ import './Navbar.css';
 import NavLink from "../../atoms/Link/NavLink.astro";
 import { useTranslations, getLangFromUrl, useLanguagePath } from "../../../i18n/utils";
 
+interface Props {
+  isMobile?: boolean;
+}
+
+const { isMobile = false } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const l = useLanguagePath(lang);
@@ -18,7 +23,7 @@ const navItems = [
 ];
 ---
 
-<nav class="navbar">
+<nav class="navbar" is-mobile={isMobile ? "true" : "false"}>
   <div class="nav-list">
     {navItems.map(item => (
       <NavLink href={item.href}>

@@ -54,15 +54,15 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("vibrator-cracker");
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.vibrator-cracker.controls.rotate")}</span>
-                <span class="mechanic-control-sublabel">{t("mechanics.vibrator-cracker.controls.crack")}</span>
+                <span class="mechanic-control-label">{t("mechanics.vibrator-cracker.controls.drag")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.vibrator-cracker.controls.rotate")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { VibratorCrackerGame } from "../../../lib/mechanics/vibrator-cracker/VibratorCrackerGame";
+    import { VibratorCrackerGame } from "../../../mechanics/vibrator-cracker/VibratorCrackerGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");

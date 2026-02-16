@@ -3,21 +3,95 @@ import './Header.css';
 import Navbar from "../../molecules/Nav/Navbar.astro";
 import LanguageSwitcher from "../../gamebob/LanguageSwitcher.astro";
 import { getLangFromUrl } from "../../../i18n/utils";
+import { Icon } from "astro-icon/components";
 
 const lang = getLangFromUrl(Astro.url);
 ---
 
-<header class="main-header">
+<header class="main-header" id="main-header">
   <div class="header-container">
-    <a href={lang === 'en' ? '/' : `/${lang}/`} class="logo">
-      <span>GAME</span>BOB
-    </a>
+    <div class="header-left">
+      <a href={`/${lang}/`} class="logo">
+        <span>GAME</span>BOB
+      </a>
+    </div>
     
-    <Navbar />
+    <div class="header-center">
+      <Navbar />
+    </div>
     
-    <div class="header-actions">
-      <div class="dot"></div>
-      <LanguageSwitcher />
+    <div class="header-right">
+      <div class="header-actions">
+        <div class="dot"></div>
+        <LanguageSwitcher />
+        <button class="mobile-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false">
+          <Icon name="mdi:menu" class="menu-icon" />
+          <Icon name="mdi:close" class="close-icon" />
+        </button>
+      </div>
     </div>
   </div>
+  
+  <div class="mobile-menu-overlay" id="menu-overlay">
+    <aside class="mobile-menu-content">
+      <div class="mobile-nav-header">
+        <span class="mobile-nav-label">Navigation</span>
+      </div>
+      <Navbar isMobile={true} />
+    </aside>
+  </div>
 </header>
+
+<script>
+  import { lockScroll, unlockScroll, resetUIState } from "../../../utils/ui";
+
+  function setupMenu() {
+    const header = document.getElementById('main-header');
+    const toggle = document.getElementById('menu-toggle');
+    const overlay = document.getElementById('menu-overlay');
+
+    if (!toggle || !overlay || !header) return;
+
+    const closeAll = () => {
+      if (header.classList.contains('menu-is-open')) {
+        header.classList.remove('menu-is-open');
+        unlockScroll();
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    };
+
+    const openMenu = () => {
+      if (!header.classList.contains('menu-is-open')) {
+        header.classList.add('menu-is-open');
+        lockScroll();
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    };
+
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = header.classList.contains('menu-is-open');
+      if (isOpen) {
+        closeAll();
+      } else {
+        openMenu();
+      }
+    });
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeAll();
+    });
+
+    overlay.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) closeAll();
+    });
+
+    document.addEventListener('astro:before-preparation', () => {
+      closeAll();
+      resetUIState();
+    });
+  }
+
+  setupMenu();
+  document.addEventListener('astro:page-load', setupMenu);
+</script>

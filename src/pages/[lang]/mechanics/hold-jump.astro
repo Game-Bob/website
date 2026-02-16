@@ -55,14 +55,18 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("hold-jump");
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
                 <span class="mechanic-control-label">{t("mechanics.hold-jump.controls.hold")}</span>
-                <span class="mechanic-control-sublabel">{t("mechanics.hold-jump.controls.release")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.hold-jump.controls.charge")}</span>
+            </div>
+            <div class="mechanic-control-item full-width">
+                <span class="mechanic-control-label">{t("mechanics.hold-jump.controls.release")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.hold-jump.controls.jump")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { HoldJumpGame } from "../../../lib/mechanics/hold-jump/HoldJumpGame";
+    import { HoldJumpGame } from "../../../mechanics/hold-jump/HoldJumpGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");

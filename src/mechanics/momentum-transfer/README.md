@@ -2,8 +2,8 @@
 
 An arcade physics mechanic where you defeat enemies not by hitting them, but by transferring your momentum into them, launching them into hazards.
 
-> **[🎮 Play Live Demo](https://gamebob.jjlmoya.es/gamebob/mecanicas/momentum-transfer/)**
-> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/lib/mechanics/momentum-transfer/MomentumTransferGame.ts)**
+> **[🎮 Play Live Demo](https://gamebob.gamebob.dev/gamebob/mecanicas/momentum-transfer/)**
+> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/mechanics/momentum-transfer/MomentumTransferGame.ts)**
 
 ## 🕹️ How it Works
 

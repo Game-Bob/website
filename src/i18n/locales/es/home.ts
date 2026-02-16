@@ -24,6 +24,7 @@ export default {
         }
     },
     footer: {
-        privacy: "política de privacidad"
+        privacy: "política de privacidad",
+        rights: "Todos los derechos reservados."
     }
 }

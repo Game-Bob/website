@@ -53,15 +53,19 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("bullet-time-paintin
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.bullet-time-painting.controls.plan")}</span>
-                <span class="mechanic-control-sublabel">{t("mechanics.bullet-time-painting.controls.execute")}</span>
+                <span class="mechanic-control-label">{t("mechanics.bullet-time-painting.controls.leftDrag")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.bullet-time-painting.controls.planMove")}</span>
+            </div>
+            <div class="mechanic-control-item full-width">
+                <span class="mechanic-control-label">{t("mechanics.bullet-time-painting.controls.rightDrag")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.bullet-time-painting.controls.planShoot")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { BulletTimeGame } from "../../../lib/mechanics/bullet-time-painting/BulletTimeGame";
+    import { BulletTimeGame } from "../../../mechanics/bullet-time-painting/BulletTimeGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");
@@ -77,6 +81,7 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("bullet-time-paintin
             overlay.style.pointerEvents = "none";
             if (!game) {
                 game = new BulletTimeGame(canvas);
+                game.start();
             }
         });
 

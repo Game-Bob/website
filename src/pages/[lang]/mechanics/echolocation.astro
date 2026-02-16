@@ -53,15 +53,23 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("echolocation");
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.echolocation.controls.click")}</span>
-                <span class="mechanic-control-sublabel">{t("mechanics.echolocation.controls.emit")}</span>
+                <span class="mechanic-control-label">{t("mechanics.echolocation.controls.wasd")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.echolocation.controls.move")}</span>
+            </div>
+            <div class="mechanic-control-item full-width">
+                <span class="mechanic-control-label">{t("mechanics.echolocation.controls.jump")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.echolocation.controls.jumpAction")}</span>
+            </div>
+            <div class="mechanic-control-item full-width">
+                <span class="mechanic-control-label">{t("mechanics.echolocation.controls.emit")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.echolocation.controls.emitAction")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { EcholocationGame } from "../../../lib/mechanics/echolocation/EcholocationGame";
+    import { EcholocationGame } from "../../../mechanics/echolocation/EcholocationGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");

@@ -53,7 +53,7 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("gravity-well");
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.gravity-well.controls.click")}</span>
+                <span class="mechanic-control-label">{t("mechanics.gravity-well.controls.clickTap")}</span>
                 <span class="mechanic-control-sublabel">{t("mechanics.gravity-well.controls.create")}</span>
             </div>
         </Fragment>
@@ -61,7 +61,7 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("gravity-well");
 </MechanicPage>
 
 <script>
-    import { GravityWellGame } from "../../../lib/mechanics/gravity-well/GravityWellGame";
+    import { GravityWellGame } from "../../../mechanics/gravity-well/GravityWellGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");

@@ -53,15 +53,19 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("size-matters");
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.size-matters.controls.grow")}</span>
-                <span class="mechanic-control-sublabel">{t("mechanics.size-matters.controls.shrink")}</span>
+                <span class="mechanic-control-label">{t("mechanics.size-matters.controls.hold")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.size-matters.controls.size")}</span>
+            </div>
+            <div class="mechanic-control-item full-width">
+                <span class="mechanic-control-label">{t("mechanics.size-matters.controls.move")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.size-matters.controls.control")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { SizeMattersGame } from "../../../lib/mechanics/size-matters/SizeMattersGame";
+    import { SizeMattersGame } from "../../../mechanics/size-matters/SizeMattersGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");

@@ -79,7 +79,8 @@
 
 .gamebob-main {
     flex-grow: 1;
-    padding-top: 6rem;
+    padding-top: var(--space-md);
+    padding-bottom: 3rem;
     position: relative;
     z-index: 10;
 }

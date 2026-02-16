@@ -1,5 +1,6 @@
 ---
-import BasePage from "../../../components/templates/BasePage.astro";
+import GameBobLayout from "../../../layouts/GameBobLayout.astro";
+import Terms from "../../../components/gamebob/Terms.astro";
 import { ui } from "../../../i18n/ui";
 import { useTranslations } from "../../../i18n/utils";
 
@@ -9,17 +10,11 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as any);
-
 ---
 
-<BasePage lang={lang as any} navKey="terms">
-  <p class="description">{t("terms.description")}</p>
-</BasePage>
-
-<style>
-  .description {
-    color: var(--text-muted);
-    font-size: 1.25rem;
-    margin-top: var(--space-md);
-  }
-</style>
+<GameBobLayout
+  title={t("nav.terms")}
+  description={t("terms.meta_description")}
+>
+  <Terms lang={lang} />
+</GameBobLayout>

@@ -2,8 +2,8 @@
 
 A multitouch chaos mechanic where the user must hold multiple nodes simultaneously with different fingers.
 
-> **[🎮 Play Live Demo](https://gamebob.jjlmoya.es/gamebob/mecanicas/finger-twister/)**
-> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/lib/mechanics/finger-twister/FingerTwisterMechanic.ts)**
+> **[🎮 Play Live Demo](https://gamebob.gamebob.dev/gamebob/mecanicas/finger-twister/)**
+> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/mechanics/finger-twister/FingerTwisterMechanic.ts)**
 
 ## How it works
 

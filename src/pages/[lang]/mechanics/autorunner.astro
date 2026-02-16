@@ -54,14 +54,18 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("autorunner");
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
                 <span class="mechanic-control-label">{t("mechanics.autorunner.controls.jump")}</span>
-                <span class="mechanic-control-sublabel">{t("mechanics.autorunner.controls.avoid")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.autorunner.controls.jumpAction")}</span>
+            </div>
+            <div class="mechanic-control-item full-width">
+                <span class="mechanic-control-label">{t("mechanics.autorunner.controls.dash")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.autorunner.controls.dashAction")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { AutorunnerGame } from "../../../lib/mechanics/autorunner/AutorunnerGame";
+    import { AutorunnerGame } from "../../../mechanics/autorunner/AutorunnerGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");

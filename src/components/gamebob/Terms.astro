@@ -1,0 +1,175 @@
+---
+import './Terms.css';
+import { useTranslations } from "../../i18n/utils";
+
+interface Props {
+    lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang as any);
+---
+
+<section class="terms-section" id="terms-container">
+    <div class="terms-container">
+        <div class="terms-header">
+            <div class="terms-badge">
+                {t("terms.badge")}
+            </div>
+            <h1 class="terms-title">
+                <span>{t("terms.title_p1")}</span>
+                <br />
+                <span class="terms-title-gradient">
+                    {t("terms.title_p2")}
+                </span>
+            </h1>
+            <p class="terms-description">
+                {t("terms.description")}
+            </p>
+            <div class="terms-update">
+                <span class="update-line"></span>
+                <span>{t("terms.last_update")}</span>
+                <span class="update-line"></span>
+            </div>
+        </div>
+
+        <div class="terms-content-wrapper">
+            <div class="intro-box">
+                <p class="intro-text">
+                    <span>{t("terms.intro_p1")}</span>
+                    <br /><br />
+                    <span>{t("terms.intro_p2")}</span>
+                </p>
+            </div>
+
+            <div class="terms-grid">
+                <div class="term-card">
+                    <div class="card-title-group">
+                        <span class="step-number">1</span>
+                        <h3 class="card-title-text">{t("terms.sections.license.title")}</h3>
+                    </div>
+                    <p class="card-text">
+                        {t("terms.sections.license.content")}
+                    </p>
+                </div>
+
+                <div class="term-card">
+                    <div class="card-title-group">
+                        <span class="step-number">2</span>
+                        <h3 class="card-title-text">{t("terms.sections.acceptable.title")}</h3>
+                    </div>
+                    <p class="card-text">
+                        {t("terms.sections.acceptable.content")}
+                    </p>
+                    <ul class="card-list">
+                        {(t("terms.sections.acceptable.items") as unknown as string[]).map((item) => (
+                            <li>{item}</li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div class="term-card">
+                    <div class="card-title-group">
+                        <span class="step-number">3</span>
+                        <h3 class="card-title-text">{t("terms.sections.intellectual.title")}</h3>
+                    </div>
+                    <p class="card-text">
+                        {t("terms.sections.intellectual.content")}
+                    </p>
+                </div>
+
+                <div class="term-card special">
+                    <div class="card-title-group">
+                        <span class="step-number">4</span>
+                        <h3 class="card-title-text">{t("terms.sections.privacy.title")}</h3>
+                    </div>
+                    <p class="card-text">
+                        {t("terms.sections.privacy.content")}
+                    </p>
+                    <div class="card-link-wrapper">
+                        <a href="/gamebob/privacidad/" class="card-link">
+                            <span>{t("terms.sections.privacy.link_text")}</span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="link-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
+                            >
+                        </a>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="card-title-group">
+                        <span class="step-number">5</span>
+                        <h3 class="card-title-text">{t("terms.sections.third_party.title")}</h3>
+                    </div>
+                    <p class="card-text">
+                        {t("terms.sections.third_party.content")}
+                    </p>
+                </div>
+
+                <div class="term-card">
+                    <div class="card-title-group">
+                        <span class="step-number">6</span>
+                        <h3 class="card-title-text">{t("terms.sections.liability.title")}</h3>
+                    </div>
+                    <p class="card-text">
+                        {t("terms.sections.liability.content")}
+                    </p>
+                </div>
+
+                <div class="term-card">
+                    <div class="card-title-group">
+                        <span class="step-number">7</span>
+                        <h3 class="card-title-text">{t("terms.sections.modifications.title")}</h3>
+                    </div>
+                    <p class="card-text">
+                        {t("terms.sections.modifications.content")}
+                    </p>
+                </div>
+
+                <div class="term-card">
+                    <div class="card-title-group">
+                        <span class="step-number">8</span>
+                        <h3 class="card-title-text">{t("terms.sections.jurisdiction.title")}</h3>
+                    </div>
+                    <p class="card-text">
+                        {t("terms.sections.jurisdiction.content")}
+                    </p>
+                </div>
+
+                <div class="term-card">
+                    <div class="card-title-group">
+                        <span class="step-number">9</span>
+                        <h3 class="card-title-text">{t("terms.sections.contact.title")}</h3>
+                    </div>
+                    <p class="card-text">
+                        {t("terms.sections.contact.content")}
+                    </p>
+                    <div class="contact-info">
+                        <p>
+                            Email: <a
+                                href={`mailto:${t("terms.sections.contact.email")}`}
+                                class="contact-link"
+                                >{t("terms.sections.contact.email")}</a
+                            >
+                        </p>
+                        <p>
+                            Web: <a
+                                href={t("terms.sections.contact.website")}
+                                class="contact-link"
+                                >{t("terms.sections.contact.website")}</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

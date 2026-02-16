@@ -64,8 +64,8 @@ MIT - Use freely in your projects
 
 ## 🔗 Demo
 
-[🎮 Play Live Demo](https://gamebob.jjlmoya.es/gamebob/mecanicas/size-matters/)
-[View Source Code](https://github.com/Game-Bob/website/blob/main/src/lib/mechanics/size-matters/SizeMattersGame.js)
+[🎮 Play Live Demo](https://gamebob.gamebob.dev/gamebob/mecanicas/size-matters/)
+[View Source Code](https://github.com/Game-Bob/website/blob/main/src/mechanics/size-matters/SizeMattersGame.js)
 
 ---
 

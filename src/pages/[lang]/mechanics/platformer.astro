@@ -53,15 +53,23 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("platformer");
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.platformer.controls.arrows")}</span>
-                <span class="mechanic-control-sublabel">{t("mechanics.platformer.controls.jump")}</span>
+                <span class="mechanic-control-label">{t("mechanics.platformer.controls.wasd")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.platformer.controls.move")}</span>
+            </div>
+            <div class="mechanic-control-item full-width">
+                <span class="mechanic-control-label">{t("mechanics.platformer.controls.jump")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.platformer.controls.jumpAction")}</span>
+            </div>
+            <div class="mechanic-control-item full-width">
+                <span class="mechanic-control-label">{t("mechanics.platformer.controls.slide")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.platformer.controls.slideAction")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { PlatformerGame } from "../../../lib/mechanics/platformer/PlatformerGame";
+    import { PlatformerGame } from "../../../mechanics/platformer/PlatformerGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");

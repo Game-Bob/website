@@ -53,15 +53,19 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("neon-grapple");
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.neon-grapple.controls.click")}</span>
+                <span class="mechanic-control-label">{t("mechanics.neon-grapple.controls.hold")}</span>
                 <span class="mechanic-control-sublabel">{t("mechanics.neon-grapple.controls.grapple")}</span>
+            </div>
+            <div class="mechanic-control-item full-width">
+                <span class="mechanic-control-label">{t("mechanics.neon-grapple.controls.release")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.neon-grapple.controls.detach")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { NeonGrappleGame } from "../../../lib/mechanics/neon-grapple/NeonGrappleGame";
+    import { NeonGrappleGame } from "../../../mechanics/neon-grapple/NeonGrappleGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");
@@ -77,6 +81,7 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("neon-grapple");
             overlay.style.pointerEvents = "none";
             if (!game) {
                 game = new NeonGrappleGame(canvas);
+                game.start();
             }
         });
     }

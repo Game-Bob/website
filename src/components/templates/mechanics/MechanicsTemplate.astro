@@ -30,7 +30,7 @@ const uniqueTags = [...new Set(allTags)].sort();
             <p class="mechanics-subtitle">{t("mechanics.description")}</p>
         </header>
 
-        <MechanicsFilter allTags={uniqueTags} />
+        <MechanicsFilter allTags={uniqueTags} lang={lang} />
 
         <div class="mechanics-grid" id="mechanics-grid" role="list" aria-label={t("mechanics.srOnly")}>
             {
@@ -52,15 +52,15 @@ const uniqueTags = [...new Set(allTags)].sort();
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: var(--space-2xl) var(--space-sm);
+        padding: var(--space-md) var(--space-sm);
     }
 
     .mechanics-header {
         z-index: 10;
         width: 100%;
         max-width: 72rem;
-        margin-top: var(--space-2xl);
-        margin-bottom: var(--space-2xl);
+        margin-top: var(--space-lg);
+        margin-bottom: var(--space-lg);
         text-align: center;
     }
 
@@ -104,35 +104,77 @@ const uniqueTags = [...new Set(allTags)].sort();
 </style>
 
 <script>
-    document.addEventListener('astro:page-load', () => {
+    function initFilters() {
         const filterButtons = document.querySelectorAll('.filter-btn');
+        const tagButtons = document.querySelectorAll('.tag-filter-btn');
         const cards = document.querySelectorAll('.mechanic-card');
         const noResults = document.getElementById('no-results');
+
+        function filterByPlatform(platform: string) {
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const platforms = card.getAttribute('data-platforms') || '';
+
+                if (platform === 'all' || platforms.includes(platform)) {
+                    (card as HTMLElement).style.display = 'block';
+                    visibleCount++;
+                } else {
+                    (card as HTMLElement).style.display = 'none';
+                }
+            });
+
+            if (noResults) {
+                noResults.classList.toggle('hidden', visibleCount > 0);
+            }
+        }
+
+        function filterByTag(tag: string) {
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const tags = card.getAttribute('data-tags')?.split(',') || [];
+
+                if (tags.includes(tag)) {
+                    (card as HTMLElement).style.display = 'block';
+                    visibleCount++;
+                } else {
+                    (card as HTMLElement).style.display = 'none';
+                }
+            });
+
+            if (noResults) {
+                noResults.classList.toggle('hidden', visibleCount > 0);
+            }
+        }
 
         filterButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterButtons.forEach(b => b.classList.remove('active'));
+                tagButtons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
                 const filter = btn.getAttribute('data-filter');
-
-                let visibleCount = 0;
-
-                cards.forEach(card => {
-                    const tags = card.getAttribute('data-tags')?.split(',') || [];
-                    
-                    if (filter === 'all' || tags.includes(filter || '')) {
-                        (card as HTMLElement).style.display = 'block';
-                        visibleCount++;
-                    } else {
-                        (card as HTMLElement).style.display = 'none';
-                    }
-                });
-
-                if (noResults) {
-                    noResults.classList.toggle('hidden', visibleCount > 0);
-                }
+                filterByPlatform(filter || 'all');
             });
         });
-    });
+
+        tagButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                tagButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const tag = btn.getAttribute('data-tag');
+                filterByTag(tag || '');
+            });
+        });
+    }
+
+    document.addEventListener('astro:page-load', initFilters);
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initFilters);
+    } else {
+        initFilters();
+    }
 </script>

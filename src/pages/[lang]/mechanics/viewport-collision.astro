@@ -53,15 +53,15 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("viewport-collision"
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.viewport-collision.controls.resize")}</span>
-                <span class="mechanic-control-sublabel">{t("mechanics.viewport-collision.controls.crush")}</span>
+                <span class="mechanic-control-label">{t("mechanics.viewport-collision.controls.auto")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.viewport-collision.controls.automatic")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { ViewportCollisionGame } from "../../../lib/mechanics/viewport-collision/ViewportCollisionGame";
+    import { ViewportCollisionGame } from "../../../mechanics/viewport-collision/ViewportCollisionGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");
@@ -77,6 +77,7 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("viewport-collision"
             overlay.style.pointerEvents = "none";
             if (!game) {
                 game = new ViewportCollisionGame(canvas);
+                game.start();
             }
         });
 

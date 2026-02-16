@@ -53,6 +53,14 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("one-bullet-shooter"
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
+                <span class="mechanic-control-label">{t("mechanics.one-bullet-shooter.controls.wasd")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.one-bullet-shooter.controls.move")}</span>
+            </div>
+            <div class="mechanic-control-item full-width">
+                <span class="mechanic-control-label">{t("mechanics.one-bullet-shooter.controls.mouse")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.one-bullet-shooter.controls.aim")}</span>
+            </div>
+            <div class="mechanic-control-item full-width">
                 <span class="mechanic-control-label">{t("mechanics.one-bullet-shooter.controls.click")}</span>
                 <span class="mechanic-control-sublabel">{t("mechanics.one-bullet-shooter.controls.shoot")}</span>
             </div>
@@ -61,7 +69,7 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("one-bullet-shooter"
 </MechanicPage>
 
 <script>
-    import { OneBulletGame } from "../../../lib/mechanics/one-bullet-shooter/OneBulletGame";
+    import { OneBulletGame } from "../../../mechanics/one-bullet-shooter/OneBulletGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");

@@ -1,0 +1,167 @@
+---
+import './Privacy.css';
+import { Icon } from "astro-icon/components";
+import { useTranslations } from "../../i18n/utils";
+
+interface Props {
+    lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang as any);
+---
+
+<section class="privacy-section" id="privacy-policy-container">
+    <div class="privacy-container">
+        <div class="privacy-header">
+            <div class="privacy-badge">
+                {t("privacy.badge")}
+            </div>
+            <h1 class="privacy-title">
+                <span>{t("privacy.title_p1")}</span><br />
+                <span class="privacy-title-gradient">
+                    {t("privacy.title_p2")}
+                </span>
+            </h1>
+            <p class="privacy-description">
+                {t("privacy.description")}
+            </p>
+            <div class="privacy-update">
+                <span class="update-line"></span>
+                <span>{t("privacy.last_update")}</span>
+                <span class="update-line"></span>
+            </div>
+        </div>
+
+        <div class="privacy-grid">
+            <div class="privacy-card">
+                <div class="card-top-glow"></div>
+                <div class="card-layout">
+                    <div class="card-icon-box">
+                        <div class="icon-container">
+                            <Icon name="mdi:hand-wave-outline" class="card-icon" />
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">
+                            {t("privacy.sections.intro.title")}
+                        </h2>
+                        <p class="card-text">
+                            {t("privacy.sections.intro.content")}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="privacy-card">
+                <div class="card-top-glow"></div>
+                <div class="card-layout">
+                    <div class="card-icon-box">
+                        <div class="icon-container">
+                            <Icon name="mdi:database-off-outline" class="card-icon" />
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">
+                            {t("privacy.sections.collection.title")}
+                        </h2>
+                        <p class="card-text">
+                            {t("privacy.sections.collection.content")}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="privacy-card">
+                <div class="card-top-glow"></div>
+                <div class="card-layout">
+                    <div class="card-icon-box">
+                        <div class="icon-container">
+                            <Icon name="mdi:security" class="card-icon" />
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">
+                            {t("privacy.sections.security.title")}
+                        </h2>
+                        <p class="card-text">
+                            {t("privacy.sections.security.content")}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="privacy-card">
+                <div class="card-top-glow"></div>
+                <div class="card-layout">
+                    <div class="card-icon-box">
+                        <div class="icon-container">
+                            <Icon name="mdi:handshake-outline" class="card-icon" />
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">
+                            {t("privacy.sections.third_party.title")}
+                        </h2>
+                        <ul class="card-list">
+                            <li class="list-item">
+                                <span class="list-dot"></span>
+                                <p class="list-text">
+                                    <span class="list-text-bold">{t("privacy.sections.third_party.admob_title")}</span>
+                                    {" "}
+                                    <span>{t("privacy.sections.third_party.admob_content")}</span>
+                                </p>
+                            </li>
+                            <li class="list-item">
+                                <span class="list-dot"></span>
+                                <p class="list-text">
+                                    <span class="list-text-bold">{t("privacy.sections.third_party.crashlytics_title")}</span>
+                                    {" "}
+                                    <span>{t("privacy.sections.third_party.crashlytics_content")}</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="privacy-card">
+                <div class="card-top-glow"></div>
+                <div class="card-layout">
+                    <div class="card-icon-box">
+                        <div class="icon-container">
+                            <Icon name="mdi:shield-check-outline" class="card-icon" />
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">
+                            {t("privacy.sections.children.title")}
+                        </h2>
+                        <p class="card-text">
+                            {t("privacy.sections.children.content")}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="privacy-card">
+                <div class="card-top-glow"></div>
+                <div class="card-layout">
+                    <div class="card-icon-box">
+                        <div class="icon-container">
+                            <Icon name="mdi:email-outline" class="card-icon" />
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">
+                            {t("privacy.sections.contact.title")}
+                        </h2>
+                        <p class="card-text">
+                            {t("privacy.sections.contact.content")}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

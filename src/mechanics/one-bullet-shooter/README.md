@@ -2,8 +2,8 @@
 
 A high-stakes top-down shooter where you only have one bullet. You must retrieve it after every shot.
 
-> **[🎮 Play Live Demo](https://gamebob.jjlmoya.es/gamebob/mecanicas/one-bullet-shooter/)**
-> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/lib/mechanics/one-bullet-shooter/OneBulletGame.ts)**
+> **[🎮 Play Live Demo](https://gamebob.gamebob.dev/gamebob/mecanicas/one-bullet-shooter/)**
+> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/mechanics/one-bullet-shooter/OneBulletGame.ts)**
 
 ## 🎮 How to Play
 

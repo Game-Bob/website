@@ -2,8 +2,8 @@
 
 A physics simulation where the user controls a magnetic field to attract or repel metallic particles (iron filings).
 
-> **[🎮 Play Live Demo](https://gamebob.jjlmoya.es/gamebob/mecanicas/magnetic-finger/)**
-> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/lib/mechanics/magnetic-finger/MagneticFingerMechanic.ts)**
+> **[🎮 Play Live Demo](https://gamebob.gamebob.dev/gamebob/mecanicas/magnetic-finger/)**
+> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/mechanics/magnetic-finger/MagneticFingerMechanic.ts)**
 
 ## How it works
 

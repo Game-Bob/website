@@ -19,7 +19,10 @@ const t = useTranslations(lang as any);
     image="/images/gamebob/postmortem/index.webp"
 >
     <div class="postmortem-page">
-        <PostMortemHeader />
+        <PostMortemHeader 
+            title={t("postmortem.title")} 
+            description={t("postmortem.description")} 
+        />
 
         <div class="postmortem-grid">
             {
@@ -37,7 +40,7 @@ const t = useTranslations(lang as any);
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: var(--space-2xl) var(--space-sm);
+        padding: var(--space-md) var(--space-sm);
     }
 
     .postmortem-grid {

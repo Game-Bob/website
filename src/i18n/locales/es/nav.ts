@@ -8,6 +8,9 @@ export default {
     "privacy": "Privacidad",
     "terms": "Términos y Condiciones",
     "community": "Comunidad",
+    "explore": "Explorar",
+    "legal": "Legal",
+    "connect": "Conectar",
     "stores": {
         "available_on": "DISPONIBLE EN",
         "coming_soon": "PRÓXIMAMENTE EN",

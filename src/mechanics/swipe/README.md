@@ -257,8 +257,8 @@ Improvements welcome! Pull requests appreciated.
 
 ## 🔗 Demo
 
-[🎮 Play Live Demo](https://gamebob.jjlmoya.es/gamebob/mecanicas/swipe/)
-[View Source Code](https://github.com/Game-Bob/website/blob/main/src/lib/mechanics/swipe/SwipeGesture.ts)
+[🎮 Play Live Demo](https://gamebob.gamebob.dev/gamebob/mecanicas/swipe/)
+[View Source Code](https://github.com/Game-Bob/website/blob/main/src/mechanics/swipe/SwipeGesture.ts)
 
 ---
 

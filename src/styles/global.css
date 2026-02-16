@@ -21,3 +21,12 @@ body {
     background-color: var(--color-primary);
     color: var(--bg-main);
 }
+
+/* Unified Scroll Lock System */
+:root.is-locked,
+:root.is-locked body {
+    overflow: hidden !important;
+    height: 100vh !important;
+    position: fixed !important;
+    width: 100% !important;
+}

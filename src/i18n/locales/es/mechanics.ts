@@ -12,6 +12,27 @@ export default {
     howItWorksTitle: "Cómo funciona",
     controlsTitle: "Controles",
 
+    filters: {
+        all: "Todos",
+        mobile: "Mobile",
+        desktop: "Desktop"
+    },
+
+    common: {
+        wasd: "WASD / Flechas",
+        wasdMove: "Mover",
+        space: "Espacio",
+        spaceJump: "Saltar",
+        click: "Clic / Toque",
+        clickTap: "Clic o Toque",
+        drag: "Clic + Arrastrar",
+        dragTouch: "Toque + Arrastrar",
+        hold: "Mantener",
+        release: "Soltar",
+        mouseMove: "Mover Ratón / Toque",
+        mouseMoveInteract: "Mover para Interactuar"
+    },
+
     slingshot: {
         title: "Slingshot",
         description: "arrastra, estira y lanza. física de tirachinas con rebotes dinámicos y control táctil preciso.",
@@ -24,8 +45,8 @@ export default {
             deformation: "Deformación visual (Squash & Stretch) basada en la velocidad."
         },
         controls: {
-            drag: "Arrastrar / Drag",
-            aim: "Tensar y Apuntar"
+            drag: "Arrastrar",
+            release: "Tensar y Soltar"
         }
     },
     swipe: {
@@ -39,7 +60,7 @@ export default {
         },
         controls: {
             swipe: "Deslizar",
-            gesture: "Gesto en cualquier dirección"
+            gesture: "Gesto en 8 Direcciones"
         }
     },
     "gravity-well": {
@@ -52,8 +73,8 @@ export default {
             interaction: "Crea pozos con clic/toque."
         },
         controls: {
-            click: "Clic / Toque",
-            create: "Crear Pozos de Gravedad"
+            clickTap: "Clic / Toque",
+            create: "Crear Pozo de Gravedad"
         }
     },
     flocking: {
@@ -66,8 +87,8 @@ export default {
             cohesion: "Los agentes se mueven hacia el centro de masa."
         },
         controls: {
-            observe: "Observar",
-            simulation: "Simulación Automática"
+            mouseMove: "Mover Ratón / Toque",
+            interact: "Atraer o Repeler"
         }
     },
     "tap-fly": {
@@ -80,8 +101,8 @@ export default {
             collision: "Detección de colisión con obstáculos."
         },
         controls: {
-            tap: "Toque / Clic",
-            fly: "Aletear hacia arriba"
+            fly: "Espacio / Clic / Toque",
+            flyAction: "Volar Arriba"
         }
     },
     "hold-jump": {
@@ -94,8 +115,10 @@ export default {
             variable: "Altura de salto variable según la carga."
         },
         controls: {
-            hold: "Mantener Presionado",
-            release: "Soltar para Saltar"
+            hold: "Mantener",
+            charge: "Cargar",
+            release: "Soltar",
+            jump: "Saltar"
         }
     },
     clicker: {
@@ -109,7 +132,20 @@ export default {
         },
         controls: {
             click: "Clic",
-            earn: "Ganar Recursos"
+            earn: "Ganar Recursos (gestión externa)"
+        },
+        ui: {
+            currency: "Monedas",
+            perSecond: "Por segundo",
+            clickButton: "Haz Click",
+            upgrades: "Mejoras",
+            perClick: "por clic"
+        },
+        upgradeNames: {
+            cursor: "Cursor Mejorado",
+            power: "Fuerza de Clic",
+            farm: "Granja de Clics",
+            factory: "Fábrica"
         }
     },
     autorunner: {
@@ -122,8 +158,10 @@ export default {
             collision: "Colisión con plataformas y obstáculos."
         },
         controls: {
-            jump: "Espacio / Toque",
-            avoid: "Saltar Obstáculos"
+            jump: "Espacio / Flecha Arriba",
+            jumpAction: "Saltar",
+            dash: "Flecha Abajo",
+            dashAction: "Impulsar"
         }
     },
     platformer: {
@@ -136,8 +174,12 @@ export default {
             friction: "Fricción y detección de colisiones."
         },
         controls: {
-            arrows: "Flechas",
-            jump: "Espacio para Saltar"
+            wasd: "WASD / Flechas",
+            move: "Mover",
+            jump: "Espacio / W / Arriba",
+            jumpAction: "Saltar",
+            slide: "S / Abajo / Shift",
+            slideAction: "Deslizar"
         }
     },
     "size-matters": {
@@ -150,8 +192,10 @@ export default {
             interaction: "El tamaño determina la interacción con objetos."
         },
         controls: {
-            grow: "Clic",
-            shrink: "Cambiar Tamaño"
+            hold: "Mantener",
+            size: "Cambiar Tamaño",
+            move: "Mover",
+            control: "Controlar Posición"
         }
     },
     "one-bullet-shooter": {
@@ -164,8 +208,12 @@ export default {
             strategy: "Disparo estratégico y posicionamiento."
         },
         controls: {
+            wasd: "WASD / Flechas",
+            move: "Mover",
+            mouse: "Ratón",
+            aim: "Apuntar",
             click: "Clic",
-            shoot: "Disparar / Recuperar Bala"
+            shoot: "Disparar"
         }
     },
     echolocation: {
@@ -178,8 +226,12 @@ export default {
             navigation: "Usa el sonido para navegar en la oscuridad."
         },
         controls: {
-            click: "Clic",
-            emit: "Emitir Pulso de Sonido"
+            wasd: "WASD / Flechas",
+            move: "Mover",
+            jump: "Espacio / W / Arriba",
+            jumpAction: "Saltar",
+            emit: "Z / Enter",
+            emitAction: "Emitir Sonido"
         }
     },
     "vibrator-cracker": {
@@ -192,8 +244,8 @@ export default {
             feedback: "La retroalimentación háptica guía al jugador."
         },
         controls: {
-            rotate: "Arrastrar / Rotar",
-            crack: "Encontrar la Combinación"
+            drag: "Arrastrar",
+            rotate: "Rotar Dial"
         }
     },
     "magnetic-finger": {
@@ -206,8 +258,8 @@ export default {
             physics: "Física magnética realista."
         },
         controls: {
-            drag: "Clic / Arrastrar",
-            control: "Atraer o Repeler"
+            drag: "Arrastrar",
+            move: "Mover Campo Magnético"
         }
     },
     "color-chameleon": {
@@ -220,8 +272,8 @@ export default {
             stealth: "Invisible cuando los colores coinciden."
         },
         controls: {
-            tap: "Toque",
-            cycle: "Cambiar Colores"
+            clickTap: "Clic / Toque",
+            cycle: "Cambiar Color"
         }
     },
     "the-barrier": {
@@ -234,8 +286,8 @@ export default {
             flow: "Redirige el flujo de partículas dinámicamente."
         },
         controls: {
-            draw: "Dibujar",
-            redirect: "Crear Barreras"
+            drag: "Arrastrar",
+            draw: "Dibujar Barreras"
         }
     },
     "finger-twister": {
@@ -248,8 +300,8 @@ export default {
             challenge: "Mantén todos los nodos activos simultáneamente."
         },
         controls: {
-            fingers: "Múltiples Dedos",
-            touch: "Tocar Todos los Nodos"
+            multitouch: "Multi-Táctil",
+            touch: "Tocar Todos los Nodos Simultáneamente"
         }
     },
     "gravity-flip": {
@@ -262,8 +314,8 @@ export default {
             timing: "Timing preciso para evitar obstáculos."
         },
         controls: {
-            tap: "Toque / Espacio",
-            flip: "Invertir Gravedad"
+            flip: "Espacio / Clic / Toque",
+            flipAction: "Invertir Gravedad"
         }
     },
     "neon-grapple": {
@@ -276,8 +328,10 @@ export default {
             energy: "Sistema de gancho basado en energía."
         },
         controls: {
-            click: "Clic",
-            grapple: "Enganchar y Balancear"
+            hold: "Mantener",
+            grapple: "Enganchar",
+            release: "Soltar",
+            detach: "Desenganchar"
         }
     },
     "rhythm-jump": {
@@ -290,8 +344,10 @@ export default {
             timing: "Timing preciso para cambios de color."
         },
         controls: {
-            tap: "Toque",
-            switch: "Cambiar Color"
+            jump: "Espacio",
+            jumpAction: "Saltar",
+            switch: "Clic / Toque o Deslizar",
+            switchAction: "Cambiar Color"
         }
     },
     "draw-the-path": {
@@ -304,8 +360,8 @@ export default {
             protection: "Protege al corredor de los peligros."
         },
         controls: {
-            draw: "Dibujar",
-            create: "Crear Escudos y Puentes"
+            drag: "Arrastrar",
+            draw: "Dibujar Escudos y Puentes"
         }
     },
     "viewport-collision": {
@@ -318,8 +374,8 @@ export default {
             pressure: "Los objetos reaccionan a la compresión."
         },
         controls: {
-            resize: "Redimensionar Ventana",
-            crush: "Aplastar Objetos"
+            auto: "Sin Controles",
+            automatic: "Automático (Redimensionar Ventana)"
         }
     },
     "bullet-time-painting": {
@@ -332,8 +388,10 @@ export default {
             execution: "Ejecuta todas las acciones en ráfagas."
         },
         controls: {
-            plan: "Planificar en Pausa",
-            execute: "Ejecutar Acciones"
+            leftDrag: "Arrastrar Izquierdo",
+            planMove: "Planificar Movimiento",
+            rightDrag: "Arrastrar Derecho",
+            planShoot: "Planificar Disparo"
         }
     },
     "momentum-transfer": {
@@ -346,8 +404,8 @@ export default {
             strategy: "Planificación estratégica de colisiones."
         },
         controls: {
-            move: "Mover",
-            collide: "Transferir Momento"
+            drag: "Arrastrar",
+            aim: "Apuntar y Lanzar"
         }
     }
 }

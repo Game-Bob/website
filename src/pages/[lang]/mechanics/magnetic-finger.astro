@@ -54,14 +54,14 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("magnetic-finger");
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
                 <span class="mechanic-control-label">{t("mechanics.magnetic-finger.controls.drag")}</span>
-                <span class="mechanic-control-sublabel">{t("mechanics.magnetic-finger.controls.control")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.magnetic-finger.controls.move")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { MagneticFingerGame } from "../../../lib/mechanics/magnetic-finger/MagneticFingerGame";
+    import { MagneticFingerGame } from "../../../mechanics/magnetic-finger/MagneticFingerGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");

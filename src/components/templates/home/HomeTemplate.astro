@@ -6,7 +6,6 @@ import ProjectHomeCard from "../../../components/gamebob/ProjectHomeCard.astro";
 import DiscordCTA from "../../../components/gamebob/DiscordCTA.astro";
 import { apps } from "../../../data/gamebob/apps";
 import { useTranslations, useLanguagePath } from "../../../i18n/utils";
-import { ui } from "../../../i18n/ui";
 import "./HomeTemplate.css";
 
 interface Props {
@@ -115,17 +114,5 @@ const projects = apps;
                 </section>
             </div>
         </main>
-
-        <footer class="gamebob-footer">
-            <div class="footer-separator"></div>
-            <div class="footer-bottom">
-                <a href={l("/privacy/")} class="footer-nav-link">
-                    {t("home.footer.privacy")}
-                </a>
-                <div class="footer-copy">
-                    &copy; {new Date().getFullYear()} GAMEBOB STUDIO
-                </div>
-            </div>
-        </footer>
     </div>
 </GameBobLayout>

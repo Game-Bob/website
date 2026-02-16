@@ -204,8 +204,8 @@ Improvements welcome! Pull requests appreciated.
 
 ## 🔗 Demo
 
-[🎮 Play Live Demo](https://gamebob.jjlmoya.es/gamebob/mecanicas/slingshot/)
-[View Source Code](https://github.com/Game-Bob/website/blob/main/src/lib/mechanics/slingshot/SlingshotMechanic.ts)
+[🎮 Play Live Demo](https://gamebob.gamebob.dev/gamebob/mecanicas/slingshot/)
+[View Source Code](https://github.com/Game-Bob/website/blob/main/src/mechanics/slingshot/SlingshotMechanic.ts)
 
 ---
 

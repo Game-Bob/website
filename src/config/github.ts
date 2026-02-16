@@ -2,8 +2,8 @@ const GITHUB_REPO_BASE = "https://github.com/Game-Bob/website";
 
 export function getGitHubUrls(mechanicId: string) {
     return {
-        repo: `${GITHUB_REPO_BASE}/tree/main/src/lib/mechanics/${mechanicId}`,
-        code: `${GITHUB_REPO_BASE}/blob/main/src/lib/mechanics/${mechanicId}/${getMechanicFileName(mechanicId)}`
+        repo: `${GITHUB_REPO_BASE}/tree/main/src/mechanics/${mechanicId}`,
+        code: `${GITHUB_REPO_BASE}/blob/main/src/mechanics/${mechanicId}/${getMechanicFileName(mechanicId)}`
     };
 }
 

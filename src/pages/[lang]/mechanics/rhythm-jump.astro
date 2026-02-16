@@ -53,15 +53,19 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("rhythm-jump");
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.rhythm-jump.controls.tap")}</span>
-                <span class="mechanic-control-sublabel">{t("mechanics.rhythm-jump.controls.switch")}</span>
+                <span class="mechanic-control-label">{t("mechanics.rhythm-jump.controls.jump")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.rhythm-jump.controls.jumpAction")}</span>
+            </div>
+            <div class="mechanic-control-item full-width">
+                <span class="mechanic-control-label">{t("mechanics.rhythm-jump.controls.switch")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.rhythm-jump.controls.switchAction")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { RhythmJumpGame } from "../../../lib/mechanics/rhythm-jump/RhythmJumpGame";
+    import { RhythmJumpGame } from "../../../mechanics/rhythm-jump/RhythmJumpGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");
@@ -77,6 +81,7 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("rhythm-jump");
             overlay.style.pointerEvents = "none";
             if (!game) {
                 game = new RhythmJumpGame(canvas);
+                game.start();
             }
         });
     }

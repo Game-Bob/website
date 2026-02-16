@@ -54,7 +54,7 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("finger-twister");
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.finger-twister.controls.fingers")}</span>
+                <span class="mechanic-control-label">{t("mechanics.finger-twister.controls.multitouch")}</span>
                 <span class="mechanic-control-sublabel">{t("mechanics.finger-twister.controls.touch")}</span>
             </div>
         </Fragment>
@@ -62,7 +62,7 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("finger-twister");
 </MechanicPage>
 
 <script>
-    import { FingerTwisterGame } from "../../../lib/mechanics/finger-twister/FingerTwisterGame";
+    import { FingerTwisterGame } from "../../../mechanics/finger-twister/FingerTwisterGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");

@@ -2,8 +2,8 @@
 
 A one-tap mechanic where the player must tap to fly upwards and avoid obstacles, similar to Flappy Bird.
 
-> **[🎮 Play Live Demo](https://gamebob.jjlmoya.es/gamebob/mecanicas/tap-fly/)**
-> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/lib/mechanics/tap-fly/TapFlyMechanic.ts)**
+> **[🎮 Play Live Demo](https://gamebob.gamebob.dev/gamebob/mecanicas/tap-fly/)**
+> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/mechanics/tap-fly/TapFlyMechanic.ts)**
 
 ## How it works
 

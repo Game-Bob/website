@@ -1,5 +1,5 @@
 .base-page-container {
-    padding: var(--space-xl) var(--space-md);
+    padding: var(--space-md) var(--space-md);
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;

@@ -12,6 +12,27 @@ export default {
     howItWorksTitle: "How it works",
     controlsTitle: "Controls",
 
+    filters: {
+        all: "All",
+        mobile: "Mobile",
+        desktop: "Desktop"
+    },
+
+    common: {
+        wasd: "WASD / Arrows",
+        wasdMove: "Move",
+        space: "Space",
+        spaceJump: "Jump",
+        click: "Click / Tap",
+        clickTap: "Click or Tap",
+        drag: "Click + Drag",
+        dragTouch: "Touch + Drag",
+        hold: "Hold",
+        release: "Release",
+        mouseMove: "Mouse / Touch Move",
+        mouseMoveInteract: "Move to Interact"
+    },
+
     slingshot: {
         title: "Slingshot",
         description: "drag, stretch, and launch. slingshot physics with dynamic bounces and precise touch control.",
@@ -25,7 +46,7 @@ export default {
         },
         controls: {
             drag: "Drag",
-            aim: "Tension and Aim"
+            release: "Pull and Release"
         }
     },
     swipe: {
@@ -39,7 +60,7 @@ export default {
         },
         controls: {
             swipe: "Swipe",
-            gesture: "Gesture in any direction"
+            gesture: "Gesture in 8 Directions"
         }
     },
     "gravity-well": {
@@ -52,8 +73,8 @@ export default {
             interaction: "Create wells with click/tap."
         },
         controls: {
-            click: "Click / Tap",
-            create: "Create Gravity Wells"
+            clickTap: "Click / Tap",
+            create: "Create Gravity Well"
         }
     },
     flocking: {
@@ -66,8 +87,8 @@ export default {
             cohesion: "Agents move towards center of mass."
         },
         controls: {
-            observe: "Observe",
-            simulation: "Automatic Simulation"
+            mouseMove: "Mouse / Touch Move",
+            interact: "Attract or Repel"
         }
     },
     "tap-fly": {
@@ -80,8 +101,8 @@ export default {
             collision: "Collision detection with obstacles."
         },
         controls: {
-            tap: "Tap / Click",
-            fly: "Flap upward"
+            fly: "Space / Click / Tap",
+            flyAction: "Fly Up"
         }
     },
     "hold-jump": {
@@ -95,7 +116,9 @@ export default {
         },
         controls: {
             hold: "Hold",
-            release: "Release to Jump"
+            charge: "Charge",
+            release: "Release",
+            jump: "Jump"
         }
     },
     clicker: {
@@ -109,7 +132,20 @@ export default {
         },
         controls: {
             click: "Click",
-            earn: "Earn Resources"
+            earn: "Earn Resources (external management)"
+        },
+        ui: {
+            currency: "Currency",
+            perSecond: "Per Second",
+            clickButton: "Click",
+            upgrades: "Upgrades",
+            perClick: "per click"
+        },
+        upgradeNames: {
+            cursor: "Improved Cursor",
+            power: "Click Power",
+            farm: "Click Farm",
+            factory: "Factory"
         }
     },
     autorunner: {
@@ -122,8 +158,10 @@ export default {
             collision: "Platform and obstacle collision."
         },
         controls: {
-            jump: "Space / Tap",
-            avoid: "Jump over Obstacles"
+            jump: "Space / Up Arrow",
+            jumpAction: "Jump",
+            dash: "Down Arrow",
+            dashAction: "Dash"
         }
     },
     platformer: {
@@ -136,8 +174,12 @@ export default {
             friction: "Friction and collision detection."
         },
         controls: {
-            arrows: "Arrow Keys",
-            jump: "Space to Jump"
+            wasd: "WASD / Arrows",
+            move: "Move",
+            jump: "Space / W / Up",
+            jumpAction: "Jump",
+            slide: "S / Down / Shift",
+            slideAction: "Slide"
         }
     },
     "size-matters": {
@@ -150,8 +192,10 @@ export default {
             interaction: "Size determines object interaction."
         },
         controls: {
-            grow: "Click",
-            shrink: "Change Size"
+            hold: "Hold",
+            size: "Change Size",
+            move: "Move",
+            control: "Control Position"
         }
     },
     "one-bullet-shooter": {
@@ -164,8 +208,12 @@ export default {
             strategy: "Strategic shooting and positioning."
         },
         controls: {
+            wasd: "WASD / Arrows",
+            move: "Move",
+            mouse: "Mouse",
+            aim: "Aim",
             click: "Click",
-            shoot: "Shoot / Retrieve Bullet"
+            shoot: "Shoot"
         }
     },
     echolocation: {
@@ -178,8 +226,12 @@ export default {
             navigation: "Use sound to navigate darkness."
         },
         controls: {
-            click: "Click",
-            emit: "Emit Sound Pulse"
+            wasd: "WASD / Arrows",
+            move: "Move",
+            jump: "Space / W / Up",
+            jumpAction: "Jump",
+            emit: "Z / Enter",
+            emitAction: "Emit Sound"
         }
     },
     "vibrator-cracker": {
@@ -192,8 +244,8 @@ export default {
             feedback: "Haptic feedback guides the player."
         },
         controls: {
-            rotate: "Drag / Rotate",
-            crack: "Find the Combination"
+            drag: "Drag",
+            rotate: "Rotate Dial"
         }
     },
     "magnetic-finger": {
@@ -206,8 +258,8 @@ export default {
             physics: "Realistic magnetic physics."
         },
         controls: {
-            drag: "Click / Drag",
-            control: "Attract or Repel"
+            drag: "Drag",
+            move: "Move Magnetic Field"
         }
     },
     "color-chameleon": {
@@ -220,8 +272,8 @@ export default {
             stealth: "Invisible when colors match."
         },
         controls: {
-            tap: "Tap",
-            cycle: "Cycle Colors"
+            clickTap: "Click / Tap",
+            cycle: "Cycle Color"
         }
     },
     "the-barrier": {
@@ -234,8 +286,8 @@ export default {
             flow: "Redirect particle flow dynamically."
         },
         controls: {
-            draw: "Draw",
-            redirect: "Create Barriers"
+            drag: "Drag",
+            draw: "Draw Barriers"
         }
     },
     "finger-twister": {
@@ -248,8 +300,8 @@ export default {
             challenge: "Keep all nodes active simultaneously."
         },
         controls: {
-            fingers: "Multiple Fingers",
-            touch: "Touch All Nodes"
+            multitouch: "Multi-Touch",
+            touch: "Touch All Nodes Simultaneously"
         }
     },
     "gravity-flip": {
@@ -262,8 +314,8 @@ export default {
             timing: "Precise timing to avoid obstacles."
         },
         controls: {
-            tap: "Tap / Space",
-            flip: "Flip Gravity"
+            flip: "Space / Click / Tap",
+            flipAction: "Flip Gravity"
         }
     },
     "neon-grapple": {
@@ -276,8 +328,10 @@ export default {
             energy: "Energy-based grappling system."
         },
         controls: {
-            click: "Click",
-            grapple: "Grapple and Swing"
+            hold: "Hold",
+            grapple: "Grapple",
+            release: "Release",
+            detach: "Detach"
         }
     },
     "rhythm-jump": {
@@ -290,8 +344,10 @@ export default {
             timing: "Precise timing for color switches."
         },
         controls: {
-            tap: "Tap",
-            switch: "Switch Color"
+            jump: "Space",
+            jumpAction: "Jump",
+            switch: "Click / Tap or Swipe",
+            switchAction: "Change Color"
         }
     },
     "draw-the-path": {
@@ -304,8 +360,8 @@ export default {
             protection: "Protect the runner from hazards."
         },
         controls: {
-            draw: "Draw",
-            create: "Create Shields and Bridges"
+            drag: "Drag",
+            draw: "Draw Shields and Bridges"
         }
     },
     "viewport-collision": {
@@ -318,8 +374,8 @@ export default {
             pressure: "Objects react to compression."
         },
         controls: {
-            resize: "Resize Window",
-            crush: "Crush Objects"
+            auto: "No Controls",
+            automatic: "Automatic (Resize Window)"
         }
     },
     "bullet-time-painting": {
@@ -332,8 +388,10 @@ export default {
             execution: "Execute all actions in bursts."
         },
         controls: {
-            plan: "Plan in Pause",
-            execute: "Execute Actions"
+            leftDrag: "Left Drag",
+            planMove: "Plan Movement",
+            rightDrag: "Right Drag",
+            planShoot: "Plan Shooting"
         }
     },
     "momentum-transfer": {
@@ -346,8 +404,8 @@ export default {
             strategy: "Strategic collision planning."
         },
         controls: {
-            move: "Move",
-            collide: "Transfer Momentum"
+            drag: "Drag",
+            aim: "Aim and Launch"
         }
     }
 }

@@ -1,19 +1,22 @@
 ---
 import './MechanicsFilter.css';
 import { Icon } from "astro-icon/components";
+import { useTranslations } from "../../../i18n/utils";
 
 interface Props {
     allTags: string[];
+    lang: string;
 }
 
-const { allTags = [] } = Astro.props as Props;
+const { allTags = [], lang } = Astro.props as Props;
+const t = useTranslations(lang as any);
 
 ---
 
 <div class="mechanics-filter-wrapper">
     <div class="filter-header">
         <h1 class="filter-title">
-            mecánicas
+            {t("nav.mechanics")}
         </h1>
 
         <div class="filter-group" id="filters">
@@ -21,19 +24,19 @@ const { allTags = [] } = Astro.props as Props;
                 class="filter-btn active"
                 data-filter="all"
             >
-                Todos
+                {t("mechanics.filters.all")}
             </button>
             <button
                 class="filter-btn"
                 data-filter="mobile"
             >
-                <Icon name="mdi:cellphone" class="filter-icon" /> Mobile
+                <Icon name="mdi:cellphone" class="filter-icon" /> {t("mechanics.filters.mobile")}
             </button>
             <button
                 class="filter-btn"
                 data-filter="desktop"
             >
-                <Icon name="mdi:monitor" class="filter-icon" /> Desktop
+                <Icon name="mdi:monitor" class="filter-icon" /> {t("mechanics.filters.desktop")}
             </button>
         </div>
     </div>

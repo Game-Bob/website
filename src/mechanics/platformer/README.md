@@ -2,8 +2,8 @@
 
 A fluid platformer mechanic with advanced movement features including double jump, wall sliding, wall jumping, and sliding.
 
-> **[🎮 Play Live Demo](https://gamebob.jjlmoya.es/gamebob/mecanicas/plataformas/)**
-> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/lib/mechanics/platformer/PlatformerGame.js)**
+> **[🎮 Play Live Demo](https://gamebob.gamebob.dev/gamebob/mecanicas/plataformas/)**
+> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/mechanics/platformer/PlatformerGame.js)**
 
 ## 🕹️ How it Works
 

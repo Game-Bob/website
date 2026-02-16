@@ -2,8 +2,8 @@
 
 **Neon Grapple** is a physics-based swinging mechanic where the player must navigate an infinite level using an energy hook.
 
-> **[🎮 Play Live Demo](https://gamebob.jjlmoya.es/gamebob/mecanicas/neon-grapple/)**
-> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/lib/mechanics/neon-grapple/NeonGrappleMechanic.ts)**
+> **[🎮 Play Live Demo](https://gamebob.gamebob.dev/gamebob/mecanicas/neon-grapple/)**
+> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/mechanics/neon-grapple/NeonGrappleMechanic.ts)**
 
 ## Concept
 

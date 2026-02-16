@@ -54,15 +54,15 @@ const { repo: GITHUB_BASE, code: CODE_URL } = getGitHubUrls("tap-fly");
 
         <Fragment slot="controls">
             <div class="mechanic-control-item full-width">
-                <span class="mechanic-control-label">{t("mechanics.tap-fly.controls.tap")}</span>
-                <span class="mechanic-control-sublabel">{t("mechanics.tap-fly.controls.fly")}</span>
+                <span class="mechanic-control-label">{t("mechanics.tap-fly.controls.fly")}</span>
+                <span class="mechanic-control-sublabel">{t("mechanics.tap-fly.controls.flyAction")}</span>
             </div>
         </Fragment>
     </MechanicInfo>
 </MechanicPage>
 
 <script>
-    import { TapFlyGame } from "../../../lib/mechanics/tap-fly/TapFlyGame";
+    import { TapFlyGame } from "../../../mechanics/tap-fly/TapFlyGame";
 
     const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
     const overlay = document.getElementById("game-canvas-overlay");

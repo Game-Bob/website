@@ -1,0 +1,36 @@
+---
+import './ClickerUI.css';
+import { useTranslations } from '../../../i18n/utils';
+
+interface Props {
+    lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang as any);
+---
+
+<div class="clicker-game">
+    <div class="clicker-stats">
+        <div class="clicker-stat">
+            <span class="clicker-stat-label">{t("mechanics.clicker.ui.currency")}</span>
+            <span class="clicker-stat-value" id="clicker-currency">0</span>
+        </div>
+        <div class="clicker-stat">
+            <span class="clicker-stat-label">{t("mechanics.clicker.ui.perSecond")}</span>
+            <span class="clicker-stat-value" id="clicker-rate">0</span>
+        </div>
+    </div>
+
+    <div class="clicker-main">
+        <canvas id="clicker-canvas" class="clicker-canvas"></canvas>
+        <button id="clicker-button" class="clicker-button">
+            {t("mechanics.clicker.ui.clickButton")}
+        </button>
+    </div>
+
+    <div class="clicker-shop">
+        <h3 class="clicker-shop-title">{t("mechanics.clicker.ui.upgrades")}</h3>
+        <div id="clicker-upgrades" class="clicker-upgrades-list"></div>
+    </div>
+</div>

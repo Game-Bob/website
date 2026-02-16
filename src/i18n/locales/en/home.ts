@@ -24,6 +24,7 @@ export default {
         }
     },
     footer: {
-        privacy: "privacy policy"
+        privacy: "privacy policy",
+        rights: "All rights reserved."
     }
 }

@@ -2,7 +2,7 @@
 import './NavLink.css';
 import { getLangFromUrl, useLanguagePath } from "../../../i18n/utils";
 
-interface props {
+interface Props {
   href: string;
   className?: string;
   activeClassName?: string;
@@ -13,8 +13,12 @@ const lang = getLangFromUrl(Astro.url);
 const translatePath = useLanguagePath(lang);
 
 const localizedPath = translatePath(href);
+const langRoot = `/${lang}/`;
+
 const isCurrentPath = Astro.url.pathname === localizedPath || 
-                     (localizedPath !== '/' && Astro.url.pathname.startsWith(localizedPath));
+                     (localizedPath !== '/' && 
+                      localizedPath !== langRoot && 
+                      Astro.url.pathname.startsWith(localizedPath));
 ---
 
 <a 

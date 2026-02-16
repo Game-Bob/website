@@ -2,8 +2,8 @@
 
 A blind navigation mechanic where the player must use sound waves to reveal their surroundings.
 
-> **[🎮 Play Live Demo](https://gamebob.jjlmoya.es/gamebob/mecanicas/echolocation/)**
-> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/lib/mechanics/echolocation/EcholocationMechanic.ts)**
+> **[🎮 Play Live Demo](https://gamebob.gamebob.dev/gamebob/mecanicas/echolocation/)**
+> **[💻 View Source](https://github.com/Game-Bob/website/blob/main/src/mechanics/echolocation/EcholocationMechanic.ts)**
 
 ## How it works
 
