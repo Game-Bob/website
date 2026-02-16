@@ -1,16 +1,23 @@
 export default {
     tagline: "Small indie studio developing casual games.",
     sections: {
+        featured: "featured",
         projects: "projects",
-        prototypes: "prototypes",
+        more_games: "more games",
+        utilities: "utilities",
+        roadmap: "roadmap",
         mechanics: "mechanics",
-        postmortem: "post mortem"
+        postmortem: "post-mortem",
+        explore: "explore"
+    },
+    games: {
+        view_all: "VIEW ALL"
     },
     features: {
-        evolution: {
-            title: "EVO",
-            titleAccent: "LUTION",
-            description: "Alchemy of chaos. Combine primordial elements, create unique creatures and face them in the battle arena. A procedural generation experiment."
+        roadmap: {
+            title: "ROAD",
+            titleAccent: "MAP",
+            description: "The future under construction. Check the development status of our upcoming titles and planned updates."
         },
         lab: {
             title: "LAB",

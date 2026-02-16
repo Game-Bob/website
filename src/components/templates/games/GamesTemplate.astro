@@ -15,7 +15,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang as any);
 const l = useLanguagePath(lang as any);
-const projects = apps;
+const projects = apps.filter(app => app.isGame);
 ---
 
 <GameBobLayout

@@ -1,16 +1,23 @@
 export default {
     tagline: "Pequeño estudio de desarrollo de juegos casuales indies.",
     sections: {
-        projects: "proyectos",
-        prototypes: "prototipos",
+        featured: "destacado",
+        projects: "Proyectos",
+        more_games: "más juegos",
+        utilities: "utilidades",
+        roadmap: "hoja de ruta",
         mechanics: "mecánicas",
-        postmortem: "post mortem"
+        postmortem: "post-mortem",
+        explore: "explorar"
+    },
+    games: {
+        view_all: "VER TODOS"
     },
     features: {
-        evolution: {
-            title: "EVO",
-            titleAccent: "LUCIÓN",
-            description: "alquimia del caos. combina elementos primordiales, crea criaturas únicas y enfréntalas en la arena de combate. un experimento de generación procedural."
+        roadmap: {
+            title: "ROAD",
+            titleAccent: "MAP",
+            description: "el futuro en construcción. consulta el estado de desarrollo de nuestros próximos títulos y las actualizaciones planificadas."
         },
         lab: {
             title: "LAB",

@@ -1,0 +1,65 @@
+---
+import { Icon } from "astro-icon/components";
+import { useTranslations, getLangFromUrl } from "../../i18n/utils";
+import './StoreButton.css';
+
+interface Props {
+  store: "googlePlay" | "appStore" | "website";
+  url?: string;
+}
+
+const { store, url } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const isAvailable = !!url;
+
+const storeData = {
+    googlePlay: {
+        icon: "mdi:google-play",
+        label: t("nav.stores.available_on"),
+        name: t("projectHomeCard.stores.googlePlay"),
+        comingSoon: t("nav.stores.coming_soon"),
+    },
+    appStore: {
+        icon: "mdi:apple",
+        label: t("nav.stores.available_on"),
+        name: t("projectHomeCard.stores.appStore"),
+        comingSoon: t("nav.stores.coming_soon"),
+    },
+    website: {
+        icon: "mdi:web",
+        label: t("nav.stores.available_on"),
+        name: "WEB",
+        comingSoon: t("nav.stores.coming_soon"),
+    }
+};
+
+const data = storeData[store];
+
+---
+
+{
+    isAvailable ? (
+        <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`store-button ${store}`}
+        >
+            <Icon name={data.icon} class="store-icon" />
+            <div class="button-content">
+                <span class="button-label">{data.label}</span>
+                <span class="button-store-name">{data.name}</span>
+            </div>
+        </a>
+    ) : (
+        <div class={`store-button disabled ${store}`} title={data.comingSoon}>
+            <Icon name={data.icon} class="store-icon" />
+            <div class="button-content">
+                <span class="button-label">{data.comingSoon}</span>
+                <span class="button-store-name">{data.name}</span>
+            </div>
+        </div>
+    )
+}

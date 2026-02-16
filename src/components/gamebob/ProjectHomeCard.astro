@@ -1,7 +1,8 @@
 ---
 import './ProjectHomeCard.css';
 import { Icon } from "astro-icon/components";
-import { useTranslations, getLangFromUrl } from "../../i18n/utils";
+import { useTranslations, getLangFromUrl, useLanguagePath } from "../../i18n/utils";
+import StoreButton from "../common/StoreButton.astro";
 
 interface Props {
     project: any;
@@ -11,6 +12,7 @@ interface Props {
 const { project, index } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const l = useLanguagePath(lang);
 
 const name = t(`apps.${project.slug}.title`);
 const homeDescription = t(`apps.${project.slug}.description`);
@@ -25,9 +27,14 @@ const links = project.stores || project.links;
 const isEven = index % 2 === 0;
 const nameParts = name ? (name.includes(":") ? [name.split(":")[0], name.split(":")[1]] : [name, ""]) : ["", ""];
 
+// Route logic: games go to /games/, utilities to /utilities/
+const detailUrl = l(project.isGame ? `/games/${project.slug}` : `/utilities/${project.slug}`);
+
 ---
 
 <div class="project-card">
+    <a href={detailUrl} class="card-link-overlay" aria-label={`View details for ${name}`}></a>
+    
     <div class:list={["project-card-content", { "order-right": !isEven }]}>
         <h3 class="project-card-title">
             <span class="title-main">{nameParts[0]}</span>
@@ -51,54 +58,21 @@ const nameParts = name ? (name.includes(":") ? [name.split(":")[0], name.split("
         <div class="project-links">
             {
                 links?.googlePlay ? (
-                    <a
-                        href={links.googlePlay}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="store-button"
-                    >
-                        <Icon name="mdi:google-play" class="icon-6" />
-                        <div class="button-stack">
-                            <div class="button-stack-top">{t("nav.stores.available_on")}</div>
-                            <div class="button-stack-main">{t("projectHomeCard.stores.googlePlay")}</div>
-                        </div>
-                    </a>
+                    <StoreButton store="googlePlay" url={links.googlePlay} />
                 ) : (
-                    <div class="store-button store-button-disabled">
-                        <Icon name="mdi:google-play" class="icon-6" />
-                        <div class="button-stack">
-                            <div class="button-stack-top">{t("nav.stores.coming_soon")}</div>
-                            <div class="button-stack-main">{t("projectHomeCard.stores.googlePlay")}</div>
-                        </div>
+                    <div class="store-button-placeholder">
+                        <StoreButton store="googlePlay" />
                     </div>
                 )
             }
 
             {
                 links?.appStore ? (
-                    <a
-                        href={links.appStore}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="store-button"
-                    >
-                        <Icon name="mdi:apple" class="icon-6" />
-                        <div class="button-stack">
-                            <div class="button-stack-top">{t("nav.stores.available_on")}</div>
-                            <div class="button-stack-main">{t("projectHomeCard.stores.appStore")}</div>
-                        </div>
-                    </a>
+                    <StoreButton store="appStore" url={links.appStore} />
                 ) : (
-                    <button
-                        class="store-button store-button-disabled"
-                        title={t("nav.stores.coming_soon")}
-                    >
-                        <Icon name="mdi:apple" class="icon-6" />
-                        <div class="button-stack">
-                            <div class="button-stack-top">{t("nav.stores.download_on")}</div>
-                            <div class="button-stack-main">{t("projectHomeCard.stores.appStore")}</div>
-                        </div>
-                    </button>
+                    <div class="store-button-placeholder">
+                        <StoreButton store="appStore" />
+                    </div>
                 )
             }
         </div>
