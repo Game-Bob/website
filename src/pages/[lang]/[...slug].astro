@@ -1,0 +1,58 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { useTranslations, slugMapping } from "../../i18n/utils";
+
+export function getStaticPaths() {
+    const paths = [];
+    const langs = ["en", "fr"];
+
+    for (const lang of langs) {
+        for (const [key, mapping] of Object.entries(slugMapping)) {
+            paths.push({
+                params: {
+                    lang,
+                    slug: mapping[lang],
+                },
+                props: {
+                    key,
+                    lang,
+                },
+            });
+        }
+    }
+    return paths;
+}
+
+const { key, lang } = Astro.props;
+const t = useTranslations(lang as "en" | "fr");
+const titleKey = `menu.${key}`;
+---
+
+<Layout title={t(titleKey)} lang={lang}>
+    <main class="page-container">
+        <h1>{t(titleKey)}</h1>
+        <p>Section: {key}</p>
+    </main>
+</Layout>
+
+<style>
+    .page-container {
+        padding: var(--space-xl);
+        max-width: 1200px;
+        margin: 0 auto;
+        color: var(--text-main);
+    }
+
+    h1 {
+        font-size: var(--space-3xl);
+        font-weight: var(--font-weight-bold);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin: 0;
+    }
+
+    p {
+        color: var(--text-muted);
+        margin-top: var(--space-md);
+    }
+</style>

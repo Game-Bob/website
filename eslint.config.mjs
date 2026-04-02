@@ -6,44 +6,22 @@ const customCommentsPlugin = {
     rules: {
         "no-html-comments": {
             meta: {
-                type: "layout",
-                fixable: "whitespace",
+                type: "problem",
+                docs: {
+                    description: "Disallow HTML comments in non-JS parts",
+                },
             },
             create(context) {
                 return {
                     Program() {
                         const sourceCode = context.sourceCode;
-                        const text = sourceCode.getText();
-
-                        const regex = new RegExp("<!--[\\s\\S]*?-->", "g");
+                        const pattern = "<!" + "--" + "[\\s\\S]*?--" + ">";
+                        const regex = new RegExp(pattern, "g");
                         let match;
-                        while ((match = regex.exec(text)) !== null) {
+                        while ((match = regex.exec(sourceCode.getText())) !== null) {
                             context.report({
                                 loc: sourceCode.getLocFromIndex(match.index),
                                 message: "HTML comments are forbidden.",
-                            });
-                        }
-                    },
-                };
-            },
-        },
-        "no-css-comments": {
-            meta: {
-                type: "layout",
-                fixable: "whitespace",
-            },
-            create(context) {
-                return {
-                    Program() {
-                        const sourceCode = context.sourceCode;
-                        const text = sourceCode.getText();
-
-                        const regex = new RegExp("/\\*[\\s\\S]*?\\*/", "g");
-                        let match;
-                        while ((match = regex.exec(text)) !== null) {
-                            context.report({
-                                loc: sourceCode.getLocFromIndex(match.index),
-                                message: "CSS/Block comments are forbidden.",
                             });
                         }
                     },
@@ -62,9 +40,7 @@ export default [
             "**/.astro/**",
             "**/public/**",
             ".vercel/",
-            "**/prototipos/evolucion.astro",
-            "**/prototipos/scroll-momentum.astro",
-            "**/post-mortem/*.astro",
+            "scripts/**",
         ],
     },
     ...tseslint.configs.recommended,
@@ -74,21 +50,18 @@ export default [
         files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.mjs", "**/*.astro"],
         plugins: {
             "no-comments": noComments,
+            custom: customCommentsPlugin,
         },
         rules: {
             "no-comments/disallowComments": "error",
             "@typescript-eslint/no-explicit-any": "off",
             "@typescript-eslint/no-unused-vars": "off",
-        },
-    },
-
-    {
-        files: ["**/*.astro", "**/*.html"],
-        plugins: {
-            custom: customCommentsPlugin,
-        },
-        rules: {
             "custom/no-html-comments": "error",
+            "complexity": ["error", 5],
+            "max-lines": ["error", { "max": 100, "skipBlankLines": true, "skipComments": false }],
+            "max-lines-per-function": ["error", { "max": 40, "skipBlankLines": true, "skipComments": false }],
+            "max-depth": ["error", 3],
+            "max-params": ["error", 3],
         },
     },
 
@@ -98,7 +71,7 @@ export default [
             custom: customCommentsPlugin,
         },
         rules: {
-            "custom/no-css-comments": "error",
+            "custom/no-html-comments": "error",
         },
     },
 ];

@@ -1,0 +1,24 @@
+---
+import { getHreflangs, getFullLocaleUrl } from "../../i18n/utils";
+
+interface Props {
+    title: string;
+    lang: string;
+    description?: string;
+}
+
+const { title, lang, description = "Experiencia GameBob" } = Astro.props;
+const hreflangs = getHreflangs();
+const canonical = getFullLocaleUrl(lang);
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+{hreflangs.map((l) => (
+    <link rel="alternate" hreflang={l} href={getFullLocaleUrl(l)} />
+))}
+<link rel="alternate" hreflang="x-default" href={getFullLocaleUrl("en")} />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />

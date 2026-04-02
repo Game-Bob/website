@@ -52,16 +52,17 @@
         "no-invalid-double-slash-comments": true,
         "property-disallowed-list": [
             "font-family"
-        ]
+        ],
+        "max-nesting-depth": 2,
+        "selector-max-compound-selectors": 3,
+        "comment-no-empty": true,
+        "comment-pattern": "a^"
     },
     "overrides": [
         {
             "files": [
-                "src/styles/global.css",
                 "src/styles/tokens.css",
-                "src/styles/themes/**/*.css",
-                "src/pages/gamebob/mecanicas/**/*.css",
-                "src/pages/gamebob/prototipos/**/*.css"
+                "src/styles/global.css"
             ],
             "rules": {
                 "property-disallowed-list": null,

@@ -1,0 +1,26 @@
+---
+import SEO from "../components/common/SEO.astro";
+import Header from "../components/common/Header.astro";
+import "../../src/styles/tokens.css";
+import "../../src/styles/global.css";
+
+interface Props {
+    title: string;
+    lang: string;
+    showHeader?: boolean;
+}
+
+const { title, lang, showHeader = true } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+    <head>
+        <meta charset="UTF-8" />
+        <SEO title={title} lang={lang} />
+    </head>
+    <body class="theme-dark">
+        {showHeader && <Header lang={lang} />}
+        <slot />
+    </body>
+</html>

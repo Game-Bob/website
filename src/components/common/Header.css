@@ -1,0 +1,132 @@
+.main-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: var(--bg-surface);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-subtle);
+    z-index: 100;
+    padding: var(--space-sm) 0;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logo {
+    height: 2.5rem;
+    width: auto;
+}
+
+.header-nav {
+    display: none;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: var(--space-lg);
+    flex-direction: row;
+}
+
+.nav-list a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.3s ease;
+}
+
+.nav-list a:hover {
+    color: var(--color-primary);
+}
+
+.mobile-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-xs);
+    z-index: 102;
+}
+
+.bar {
+    width: 2rem;
+    height: 1rem;
+    background: var(--text-main);
+    transition: 0.3s;
+}
+
+.header-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--black-50);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+}
+
+@media (width >= 768px) {
+    .header-nav {
+        display: block;
+    }
+
+    .mobile-toggle, .header-backdrop {
+        display: none !important;
+    }
+}
+
+.header-nav.is-active {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    height: 100vh;
+    background: var(--bg-surface);
+    padding: var(--space-3xl) var(--space-lg);
+    flex-direction: column;
+    align-items: center;
+    border-left: 1px solid var(--border-subtle);
+    z-index: 101;
+    animation: slide-in 0.3s ease-out;
+}
+
+@keyframes slide-in {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+.header-nav.is-active .nav-list {
+    flex-direction: column;
+    text-align: center;
+}
+
+.header-backdrop.is-active {
+    display: block;
+}
+
+.mobile-toggle.is-active .bar:nth-child(1) {
+    transform: translateY(0.5rem) rotate(45deg);
+}
+
+.mobile-toggle.is-active .bar:nth-child(2) {
+    opacity: 0%;
+}
+
+.mobile-toggle.is-active .bar:nth-child(3) {
+    transform: translateY(-0.5rem) rotate(-45deg);
+}
