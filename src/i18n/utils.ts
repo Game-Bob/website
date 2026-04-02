@@ -1,47 +1,51 @@
-import { translations, type TranslationKeys } from "./index";
+import { translations } from "./index";
+
 
 export const languages = {
     en: "English",
     fr: "Français",
 };
 
-export const externalLanguages = {
+
+export const externalLanguages: Record<string, string> = {
     es: "https://www.jjlmoya.es",
 };
+
 
 export const slugMapping: Record<string, Record<string, string>> = {
     utilities: {
         en: "utilities",
         fr: "utilitaires",
+        es: "utilidades",
+    },
+    categories: {
+        en: "categories",
+        fr: "categories",
+        es: "categorias", 
+    },
+    bikes: {
+        en: "cycling",
+        fr: "cyclisme",
+        es: "ciclismo",
     },
     apps: {
         en: "apps",
         fr: "apps",
+        es: "apps",
     },
 };
 
-export function useTranslations(lang: keyof TranslationKeys) {
-    return function t(key: string) {
+export const defaultLang = "en";
+
+export function useTranslations(lang: keyof typeof languages) {
+    return (key: string) => {
         const keys = key.split(".");
-        let result: unknown = translations[lang];
+        let result: any = translations[lang];
         for (const k of keys) {
-            result = (result as Record<string, unknown>)?.[k];
+            result = result?.[k];
         }
-        return (result as string) || key;
+        return result || key;
     };
-}
-
-export function getFullLocaleUrl(lang: string, path: string = "") {
-    if (lang === "es") {
-        return `${externalLanguages.es}/${path}`;
-    }
-    return `https://www.gamebob.dev/${lang}/${path}`;
-}
-
-export function getHreflangs() {
-    const internal = Object.keys(languages);
-    const external = Object.keys(externalLanguages);
-    return [...internal, ...external];
 }
 
 export function getLocalizedSlug(lang: string, key: string) {

@@ -1,0 +1,37 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { languages, useTranslations, slugMapping } from "../../../i18n/utils";
+import { getUtilityUrl } from "../../../i18n/routerUtils";
+import { getBikeSection } from "../../../data/utilities/bike";
+import "./index.css";
+
+export async function getStaticPaths() {
+    return Object.keys(languages).map((lang) => ({
+        params: { lang: lang as any, utilities: slugMapping.utilities[lang as any] },
+        props: { lang: lang as any },
+    }));
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const bikeSection = await getBikeSection(lang);
+const bikeCategoryUrl = getUtilityUrl(lang, "bikes");
+---
+
+<Layout title={t("ui.hub_title")} lang={lang}>
+    <section class="utility-hub">
+        <header class="hub-header">
+            <h1 class="hub-title">{t("ui.hub_title")}</h1>
+            <p class="hub-description">{t("ui.hub_desc")}</p>
+        </header>
+
+        <div class="category-list">
+            <a href={bikeCategoryUrl} class="category-card">
+                 <div class="category-info">
+                    <h2>{bikeSection.title}</h2>
+                    <p>{bikeSection.utilities.length} {t("ui.hub_count")}</p>
+                 </div>
+            </a>
+        </div>
+    </section>
+</Layout>

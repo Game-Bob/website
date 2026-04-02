@@ -1,0 +1,34 @@
+---
+import pkg from "../../../package.json";
+interface HowToStep { name: string; text: string; url?: string; image?: string; }
+interface Props {
+    title: string; description: string; url: string; category?: string;
+    faqItems?: Array<{ question: string; answer: string; }>; howToSteps?: HowToStep[];
+}
+const { title, description, url, category, faqItems, howToSteps } = Astro.props;
+const baseUrl = "https://www.jjlmoya.es";
+const fullUrl = `${baseUrl}${url}`;
+const author = { "@type": "Person", name: "jjlmoya", url: baseUrl, sameAs: ["https://github.com/jjlmoya", "https://www.linkedin.com/in/jjlmoya/"] };
+const org = { "@context": "https://schema.org", "@type": "Organization", name: "jjlmoya.es", url: baseUrl, logo: `${baseUrl}/images/logo.webp`, founder: author };
+const breadcrumb = {
+    "@context": "https://schema.org", "@type": "BreadcrumbList",
+    itemListElement: [{ "@type": "ListItem", position: 1, name: "Inicio", item: baseUrl }, { "@type": "ListItem", position: 2, name: "Utilidades", item: `${baseUrl}/utilidades` },
+    ...(category ? [{ "@type": "ListItem", position: 3, name: category, item: fullUrl }] : [])]
+};
+const webApp = {
+    "@context": "https://schema.org", "@type": "WebApplication", name: title, description, url: fullUrl,
+    applicationCategory: "UtilityApplication", operatingSystem: "Any", softwareVersion: pkg.version, author, creator: author, publisher: org,
+    offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" }, browserRequirements: "Requires JavaScript. Requires HTML5.", inLanguage: "es-ES"
+};
+const howTo = {
+    "@context": "https://schema.org", "@type": "HowTo", name: title, description, inLanguage: "es-ES", url: fullUrl, author, publisher: org,
+    ...(howToSteps && { step: howToSteps.map((s, i) => ({ "@type": "HowToStep", position: i + 1, name: s.name, text: s.text, ...(s.url && { url: s.url }), ...(s.image && { image: s.image }) })) })
+};
+const faq = faqItems ? {
+    "@context": "https://schema.org", "@type": "FAQPage",
+    mainEntity: faqItems.map(it => ({ "@type": "Question", name: it.question, acceptedAnswer: { "@type": "Answer", text: it.answer } }))
+} : null;
+const isCalc = ["calculadora", "simulador", "marcador", "generador"].some(k => title.toLowerCase().includes(k));
+const schemas = [breadcrumb, isCalc ? webApp : howTo, ...(faq ? [faq] : [])];
+---
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schemas)} />

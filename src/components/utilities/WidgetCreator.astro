@@ -1,0 +1,47 @@
+---
+import { Icon } from "astro-icon/components";
+import { useTranslations } from "../../i18n/utils";
+import "./WidgetCreator.css";
+
+interface Props {
+    title: string;
+    url: string;
+    lang?: string;
+}
+
+const { url, lang = "en" } = Astro.props;
+const t = useTranslations(lang as any);
+
+const toolSlug = url.split("/").filter(Boolean).pop() || "";
+const studioUrl = `/widgets/?utilidad=${toolSlug}`;
+---
+
+<section class="widget-creator no-widget-hidden">
+    <div class="widget-card">
+        <div class="widget-inner">
+            <div class="widget-glow"></div>
+
+            <div class="widget-flex">
+                <div class="widget-copy">
+                    <div class="badge-wrapper">
+                        <Icon name="mdi:widgets-outline" class="badge-icon" />
+                        {t("ui.util_studio_title")}
+                    </div>
+                    <h2 class="widget-title">
+                        {t("ui.util_studio_desc")}
+                    </h2>
+                    <p class="widget-description">
+                        {t("ui.util_studio_custom")}
+                    </p>
+                </div>
+
+                <div class="widget-action">
+                    <a href={studioUrl} class="button-studio">
+                        {t("ui.go_ahead")}
+                        <Icon name="mdi:arrow-right" class="btn-icon" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

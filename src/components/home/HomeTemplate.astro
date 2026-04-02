@@ -1,9 +1,10 @@
 ---
 import LogoSection from "./LogoSection.astro";
 import HomeNav from "./HomeNav.astro";
+import "./HomeTemplate.css";
 
 interface Props {
-    lang: "en" | "fr";
+    lang: "en" | "fr" | "es";
 }
 
 const { lang } = Astro.props;
@@ -11,23 +12,5 @@ const { lang } = Astro.props;
 
 <main class="home-template">
     <LogoSection />
-    <HomeNav lang={lang} />
+    <HomeNav lang={lang as any} />
 </main>
-
-<style>
-    .home-template {
-        display: flex;
-        flex-direction: row;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-    }
-
-    @media (width <= 768px) {
-        .home-template {
-            flex-direction: column;
-            height: auto;
-            overflow: visible;
-        }
-    }
-</style>

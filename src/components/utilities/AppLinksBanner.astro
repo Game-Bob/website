@@ -1,0 +1,43 @@
+---
+import { Icon } from "astro-icon/components";
+import { apps } from "../../data/apps/index";
+import { useTranslations } from "../../i18n/utils";
+import "./AppLinksBanner.css";
+
+interface Props { appSlug?: string; android?: string; ios?: string; lang?: string; }
+const { appSlug, android: propAndroid, ios: propIos, lang = "en" } = Astro.props;
+const t = useTranslations(lang as any);
+const app = appSlug ? apps.find((a) => a.slug === appSlug) : null;
+const isGeneric = !appSlug && !propAndroid && !propIos;
+
+const android = propAndroid || app?.stores.googlePlay || (isGeneric ? "https://play.google.com/store/apps/developer?id=GameBob+Games" : "");
+const ios = propIos || app?.stores.appStore || (isGeneric ? "https://apps.apple.com/ua/developer/juan-jose-lopez-moya/id1871275518" : "");
+const color = app?.theme.primary || "var(--color-primary)";
+---
+
+<div class="app-banner-container" data-generic={isGeneric} style={`--app-primary: ${color}`}>
+    <div class="glows"><div class="glow glow-1"></div><div class="glow glow-2"></div></div>
+    <div class="backdrop"></div>
+    <div class="banner-content">
+        {!isGeneric && <div class="icon-group">
+            {app ? <div class="icon-wrapper featured"><div class="icon-glow"></div><img src={app.media.icon} alt={app.title} class="app-icon large" /></div> : <div class="icon-wrapper placeholder"><Icon name="mdi:cellphone" class="phone-icon" /></div>}
+        </div>}
+        <div class="text-info">
+            <div class="heading-row">
+                <h3 class="heading">{isGeneric ? t("ui.app_banner_title") : app ? `${app.title} ${t("ui.app_is_app")}` : t("ui.app_prefer_version")}</h3>
+                {!isGeneric && <span class="badge">{t("ui.app_native")}</span>}
+            </div>
+            <p class="subtitle">{isGeneric ? t("ui.app_banner_desc") : app?.bannerText || t("ui.app_banner_generic_desc")}</p>
+        </div>
+        <div class="store-links">
+            {android && <a href={android} target="_blank" rel="noopener noreferrer" class="store-link" title={`${t("ui.app_available_on")} Google Play`}>
+                <Icon name="mdi:google-play" class="link-icon" /><div class="link-text"><span>{t("ui.app_available_on")}</span><b>Google Play</b></div>
+            </a>}
+            {ios ? <a href={ios} target="_blank" rel="noopener noreferrer" class="store-link" title={`${t("ui.app_get_it_on")} App Store`}>
+                <Icon name="mdi:apple" class="link-icon" /><div class="link-text"><span>{t("ui.app_get_it_on")}</span><b>App Store</b></div>
+            </a> : <div class="store-link disabled" title={`${t("ui.app_coming_soon")} App Store`}>
+                <Icon name="mdi:apple" class="link-icon" /><div class="link-text"><span>{t("ui.app_coming_soon")}</span><b>App Store</b></div>
+            </div>}
+        </div>
+    </div>
+</div>

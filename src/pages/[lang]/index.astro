@@ -11,6 +11,6 @@ const { lang } = Astro.params;
 const t = useTranslations(lang as "en" | "fr");
 ---
 
-<Layout title={t("home.title")} lang={lang as string} showHeader={false}>
+<Layout title={t("home.title")} lang={lang as string}>
     <HomeTemplate lang={lang as "en" | "fr"} />
 </Layout>

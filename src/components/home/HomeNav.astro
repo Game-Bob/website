@@ -1,58 +1,25 @@
 ---
 import { useTranslations, getLocalizedSlug } from "../../i18n/utils";
+import "./HomeNav.css";
 
 interface Props {
-    lang: "en" | "fr";
+    lang: "en" | "fr" | "es";
 }
 
 const { lang } = Astro.props;
-const t = useTranslations(lang);
+const t = useTranslations(lang as any);
 
 const appsPath = `/${lang}/${getLocalizedSlug(lang, "apps")}/`;
 const utilitiesPath = `/${lang}/${getLocalizedSlug(lang, "utilities")}/`;
 ---
 
 <nav class="home-nav">
-    <ul class="nav-links">
+    <ul class="home-nav-list">
         <li>
-            <a href={appsPath}>{t("menu.apps")}</a>
+            <a href={appsPath} class="home-nav-link">{t("menu.apps")}</a>
         </li>
         <li>
-            <a href={utilitiesPath}>{t("menu.utilities")}</a>
+            <a href={utilitiesPath} class="home-nav-link">{t("menu.utilities")}</a>
         </li>
     </ul>
 </nav>
-
-<style>
-    .home-nav {
-        flex: 1 1 40%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background: var(--bg-surface);
-        border-left: 1px solid var(--border-subtle);
-    }
-
-    .nav-links {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-lg);
-    }
-
-    a {
-        color: var(--text-main);
-        text-decoration: none;
-        font-size: var(--space-xl);
-        font-weight: var(--font-weight-bold);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        transition: color 0.3s ease;
-    }
-
-    a:hover {
-        color: var(--color-primary);
-    }
-</style>

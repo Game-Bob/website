@@ -1,26 +1,63 @@
 ---
+import "../styles/global.css";
+import "./Layout.css";
 import SEO from "../components/common/SEO.astro";
+import Footer from "../components/common/Footer.astro";
 import Header from "../components/common/Header.astro";
-import "../../src/styles/tokens.css";
-import "../../src/styles/global.css";
+
+import "@fontsource/inter/300.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/900.css";
 
 interface Props {
     title: string;
-    lang: string;
-    showHeader?: boolean;
+    description?: string;
+    image?: string;
+    bodyClass?: string;
+    mainClass?: string;
+    headerClass?: string;
+    footerClass?: string;
+    fullWidth?: boolean;
+    lang?: string;
 }
 
-const { title, lang, showHeader = true } = Astro.props;
+const {
+    title,
+    description,
+    image,
+    bodyClass = "",
+    fullWidth = false,
+    headerClass = "",
+    footerClass = "",
+    lang = "en",
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} class="theme-dark">
     <head>
-        <meta charset="UTF-8" />
-        <SEO title={title} lang={lang} />
+        <SEO title={title} description={description} image={image} />
+        <slot name="head" />
+
+        <script is:inline>
+            
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "light") {
+                document.documentElement.classList.remove("theme-dark");
+                document.documentElement.classList.add("theme-light");
+            } else {
+                document.documentElement.classList.add("theme-dark");
+            }
+        </script>
     </head>
-    <body class="theme-dark">
-        {showHeader && <Header lang={lang} />}
-        <slot />
+    <body class={`body-layout ${bodyClass}`}>
+        <Header className={headerClass} />
+
+        <main class={`main-content ${fullWidth ? "full-width" : ""} ${Astro.props.mainClass || ""}`}>
+            <slot />
+        </main>
+
+        <Footer className={footerClass} lang={lang} />
     </body>
 </html>

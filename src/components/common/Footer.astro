@@ -1,0 +1,26 @@
+---
+import { useTranslations } from "../../i18n/utils";
+import "./Footer.css";
+
+interface Props {
+    className?: string;
+    lang?: string;
+}
+
+const { className = "", lang = "en" } = Astro.props;
+const t = useTranslations(lang as any);
+---
+
+<footer class={`site-footer ${className}`}>
+    <p class="footer-copy">&copy; {new Date().getFullYear()} Juan José López Moya</p>
+    <p class="footer-license">
+        <a
+            href="https://creativecommons.org/licenses/by-nc/4.0/"
+            target="_blank"
+            rel="license noopener noreferrer"
+            class="license-link"
+        >
+            <span class="license-label">{t("ui.license")}</span> CC BY-NC 4.0
+        </a>
+    </p>
+</footer>

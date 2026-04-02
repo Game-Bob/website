@@ -1,0 +1,43 @@
+---
+interface Props { hasBanner: boolean; }
+const { hasBanner } = Astro.props;
+---
+<script is:inline define:vars={{ hasBanner }}>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("widget") === "true") {
+        const html = document.documentElement;
+        html.classList.add("is-widget");
+        document.body.classList.add("is-widget");
+
+        const theme = params.get("theme");
+        if (theme) html.classList.add(`theme-${theme}`);
+
+        const id = params.get("id") || `jj-widget-${window.location.pathname.split("/").filter(Boolean).pop()}`;
+
+        function getBannerHeight() {
+            if (!hasBanner) return 0;
+            const b = document.querySelector(".sticky-banner");
+            if (!b) return 0;
+            const h = b.getBoundingClientRect().height;
+            return h > 10 ? h : 0;
+        }
+
+        function calcH() {
+            const c = document.querySelector(".utility-tool-container");
+            const baseH = c ? c.getBoundingClientRect().height : document.body.scrollHeight;
+            return baseH + getBannerHeight();
+        }
+
+        const report = () => {
+            const h = calcH();
+            if (h > 50) window.parent.postMessage({ jjlmoyaHeight: Math.round(h), jjlmoyaId: id }, "*");
+        };
+
+        report();
+        const obs = new ResizeObserver(report);
+        obs.observe(document.querySelector(".utility-tool-container") || document.body);
+        window.addEventListener("load", report);
+        const itv = setInterval(report, 600);
+        setTimeout(() => clearInterval(itv), 5000);
+    }
+</script>

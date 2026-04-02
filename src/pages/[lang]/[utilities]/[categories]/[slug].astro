@@ -1,0 +1,90 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import CardUtility from "../../../../components/utilities/CardUtility.astro";
+import { languages, slugMapping } from "../../../../i18n/utils";
+import { getBikeSection } from "../../../../data/utilities/bike";
+
+export async function getStaticPaths() {
+    const paths = [];
+    const langs = Object.keys(languages) as ('en' | 'fr')[];
+
+    for (const lang of langs) {
+        
+        const utilitiesParam = slugMapping.utilities[lang];
+        const categoriesParam = slugMapping.categories[lang];
+        
+        const bikeSection = await getBikeSection(lang);
+
+        paths.push({
+            params: {
+                lang,
+                utilities: utilitiesParam,
+                categories: categoriesParam,
+                slug: bikeSection.slug,
+            },
+            props: {
+                lang,
+                section: bikeSection,
+            },
+        });
+    }
+    return paths;
+}
+
+const { lang, section } = Astro.props;
+---
+
+<Layout title={section.title} lang={lang}>
+    <section class="category-page">
+        <header class="category-header">
+            <h1 class="category-title">{section.title}</h1>
+            <p class="category-description">Explore our specialized tools for cycling and performance.</p>
+        </header>
+
+        <div class="utilities-grid">
+            {section.utilities.map((utility) => (
+                <CardUtility {...utility} lang={lang} />
+            ))}
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .category-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--space-xl) var(--space-md);
+    }
+
+    .category-header {
+        margin-bottom: var(--space-xl);
+        text-align: center;
+    }
+
+    .category-title {
+        font-size: clamp(3.5rem, 9vw, 7rem);
+        font-weight: 900;
+        text-transform: lowercase;
+        letter-spacing: -0.06em;
+        margin: 0;
+        color: var(--text-main);
+    }
+
+    .category-description {
+        color: var(--text-muted);
+        font-size: 1.25rem;
+        margin-top: 1rem;
+    }
+
+    .utilities-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: var(--space-lg);
+    }
+
+    @media (width <= 768px) {
+        .category-page {
+            padding: var(--space-lg) var(--space-sm);
+        }
+    }
+</style>

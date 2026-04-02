@@ -1,0 +1,55 @@
+---
+import { Icon } from "astro-icon/components";
+import { getUtilitiesHubUrl } from "../../i18n/routerUtils";
+import { useTranslations } from "../../i18n/utils";
+
+interface Props {
+    class?: string;
+    lang?: string;
+}
+
+const { class: className, lang = "en" } = Astro.props;
+const t = useTranslations(lang as any);
+const hubUrl = getUtilitiesHubUrl(lang);
+---
+
+<div class:list={["back-to-utilities", className]}>
+    <a href={hubUrl} class="back-link">
+        <Icon name="mdi:arrow-left" class="back-icon" />
+        <span>{t("ui.back_to_utils")}</span>
+    </a>
+</div>
+
+<style>
+    .back-to-utilities {
+        margin-bottom: var(--space-xl);
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-base);
+        color: var(--color-brand-white);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+        opacity: 70%;
+        text-transform: capitalize;
+    }
+
+    .back-link:hover {
+        opacity: 100%;
+        transform: translateX(-4px);
+    }
+
+    .back-icon {
+        font-size: 1.2rem;
+    }
+
+    @media (width <= 768px) {
+        .back-to-utilities {
+            margin-bottom: var(--space-lg);
+        }
+    }
+</style>

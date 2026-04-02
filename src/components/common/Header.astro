@@ -1,53 +1,88 @@
 ---
-import { useTranslations, getLocalizedSlug } from "../../i18n/utils";
+import { languages, externalLanguages, getLocalizedSlug } from "../../i18n/utils";
+import { getTranslatedUrl } from "../../i18n/routerUtils";
+import { Icon } from "astro-icon/components";
 import "./Header.css";
 
-interface Props {
-    lang: string;
-}
+const pathname = new URL(Astro.request.url).pathname;
+const lang = pathname.split('/')[1] || "en";
 
-const { lang } = Astro.props;
-const t = useTranslations(lang as "en" | "fr");
-const appsPath = `/${lang}/${getLocalizedSlug(lang, "apps")}/`;
-const utilitiesPath = `/${lang}/${getLocalizedSlug(lang, "utilities")}/`;
+interface Props { className?: string; }
+const { className = "" } = Astro.props;
+
+const aSlug = getLocalizedSlug(lang, "apps");
+const uSlug = getLocalizedSlug(lang, "utilities");
+const aPath = `/${lang}/${aSlug}/`;
+const uPath = `/${lang}/${uSlug}/`;
+
+const transUrls = await Promise.all(
+    Object.keys({ ...languages, ...externalLanguages }).map(async (l) => ({
+        lang: l, url: await getTranslatedUrl(pathname, lang, l)
+    }))
+);
 ---
 
-<header class="main-header">
-    <div class="header-container">
-        <a href={`/${lang}/`} class="logo-link">
-            <img src="/images/gamebob/index.webp" alt="GameBob Logo" class="header-logo" />
-        </a>
-
-        <button class="mobile-toggle" aria-label="Menu" id="menuToggle">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+<nav class={`main-nav ${className}`} id="main-nav">
+    <div class="nav-container">
+        <a href={`/${lang}/`} class="nav-logo">GameBob</a>
+        <div class="nav-links">
+            <a href={aPath} class={`nav-link ${pathname.includes(aSlug) ? "nav-active" : ""}`}>apps</a>
+            <a href={uPath} class={`nav-link ${pathname.includes(uSlug) ? "nav-active" : ""}`}>utilities</a>
+            <div class="nav-separator"></div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Theme">
+                    <Icon name="mdi:weather-sunny" class="theme-icon icon-light" />
+                    <Icon name="mdi:weather-night" class="theme-icon icon-dark" />
+                </button>
+                <div class="nav-separator sm-only"></div>
+                <div class="lang-switcher">
+                    {transUrls.map(({ lang: l, url }) => (
+                        <a href={url} class={`lang-link ${l === lang ? 'active' : ''}`}>{l}</a>
+                    ))}
+                </div>
+            </div>
+        </div>
+        <button id="menu-toggle" class="menu-toggle" aria-label="Menu">
+            <span class="toggle-line line-1"></span><span class="toggle-line line-2"></span>
         </button>
-
-        <div class="header-backdrop" id="headerBackdrop"></div>
-
-        <nav class="header-nav" id="headerNav">
-            <ul class="nav-list">
-                <li><a href={appsPath}>{t("menu.apps")}</a></li>
-                <li><a href={utilitiesPath}>{t("menu.utilities")}</a></li>
-            </ul>
-        </nav>
     </div>
-</header>
+</nav>
+
+<div id="mobile-menu-overlay" class="mobile-menu-overlay">
+    <div class="mobile-menu-content">
+        <a href={aPath} class="menu-link" style="
+
+--delay: 0.1s"><span class="link-number">01</span><span class="link-text">Apps</span></a>
+        <a href={uPath} class="menu-link" style="
+
+--delay: 0.2s"><span class="link-number">02</span><span class="link-text">Utilities</span></a>
+        <div class="mobile-lang-switcher" style="
+
+--delay: 0.3s">
+            {transUrls.map(({ lang: l, url }) => (
+                <a href={url} class={`mobile-lang-link ${l === lang ? 'active' : ''}`}>{l}</a>
+            ))}
+        </div>
+    </div>
+</div>
 
 <script>
-    const toggle = document.getElementById("menuToggle");
-    const nav = document.getElementById("headerNav");
-    const backdrop = document.getElementById("headerBackdrop");
-    const doc = document.documentElement;
-
-    const toggleMenu = () => {
-        const isActive = nav?.classList.toggle("is-active");
-        toggle?.classList.toggle("is-active");
-        backdrop?.classList.toggle("is-active");
-        doc.classList.toggle("is-locked", isActive);
-    };
-
-    toggle?.addEventListener("click", toggleMenu);
-    backdrop?.addEventListener("click", toggleMenu);
+    function setupHeader() {
+        const toggle = document.getElementById("theme-toggle");
+        if (toggle) {
+            toggle.addEventListener("click", () => {
+                const isLight = document.documentElement.classList.contains("theme-light");
+                document.documentElement.classList.toggle("theme-light", !isLight);
+                document.documentElement.classList.toggle("theme-dark", isLight);
+                localStorage.setItem("theme", isLight ? "dark" : "light");
+            });
+        }
+        document.getElementById("menu-toggle")?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            document.body.classList.toggle("menu-open");
+        });
+        document.querySelectorAll(".menu-link").forEach(l => l.addEventListener("click", () => document.body.classList.remove("menu-open")));
+    }
+    document.addEventListener("astro:page-load", setupHeader);
+    setupHeader();
 </script>

@@ -1,0 +1,29 @@
+.site-footer {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    transition: color 0.3s;
+}
+
+.footer-copy {
+    margin: 0;
+}
+
+.footer-license {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+}
+
+.license-link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    opacity: 80%;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+.license-link:hover {
+    opacity: 100%;
+    color: var(--text-main);
+}

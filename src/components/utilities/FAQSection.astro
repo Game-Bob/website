@@ -1,0 +1,37 @@
+---
+import { Icon } from "astro-icon/components";
+import { useTranslations } from "../../i18n/utils";
+import "./FAQSection.css";
+
+interface FAQItem {
+    question: string;
+    answer: string;
+}
+
+interface Props {
+    items: FAQItem[];
+    lang?: string;
+}
+
+const { items, lang = "en" } = Astro.props;
+const t = useTranslations(lang as any);
+---
+
+<section class="faq-section">
+    <h2 class="faq-title">{t("ui.faq_title")}</h2>
+    <div class="faq-list">
+        {
+            items.map((item) => (
+                <details class="faq-item">
+                    <summary class="faq-summary">
+                        {item.question}
+                        <Icon name="mdi:chevron-down" class="faq-icon" />
+                    </summary>
+                    <div class="faq-content">
+                        <p>{item.answer}</p>
+                    </div>
+                </details>
+            ))
+        }
+    </div>
+</section>

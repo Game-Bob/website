@@ -1,0 +1,57 @@
+---
+import { getBikeSection } from "../../../../../data/utilities/bike";
+import { languages, slugMapping } from "../../../../../i18n/utils";
+import LibraryUtilityLayout from "../../../../../components/utilities/LibraryUtilityLayout.astro";
+import { ALL_TOOLS } from "@jjlmoya/utils-bike";
+
+interface Props {
+    lang: 'en' | 'fr';
+    tool: any;
+    section: any;
+}
+
+export async function getStaticPaths() {
+    const paths = [];
+    const langs = Object.keys(languages) as ('en' | 'fr')[];
+
+    for (const lang of langs) {
+        const uParam = slugMapping.utilities[lang];
+        const cParam = slugMapping.categories[lang];
+        const bSection = await getBikeSection(lang);
+
+        
+        for (const toolDef of ALL_TOOLS) {
+            const toolLocale = await toolDef.entry.i18n[lang]!();
+            
+            paths.push({
+                params: {
+                    lang,
+                    utilities: uParam,
+                    categories: cParam,
+                    categorySlug: bSection.slug,
+                    toolSlug: toolLocale.slug,
+                },
+                props: {
+                    lang,
+                    section: bSection,
+                    tool: {
+                        entry: toolDef.entry,
+                        Component: toolDef.Component,
+                        SEOComponent: toolDef.SEOComponent,
+                        BibliographyComponent: toolDef.BibliographyComponent
+                    }
+                },
+            });
+        }
+    }
+    return paths;
+}
+
+const { lang, tool, section } = Astro.props;
+---
+
+<LibraryUtilityLayout 
+    lang={lang}
+    tool={tool}
+    category={section.title}
+/>

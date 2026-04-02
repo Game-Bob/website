@@ -1,0 +1,53 @@
+---
+import LayoutUtility from "../../layouts/LayoutUtility.astro";
+import UtilityHeader from "./UtilityHeader.astro";
+
+interface Props {
+    lang: 'en' | 'fr';
+    category?: string;
+    tool: {
+        entry: any;
+        Component: any;
+        SEOComponent: any;
+        BibliographyComponent: any;
+    };
+}
+
+const { lang, tool, category } = Astro.props;
+const { entry, Component, SEOComponent, BibliographyComponent } = tool;
+
+const content = await entry.i18n[lang]!();
+const words = content.title.split(" ");
+const titleHighlight = words[0] ?? "";
+const titleBase = words.slice(1).join(" ");
+
+const image = content.slug;
+---
+
+<LayoutUtility
+    title={content.title}
+    description={content.description}
+    image={`/images/utilities/${image}.webp`}
+    faqItems={content.faq}
+    howToSteps={content.howTo}
+    category={category}
+>
+    <div slot="header">
+        <UtilityHeader
+            titleHighlight={titleHighlight}
+            titleBase={titleBase}
+            description={content.description}
+        />
+    </div>
+
+    {}
+    <Component ui={content.ui} />
+
+    <div slot="seo">
+        <SEOComponent locale={lang} />
+    </div>
+
+    <div slot="bibliography">
+        <BibliographyComponent locale={lang} />
+    </div>
+</LayoutUtility>

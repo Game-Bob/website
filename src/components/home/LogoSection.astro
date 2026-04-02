@@ -1,4 +1,6 @@
 ---
+import "./LogoSection.css";
+
 interface Props {
     alt?: string;
 }
@@ -8,29 +10,6 @@ const { alt = "GameBob Logo" } = Astro.props;
 
 <section class="logo-section">
     <div class="logo-container">
-        <img src="/images/gamebob/index.webp" alt={alt} />
+        <img src="/images/gamebob/index.webp" alt={alt} class="gamebob-logo" />
     </div>
 </section>
-
-<style>
-    .logo-section {
-        flex: 1 1 60%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background: var(--bg-main);
-    }
-
-    .logo-container {
-        width: 100%;
-        max-width: 600px;
-        padding: var(--space-xl);
-    }
-
-    img {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-    }
-</style>

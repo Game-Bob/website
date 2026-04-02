@@ -1,0 +1,37 @@
+---
+import { getBikeSection } from "../../data/utilities/bike";
+import { useTranslations } from "../../i18n/utils";
+import CardUtility from "./CardUtility.astro";
+import "./RelatedUtilities.css";
+
+interface Props {
+    category: string;
+    currentPath: string;
+    lang?: string;
+}
+
+const { currentPath, lang = "en" } = Astro.props;
+const t = useTranslations(lang as any);
+
+
+const section = await getBikeSection(lang as any);
+
+
+const relatedUtilities = section.utilities.filter((u) => u.href !== currentPath);
+---
+
+{
+    relatedUtilities.length > 0 && (
+        <section class="related-section">
+            <h2 class="related-title">
+                {t("ui.related_utils_title")}{" "}
+                <span class="category-highlight">{section.title}</span>
+            </h2>
+            <div class="related-grid">
+                {relatedUtilities.map((u) => (
+                    <CardUtility {...u} lang={lang} />
+                ))}
+            </div>
+        </section>
+    )
+}

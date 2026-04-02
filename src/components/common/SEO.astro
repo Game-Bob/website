@@ -1,24 +1,94 @@
 ---
-import { getHreflangs, getFullLocaleUrl } from "../../i18n/utils";
-
 interface Props {
     title: string;
-    lang: string;
     description?: string;
+    image?: string;
+    article?: boolean;
+    publishedTime?: string;
+    modifiedTime?: string;
 }
 
-const { title, lang, description = "Experiencia GameBob" } = Astro.props;
-const hreflangs = getHreflangs();
-const canonical = getFullLocaleUrl(lang);
+const {
+    title,
+    description = "Software, juegos y utilidades creadas con amor. Si funciona, es un milagro. Si no, es que era un concepto interactivo.",
+    image = "/favicon-brand.webp",
+    article = false,
+    publishedTime,
+    modifiedTime,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const fullTitle = title;
+const imageURL = new URL(image, Astro.url);
+
+const isUtility = Astro.url.pathname.startsWith("/utilidades/") &&
+                  !Astro.url.pathname.startsWith("/utilidades/categorias/");
+const slug = isUtility ? Astro.url.pathname.replace(/^\/utilidades\//, "").replace(/\/$/, "") : null;
+const manifestUrl = isUtility && slug ? `/utilidades/${slug}/manifest.json` : "/manifest.json";
 ---
 
-<title>{title}</title>
-<meta name="description" content={description} />
-<link rel="canonical" href={canonical} />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/png" href="/brand-final-48.webp?v=2" />
+<link rel="apple-touch-icon" href={isUtility && image ? image : "/apple-touch-icon-brand.webp?v=2"} />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content={isUtility ? title : "jjlmoya"} />
+<meta name="apple-mobile-web-app-start-url" content={isUtility ? Astro.url.pathname : "/"} />
+<link rel="manifest" href={manifestUrl} />
+<meta name="generator" content={Astro.generator} />
+<meta name="theme-color" content="#0f172a" />
+<meta name="author" content="jjlmoya" />
 
-{hreflangs.map((l) => (
-    <link rel="alternate" hreflang={l} href={getFullLocaleUrl(l)} />
-))}
-<link rel="alternate" hreflang="x-default" href={getFullLocaleUrl("en")} />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="canonical" href={canonicalURL} />
+
+<title>{fullTitle}</title>
+<meta name="title" content={fullTitle} />
+<meta name="description" content={description} />
+
+<meta property="og:type" content={article ? "article" : "website"} />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageURL} />
+<meta property="og:image:secure_url" content={imageURL} />
+<meta property="og:image:alt" content={description} />
+<meta property="og:site_name" content="jjlmoya" />
+<meta property="og:locale" content="es_ES" />
+
+{
+    article && (
+        <>
+            <meta property="article:author" content="jjlmoya" />
+            {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+            {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+        </>
+    )
+}
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={fullTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={imageURL} />
+<meta property="twitter:image:alt" content={description} />
+<meta property="twitter:site" content="@jjlmoya" />
+<meta property="twitter:creator" content="@jjlmoya" />
+
+<script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "jjlmoya",
+        url: Astro.site,
+        sameAs: ["https://twitter.com/jjlmoya", "https://github.com/jjlmoya"],
+        jobTitle: "Desarrollador Creativo",
+        worksFor: {
+            "@type": "Organization",
+            name: "GameBob Studio",
+        },
+    })}
+/>

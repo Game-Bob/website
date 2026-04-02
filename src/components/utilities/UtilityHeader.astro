@@ -1,0 +1,60 @@
+---
+import "./UtilityHeader.css";
+
+interface Props {
+    titleHighlight: string;
+    titleBase: string;
+    description: string;
+    gradientFrom?: string;
+    gradientTo?: string;
+    gradientFromColor?: string;
+    gradientToColor?: string;
+    reverse?: boolean;
+}
+
+const {
+    titleHighlight,
+    titleBase,
+    description,
+    gradientFrom = "from-emerald-500",
+    gradientTo = "to-teal-600",
+    gradientFromColor,
+    gradientToColor,
+    reverse = false,
+} = Astro.props;
+
+const hasCustomGradient = gradientFromColor && gradientToColor;
+---
+
+<div class="utility-header">
+    <h1 class="title">
+        {
+            reverse ? (
+                <>
+                    <span class="base">{titleBase}</span>
+                    <span
+                        class="highlight"
+                        style={hasCustomGradient ? `background: linear-gradient(to right, ${gradientFromColor}, ${gradientToColor}); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;` : undefined}
+                        data-gradient={!hasCustomGradient ? `${gradientFrom} ${gradientTo}` : undefined}
+                    >
+                        {titleHighlight}
+                    </span>
+                </>
+            ) : (
+                <>
+                    <span
+                        class="highlight"
+                        style={hasCustomGradient ? `background: linear-gradient(to right, ${gradientFromColor}, ${gradientToColor}); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;` : undefined}
+                        data-gradient={!hasCustomGradient ? `${gradientFrom} ${gradientTo}` : undefined}
+                    >
+                        {titleHighlight}
+                    </span>
+                    <span class="base">{titleBase}</span>
+                </>
+            )
+        }
+    </h1>
+    <p class="description">
+        {description}
+    </p>
+</div>

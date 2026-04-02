@@ -1,0 +1,29 @@
+.related-section {
+    margin-top: var(--space-4xl);
+    padding-top: var(--space-3xl);
+    border-top: 1px solid var(--glass-border);
+}
+
+.related-title {
+    font-size: 1.875rem;
+    font-weight: 900;
+    color: var(--text-main);
+    letter-spacing: -0.025em;
+    margin-bottom: var(--space-xl);
+}
+
+.category-highlight {
+    color: var(--color-primary);
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-lg);
+}
+
+@media (width <= 768px) {
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+}
