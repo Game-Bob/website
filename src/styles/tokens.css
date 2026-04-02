@@ -1,5 +1,5 @@
-:root {
-    /* Brand Colors (Neon Blue based on current prod) */
+:root,
+.theme-dark {
     --color-primary: #00f2ff;
     --color-primary-rgb: 0, 242, 255;
     --color-secondary: #f43f5e;
@@ -7,7 +7,6 @@
     --color-accent: #0fa;
     --color-accent-rgb: 0, 255, 170;
 
-    /* Semantic Tokens (Dark Theme - Default) */
     --bg-main: #020205;
     --bg-surface: #0a0a0f;
     --bg-deep: #0b0f19;
@@ -18,7 +17,6 @@
     --glass-bg: rgba(255, 255, 255, 3%);
     --glass-border: rgba(255, 255, 255, 8%);
 
-    /* Spacing & Sizes (Tokens only in px allowed here) */
     --space-xs: 0.5rem;
     --space-sm: 1rem;
     --space-md: 1.5rem;
@@ -29,7 +27,6 @@
 
     --border-width-thin: 1px;
 
-    /* UI Tokens */
     --radius-sm: 0.25rem;
     --radius-base: 0.5rem;
     --radius-md: 0.75rem;
@@ -39,7 +36,6 @@
     --radius-3xl: 3rem;
     --radius-full: 9999px;
 
-    /* Alpha/Glass Helpers */
     --white-5: rgba(255, 255, 255, 5%);
     --white-10: rgba(255, 255, 255, 10%);
     --white-20: rgba(255, 255, 255, 20%);
@@ -101,16 +97,13 @@
     --color-warning-rgb: 234, 179, 8;
     --bg-slate-950: #020617;
 
-    /* CRT Scanline Colors */
     --scanline-red: rgba(255, 0, 0, 6%);
     --scanline-green: rgba(0, 255, 0, 2%);
     --scanline-blue: rgba(0, 0, 255, 6%);
 
-    /* Brand Integration Colors */
     --discord-color: #5865f2;
     --discord-green: #23a55a;
 
-    /* Typography */
     --font-family: 'Inter', system-ui, -apple-system, sans-serif;
     --font-weight-light: 300;
     --font-weight-normal: 400;
@@ -118,7 +111,7 @@
     --font-weight-bold: 800;
 }
 
-[data-theme='light'] {
+.theme-light {
     --bg-main: #f0f2f5;
     --bg-surface: #fff;
     --bg-deep: #e5e7eb;
