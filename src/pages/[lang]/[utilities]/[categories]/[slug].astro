@@ -1,8 +1,9 @@
 ---
 import Layout from "../../../../layouts/Layout.astro";
 import CardUtility from "../../../../components/utilities/CardUtility.astro";
-import { SUPPORTED_LANGUAGES, slugMapping } from "../../../../i18n/utils";
+import { SUPPORTED_LANGUAGES, slugMapping, type Language } from "../../../../i18n/utils";
 import { getBikeSection } from "../../../../data/utilities/bike";
+import { BikeCategorySEO, bikeCategory } from "@jjlmoya/utils-bike";
 
 export async function getStaticPaths() {
     const paths = [];
@@ -31,14 +32,18 @@ export async function getStaticPaths() {
     return paths;
 }
 
-const { lang, section } = Astro.props;
+const { lang: langProp, section } = Astro.props;
+const lang = langProp as Language;
+const content = await bikeCategory.i18n[lang]!();
+const image = `/images/utilities/${section.slug}.webp`;
+const description = content.description;
 ---
 
-<Layout title={section.title} lang={lang}>
+<Layout title={content.title} description={description} image={image} lang={lang}>
     <section class="category-page">
         <header class="category-header">
             <h1 class="category-title">{section.title}</h1>
-            <p class="category-description">Explore our specialized tools for cycling and performance.</p>
+            <p class="category-description">{section.description}</p>
         </header>
 
         <div class="utilities-grid">
@@ -46,6 +51,8 @@ const { lang, section } = Astro.props;
                 <CardUtility {...utility} lang={lang} />
             ))}
         </div>
+
+        <BikeCategorySEO locale={lang} />
     </section>
 </Layout>
 

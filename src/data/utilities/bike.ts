@@ -27,6 +27,8 @@ export async function getBikeSection(lang: Language): Promise<SectionData> {
         slug: cat.slug,
         icon: bikeCategory.icon,
         theme: "rose",
+        description: cat.description,
+        seo: cat.seo,
         utilities: [
             wrap(fixedGear, fixed, "#ef4444"),
             wrap(spokeCalculator, spoke, "#6366f1"),

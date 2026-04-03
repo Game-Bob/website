@@ -13,5 +13,7 @@ export interface SectionData {
     slug: string;
     icon: string;
     theme?: string;
+    description: string;
+    seo?: Array<{ type: string; text?: string; html?: string; level?: number }>;
     utilities: UtilityItem[];
 }
