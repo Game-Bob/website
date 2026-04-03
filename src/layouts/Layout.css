@@ -2,11 +2,14 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-top: 4.5rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-osx-font-smoothing: grayscale;
     color: var(--text-main);
     background: var(--bg-main);
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    overflow-y: scroll;
 }
 
 ::-webkit-scrollbar {

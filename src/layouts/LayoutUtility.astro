@@ -21,15 +21,19 @@ interface Props {
 
 const {
     title, description, image, category: propCategory,
-    appLinks, appSlug, faqItems, howToSteps, 
-    hideWidget = false, lang = "en"
+    appLinks, appSlug, faqItems, howToSteps,
+    hideWidget = false, lang: propLang
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
 const isWidget = Astro.url.searchParams.get("widget") === "true";
+
+const pathSegments = currentPath.split('/').filter(Boolean);
+const langFromUrl = pathSegments[0] === 'en' || pathSegments[0] === 'fr' ? pathSegments[0] : "en";
+const lang = propLang || langFromUrl;
 ---
 
-<Layout title={title} description={description} image={image} fullWidth={true}>
+<Layout title={title} description={description} image={image} fullWidth={true} lang={lang}>
     <UtilityStructuredData
         title={title} description={description} url={currentPath}
         category={propCategory} faqItems={faqItems} howToSteps={howToSteps}

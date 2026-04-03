@@ -21,17 +21,17 @@
 }
 
 .sticky-banner {
-    position: sticky;
-    top: var(--space-2-5xl);
+    position: fixed;
+    top: 4.5rem;
     z-index: 40;
     width: 100%;
-    transition: all 0.3s ease;
+    left: 0;
 }
 
 .utility-main-container {
     max-width: 72rem;
     margin: 0 auto;
-    padding: var(--space-3-5xl) var(--space-lg) 0;
+    padding: calc(var(--space-3-5xl) + 8rem) var(--space-lg) 0;
     position: relative;
     outline: none;
 }

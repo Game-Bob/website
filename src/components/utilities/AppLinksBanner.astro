@@ -30,13 +30,13 @@ const color = app?.theme.primary || "var(--color-primary)";
             <p class="subtitle">{isGeneric ? t("ui.app_banner_desc") : app?.bannerText || t("ui.app_banner_generic_desc")}</p>
         </div>
         <div class="store-links">
-            {android && <a href={android} target="_blank" rel="noopener noreferrer" class="store-link" title={`${t("ui.app_available_on")} Google Play`}>
-                <Icon name="mdi:google-play" class="link-icon" /><div class="link-text"><span>{t("ui.app_available_on")}</span><b>Google Play</b></div>
+            {android && <a href={android} target="_blank" rel="noopener noreferrer" class="store-link" title={`${t("ui.app_available_on")} ${t("store.google_play")}`}>
+                <Icon name="mdi:google-play" class="link-icon" /><div class="link-text"><span>{t("ui.app_available_on")}</span><b>{t("store.google_play")}</b></div>
             </a>}
-            {ios ? <a href={ios} target="_blank" rel="noopener noreferrer" class="store-link" title={`${t("ui.app_get_it_on")} App Store`}>
-                <Icon name="mdi:apple" class="link-icon" /><div class="link-text"><span>{t("ui.app_get_it_on")}</span><b>App Store</b></div>
-            </a> : <div class="store-link disabled" title={`${t("ui.app_coming_soon")} App Store`}>
-                <Icon name="mdi:apple" class="link-icon" /><div class="link-text"><span>{t("ui.app_coming_soon")}</span><b>App Store</b></div>
+            {ios ? <a href={ios} target="_blank" rel="noopener noreferrer" class="store-link" title={`${t("ui.app_get_it_on")} ${t("store.app_store")}`}>
+                <Icon name="mdi:apple" class="link-icon" /><div class="link-text"><span>{t("ui.app_get_it_on")}</span><b>{t("store.app_store")}</b></div>
+            </a> : <div class="store-link disabled" title={`${t("ui.app_coming_soon")} ${t("store.app_store")}`}>
+                <Icon name="mdi:apple" class="link-icon" /><div class="link-text"><span>{t("ui.app_coming_soon")}</span><b>{t("store.app_store")}</b></div>
             </div>}
         </div>
     </div>
