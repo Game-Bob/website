@@ -3,49 +3,61 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background: var(--color-brand-dark);
-    padding: var(--space-xl);
+    min-height: calc(100vh - 4.5rem);
+    background: var(--bg-main);
+    padding: var(--space-4xl);
     position: relative;
     overflow: hidden;
 }
 
-.logo-section::after {
-    content: '';
-    position: absolute;
-    width: var(--space-6xl);
-    height: var(--space-6xl);
-    background: radial-gradient(circle, color-mix(in srgb, var(--color-primary), transparent 95%) 0%, transparent 70%);
-    z-index: 1;
-    pointer-events: none;
-}
-
-.logo-container {
-    width: 100%;
-    max-width: var(--space-max);
-    padding: var(--space-xl);
+.hero-content {
+    max-width: 50rem;
     position: relative;
     z-index: 10;
+    text-align: left;
 }
 
-.gamebob-logo {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 0 30px color-mix(in srgb, var(--color-primary), transparent 85%));
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+.hero-logo {
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 900;
+    color: var(--text-main);
+    letter-spacing: -0.06em;
+    line-height: 1;
+    margin-bottom: var(--space-lg);
 }
 
-.logo-section:hover .gamebob-logo {
-    transform: scale(1.05) translateY(-5px);
-    filter: drop-shadow(0 0 50px color-mix(in srgb, var(--color-primary), transparent 70%));
+.hero-logo span {
+    color: var(--color-primary);
+    text-shadow: 0 0 30px color-mix(in srgb, var(--color-primary), transparent 60%);
+}
+
+.hero-tagline {
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    font-weight: 600;
+    color: var(--text-main);
+    opacity: 90%;
+    margin-bottom: var(--space-md);
+}
+
+.hero-description {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--text-muted);
+    max-width: 35rem;
+    line-height: 1.6;
 }
 
 @media (width <= 768px) {
     .logo-section {
         flex: none;
         min-height: auto;
-        padding: var(--space-4xl) var(--space-xl);
-        background: var(--color-brand-dark);
+        padding: var(--space-5xl) var(--space-xl) var(--space-xl);
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-description {
+        margin: 0 auto;
     }
 }

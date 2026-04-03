@@ -1,5 +1,6 @@
 ---
 import { useTranslations, getLocalizedSlug } from "../../i18n/utils";
+import { Icon } from "astro-icon/components";
 import "./HomeNav.css";
 
 interface Props {
@@ -14,12 +15,31 @@ const utilitiesPath = `/${lang}/${getLocalizedSlug(lang, "utilities")}/`;
 ---
 
 <nav class="home-nav">
-    <ul class="home-nav-list">
-        <li>
-            <a href={appsPath} class="home-nav-link">{t("menu.apps")}</a>
-        </li>
-        <li>
-            <a href={utilitiesPath} class="home-nav-link">{t("menu.utilities")}</a>
-        </li>
-    </ul>
+    <div class="nav-grid">
+        <a href={appsPath} class="nav-card">
+            <div class="card-icon">
+                <Icon name="mdi:rocket-launch-outline" />
+            </div>
+            <div class="card-content">
+                <h3>{t("menu.apps")}</h3>
+                <p>{t("home.explore_apps")}</p>
+            </div>
+            <div class="card-arrow">
+                <Icon name="mdi:chevron-right" />
+            </div>
+        </a>
+
+        <a href={utilitiesPath} class="nav-card">
+            <div class="card-icon">
+                <Icon name="mdi:hammer-screwdriver" />
+            </div>
+            <div class="card-content">
+                <h3>{t("menu.utilities")}</h3>
+                <p>{t("home.explore_utils")}</p>
+            </div>
+            <div class="card-arrow">
+                <Icon name="mdi:chevron-right" />
+            </div>
+        </a>
+    </div>
 </nav>

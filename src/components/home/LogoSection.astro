@@ -1,15 +1,19 @@
 ---
 import "./LogoSection.css";
+import { useTranslations } from "../../i18n/utils";
 
 interface Props {
-    alt?: string;
+    lang: "en" | "fr" | "es";
 }
 
-const { alt = "GameBob Logo" } = Astro.props;
+const { lang } = Astro.props;
+const t = useTranslations(lang as any);
 ---
 
 <section class="logo-section">
-    <div class="logo-container">
-        <img src="/images/gamebob/index.webp" alt={alt} class="gamebob-logo" />
+    <div class="hero-content">
+        <h1 class="hero-logo">Game<span>Bob</span></h1>
+        <p class="hero-tagline">{t("home.tagline")}</p>
+        <p class="hero-description">{t("home.description")}</p>
     </div>
 </section>
