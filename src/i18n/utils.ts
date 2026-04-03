@@ -24,7 +24,7 @@ export const slugMapping: Record<string, Record<string, string>> = {
     categories: {
         en: "categories",
         fr: "categories",
-        es: "categorias", 
+        es: "categorias",
     },
     bikes: {
         en: "cycling",

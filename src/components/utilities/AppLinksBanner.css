@@ -184,7 +184,7 @@
 }
 
 .store-link:hover {
-    opacity: 0.9;
+    opacity: 90%;
     transform: scale(1.1);
 }
 

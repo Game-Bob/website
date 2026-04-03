@@ -1,6 +1,6 @@
 ---
 import { languages, externalLanguages, getLocalizedSlug, SUPPORTED_LANGUAGES, type Language } from "../../i18n/utils";
-import { getTranslatedUrl } from "../../i18n/routerUtils";
+import { getTranslatedUrl, getExternalLanguageUrl } from "../../i18n/routerUtils";
 import MobileMenu from "./MobileMenu.astro";
 import LanguageSheet from "./LanguageSheet.astro";
 import ThemeToggle from "./ThemeToggle.astro";
@@ -20,9 +20,20 @@ const aPath = `/${lang}/${aSlug}/`;
 const uPath = `/${lang}/${uSlug}/`;
 
 const transUrls = await Promise.all(
-    Object.keys({ ...languages, ...externalLanguages }).map(async (l) => ({
-        lang: l, url: await getTranslatedUrl(pathname, lang, l)
-    }))
+    Object.keys({ ...languages, ...externalLanguages }).map(async (l) => {
+        if (externalLanguages[l]) {
+            return {
+                lang: l,
+                url: await getExternalLanguageUrl({
+                    pathname,
+                    currentLang: lang,
+                    targetLang: l,
+                    externalDomain: externalLanguages[l]
+                })
+            };
+        }
+        return { lang: l, url: await getTranslatedUrl(pathname, lang, l) };
+    })
 );
 ---
 

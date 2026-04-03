@@ -1,6 +1,6 @@
 ---
 import Layout from "./Layout.astro";
-import BackToUtilities from "../components/ui/BackToUtilities.astro";
+import Breadcrumb from "../components/ui/Breadcrumb.astro";
 import RelatedUtilities from "../components/utilities/RelatedUtilities.astro";
 import AppLinksBanner from "../components/utilities/AppLinksBanner.astro";
 import UtilityStructuredData from "../components/utilities/UtilityStructuredData.astro";
@@ -31,6 +31,7 @@ const isWidget = Astro.url.searchParams.get("widget") === "true";
 const pathSegments = currentPath.split('/').filter(Boolean);
 const langFromUrl = pathSegments[0] === 'en' || pathSegments[0] === 'fr' ? pathSegments[0] : "en";
 const lang = propLang || langFromUrl;
+const categorySlug = pathSegments[3] || "";
 ---
 
 <Layout title={title} description={description} image={image} fullWidth={true} lang={lang}>
@@ -47,7 +48,7 @@ const lang = propLang || langFromUrl;
 
         <div class="utility-main-container">
             <div class="utility-header-area">
-                <BackToUtilities lang={lang} />
+                <Breadcrumb category={propCategory} categorySlug={categorySlug} title={title} lang={lang} />
                 <slot name="header">
                     <h1>{title}</h1>
                     <p>{description}</p>

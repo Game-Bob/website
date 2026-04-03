@@ -1,4 +1,8 @@
 ---
+import { getTranslatedUrl, getExternalLanguageUrl } from "../../i18n/routerUtils";
+import { SUPPORTED_LANGUAGES, externalLanguages } from "../../i18n/utils";
+import OpenGraph from "./OpenGraph.astro";
+
 interface Props {
     title: string;
     description?: string;
@@ -6,6 +10,7 @@ interface Props {
     article?: boolean;
     publishedTime?: string;
     modifiedTime?: string;
+    lang?: string;
 }
 
 const {
@@ -15,6 +20,7 @@ const {
     article = false,
     publishedTime,
     modifiedTime,
+    lang = "en",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -25,6 +31,24 @@ const isUtility = Astro.url.pathname.startsWith("/utilidades/") &&
                   !Astro.url.pathname.startsWith("/utilidades/categorias/");
 const slug = isUtility ? Astro.url.pathname.replace(/^\/utilidades\//, "").replace(/\/$/, "") : null;
 const manifestUrl = isUtility && slug ? `/utilidades/${slug}/manifest.json` : "/manifest.json";
+
+const alternateUrls: Array<{ lang: string; url: string }> = [];
+
+for (const altLang of SUPPORTED_LANGUAGES) {
+    const translatedPath = await getTranslatedUrl(Astro.url.pathname, lang, altLang);
+    const altUrl = new URL(translatedPath, Astro.site);
+    alternateUrls.push({ lang: altLang, url: altUrl.href });
+}
+
+for (const [extLang, extUrl] of Object.entries(externalLanguages)) {
+    const externalUrl = await getExternalLanguageUrl({
+        pathname: Astro.url.pathname,
+        currentLang: lang,
+        targetLang: extLang,
+        externalDomain: extUrl
+    });
+    alternateUrls.push({ lang: extLang, url: externalUrl });
+}
 ---
 
 <meta charset="utf-8" />
@@ -42,39 +66,24 @@ const manifestUrl = isUtility && slug ? `/utilidades/${slug}/manifest.json` : "/
 <meta name="author" content="jjlmoya" />
 
 <link rel="canonical" href={canonicalURL} />
+{alternateUrls.map(({ lang: altLang, url }) => (
+    <link rel="alternate" hreflang={altLang} href={url} />
+))}
+<link rel="alternate" hreflang="x-default" href={canonicalURL} />
 
 <title>{fullTitle}</title>
 <meta name="title" content={fullTitle} />
 <meta name="description" content={description} />
 
-<meta property="og:type" content={article ? "article" : "website"} />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={fullTitle} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={imageURL} />
-<meta property="og:image:secure_url" content={imageURL} />
-<meta property="og:image:alt" content={description} />
-<meta property="og:site_name" content="jjlmoya" />
-<meta property="og:locale" content="es_ES" />
-
-{
-    article && (
-        <>
-            <meta property="article:author" content="jjlmoya" />
-            {publishedTime && <meta property="article:published_time" content={publishedTime} />}
-            {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
-        </>
-    )
-}
-
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={fullTitle} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={imageURL} />
-<meta property="twitter:image:alt" content={description} />
-<meta property="twitter:site" content="@jjlmoya" />
-<meta property="twitter:creator" content="@jjlmoya" />
+<OpenGraph
+    title={fullTitle}
+    description={description}
+    imageURL={imageURL}
+    url={Astro.url}
+    article={article}
+    publishedTime={publishedTime}
+    modifiedTime={modifiedTime}
+/>
 
 <script
     is:inline

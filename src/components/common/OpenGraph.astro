@@ -1,0 +1,42 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    imageURL: URL;
+    url: URL;
+    article?: boolean;
+    publishedTime?: string;
+    modifiedTime?: string;
+}
+
+const { title, description, imageURL, url, article, publishedTime, modifiedTime } = Astro.props;
+---
+
+<meta property="og:type" content={article ? "article" : "website"} />
+<meta property="og:url" content={url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageURL} />
+<meta property="og:image:secure_url" content={imageURL} />
+<meta property="og:image:alt" content={description} />
+<meta property="og:site_name" content="jjlmoya" />
+<meta property="og:locale" content="es_ES" />
+
+{
+    article && (
+        <>
+            <meta property="article:author" content="jjlmoya" />
+            {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+            {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+        </>
+    )
+}
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={imageURL} />
+<meta property="twitter:image:alt" content={description} />
+<meta property="twitter:site" content="@jjlmoya" />
+<meta property="twitter:creator" content="@jjlmoya" />
