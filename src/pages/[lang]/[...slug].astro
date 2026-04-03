@@ -7,18 +7,10 @@ export function getStaticPaths() {
     const langs = ["en", "fr"];
 
     for (const lang of langs) {
-        for (const [key, mapping] of Object.entries(slugMapping)) {
-            paths.push({
-                params: {
-                    lang,
-                    slug: mapping[lang],
-                },
-                props: {
-                    key,
-                    lang,
-                },
-            });
-        }
+        paths.push({
+            params: { lang, slug: slugMapping.apps[lang] },
+            props: { key: "apps", lang },
+        });
     }
     return paths;
 }

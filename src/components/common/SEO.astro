@@ -16,7 +16,7 @@ interface Props {
 const {
     title,
     description,
-    image = "/favicon.webp",
+    image = "/og-default.webp",
     article = false,
     publishedTime,
     modifiedTime,
@@ -27,10 +27,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const fullTitle = title;
 const imageURL = new URL(image, Astro.url);
 
-const isUtility = Astro.url.pathname.startsWith("/utilidades/") &&
-                  !Astro.url.pathname.startsWith("/utilidades/categorias/");
-const slug = isUtility ? Astro.url.pathname.replace(/^\/utilidades\//, "").replace(/\/$/, "") : null;
-const manifestUrl = isUtility && slug ? `/utilidades/${slug}/manifest.json` : "/manifest.json";
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const isUtility = pathSegments.length === 5;
+const manifestUrl = isUtility ? `${Astro.url.pathname}manifest.json` : "/manifest.json";
 
 const alternateUrls: Array<{ lang: string; url: string }> = [];
 
@@ -54,7 +53,7 @@ for (const [extLang, extUrl] of Object.entries(externalLanguages)) {
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/webp" href="/favicon.webp" />
-<link rel="apple-touch-icon" href={isUtility && image ? image : "/apple-touch-icon-brand.webp"} />
+<link rel="apple-touch-icon" href={isUtility ? image : "/apple-touch-icon-brand.webp"} />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />

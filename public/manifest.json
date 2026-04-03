@@ -1,0 +1,19 @@
+{
+  "name": "GameBob",
+  "short_name": "GameBob",
+  "description": "Software, games and utilities built with love.",
+  "start_url": "/",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/favicon-brand.webp",
+      "sizes": "48x48",
+      "type": "image/webp",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#0f172a",
+  "background_color": "#0f172a",
+  "display": "standalone",
+  "orientation": "portrait"
+}
