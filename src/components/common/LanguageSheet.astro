@@ -1,0 +1,60 @@
+---
+import "./LanguageSheet.css";
+
+interface Props {
+    transUrls: Array<{ lang: string; url: string }>;
+    currentLang: string;
+    languageNames?: Record<string, string>;
+}
+
+const { transUrls, currentLang, languageNames = {} } = Astro.props;
+
+const defaultNames: Record<string, string> = {
+    en: "English",
+    fr: "Français",
+    es: "Español",
+};
+
+const getLanguageName = (lang: string) =>
+    languageNames[lang] || defaultNames[lang] || lang;
+---
+
+<div id="mobile-lang-sheet" class="mobile-lang-sheet">
+    <div class="lang-sheet-backdrop"></div>
+    <div class="lang-sheet-content">
+        <div class="lang-sheet-header">
+            <h3>Select Language</h3>
+            <button id="lang-sheet-close" class="lang-sheet-close" aria-label="Close">×</button>
+        </div>
+        <div class="lang-sheet-list">
+            {transUrls.map(({ lang: l, url }) => (
+                <a href={url} class={`lang-sheet-item ${l === currentLang ? "active" : ""}`} data-lang={l}>
+                    <span class="lang-code">{l.toUpperCase()}</span>
+                    <span class="lang-name">{getLanguageName(l)}</span>
+                </a>
+            ))}
+        </div>
+    </div>
+</div>
+
+<script>
+    function setupLanguageSheet() {
+        const langSheet = document.getElementById("mobile-lang-sheet");
+        if (!langSheet) return;
+
+        const closeLangSheet = () => langSheet.classList.remove("active");
+        document.getElementById("lang-sheet-close")?.addEventListener("click", closeLangSheet);
+        document.querySelector(".lang-sheet-backdrop")?.addEventListener("click", closeLangSheet);
+
+        document.querySelectorAll(".lang-sheet-item").forEach((item) => {
+            item.addEventListener("click", (e) => {
+                e.preventDefault();
+                const href = item.getAttribute("href");
+                if (href) window.location.href = href;
+            });
+        });
+    }
+
+    document.addEventListener("astro:page-load", setupLanguageSheet);
+    setupLanguageSheet();
+</script>

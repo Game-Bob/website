@@ -1,0 +1,36 @@
+---
+import { Icon } from "astro-icon/components";
+import "./ThemeToggle.css";
+
+interface Props {
+    class?: string;
+    mobile?: boolean;
+}
+
+const { class: className = "", mobile = false } = Astro.props;
+const btnClass = mobile ? "mobile-icon-btn" : "theme-toggle";
+const btnId = mobile ? "mobile-theme-toggle" : "theme-toggle";
+---
+
+<button id={btnId} class={`${btnClass} ${className}`} aria-label="Theme">
+    <Icon name="mdi:weather-sunny" class="theme-icon icon-light" />
+    <Icon name="mdi:weather-night" class="theme-icon icon-dark" />
+</button>
+
+<script>
+    function setupThemeToggle() {
+        const toggleButtons = document.querySelectorAll("#theme-toggle, #mobile-theme-toggle");
+
+        toggleButtons.forEach((toggle) => {
+            toggle.addEventListener("click", () => {
+                const isLight = document.documentElement.classList.contains("theme-light");
+                document.documentElement.classList.toggle("theme-light", !isLight);
+                document.documentElement.classList.toggle("theme-dark", isLight);
+                localStorage.setItem("theme", isLight ? "dark" : "light");
+            });
+        });
+    }
+
+    document.addEventListener("astro:page-load", setupThemeToggle);
+    setupThemeToggle();
+</script>

@@ -1,7 +1,10 @@
 ---
 import { languages, externalLanguages, getLocalizedSlug } from "../../i18n/utils";
 import { getTranslatedUrl } from "../../i18n/routerUtils";
-import { Icon } from "astro-icon/components";
+import MobileMenu from "./MobileMenu.astro";
+import LanguageSheet from "./LanguageSheet.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import LanguageTrigger from "./LanguageTrigger.astro";
 import "./Header.css";
 
 const pathname = new URL(Astro.request.url).pathname;
@@ -30,10 +33,7 @@ const transUrls = await Promise.all(
             <a href={uPath} class={`nav-link ${pathname.includes(uSlug) ? "nav-active" : ""}`}>utilities</a>
             <div class="nav-separator"></div>
             <div class="nav-actions">
-                <button id="theme-toggle" class="theme-toggle" aria-label="Theme">
-                    <Icon name="mdi:weather-sunny" class="theme-icon icon-light" />
-                    <Icon name="mdi:weather-night" class="theme-icon icon-dark" />
-                </button>
+                <ThemeToggle />
                 <div class="nav-separator sm-only"></div>
                 <div class="lang-switcher">
                     {transUrls.map(({ lang: l, url }) => (
@@ -48,41 +48,21 @@ const transUrls = await Promise.all(
     </div>
 </nav>
 
-<div id="mobile-menu-overlay" class="mobile-menu-overlay">
-    <div class="mobile-menu-content">
-        <a href={aPath} class="menu-link" style="
+<MobileMenu aPath={aPath} uPath={uPath}>
+    <ThemeToggle slot="theme-toggle" mobile />
+    <LanguageTrigger slot="language-trigger" />
+</MobileMenu>
 
---delay: 0.1s"><span class="link-number">01</span><span class="link-text">Apps</span></a>
-        <a href={uPath} class="menu-link" style="
-
---delay: 0.2s"><span class="link-number">02</span><span class="link-text">Utilities</span></a>
-        <div class="mobile-lang-switcher" style="
-
---delay: 0.3s">
-            {transUrls.map(({ lang: l, url }) => (
-                <a href={url} class={`mobile-lang-link ${l === lang ? 'active' : ''}`}>{l}</a>
-            ))}
-        </div>
-    </div>
-</div>
+<LanguageSheet transUrls={transUrls} currentLang={lang} />
 
 <script>
     function setupHeader() {
-        const toggle = document.getElementById("theme-toggle");
-        if (toggle) {
-            toggle.addEventListener("click", () => {
-                const isLight = document.documentElement.classList.contains("theme-light");
-                document.documentElement.classList.toggle("theme-light", !isLight);
-                document.documentElement.classList.toggle("theme-dark", isLight);
-                localStorage.setItem("theme", isLight ? "dark" : "light");
-            });
-        }
         document.getElementById("menu-toggle")?.addEventListener("click", (e) => {
             e.stopPropagation();
-            document.body.classList.toggle("menu-open");
+            window.toggleMobileMenu?.();
         });
-        document.querySelectorAll(".menu-link").forEach(l => l.addEventListener("click", () => document.body.classList.remove("menu-open")));
     }
+
     document.addEventListener("astro:page-load", setupHeader);
     setupHeader();
 </script>

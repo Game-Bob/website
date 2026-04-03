@@ -40,6 +40,7 @@
     --bg-surface: #fff;
     --bg-deep: #0b0f19;
     --bg-translucent: rgba(0, 0, 0, 0.9);
+    --bg-backdrop: rgba(0, 0, 0, 0.4);
     --nav-bg: rgba(0, 0, 0, 0.9);
     --nav-bg-alt: rgba(2, 6, 23, 0.95);
     --header-bg-light: rgba(248, 250, 252, 0.95);

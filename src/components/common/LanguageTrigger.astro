@@ -1,0 +1,31 @@
+---
+import { Icon } from "astro-icon/components";
+import "./LanguageTrigger.css";
+
+interface Props {
+    class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<button id="mobile-lang-trigger" class={`mobile-icon-btn ${className}`} aria-label="Change language">
+    <Icon name="mdi:translate" class="lang-icon" />
+</button>
+
+<script>
+    function setupLanguageTrigger() {
+        const langTrigger = document.getElementById("mobile-lang-trigger");
+        const langSheet = document.getElementById("mobile-lang-sheet");
+
+        if (langTrigger && langSheet) {
+            langTrigger.addEventListener("click", (e) => {
+                e.stopPropagation();
+                langSheet.classList.add("active");
+            });
+        }
+    }
+
+    document.addEventListener("astro:page-load", setupLanguageTrigger);
+    setupLanguageTrigger();
+</script>
