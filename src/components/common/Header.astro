@@ -1,5 +1,5 @@
 ---
-import { languages, externalLanguages, getLocalizedSlug } from "../../i18n/utils";
+import { languages, externalLanguages, getLocalizedSlug, SUPPORTED_LANGUAGES, type Language } from "../../i18n/utils";
 import { getTranslatedUrl } from "../../i18n/routerUtils";
 import MobileMenu from "./MobileMenu.astro";
 import LanguageSheet from "./LanguageSheet.astro";
@@ -8,7 +8,8 @@ import LanguageTrigger from "./LanguageTrigger.astro";
 import "./Header.css";
 
 const pathname = new URL(Astro.request.url).pathname;
-const lang = pathname.split('/')[1] || "en";
+const langFromPath = pathname.split('/')[1] || "en";
+const lang = SUPPORTED_LANGUAGES.includes(langFromPath as Language) ? (langFromPath as Language) : "en" as Language;
 
 interface Props { className?: string; }
 const { className = "" } = Astro.props;

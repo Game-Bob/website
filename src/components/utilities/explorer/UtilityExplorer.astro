@@ -1,12 +1,12 @@
 ---
 import type { SectionData } from "../../../data/utilities/types";
 import CategorySection from "./CategorySection.astro";
-import { useTranslations } from "../../../i18n/utils";
+import { useTranslations, type Language } from "../../../i18n/utils";
 import "./UtilityExplorer.css";
 
 interface Props {
     sections: SectionData[];
-    lang: 'en' | 'fr';
+    lang: Language;
 }
 
 const { sections, lang } = Astro.props;

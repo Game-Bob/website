@@ -1,15 +1,15 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import { languages, useTranslations, slugMapping } from "../../../i18n/utils";
+import { SUPPORTED_LANGUAGES, useTranslations, slugMapping } from "../../../i18n/utils";
 import { getSections } from "../../../data/utilities/index.ts";
 import UtilityExplorer from "../../../components/utilities/explorer/UtilityExplorer.astro";
 import SearchInput from "../../../components/utilities/SearchInput.astro";
 import "./index.css";
 
 export async function getStaticPaths() {
-    return Object.keys(languages).map((lang) => ({
-        params: { lang: lang as any, utilities: slugMapping.utilities[lang as any] },
-        props: { lang: lang as any },
+    return SUPPORTED_LANGUAGES.map((lang) => ({
+        params: { lang, utilities: slugMapping.utilities[lang] },
+        props: { lang },
     }));
 }
 

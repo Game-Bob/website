@@ -1,8 +1,9 @@
 import { bikeCategory, fixedGear, spokeCalculator, gearCalculator } from '@jjlmoya/utils-bike/data';
 import { getUtilityUrl } from "../../i18n/routerUtils";
+import { type Language } from "../../i18n/utils";
 import type { SectionData } from "./types";
 
-export async function getBikeSection(lang: 'en' | 'fr'): Promise<SectionData> {
+export async function getBikeSection(lang: Language): Promise<SectionData> {
     const locale = lang;
     const [fixed, spoke, gear, cat] = await Promise.all([
         fixedGear.i18n[locale]!(),

@@ -1,12 +1,12 @@
 ---
 import Layout from "../../../../layouts/Layout.astro";
 import CardUtility from "../../../../components/utilities/CardUtility.astro";
-import { languages, slugMapping } from "../../../../i18n/utils";
+import { SUPPORTED_LANGUAGES, slugMapping } from "../../../../i18n/utils";
 import { getBikeSection } from "../../../../data/utilities/bike";
 
 export async function getStaticPaths() {
     const paths = [];
-    const langs = Object.keys(languages) as ('en' | 'fr')[];
+    const langs = SUPPORTED_LANGUAGES;
 
     for (const lang of langs) {
         

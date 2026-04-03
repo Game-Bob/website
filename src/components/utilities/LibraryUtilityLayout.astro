@@ -1,9 +1,10 @@
 ---
 import LayoutUtility from "../../layouts/LayoutUtility.astro";
 import UtilityHeader from "./UtilityHeader.astro";
+import { type Language } from "../../i18n/utils";
 
 interface Props {
-    lang: 'en' | 'fr';
+    lang: Language;
     category?: string;
     tool: {
         entry: any;

@@ -1,7 +1,10 @@
 import { translations } from "./index";
 
 
-export const languages = {
+export const SUPPORTED_LANGUAGES = ['en', 'fr'] as const;
+export type Language = (typeof SUPPORTED_LANGUAGES)[number];
+
+export const languages: Record<Language, string> = {
     en: "English",
     fr: "Français",
 };
@@ -37,7 +40,7 @@ export const slugMapping: Record<string, Record<string, string>> = {
 
 export const defaultLang = "en";
 
-export function useTranslations(lang: keyof typeof languages) {
+export function useTranslations(lang: Language) {
     return (key: string) => {
         const keys = key.split(".");
         let result: any = translations[lang];

@@ -1,18 +1,18 @@
 ---
 import { getBikeSection } from "../../../../../data/utilities/bike";
-import { languages, slugMapping } from "../../../../../i18n/utils";
+import { SUPPORTED_LANGUAGES, slugMapping, type Language } from "../../../../../i18n/utils";
 import LibraryUtilityLayout from "../../../../../components/utilities/LibraryUtilityLayout.astro";
 import { ALL_TOOLS } from "@jjlmoya/utils-bike";
 
 interface Props {
-    lang: 'en' | 'fr';
+    lang: Language;
     tool: any;
     section: any;
 }
 
 export async function getStaticPaths() {
     const paths = [];
-    const langs = Object.keys(languages) as ('en' | 'fr')[];
+    const langs = SUPPORTED_LANGUAGES;
 
     for (const lang of langs) {
         const uParam = slugMapping.utilities[lang];

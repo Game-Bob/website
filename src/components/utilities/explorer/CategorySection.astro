@@ -1,24 +1,28 @@
 ---
 import type { UtilityItem } from "../../../data/utilities/types";
 import UtilityItemCompact from "./UtilityItemCompact.astro";
-import { useTranslations } from "../../../i18n/utils";
+import { useTranslations, slugMapping, type Language } from "../../../i18n/utils";
 
 interface Props {
     title: string;
     icon: string;
     utilities: UtilityItem[];
-    lang?: 'en' | 'fr';
+    slug: string;
+    lang?: Language;
 }
 
-const { title, icon, utilities, lang = 'en' } = Astro.props;
+const { title, utilities, slug, lang = 'en' } = Astro.props;
 const t = useTranslations(lang);
+const categoryUrl = `/${lang}/${slugMapping.utilities[lang]}/${slugMapping.categories[lang]}/${slug}/`;
 ---
 
 <section class="category-section" data-category-title={title.toLowerCase()}>
-    <header class="section-header">
-        <h2 class="category-title">{title}</h2>
-        <span class="count-badge">{utilities.length} {utilities.length === 1 ? t('ui.tool_singular') : t('ui.tool_plural')}</span>
-    </header>
+    <a href={categoryUrl} class="section-header-link">
+        <header class="section-header">
+            <h2 class="category-title">{title}</h2>
+            <span class="count-badge">{utilities.length} {utilities.length === 1 ? t('ui.tool_singular') : t('ui.tool_plural')}</span>
+        </header>
+    </a>
 
     <div class="items-grid">
         {utilities.map(item => (
@@ -45,6 +49,19 @@ const t = useTranslations(lang);
         align-items: baseline;
         gap: var(--space-md);
         margin-bottom: var(--space-md);
+    }
+
+    .section-header-link {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        gap: var(--space-md);
+        align-items: baseline;
+        transition: opacity 0.2s;
+    }
+
+    .section-header-link:hover {
+        opacity: 0.7;
     }
 
     .category-title {
