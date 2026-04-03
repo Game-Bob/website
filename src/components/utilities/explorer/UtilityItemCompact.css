@@ -93,6 +93,7 @@
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
@@ -117,6 +118,28 @@
     .arrow-icon {
         width: 1.125rem;
         height: 1.125rem;
+    }
+}
+
+@media (width <= 480px) {
+    .utility-item-compact {
+        padding: var(--space-sm) var(--space-md);
+    }
+
+    .icon-wrapper {
+        width: 8rem;
+        height: 8rem;
+        top: -3rem;
+        right: -4rem;
+    }
+
+    .icon {
+        width: 7.5rem;
+        height: 7.5rem;
+    }
+
+    .title {
+        font-size: 0.9rem;
     }
 }
 

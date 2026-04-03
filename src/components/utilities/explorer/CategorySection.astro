@@ -1,20 +1,23 @@
 ---
 import type { UtilityItem } from "../../../data/utilities/types";
 import UtilityItemCompact from "./UtilityItemCompact.astro";
+import { useTranslations } from "../../../i18n/utils";
 
 interface Props {
     title: string;
     icon: string;
     utilities: UtilityItem[];
+    lang?: 'en' | 'fr';
 }
 
-const { title, icon, utilities } = Astro.props;
+const { title, icon, utilities, lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="category-section" data-category-title={title.toLowerCase()}>
     <header class="section-header">
         <h2 class="category-title">{title}</h2>
-        <span class="count-badge">{utilities.length} {utilities.length === 1 ? 'tool' : 'tools'}</span>
+        <span class="count-badge">{utilities.length} {utilities.length === 1 ? t('ui.tool_singular') : t('ui.tool_plural')}</span>
     </header>
 
     <div class="items-grid">
@@ -54,14 +57,14 @@ const { title, icon, utilities } = Astro.props;
     }
 
     .count-badge {
-        font-size: 0.7rem;
+        font-size: 0.6rem;
         background: var(--color-primary);
         color: var(--text-inverse);
-        padding: 0 var(--space-xs);
+        padding: var(--space-xs) var(--space-sm);
         border-radius: var(--radius-full);
-        font-weight: var(--font-weight-semibold);
+        font-weight: var(--font-weight-bold);
         text-transform: uppercase;
-        opacity: 90%;
+        opacity: 100%;
     }
 
     .items-grid {

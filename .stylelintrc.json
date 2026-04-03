@@ -28,7 +28,8 @@
                     "1px",
                     "1px solid transparent"
                 ],
-                "message": "Bunker Guard: Hardcoded detected in '${property}'. Use Design Tokens (tokens.css)."
+                "message": "Bunker Guard: Hardcoded detected in '${property}'. Use Design Tokens (tokens.css).",
+                "disableFix": true
             }
         ],
         "color-no-hex": true,

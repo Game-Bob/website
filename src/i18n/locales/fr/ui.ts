@@ -24,5 +24,7 @@ export default {
     hub_desc: "Choisissez une catégorie pour explorer nos outils spécialisés de cyclisme.",
     hub_count: "outils disponibles",
     search_placeholder: "Rechercher des outils ou des catégories...",
-    no_results: "Aucun outil ne correspond à votre recherche."
+    no_results: "Aucun outil ne correspond à votre recherche.",
+    tool_singular: "outil",
+    tool_plural: "outils"
 };

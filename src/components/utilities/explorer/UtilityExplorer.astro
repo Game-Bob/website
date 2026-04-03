@@ -20,8 +20,9 @@ const t = useTranslations(lang);
 
     <div class="sections-container" id="sections-container">
         {sections.map(section => (
-            <CategorySection 
-                {...section} 
+            <CategorySection
+                {...section}
+                lang={lang}
             />
         ))}
     </div>
