@@ -11,12 +11,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(
-        ellipse at top,
-        var(--primary-10) 0%,
-        var(--bg-surface) 50%,
-        var(--bg-main) 100%
-    );
+    background: radial-gradient(ellipse at top,
+            var(--primary-10) 0%,
+            var(--bg-surface) 50%,
+            var(--bg-main) 100%);
     z-index: -10;
 }
 
@@ -31,7 +29,7 @@
 .utility-main-container {
     max-width: 72rem;
     margin: 0 auto;
-    padding: calc(var(--space-3-5xl) + 8rem) var(--space-lg) 0;
+    padding: var(--space-4xl)var(--space-lg) 0;
     position: relative;
     outline: none;
 }
@@ -103,7 +101,7 @@ body.is-widget .utility-tool-container {
     margin-top: 0 !important;
 }
 
-@media (width <= 640px) {
+@media (width <=640px) {
     .utility-main-container {
         padding-top: var(--space-2xl);
     }

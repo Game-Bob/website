@@ -40,7 +40,6 @@
 .main-content:not(.full-width) {
     max-width: 1400px;
     margin: 0 auto;
-    padding: var(--space-4xl) var(--space-lg);
 }
 
 .main-content.full-width {
@@ -52,7 +51,7 @@
     max-width: 100%;
 }
 
-@media (width <= 768px) {
+@media (width <=768px) {
     .main-content:not(.full-width) {
         padding: var(--space-3xl) var(--space-md);
     }
