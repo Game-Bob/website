@@ -4,9 +4,12 @@ import "./MobileMenu.css";
 interface Props {
     aPath: string;
     uPath: string;
+    aSlug: string;
+    uSlug: string;
+    pathname: string;
 }
 
-const { aPath, uPath } = Astro.props;
+const { aPath, uPath, aSlug, uSlug, pathname } = Astro.props;
 ---
 
 <div id="mobile-menu-overlay" class="mobile-menu-overlay">
@@ -14,8 +17,8 @@ const { aPath, uPath } = Astro.props;
     <div class="mobile-menu-panel">
         <button id="menu-close" class="menu-close" aria-label="Close menu">×</button>
         <nav class="mobile-nav">
-            <a href={aPath} class="menu-link"><span class="link-number">01</span><span class="link-text">Apps</span></a>
-            <a href={uPath} class="menu-link"><span class="link-number">02</span><span class="link-text">Utilities</span></a>
+            <a href={aPath} class={`menu-link ${pathname.includes(aSlug) ? "menu-active" : ""}`}><span class="link-number">01</span><span class="link-text">Apps</span></a>
+            <a href={uPath} class={`menu-link ${pathname.includes(uSlug) ? "menu-active" : ""}`}><span class="link-number">02</span><span class="link-text">Utilities</span></a>
         </nav>
         <div class="mobile-menu-footer">
             <div class="mobile-footer-actions">
