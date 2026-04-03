@@ -1,8 +1,8 @@
 ---
-import { getBikeSection } from "../../data/utilities/bike";
-import { useTranslations } from "../../i18n/utils";
+import { useTranslations, type Language } from "../../i18n/utils";
 import CardUtility from "./CardUtility.astro";
 import "./RelatedUtilities.css";
+import { getSections } from "../../data/utilities/index";
 
 interface Props {
     category: string;
@@ -11,13 +11,14 @@ interface Props {
 }
 
 const { currentPath, lang = "en" } = Astro.props;
-const t = useTranslations(lang as any);
+const t = useTranslations(lang as Language);
 
+const pathSegments = currentPath.split('/').filter(Boolean);
+const categorySlug = pathSegments[3] ?? "";
 
-const section = await getBikeSection(lang as any);
-
-
-const relatedUtilities = section.utilities.filter((u) => u.href !== currentPath);
+const sections = await getSections(lang as Language);
+const section = sections.find(s => s.slug === categorySlug);
+const relatedUtilities = section?.utilities.filter((u: { href: string }) => u.href !== currentPath) ?? [];
 ---
 
 {
@@ -25,7 +26,7 @@ const relatedUtilities = section.utilities.filter((u) => u.href !== currentPath)
         <section class="related-section">
             <h2 class="related-title">
                 {t("ui.related_utils_title")}{" "}
-                <span class="category-highlight">{section.title}</span>
+                <span class="category-highlight">{section?.title}</span>
             </h2>
             <div class="related-grid">
                 {relatedUtilities.map((u) => (

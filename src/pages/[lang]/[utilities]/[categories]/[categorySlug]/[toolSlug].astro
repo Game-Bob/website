@@ -1,8 +1,8 @@
 ---
-import { getBikeSection } from "../../../../../data/utilities/bike";
 import { SUPPORTED_LANGUAGES, slugMapping, type Language } from "../../../../../i18n/utils";
 import LibraryUtilityLayout from "../../../../../components/utilities/LibraryUtilityLayout.astro";
-import { ALL_TOOLS } from "@jjlmoya/utils-bike";
+import { CATEGORIES } from "../../../../../data/utilities/registry";
+import { buildSection } from "../../../../../data/utilities/builder";
 
 interface Props {
     lang: Language;
@@ -12,36 +12,21 @@ interface Props {
 
 export async function getStaticPaths() {
     const paths = [];
-    const langs = SUPPORTED_LANGUAGES;
 
-    for (const lang of langs) {
+    for (const lang of SUPPORTED_LANGUAGES) {
         const uParam = slugMapping.utilities[lang];
         const cParam = slugMapping.categories[lang];
-        const bSection = await getBikeSection(lang);
 
-        
-        for (const toolDef of ALL_TOOLS) {
-            const toolLocale = await toolDef.entry.i18n[lang]!();
-            
-            paths.push({
-                params: {
-                    lang,
-                    utilities: uParam,
-                    categories: cParam,
-                    categorySlug: bSection.slug,
-                    toolSlug: toolLocale.slug,
-                },
-                props: {
-                    lang,
-                    section: bSection,
-                    tool: {
-                        entry: toolDef.entry,
-                        Component: toolDef.Component,
-                        SEOComponent: toolDef.SEOComponent,
-                        BibliographyComponent: toolDef.BibliographyComponent
-                    }
-                },
-            });
+        for (const catDef of CATEGORIES) {
+            const section = await buildSection(lang, catDef);
+
+            for (const toolDef of catDef.AllTools) {
+                const toolLocale = await toolDef.entry.i18n[lang]!();
+                paths.push({
+                    params: { lang, utilities: uParam, categories: cParam, categorySlug: section.slug, toolSlug: toolLocale.slug },
+                    props: { lang, section, tool: toolDef },
+                });
+            }
         }
     }
     return paths;
@@ -50,7 +35,7 @@ export async function getStaticPaths() {
 const { lang, tool, section } = Astro.props;
 ---
 
-<LibraryUtilityLayout 
+<LibraryUtilityLayout
     lang={lang}
     tool={tool}
     category={section.title}

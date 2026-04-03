@@ -1,12 +1,9 @@
-import type { SectionData } from "./types";
-import { type Language } from "../../i18n/utils";
+import type { Language } from "../../i18n/utils";
+import { CATEGORIES } from "./registry";
+import { buildSection } from "./builder";
 
-import { getBikeSection } from "./bike";
-
-export async function getSections(lang: Language): Promise<SectionData[]> {
-    return [
-        await getBikeSection(lang),
-    ];
+export async function getSections(lang: Language) {
+    return Promise.all(CATEGORIES.map(cat => buildSection(lang, cat)));
 }
 
 export type { SectionData, UtilityItem } from "./types";

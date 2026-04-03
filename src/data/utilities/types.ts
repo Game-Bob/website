@@ -1,3 +1,12 @@
+export interface CategoryDefinition {
+    key: string;
+    entry: any;
+    SEOComponent: any;
+    theme: string;
+    toolsWithColors: Array<{ toolEntry: any; color: string }>;
+    AllTools: any[];
+}
+
 export interface UtilityItem {
     title: string;
     description: string;

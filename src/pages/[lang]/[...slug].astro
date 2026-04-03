@@ -28,7 +28,7 @@ const t = useTranslations(lang as "en" | "fr");
 const titleKey = `menu.${key}`;
 ---
 
-<Layout title={t(titleKey)} lang={lang}>
+<Layout title={t(titleKey)} description={t("ui.hub_desc")} lang={lang}>
     <main class="page-container">
         <h1>{t(titleKey)}</h1>
         <p>Section: {key}</p>

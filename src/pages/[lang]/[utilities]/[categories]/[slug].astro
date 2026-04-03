@@ -2,39 +2,30 @@
 import Layout from "../../../../layouts/Layout.astro";
 import CardUtility from "../../../../components/utilities/CardUtility.astro";
 import { SUPPORTED_LANGUAGES, slugMapping, type Language } from "../../../../i18n/utils";
-import { getBikeSection } from "../../../../data/utilities/bike";
-import { BikeCategorySEO, bikeCategory } from "@jjlmoya/utils-bike";
+import { CATEGORIES } from "../../../../data/utilities/registry";
+import { buildSection } from "../../../../data/utilities/builder";
 
 export async function getStaticPaths() {
     const paths = [];
-    const langs = SUPPORTED_LANGUAGES;
 
-    for (const lang of langs) {
-        
+    for (const lang of SUPPORTED_LANGUAGES) {
         const utilitiesParam = slugMapping.utilities[lang];
         const categoriesParam = slugMapping.categories[lang];
-        
-        const bikeSection = await getBikeSection(lang);
 
-        paths.push({
-            params: {
-                lang,
-                utilities: utilitiesParam,
-                categories: categoriesParam,
-                slug: bikeSection.slug,
-            },
-            props: {
-                lang,
-                section: bikeSection,
-            },
-        });
+        for (const catDef of CATEGORIES) {
+            const section = await buildSection(lang, catDef);
+            paths.push({
+                params: { lang, utilities: utilitiesParam, categories: categoriesParam, slug: section.slug },
+                props: { lang, section, categoryEntry: catDef.entry, CategorySEOComponent: catDef.SEOComponent },
+            });
+        }
     }
     return paths;
 }
 
-const { lang: langProp, section } = Astro.props;
+const { lang: langProp, section, categoryEntry, CategorySEOComponent } = Astro.props;
 const lang = langProp as Language;
-const content = await bikeCategory.i18n[lang]!();
+const content = await categoryEntry.i18n[lang]!();
 const image = `/images/utilities/${section.slug}.webp`;
 const description = content.description;
 ---
@@ -52,7 +43,7 @@ const description = content.description;
             ))}
         </div>
 
-        <BikeCategorySEO locale={lang} />
+        <CategorySEOComponent locale={lang} />
     </section>
 </Layout>
 

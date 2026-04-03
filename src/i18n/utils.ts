@@ -31,6 +31,11 @@ export const slugMapping: Record<string, Record<string, string>> = {
         fr: "cyclisme",
         es: "ciclismo",
     },
+    pets: {
+        en: "pets",
+        fr: "animaux",
+        es: "mascotas",
+    },
     apps: {
         en: "apps",
         fr: "apps",

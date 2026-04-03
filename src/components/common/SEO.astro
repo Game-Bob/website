@@ -5,7 +5,7 @@ import OpenGraph from "./OpenGraph.astro";
 
 interface Props {
     title: string;
-    description?: string;
+    description: string;
     image?: string;
     article?: boolean;
     publishedTime?: string;
@@ -15,8 +15,8 @@ interface Props {
 
 const {
     title,
-    description = "Software, juegos y utilidades creadas con amor. Si funciona, es un milagro. Si no, es que era un concepto interactivo.",
-    image = "/favicon-brand.webp",
+    description,
+    image = "/favicon.webp",
     article = false,
     publishedTime,
     modifiedTime,
@@ -53,8 +53,8 @@ for (const [extLang, extUrl] of Object.entries(externalLanguages)) {
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/png" href="/brand-final-48.webp?v=2" />
-<link rel="apple-touch-icon" href={isUtility && image ? image : "/apple-touch-icon-brand.webp?v=2"} />
+<link rel="icon" type="image/webp" href="/favicon.webp" />
+<link rel="apple-touch-icon" href={isUtility && image ? image : "/apple-touch-icon-brand.webp"} />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -94,7 +94,7 @@ for (const [extLang, extUrl] of Object.entries(externalLanguages)) {
         name: "jjlmoya",
         url: Astro.site,
         sameAs: ["https://twitter.com/jjlmoya", "https://github.com/jjlmoya"],
-        jobTitle: "Desarrollador Creativo",
+        jobTitle: "Creative Developer",
         worksFor: {
             "@type": "Organization",
             name: "GameBob Studio",
