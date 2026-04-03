@@ -7,13 +7,14 @@ interface Props {
     href: string;
     title: string;
     description: string;
+    seoDescription?: string;
     iconBg: string;
     iconFg: string;
     color: string;
     lang?: string;
 }
 
-const { href, title, description, iconBg, iconFg, color, lang = "en" } = Astro.props;
+const { href, title, description, seoDescription, iconBg, iconFg, color, lang = "en" } = Astro.props;
 const t = useTranslations(lang as any);
 ---
 
@@ -25,8 +26,7 @@ const t = useTranslations(lang as any);
     data-title={title}
     data-description={description}
 >
-    <div class="card-bg-icon">
-        <Icon name={iconBg} class="bg-icon-svg" />
+    <div class="card-bg-icon" style={`background-color: ${iconBg};`}>
     </div>
 
     <div class="card-content">
@@ -40,6 +40,7 @@ const t = useTranslations(lang as any);
         <p class="card-description">
             {description}
         </p>
+        {seoDescription && <p class="card-seo-description">{seoDescription}</p>}
 
         <div class="card-footer">
             <span>{t("ui.use_tool")}</span>

@@ -13,10 +13,11 @@ export async function getBikeSection(lang: 'en' | 'fr'): Promise<SectionData> {
 
     const wrap = (tool: any, content: any, color: string) => ({
         href: getUtilityUrl(lang, "bikes", content.slug),
-        iconBg: tool.icons.bg,
+        iconBg: color,
         iconFg: tool.icons.fg,
         title: content.title,
         description: content.description,
+        seoDescription: content.seoDescription,
         color,
     });
 

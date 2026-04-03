@@ -19,6 +19,7 @@ interface Props {
     headerClass?: string;
     footerClass?: string;
     fullWidth?: boolean;
+    noPaddingTop?: boolean;
     lang?: string;
 }
 
@@ -28,6 +29,7 @@ const {
     image,
     bodyClass = "",
     fullWidth = false,
+    noPaddingTop = false,
     headerClass = "",
     footerClass = "",
     lang = "en",
@@ -54,7 +56,7 @@ const {
     <body class={`body-layout ${bodyClass}`}>
         <Header className={headerClass} />
 
-        <main class={`main-content ${fullWidth ? "full-width" : ""} ${Astro.props.mainClass || ""}`}>
+        <main class={`main-content ${fullWidth ? "full-width" : ""} ${noPaddingTop ? "no-padding-top" : ""} ${Astro.props.mainClass || ""}`}>
             <slot />
         </main>
 

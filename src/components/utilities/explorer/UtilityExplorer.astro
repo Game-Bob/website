@@ -1,0 +1,28 @@
+---
+import type { SectionData } from "../../../data/utilities/types";
+import CategorySection from "./CategorySection.astro";
+import { useTranslations } from "../../../i18n/utils";
+import "./UtilityExplorer.css";
+
+interface Props {
+    sections: SectionData[];
+    lang: 'en' | 'fr';
+}
+
+const { sections, lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div class="utility-explorer" id="utility-explorer">
+    <div class="no-results" id="no-results" hidden>
+        <p>{t("ui.no_results")}</p>
+    </div>
+
+    <div class="sections-container" id="sections-container">
+        {sections.map(section => (
+            <CategorySection 
+                {...section} 
+            />
+        ))}
+    </div>
+</div>

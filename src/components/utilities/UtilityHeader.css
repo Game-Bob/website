@@ -34,13 +34,12 @@
 .description {
     font-size: var(--space-md-lg);
     color: var(--text-muted);
-    max-width: var(--space-4xl);
     margin: 0 auto;
     font-weight: var(--font-weight-light);
     line-height: 1.6;
 }
 
-@media (width <= 768px) {
+@media (width <=768px) {
     .title {
         font-size: var(--space-1-5xl);
     }

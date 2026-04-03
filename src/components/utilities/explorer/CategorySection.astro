@@ -1,0 +1,83 @@
+---
+import type { UtilityItem } from "../../../data/utilities/types";
+import UtilityItemCompact from "./UtilityItemCompact.astro";
+
+interface Props {
+    title: string;
+    icon: string;
+    utilities: UtilityItem[];
+}
+
+const { title, icon, utilities } = Astro.props;
+---
+
+<section class="category-section" data-category-title={title.toLowerCase()}>
+    <header class="section-header">
+        <h2 class="category-title">{title}</h2>
+        <span class="count-badge">{utilities.length} {utilities.length === 1 ? 'tool' : 'tools'}</span>
+    </header>
+
+    <div class="items-grid">
+        {utilities.map(item => (
+            <UtilityItemCompact 
+                {...item} 
+                category={title}
+            />
+        ))}
+    </div>
+</section>
+
+<style>
+    .category-section {
+        margin-bottom: var(--space-2xl);
+        transition: opacity 0.3s ease;
+    }
+
+    .category-section[hidden] {
+        display: none;
+    }
+
+    .section-header {
+        display: flex;
+        align-items: baseline;
+        gap: var(--space-md);
+        margin-bottom: var(--space-md);
+    }
+
+    .category-title {
+        font-size: 1.15rem;
+        font-weight: var(--font-weight-bold);
+        color: var(--text-main);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin: 0;
+    }
+
+    .count-badge {
+        font-size: 0.7rem;
+        background: var(--color-primary);
+        color: var(--text-inverse);
+        padding: 0 var(--space-xs);
+        border-radius: var(--radius-full);
+        font-weight: var(--font-weight-semibold);
+        text-transform: uppercase;
+        opacity: 90%;
+    }
+
+    .items-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-md);
+    }
+
+    @media (width <= 768px) {
+        .items-grid {
+            grid-template-columns: 1fr;
+            gap: var(--space-sm);
+        }
+
+        .category-title {
+            font-size: 1rem;
+        }
+    }
+</style>

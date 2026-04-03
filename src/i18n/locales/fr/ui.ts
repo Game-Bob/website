@@ -22,5 +22,7 @@ export default {
     back_to_utils: "Retour aux Utilitaires",
     hub_title: "Studio d'Outils",
     hub_desc: "Choisissez une catégorie pour explorer nos outils spécialisés de cyclisme.",
-    hub_count: "outils disponibles"
+    hub_count: "outils disponibles",
+    search_placeholder: "Rechercher des outils ou des catégories...",
+    no_results: "Aucun outil ne correspond à votre recherche."
 };

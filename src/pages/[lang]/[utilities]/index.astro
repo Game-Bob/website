@@ -1,8 +1,9 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import { languages, useTranslations, slugMapping } from "../../../i18n/utils";
-import { getUtilityUrl } from "../../../i18n/routerUtils";
-import { getBikeSection } from "../../../data/utilities/bike";
+import { getSections } from "../../../data/utilities/index.ts";
+import UtilityExplorer from "../../../components/utilities/explorer/UtilityExplorer.astro";
+import SearchInput from "../../../components/utilities/SearchInput.astro";
 import "./index.css";
 
 export async function getStaticPaths() {
@@ -14,24 +15,71 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const bikeSection = await getBikeSection(lang);
-const bikeCategoryUrl = getUtilityUrl(lang, "bikes");
+const sections = await getSections(lang);
 ---
 
-<Layout title={t("ui.hub_title")} lang={lang}>
+<Layout title={t("ui.hub_title")} lang={lang} noPaddingTop>
     <section class="utility-hub">
-        <header class="hub-header">
-            <h1 class="hub-title">{t("ui.hub_title")}</h1>
-            <p class="hub-description">{t("ui.hub_desc")}</p>
-        </header>
-
-        <div class="category-list">
-            <a href={bikeCategoryUrl} class="category-card">
-                 <div class="category-info">
-                    <h2>{bikeSection.title}</h2>
-                    <p>{bikeSection.utilities.length} {t("ui.hub_count")}</p>
-                 </div>
-            </a>
+        <div class="hub-top">
+            <header class="hub-header">
+                <div class="hub-header-content">
+                    <h1 class="hub-title">{t("ui.hub_title")}</h1>
+                    <h2 class="hub-description">{t("ui.hub_desc")}</h2>
+                </div>
+            </header>
+            <SearchInput lang={lang} />
         </div>
+
+        <UtilityExplorer sections={sections} lang={lang} />
     </section>
 </Layout>
+
+<script>
+    function setupSearch() {
+        const searchInput = document.getElementById('utility-search') as HTMLInputElement;
+        const sections = document.querySelectorAll('.category-section') as NodeListOf<HTMLElement>;
+        const noResults = document.getElementById('no-results') as HTMLElement;
+
+        if (!searchInput) return;
+
+        searchInput.addEventListener('input', (e) => {
+            const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
+            let totalVisible = 0;
+
+            sections.forEach(section => {
+                const categoryTitle = section.dataset.categoryTitle || '';
+                const categoryItems = section.querySelectorAll('.utility-item-compact') as NodeListOf<HTMLElement>;
+                let visibleInSection = 0;
+
+                categoryItems.forEach(item => {
+                    const title = item.dataset.searchTitle || '';
+                    const matchesCategory = categoryTitle.includes(query);
+                    const matchesItem = title.includes(query);
+
+                    if (matchesCategory || matchesItem) {
+                        item.style.display = 'flex';
+                        visibleInSection++;
+                        totalVisible++;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                if (visibleInSection > 0) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+
+            if (totalVisible === 0 && query !== '') {
+                noResults.hidden = false;
+            } else {
+                noResults.hidden = true;
+            }
+        });
+    }
+
+    setupSearch();
+    document.addEventListener('astro:after-swap', setupSearch);
+</script>
