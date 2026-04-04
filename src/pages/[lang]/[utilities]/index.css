@@ -40,6 +40,11 @@
     white-space: nowrap;
 }
 
+.hub-count {
+    color: var(--text-muted);
+    font-weight: var(--font-weight-normal);
+}
+
 .hub-description {
     color: var(--text-muted);
     font-size: 0.75rem;

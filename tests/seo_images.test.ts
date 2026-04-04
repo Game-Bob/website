@@ -5,7 +5,7 @@ import { SUPPORTED_LANGUAGES, slugMapping } from "../src/i18n/utils";
 import { CATEGORIES } from "../src/data/utilities/registry";
 import { buildSection } from "../src/data/utilities/builder";
 
-const BASE_URL = "http://localhost:4321";
+const BASE_URL = "http://localhost:4322";
 
 const FORBIDDEN_IMAGES = [
     "favicon.png",

@@ -16,6 +16,7 @@ export async function getStaticPaths() {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const sections = await getSections(lang);
+const totalTools = sections.reduce((sum, s) => sum + s.utilities.length, 0);
 ---
 
 <Layout title={t("ui.hub_title")} description={t("ui.hub_desc")} lang={lang} noPaddingTop>
@@ -23,7 +24,7 @@ const sections = await getSections(lang);
         <div class="hub-top">
             <header class="hub-header">
                 <div class="hub-header-content">
-                    <h1 class="hub-title">{t("ui.hub_title")}</h1>
+                    <h1 class="hub-title">{t("ui.hub_title")} <span class="hub-count">({totalTools})</span></h1>
                     <h2 class="hub-description">{t("ui.hub_desc")}</h2>
                 </div>
             </header>

@@ -15,4 +15,10 @@ export default defineConfig({
     },
     trailingSlash: "always",
     compressHTML: true,
+    server: {
+        port: 4322,
+    },
+    preview: {
+        port: 4322,
+    },
 });
