@@ -1,0 +1,43 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props { t: (key: string) => string; }
+const { t } = Astro.props;
+---
+
+<div class="platforms-section">
+    <h3 class="section-heading">
+        <Icon name="mdi:map-marker-question-outline" class="section-heading-icon" />
+        {t("widgets.platforms_title")}
+    </h3>
+    <div class="platforms-grid">
+        <div class="platform-card">
+            <div class="platform-title">
+                <Icon name="mdi:wordpress" class="platform-icon" />
+                {t("widgets.platforms_wp_title")}
+            </div>
+            <p class="platform-desc">{t("widgets.platforms_wp_desc")}</p>
+        </div>
+        <div class="platform-card">
+            <div class="platform-title">
+                <Icon name="mdi:web" class="platform-icon platform-icon-dark" />
+                {t("widgets.platforms_wix_title")}
+            </div>
+            <p class="platform-desc">{t("widgets.platforms_wix_desc")}</p>
+        </div>
+        <div class="platform-card">
+            <div class="platform-title">
+                <Icon name="mdi:square" class="platform-icon platform-icon-dark" />
+                {t("widgets.platforms_sq_title")}
+            </div>
+            <p class="platform-desc">{t("widgets.platforms_sq_desc")}</p>
+        </div>
+        <div class="platform-card">
+            <div class="platform-title">
+                <Icon name="mdi:code-tags" class="platform-icon" />
+                {t("widgets.platforms_custom_title")}
+            </div>
+            <p class="platform-desc">{t("widgets.platforms_custom_desc")}</p>
+        </div>
+    </div>
+</div>

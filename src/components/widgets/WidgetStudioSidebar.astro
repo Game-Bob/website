@@ -1,0 +1,56 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+    sections: { title: string; utilities: { title: string; href: string; toolSlug: string; widgetId: string }[] }[];
+    searchPlaceholder: string;
+    catalogLabel: string;
+    suggestTitle: string;
+    suggestDesc: string;
+    suggestCta: string;
+}
+
+const { sections, searchPlaceholder, catalogLabel, suggestTitle, suggestDesc, suggestCta } = Astro.props;
+---
+
+<aside class="widgets-sidebar">
+    <div class="sidebar-header">
+        <h1 class="sidebar-title">
+            <Icon name="mdi:widgets-outline" class="sidebar-icon" />
+            Studio
+        </h1>
+        <p class="sidebar-subtitle">{catalogLabel}</p>
+        <div class="sidebar-search-wrap">
+            <input type="text" id="widget-search" placeholder={searchPlaceholder} class="sidebar-search" />
+            <Icon name="mdi:magnify" class="search-icon" />
+        </div>
+    </div>
+
+    <nav class="sidebar-nav">
+        {sections.map((section, idx) => (
+            <div class={`category-group ${idx === 0 ? "is-open" : ""}`}>
+                <button class="category-toggle" data-group={idx}>
+                    <span class="category-label">{section.title}</span>
+                    <Icon name="mdi:chevron-down" class={`chevron ${idx === 0 ? "rotated" : ""}`} />
+                </button>
+                <div class={`category-content ${idx === 0 ? "" : "hidden"}`}>
+                    {section.utilities.map((u) => (
+                        <button class="utility-btn" data-href={u.href} data-title={u.title}
+                            data-widget-id={u.widgetId} data-tool-slug={u.toolSlug} data-category={section.title}>
+                            {u.title}
+                        </button>
+                    ))}
+                </div>
+            </div>
+        ))}
+
+        <div class="sidebar-suggest">
+            <div class="suggest-icon-wrap">
+                <Icon name="mdi:lightbulb-on-outline" class="suggest-icon" />
+            </div>
+            <h4 class="suggest-title">{suggestTitle}</h4>
+            <p class="suggest-desc">{suggestDesc}</p>
+            <a href="mailto:hola@jjlmoya.com?subject=Tool%20Suggestion" class="suggest-cta">{suggestCta}</a>
+        </div>
+    </nav>
+</aside>

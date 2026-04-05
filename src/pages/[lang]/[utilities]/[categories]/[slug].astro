@@ -16,17 +16,18 @@ export async function getStaticPaths() {
             const section = await buildSection(lang, catDef);
             paths.push({
                 params: { lang, utilities: utilitiesParam, categories: categoriesParam, slug: section.slug },
-                props: { lang, section, categoryEntry: catDef.entry, CategorySEOComponent: catDef.SEOComponent, imageSlug: slugMapping[catDef.key].en },
+                props: { lang, section, categoryEntry: catDef.entry, CategorySEOComponent: catDef.SEOComponent, imageSlug: slugMapping[catDef.key].en, categoryKey: catDef.key },
             });
         }
     }
     return paths;
 }
 
-const { lang: langProp, section, categoryEntry, CategorySEOComponent, imageSlug } = Astro.props;
+const { lang: langProp, section, categoryEntry, CategorySEOComponent, imageSlug, categoryKey } = Astro.props;
 const lang = langProp as Language;
 const content = await categoryEntry.i18n[lang]!();
-const image = `/images/utilities/${imageSlug}.webp`;
+const finalImageSlug = categoryKey === "converters" ? "universal-image-converter" : imageSlug;
+const image = `/images/utilities/${finalImageSlug}.webp`;
 const description = content.description;
 ---
 

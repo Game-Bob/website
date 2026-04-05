@@ -13,7 +13,7 @@ const { url, lang = "en" } = Astro.props;
 const t = useTranslations(lang as any);
 
 const toolSlug = url.split("/").filter(Boolean).pop() || "";
-const studioUrl = `/widgets/?utilidad=${toolSlug}`;
+const studioUrl = `/${lang}/widgets/?utilidad=${toolSlug}`;
 ---
 
 <section class="widget-creator no-widget-hidden">

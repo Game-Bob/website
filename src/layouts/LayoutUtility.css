@@ -89,7 +89,11 @@ body.is-widget .utility-bg-gradient {
 
 body.is-widget .no-widget-hidden,
 body.is-widget .utility-header-area,
-body.is-widget .sticky-banner {
+body.is-widget .sticky-banner,
+body.is-widget .main-nav,
+body.is-widget .site-footer,
+body.is-widget nav,
+body.is-widget footer {
     display: none !important;
 }
 
@@ -99,10 +103,30 @@ body.is-widget .utility-main-container {
 
 body.is-widget .utility-tool-container {
     margin-top: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100% !important;
 }
 
-@media (width <=640px) {
+body.is-widget,
+body.is-widget main,
+body.is-widget .utility-layout-wrapper {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+@media (width <= 640px) {
     .utility-main-container {
         padding-top: var(--space-2xl);
     }
+}
+
+.widget-body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+
+.widget-tool-only {
+    padding: 1rem;
 }

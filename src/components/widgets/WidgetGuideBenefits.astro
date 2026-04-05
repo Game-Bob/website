@@ -1,0 +1,41 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props { t: (key: string) => string; }
+const { t } = Astro.props;
+---
+
+<div class="benefits-section">
+    <h2 class="benefits-title">{t("widgets.benefits_title")}</h2>
+    <p class="benefits-desc">{t("widgets.benefits_desc")}</p>
+    <div class="benefits-grid">
+        <div class="benefit">
+            <div class="benefit-icon-wrap">
+                <Icon name="mdi:speedometer" class="benefit-icon" />
+            </div>
+            <h3 class="benefit-title">{t("widgets.benefits_fast_title")}</h3>
+            <p class="benefit-desc">{t("widgets.benefits_fast_desc")}</p>
+        </div>
+        <div class="benefit">
+            <div class="benefit-icon-wrap">
+                <Icon name="mdi:brush-variant" class="benefit-icon" />
+            </div>
+            <h3 class="benefit-title">{t("widgets.benefits_design_title")}</h3>
+            <p class="benefit-desc">{t("widgets.benefits_design_desc")}</p>
+        </div>
+        <div class="benefit">
+            <div class="benefit-icon-wrap">
+                <Icon name="mdi:google" class="benefit-icon" />
+            </div>
+            <h3 class="benefit-title">{t("widgets.benefits_seo_title")}</h3>
+            <p class="benefit-desc">{t("widgets.benefits_seo_desc")}</p>
+        </div>
+    </div>
+    <h4 class="platforms-label">{t("widgets.benefits_platforms_title")}</h4>
+    <div class="platforms-logos">
+        <div class="platform-logo"><Icon name="mdi:wordpress" class="logo-icon" /><span>WordPress</span></div>
+        <div class="platform-logo"><Icon name="mdi:notebook-outline" class="logo-icon" /><span>Notion</span></div>
+        <div class="platform-logo"><Icon name="mdi:web" class="logo-icon" /><span>Your site</span></div>
+        <div class="platform-logo"><Icon name="mdi:square" class="logo-icon" /><span>Squarespace</span></div>
+    </div>
+</div>

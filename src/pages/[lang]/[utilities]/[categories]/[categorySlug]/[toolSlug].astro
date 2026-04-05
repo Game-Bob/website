@@ -8,6 +8,7 @@ interface Props {
     lang: Language;
     tool: any;
     section: any;
+    categoryKey: string;
 }
 
 export async function getStaticPaths() {
@@ -24,7 +25,7 @@ export async function getStaticPaths() {
                 const toolLocale = await toolDef.entry.i18n[lang]!();
                 paths.push({
                     params: { lang, utilities: uParam, categories: cParam, categorySlug: section.slug, toolSlug: toolLocale.slug },
-                    props: { lang, section, tool: toolDef },
+                    props: { lang, section, tool: toolDef, categoryKey: catDef.key },
                 });
             }
         }
@@ -32,11 +33,12 @@ export async function getStaticPaths() {
     return paths;
 }
 
-const { lang, tool, section } = Astro.props;
+const { lang, tool, section, categoryKey } = Astro.props;
 ---
 
 <LibraryUtilityLayout
     lang={lang}
     tool={tool}
     category={section.title}
+    categoryKey={categoryKey}
 />

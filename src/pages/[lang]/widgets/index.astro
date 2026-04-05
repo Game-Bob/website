@@ -1,0 +1,71 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import WidgetStudioSidebar from "../../../components/widgets/WidgetStudioSidebar.astro";
+import WidgetStudioContent from "../../../components/widgets/WidgetStudioContent.astro";
+import WidgetGuide from "../../../components/widgets/WidgetGuide.astro";
+import { SUPPORTED_LANGUAGES, useTranslations, type Language } from "../../../i18n/utils";
+import { getSections } from "../../../data/utilities/index.ts";
+import "./index.css";
+
+export async function getStaticPaths() {
+    return SUPPORTED_LANGUAGES.map((lang) => ({
+        params: { lang },
+        props: { lang },
+    }));
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang as Language);
+const sections = await getSections(lang as Language);
+
+const sectionsWithData = sections.map((section) => ({
+    ...section,
+    utilities: section.utilities.map((utility) => {
+        const toolSlug = utility.href.split("/").filter(Boolean).pop() || "";
+        return { ...utility, widgetId: `wj-${toolSlug}`, toolSlug };
+    }),
+}));
+
+const flatUtilities = sectionsWithData.flatMap((s) =>
+    s.utilities.map((u) => ({ ...u, category: s.title }))
+);
+---
+
+<Layout title={t("widgets.studio")} description={t("widgets.explorer_desc")} image="/images/widgets.webp" lang={lang}>
+    <script is:inline type="application/json" id="widgets-data" set:html={JSON.stringify(flatUtilities)} />
+    <div class="widgets-layout">
+        <WidgetStudioSidebar
+            sections={sectionsWithData}
+            searchPlaceholder={t("widgets.search")}
+            catalogLabel={t("widgets.catalog")}
+            suggestTitle={t("widgets.suggest")}
+            suggestDesc={t("widgets.suggest_desc")}
+            suggestCta={t("widgets.suggest_cta")}
+        />
+        <WidgetStudioContent
+            toolLabel={t("widgets.tool_label")}
+            previewLabel={t("widgets.preview_label")}
+            lightLabel={t("widgets.light")}
+            darkLabel={t("widgets.dark")}
+            bgWhiteLabel={t("widgets.bg_white")}
+            bgBlackLabel={t("widgets.bg_black")}
+            bgGridLabel={t("widgets.bg_grid")}
+            explorerTitle={t("widgets.explorer")}
+            explorerDesc={t("widgets.explorer_desc")}
+            chooseText={t("widgets.choose")}
+            oembedTitle={t("widgets.oembed")}
+            oembedDesc={t("widgets.oembed_desc")}
+            iframeTitle={t("widgets.iframe")}
+            iframeDesc={t("widgets.iframe_desc")}
+            copyIframeLabel={t("widgets.copy_iframe")}
+        >
+            <WidgetGuide t={t} slot="guide" />
+        </WidgetStudioContent>
+    </div>
+</Layout>
+
+<script>
+    import { initWidgetStudio } from "../../../scripts/widgets-studio";
+    const raw = document.getElementById("widgets-data")?.textContent ?? "[]";
+    initWidgetStudio(JSON.parse(raw));
+</script>

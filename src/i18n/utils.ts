@@ -46,6 +46,31 @@ export const slugMapping: Record<string, Record<string, string>> = {
         fr: "astronomie",
         es: "astronomia",
     },
+    audiovisual: {
+        en: "audiovisual-photography",
+        fr: "audiovisuels-photographie",
+        es: "audiovisual",
+    },
+    babies: {
+        en: "babies",
+        fr: "bebes",
+        es: "bebes",
+    },
+    converters: {
+        en: "image-converters",
+        fr: "convertisseurs-image",
+        es: "convertidores-imagen",
+    },
+    creative: {
+        en: "creativity-leisure",
+        fr: "creativite-loisirs",
+        es: "creatividad-ocio",
+    },
+    nautical: {
+        en: "sailing-and-nautical",
+        fr: "voile-et-nautisme",
+        es: "vela-y-nautica",
+    },
     apps: {
         en: "apps",
         fr: "apps",

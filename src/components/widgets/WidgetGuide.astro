@@ -1,0 +1,20 @@
+---
+import WidgetGuideEducation from "./WidgetGuideEducation.astro";
+import WidgetGuidePlatforms from "./WidgetGuidePlatforms.astro";
+import WidgetGuideWP from "./WidgetGuideWP.astro";
+import WidgetGuideBenefits from "./WidgetGuideBenefits.astro";
+import "./WidgetGuide.css";
+
+interface Props {
+    t: (key: string) => string;
+}
+
+const { t } = Astro.props;
+---
+
+<section class="widget-guide">
+    <WidgetGuideEducation t={t} />
+    <WidgetGuidePlatforms t={t} />
+    <WidgetGuideWP t={t} />
+    <WidgetGuideBenefits t={t} />
+</section>

@@ -1,0 +1,31 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props { t: (key: string) => string; }
+const { t } = Astro.props;
+---
+
+<div class="guide-education">
+    <div class="education-card education-oembed">
+        <h3 class="education-title">
+            <Icon name="mdi:link-variant" class="education-icon" />
+            {t("widgets.education_oembed_title")}
+        </h3>
+        <p class="education-desc">{t("widgets.education_oembed_desc")}</p>
+        <div class="education-tags">
+            <span class="tag tag-green">{t("widgets.education_oembed_tag1")}</span>
+            <span class="tag tag-indigo">{t("widgets.education_oembed_tag2")}</span>
+        </div>
+    </div>
+    <div class="education-card education-iframe">
+        <h3 class="education-title">
+            <Icon name="mdi:code-tags" class="education-icon education-icon-muted" />
+            {t("widgets.education_iframe_title")}
+        </h3>
+        <p class="education-desc">{t("widgets.education_iframe_desc")}</p>
+        <div class="education-tags">
+            <span class="tag tag-blue">{t("widgets.education_iframe_tag1")}</span>
+            <span class="tag tag-gray">{t("widgets.education_iframe_tag2")}</span>
+        </div>
+    </div>
+</div>

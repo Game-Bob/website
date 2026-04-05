@@ -6,7 +6,6 @@ import AppLinksBanner from "../components/utilities/AppLinksBanner.astro";
 import UtilityStructuredData from "../components/utilities/UtilityStructuredData.astro";
 import FAQSection from "../components/utilities/FAQSection.astro";
 import WidgetCreator from "../components/utilities/WidgetCreator.astro";
-import WidgetMessenger from "../components/utilities/WidgetMessenger.astro";
 import "./LayoutUtility.css";
 
 interface AppLinks { android?: string; ios?: string; }
@@ -26,12 +25,11 @@ const {
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
-const isWidget = Astro.url.searchParams.get("widget") === "true";
-
 const pathSegments = currentPath.split('/').filter(Boolean);
 const langFromUrl = pathSegments[0] === 'en' || pathSegments[0] === 'fr' ? pathSegments[0] : "en";
 const lang = propLang || langFromUrl;
 const categorySlug = pathSegments[3] || "";
+const oembedUrl = `${Astro.url.origin}/api/oembed.json?url=${encodeURIComponent(`${Astro.url.origin}${currentPath}`)}`;
 ---
 
 <Layout title={title} description={description} image={image} fullWidth={true} lang={lang}>
@@ -40,12 +38,13 @@ const categorySlug = pathSegments[3] || "";
         category={propCategory} faqItems={faqItems} howToSteps={howToSteps}
         slot="head"
     />
+    <link rel="alternate" type="application/json+oembed" href={oembedUrl} title={title} slot="head" />
+
     <div class="utility-layout-wrapper">
         <div class="utility-bg-gradient"></div>
-        { !isWidget && <div class="sticky-banner">
+        <div class="sticky-banner">
             <AppLinksBanner appSlug={appSlug} android={appLinks?.android} ios={appLinks?.ios} lang={lang} />
-        </div>}
-
+        </div>
         <div class="utility-main-container">
             <div class="utility-header-area">
                 <Breadcrumb category={propCategory} categorySlug={categorySlug} title={title} lang={lang} />
@@ -54,14 +53,13 @@ const categorySlug = pathSegments[3] || "";
                     <p>{description}</p>
                 </slot>
             </div>
-
             <div class="utility-tool-container"><slot /></div>
             {!hideWidget && <WidgetCreator title={title} url={currentPath} lang={lang} />}
-            
-            {faqItems && faqItems.length > 0 && <div class="no-widget-hidden">
-                <FAQSection items={faqItems} lang={lang} />
-            </div>}
-
+            {faqItems && faqItems.length > 0 && (
+                <div class="no-widget-hidden">
+                    <FAQSection items={faqItems} lang={lang} />
+                </div>
+            )}
             <div class="seo-content no-widget-hidden"><slot name="seo" /></div>
             <div class="bibliography-wrapper no-widget-hidden"><slot name="bibliography" /></div>
             <div class="no-widget-hidden">
@@ -69,6 +67,34 @@ const categorySlug = pathSegments[3] || "";
             </div>
         </div>
     </div>
-
-    <WidgetMessenger hasBanner={!isWidget} />
 </Layout>
+
+<script is:inline>
+    const isWidget = new URLSearchParams(window.location.search).get("widget") === "true";
+    if (isWidget) {
+        document.documentElement.classList.add("is-widget");
+        document.body.classList.add("is-widget");
+        const urlParams = new URLSearchParams(window.location.search);
+        const theme = urlParams.get("theme");
+        if (theme === "dark") {
+            document.documentElement.classList.remove("theme-light");
+            document.documentElement.classList.add("theme-dark");
+        } else if (theme === "light") {
+            document.documentElement.classList.remove("theme-dark");
+            document.documentElement.classList.add("theme-light");
+        }
+        const id = urlParams.get("id") || `gamebob-widget-${window.location.pathname.split("/").filter(Boolean).pop() || "utility"}`;
+        const report = () => {
+            const container = document.querySelector(".utility-tool-container");
+            const h = container ? container.getBoundingClientRect().height : document.body.scrollHeight;
+            if (h > 50) window.parent.postMessage({ jjlmoyaHeight: Math.round(h), jjlmoyaId: id }, "*");
+        };
+        report();
+        const itv = setInterval(report, 600);
+        setTimeout(() => clearInterval(itv), 5000);
+        window.addEventListener("load", report);
+        const container = document.querySelector(".utility-tool-container");
+        const obs = new ResizeObserver(report);
+        obs.observe(container || document.body);
+    }
+</script>

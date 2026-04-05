@@ -6,6 +6,7 @@ import { type Language } from "../../i18n/utils";
 interface Props {
     lang: Language;
     category?: string;
+    categoryKey?: string;
     tool: {
         entry: any;
         Component: any;
@@ -14,7 +15,7 @@ interface Props {
     };
 }
 
-const { lang, tool, category } = Astro.props;
+const { lang, tool, category, categoryKey } = Astro.props;
 const { entry, Component, SEOComponent, BibliographyComponent } = tool;
 
 const content = await entry.i18n[lang]!();
@@ -22,7 +23,12 @@ const words = content.title.split(" ");
 const titleHighlight = words[0] ?? "";
 const titleBase = words.slice(1).join(" ");
 
-const image = entry.id;
+const enContent = await entry.i18n.en!();
+
+let image = enContent.slug;
+if (categoryKey === "converters") {
+    image = "universal-image-converter";
+}
 ---
 
 <LayoutUtility

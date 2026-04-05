@@ -22,6 +22,7 @@ async function getAllPages(): Promise<string[]> {
         pages.add(`/${lang}/`);
         pages.add(`/${lang}/${slugMapping.apps[lang]}/`);
         pages.add(`/${lang}/${slugMapping.utilities[lang]}/`);
+        pages.add(`/${lang}/widgets/`);
 
         for (const catDef of CATEGORIES) {
             const section = await buildSection(lang, catDef);

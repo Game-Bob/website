@@ -1,0 +1,57 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props { t: (key: string) => string; }
+const { t } = Astro.props;
+---
+
+<div class="wp-guide">
+    <h3 class="section-heading">
+        <Icon name="mdi:wordpress" class="section-heading-icon wp-icon" />
+        {t("widgets.wp_guide_title")}
+    </h3>
+    <div class="wp-grid">
+        <div class="wp-option">
+            <div class="option-label">
+                <span class="option-badge">A</span>
+                <strong>{t("widgets.wp_option_a_title")}</strong>
+            </div>
+            <p class="option-desc">{t("widgets.wp_option_a_desc")}</p>
+            <div class="alert alert-warning">
+                <Icon name="mdi:alert" class="alert-icon" />
+                <div>
+                    <strong>{t("widgets.wp_option_a_warn_title")}</strong><br />
+                    {t("widgets.wp_option_a_warn_desc")}
+                </div>
+            </div>
+            <div class="alert alert-success">
+                <Icon name="mdi:check-circle-outline" class="alert-icon alert-icon-success" />
+                <div>
+                    <strong>{t("widgets.wp_option_a_fix_title")}</strong>
+                    {t("widgets.wp_option_a_fix_desc")}
+                </div>
+            </div>
+        </div>
+        <div class="wp-option">
+            <div class="option-label">
+                <span class="option-badge option-badge-pro">B</span>
+                <strong>{t("widgets.wp_option_b_title")}</strong>
+            </div>
+            <p class="option-desc">{t("widgets.wp_option_b_desc")}</p>
+            <ol class="option-steps">
+                <li>
+                    <Icon name="mdi:numeric-1-circle" class="step-icon" />
+                    <span set:html={t("widgets.wp_option_b_step1")} />
+                </li>
+                <li>
+                    <Icon name="mdi:numeric-2-circle" class="step-icon" />
+                    <span>{t("widgets.wp_option_b_step2")}</span>
+                </li>
+                <li>
+                    <Icon name="mdi:numeric-3-circle" class="step-icon" />
+                    <span>{t("widgets.wp_option_b_step3")}</span>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
