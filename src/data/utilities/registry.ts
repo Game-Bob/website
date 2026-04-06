@@ -5,6 +5,7 @@ import { astronomy } from './categories/astronomy';
 import { audiovisual } from './categories/audiovisual';
 import { babies } from './categories/babies';
 import { converters } from './categories/converters';
+import { cooking } from './categories/cooking';
 import { creative } from './categories/creative';
 import { drones } from './categories/drones';
 import { nautical } from './categories/nautical';
@@ -21,6 +22,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     audiovisual,
     babies,
     converters,
+    cooking,
     creative,
     drones,
     nautical,

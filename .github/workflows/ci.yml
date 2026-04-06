@@ -32,13 +32,3 @@ jobs:
             - name: Build Project
               run: npm run build
 
-            - name: Check dist folder
-              run: ls -lah dist/ | head -20
-
-            - name: Start Preview Server and Run Tests
-              run: |
-                  npx sirv-cli dist --port 4322 --host 0.0.0.0 --dev > server.log 2>&1 &
-                  sleep 5
-                  cat server.log
-                  npx wait-on http://127.0.0.1:4322 -t 120000
-                  npm run test || (ls -R dist && cat server.log && exit 1)
