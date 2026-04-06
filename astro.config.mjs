@@ -19,8 +19,18 @@ export default defineConfig({
     compressHTML: true,
     server: {
         port: 4322,
+        watch: {
+            ignored: [".vercel/**", "dist/**"],
+        },
     },
     preview: {
         port: 4322,
+    },
+    vite: {
+        server: {
+            watch: {
+                ignored: [".vercel/**", "dist/**"],
+            },
+        },
     },
 });
