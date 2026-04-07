@@ -8,6 +8,8 @@ import { converters } from './categories/converters';
 import { cooking } from './categories/cooking';
 import { creative } from './categories/creative';
 import { drones } from './categories/drones';
+import { education } from './categories/education';
+import { games } from './categories/games';
 import { nautical } from './categories/nautical';
 import { science } from './categories/science';
 import type { CategoryDefinition } from './types';
@@ -25,6 +27,8 @@ export const CATEGORIES: CategoryDefinition[] = [
     cooking,
     creative,
     drones,
+    education,
+    games,
     nautical,
     science,
 ];
