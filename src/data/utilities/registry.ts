@@ -12,6 +12,7 @@ import { education } from './categories/education';
 import { games } from './categories/games';
 import { nautical } from './categories/nautical';
 import { science } from './categories/science';
+import { travel } from './categories/travel';
 import type { CategoryDefinition } from './types';
 
 export type { CategoryDefinition };
@@ -31,6 +32,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     games,
     nautical,
     science,
+    travel,
 ];
 
 export const ALL_TOOL_ENTRIES = CATEGORIES.flatMap(c => c.toolsWithColors.map(t => t.toolEntry));

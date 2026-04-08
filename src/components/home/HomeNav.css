@@ -68,7 +68,7 @@
     background: color-mix(in srgb, var(--color-primary), transparent 90%);
 }
 
-.card-content h3 {
+.card-content h2 {
     color: var(--text-main);
     margin: 0;
     font-size: 1.25rem;
