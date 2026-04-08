@@ -1,6 +1,10 @@
 import type { APIRoute } from 'astro';
 
-const robots = `User-agent: Googlebot
+const robots = `User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
@@ -9,7 +13,6 @@ Allow: /
 
 User-agent: Applebot
 User-agent: DuckDuckBot
-User-agent: Baiduspider
 User-agent: Yandexbot
 Allow: /
 
