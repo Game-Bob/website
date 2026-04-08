@@ -4,10 +4,9 @@ import "./Footer.css";
 
 interface Props {
     className?: string;
-    lang?: string;
 }
 
-const { className = "", lang = "en" } = Astro.props;
+const { className = "" } = Astro.props;
 ---
 
 <footer class={`site-footer ${className}`}>
