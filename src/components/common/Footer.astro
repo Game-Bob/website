@@ -1,5 +1,5 @@
 ---
-import { useTranslations } from "../../i18n/utils";
+import { Icon } from 'astro-icon/components';
 import "./Footer.css";
 
 interface Props {
@@ -8,19 +8,29 @@ interface Props {
 }
 
 const { className = "", lang = "en" } = Astro.props;
-const t = useTranslations(lang as any);
 ---
 
 <footer class={`site-footer ${className}`}>
-    <p class="footer-copy">&copy; {new Date().getFullYear()} Juan José López Moya</p>
-    <p class="footer-license">
-        <a
-            href="https://creativecommons.org/licenses/by-nc/4.0/"
-            target="_blank"
-            rel="license noopener noreferrer"
-            class="license-link"
-        >
-            <span class="license-label">{t("ui.license")}</span> CC BY-NC 4.0
+    <div class="footer-content-wrapper">
+        <p class="footer-copyright-text">&copy; {new Date().getFullYear()} Juan José López Moya</p>
+
+        <div class="footer-social-links">
+            <a href="https://www.linkedin.com/in/jjlmoya/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                <Icon name="mdi:linkedin" />
+            </a>
+            <a href="https://x.com/jjlmoya" target="_blank" rel="noopener noreferrer" title="X">
+                <Icon name="mdi:twitter" />
+            </a>
+            <a href="https://play.google.com/store/apps/developer?id=GameBob+Games" target="_blank" rel="noopener noreferrer" title="Google Play">
+                <Icon name="mdi:google-play" />
+            </a>
+            <a href="https://apps.apple.com/ua/developer/juan-jose-lopez-moya/id1871275518" target="_blank" rel="noopener noreferrer" title="App Store">
+                <Icon name="mdi:apple" />
+            </a>
+        </div>
+
+        <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="license noopener noreferrer" class="footer-license-link">
+            CC BY-NC 4.0
         </a>
-    </p>
+    </div>
 </footer>

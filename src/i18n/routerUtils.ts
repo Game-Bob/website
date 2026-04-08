@@ -77,6 +77,11 @@ export async function getExternalLanguageUrl(options: ExternalUrlOptions): Promi
     }
 
     const translatedPath = await getTranslatedUrl(pathname, currentLang as any, targetLang as any);
+
+    if (translatedPath === `${externalDomain}/`) {
+        return translatedPath;
+    }
+
     const pathSegments = translatedPath.split('/').filter(Boolean);
     const segment = buildExternalPathSegment(pathSegments, targetLang);
 
