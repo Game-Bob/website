@@ -1,6 +1,7 @@
 ---
 import Layout from "../../../../layouts/Layout.astro";
 import CardUtility from "../../../../components/utilities/CardUtility.astro";
+import Breadcrumb from "../../../../components/ui/Breadcrumb.astro";
 import { SUPPORTED_LANGUAGES, slugMapping, type Language } from "../../../../i18n/utils";
 import { CATEGORIES } from "../../../../data/utilities/registry";
 import { buildSection } from "../../../../data/utilities/builder";
@@ -32,6 +33,9 @@ const description = content.description;
 ---
 
 <Layout title={content.title} description={description} image={image} lang={lang}>
+    <div class="breadcrumb-wrapper">
+        <Breadcrumb lang={lang} title={section.title} />
+    </div>
     <section class="category-page">
         <header class="category-header">
             <h1 class="category-title">{section.title}</h1>
@@ -49,6 +53,11 @@ const description = content.description;
 </Layout>
 
 <style>
+    .breadcrumb-wrapper {
+        padding-top: var(--space-xl);
+        padding-inline: var(--space-md);
+    }
+
     .category-page {
         max-width: 1200px;
         margin: 0 auto;
