@@ -31,5 +31,8 @@ export default defineConfig({
                 ignored: [".vercel/**", "dist/**"],
             },
         },
+        optimizeDeps: {
+            include: ["qrcode"],
+        },
     },
 });

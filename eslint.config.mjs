@@ -66,6 +66,12 @@ export default [
     },
 
     {
+        files: ["**/i18n/slugs.ts"],
+        rules: {
+            "max-lines": "off",
+        },
+    },
+    {
         files: ["**/*.astro"],
         plugins: {
             custom: customCommentsPlugin,
