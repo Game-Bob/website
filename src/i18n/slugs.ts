@@ -99,4 +99,9 @@ export const slugMapping: Record<string, Record<string, string>> = {
         fr: "maison",
         es: "hogar",
     },
+    files: {
+        en: "files-and-text",
+        fr: "fichiers-et-texte",
+        es: "archivos-y-texto",
+    },
 };

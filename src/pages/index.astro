@@ -1,5 +1,9 @@
 ---
 import "../styles/tokens.css";
+const acceptLang = Astro.request.headers.get("accept-language") ?? "";
+const preferred = acceptLang.split(",")[0]?.split("-")[0]?.trim() ?? "en";
+const lang = preferred === "fr" ? "fr" : "en";
+return Astro.redirect(`/${lang}/`, 302);
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -79,10 +83,7 @@ import "../styles/tokens.css";
         (function() {
             const preferredLanguage = (navigator.language || 'en').split('-')[0];
             const targetLang = ['fr'].includes(preferredLanguage) ? preferredLanguage : 'en';
-
-            setTimeout(() => {
-                window.location.href = `/${targetLang}/`;
-            }, 1);
+            window.location.href = `/${targetLang}/`;
         })();
     </script>
 </head>
