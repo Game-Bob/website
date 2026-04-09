@@ -8,6 +8,7 @@ const TOOL_COLORS = [
     "#06b6d4",
     "#f97316",
     "#8b5cf6",
+    "#e11d48",
 ];
 
 export const home: CategoryDefinition = {
