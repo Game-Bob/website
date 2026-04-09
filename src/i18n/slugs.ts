@@ -104,4 +104,9 @@ export const slugMapping: Record<string, Record<string, string>> = {
         fr: "fichiers-et-texte",
         es: "archivos-y-texto",
     },
+    social: {
+        en: "social-media",
+        fr: "reseaux-sociaux",
+        es: "redes-sociales",
+    },
 };
