@@ -1,95 +1,107 @@
 ---
 import "../styles/tokens.css";
-const acceptLang = Astro.request.headers.get("accept-language") ?? "";
-const preferred = acceptLang.split(",")[0]?.split("-")[0]?.trim() ?? "en";
-const lang = preferred === "fr" ? "fr" : "en";
-return Astro.redirect(`/${lang}/`, 302);
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GameBob - Redirecting...</title>
+    <title>GameBob</title>
     <meta name="robots" content="noindex, follow" />
     <link rel="icon" type="image/webp" href="/favicon.webp" />
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--color-brand-dark);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
+    <meta http-equiv="refresh" content="0; url=/en/" />
+    <script is:inline>(function(){const l=(navigator.language||'en').split('-')[0];window.location.replace(l==='fr'?'/fr/':'/en/');})();</script>
+
+<style>
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: var(--bg-page);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+    }
+
+    .splash {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-xl);
+        animation: fade-in 0.6s ease-out both;
+    }
+
+    .logo {
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        color: var(--text-main);
+    }
+
+    .logo span {
+        color: var(--accent);
+    }
+
+    .tagline {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .dots {
+        display: flex;
+        gap: var(--space-sm);
+    }
+
+    .dot {
+        width: var(--space-3xs);
+        height: var(--space-3xs);
+        border-radius: var(--radius-full);
+        background: var(--accent);
+        animation: bounce 1.2s ease-in-out infinite;
+    }
+    .dot:nth-child(2) { animation-delay: 0.2s; }
+    .dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+        0%, 80%, 100% {
+            transform: scale(0.6);
+            opacity: 40%;
         }
 
-        .container {
-            text-align: center;
-            animation: fade-in 0.8s ease-out;
+        40% {
+            transform: scale(1);
+            opacity: 100%;
+        }
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0%;
+            transform: translateY(12px);
         }
 
-        .loader {
-            width: 3rem;
-            height: 3rem;
-            border: 3px solid var(--border-subtle);
-            border-radius: var(--radius-full);
-            display: inline-block;
-            position: relative;
-            box-sizing: border-box;
-            animation: rotation 1s linear infinite;
+        to {
+            opacity: 100%;
+            transform: translateY(0);
         }
-
-        .loader::after {
-            content: "";
-            box-sizing: border-box;
-            position: absolute;
-            left: 50%;
-            top: 0;
-            background: var(--color-primary);
-            width: 0.625rem;
-            height: 0.625rem;
-            transform: translate(-50%, -50%);
-            border-radius: var(--radius-full);
-            box-shadow: 0 0 15px var(--color-primary);
-        }
-
-        @keyframes rotation {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes fade-in {
-            from {
-                opacity: 0%;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 100%;
-                transform: translateY(0);
-            }
-        }
-    </style>
-    <script is:inline>
-        (function() {
-            const preferredLanguage = (navigator.language || 'en').split('-')[0];
-            const targetLang = ['fr'].includes(preferredLanguage) ? preferredLanguage : 'en';
-            window.location.href = `/${targetLang}/`;
-        })();
-    </script>
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <span class="loader"></span>
+    <div class="splash">
+        <div class="logo">Game<span>Bob</span></div>
+        <div class="tagline">Free tools for everyone</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
     </div>
 </body>
 </html>

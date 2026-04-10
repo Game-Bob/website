@@ -43,7 +43,7 @@ export default {
     catalog: "Categorized Catalog",
     search: "Search tool...",
     suggest: "Something missing?",
-    suggest_desc: "If you need a tool that isn't here, request it and I'll create it for free.",
+    suggest_desc: "If you need a utility that isn't here, request it and I'll create it for free.",
     suggest_cta: "Suggest a Tool",
     explorer: "Utility Explorer",
     explorer_desc: "Customize and embed tools on your website for free.",

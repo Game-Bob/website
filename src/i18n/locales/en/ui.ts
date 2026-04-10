@@ -5,7 +5,7 @@ export default {
     all_tools: "All Tools",
     faq_title: "Frequently Asked Questions",
     util_studio_title: "Utilities Studio",
-    util_studio_desc: "Want this tool on your website?",
+    util_studio_desc: "Want this utility on your website?",
     util_studio_custom: "Customize colors and dark mode for WordPress, Notion or your own site.",
     go_ahead: "Go Ahead",
     bib_title: "Bibliographic References",

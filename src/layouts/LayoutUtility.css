@@ -81,7 +81,10 @@ body.is-widget .utility-layout-wrapper {
     background-color: transparent !important;
     background-image: none !important;
     min-height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
+
 
 body.is-widget .utility-bg-gradient {
     display: none !important;
@@ -93,27 +96,44 @@ body.is-widget .sticky-banner,
 body.is-widget .main-nav,
 body.is-widget .site-footer,
 body.is-widget nav,
-body.is-widget footer {
+body.is-widget footer,
+body.is-widget header {
     display: none !important;
 }
 
 body.is-widget .utility-main-container {
-    padding-top: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
 }
 
 body.is-widget .utility-tool-container {
     margin-top: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding: 0 !important;
     max-width: 100% !important;
+    width: 100% !important;
 }
 
-body.is-widget,
-body.is-widget main,
-body.is-widget .utility-layout-wrapper {
-    padding-top: 0 !important;
-    margin-top: 0 !important;
+body.is-widget .utility-tool-container [class*="max-w-"],
+body.is-widget .utility-tool-container [class*="mx-auto"] {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
+
+body.is-widget .utility-tool-container [class*="shadow-"],
+body.is-widget .utility-tool-container [class*="border"] {
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+body.is-widget .utility-tool-container > div:first-child {
+    border: none !important;
+    background: transparent !important;
+}
+
 
 @media (width <= 640px) {
     .utility-main-container {

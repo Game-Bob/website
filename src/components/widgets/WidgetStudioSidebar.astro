@@ -27,22 +27,31 @@ const { sections, searchPlaceholder, catalogLabel, suggestTitle, suggestDesc, su
     </div>
 
     <nav class="sidebar-nav">
-        {sections.map((section, idx) => (
-            <div class={`category-group ${idx === 0 ? "is-open" : ""}`}>
-                <button class="category-toggle" data-group={idx}>
-                    <span class="category-label">{section.title}</span>
-                    <Icon name="mdi:chevron-down" class={`chevron ${idx === 0 ? "rotated" : ""}`} />
-                </button>
-                <div class={`category-content ${idx === 0 ? "" : "hidden"}`}>
-                    {section.utilities.map((u) => (
-                        <button class="utility-btn" data-href={u.href} data-title={u.title}
-                            data-widget-id={u.widgetId} data-tool-slug={u.toolSlug} data-category={section.title}>
-                            {u.title}
+        {(() => {
+            const openIdx = sections.findIndex(s => s.title.toLowerCase().includes("cocina"));
+            const finalOpenIdx = openIdx !== -1 ? openIdx : 0;
+            return sections.map((section, idx) => {
+                const isOpen = idx === finalOpenIdx;
+                return (
+                    <div class={`category-group ${isOpen ? "is-open" : ""}`}>
+                        <button class="category-toggle" data-group={idx}>
+                            <span class="category-label">{section.title}</span>
+                            <Icon name="mdi:chevron-down" class={`chevron ${isOpen ? "rotated" : ""}`} />
                         </button>
-                    ))}
-                </div>
-            </div>
-        ))}
+                        <div class={`category-content ${isOpen ? "" : "hidden"}`}>
+                            {section.utilities.map((u) => (
+                                <button class="utility-btn" data-href={u.href} data-title={u.title}
+                                    data-widget-id={u.widgetId} data-tool-slug={u.toolSlug} data-category={section.title}>
+                                    {u.title}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                );
+            });
+        })()}
+
+
 
         <div class="sidebar-suggest">
             <div class="suggest-icon-wrap">
@@ -50,7 +59,7 @@ const { sections, searchPlaceholder, catalogLabel, suggestTitle, suggestDesc, su
             </div>
             <h2 class="suggest-title">{suggestTitle}</h2>
             <p class="suggest-desc">{suggestDesc}</p>
-            <a href="mailto:hola@jjlmoya.com?subject=Tool%20Suggestion" class="suggest-cta">{suggestCta}</a>
+            <a href="mailto:juanjo1989@gmail.com" class="suggest-cta">{suggestCta}</a>
         </div>
     </nav>
 </aside>

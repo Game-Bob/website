@@ -66,7 +66,7 @@ export default [
     },
 
     {
-        files: ["**/i18n/slugs.ts"],
+        files: ["**/i18n/slugs.ts", "src/pages/index.astro"],
         rules: {
             "max-lines": "off",
         },

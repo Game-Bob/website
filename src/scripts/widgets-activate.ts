@@ -33,13 +33,24 @@ export function activateButton(btn: HTMLElement, flatUtilities: UtilityData[], t
     renderWidget(utData.href, utData.widgetId, theme);
 }
 
-export function activateFromUrl(flatUtilities: UtilityData[], theme: string) {
-    const slug = new URLSearchParams(window.location.search).get("utilidad");
-    if (!slug) return;
-    const target = Array.from(document.querySelectorAll(".utility-btn"))
-        .find((b) => (b as HTMLElement).dataset.toolSlug === slug) as HTMLElement | undefined;
-    if (!target) return;
-    const groupToggle = target.closest(".category-group")?.querySelector(".category-toggle");
-    if (groupToggle) toggleGroup(groupToggle);
-    activateButton(target, flatUtilities, theme);
+function openGroupFor(target: HTMLElement) {
+    const toggle = target.closest(".category-group")?.querySelector(".category-toggle") as HTMLElement;
+    if (toggle) toggleGroup(toggle);
 }
+
+export function activateFromUrl(flatUtilities: UtilityData[], theme: string) {
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get("utilidad") || params.get("u");
+    if (!slug) return;
+
+    const btns = Array.from(document.querySelectorAll(".utility-btn"));
+    const target = btns.find((b) => (b as HTMLElement).dataset.toolSlug === slug) as HTMLElement;
+    if (target) {
+        openGroupFor(target);
+        activateButton(target, flatUtilities, theme);
+    }
+}
+
+
+
+

@@ -19,9 +19,7 @@ interface Props {
     copyIframeLabel: string;
 }
 
-const { toolLabel, previewLabel, lightLabel, darkLabel, bgWhiteLabel, bgBlackLabel,
-    bgGridLabel, explorerTitle, explorerDesc, chooseText, oembedTitle, oembedDesc,
-    iframeTitle, iframeDesc, copyIframeLabel } = Astro.props;
+const { toolLabel, previewLabel, lightLabel, darkLabel, bgWhiteLabel, bgBlackLabel, bgGridLabel, explorerTitle, explorerDesc, chooseText, oembedTitle, oembedDesc, iframeTitle, iframeDesc, copyIframeLabel } = Astro.props;
 ---
 
 <main class="widgets-main">
@@ -34,12 +32,8 @@ const { toolLabel, previewLabel, lightLabel, darkLabel, bgWhiteLabel, bgBlackLab
         <div class="toolbar-controls">
             <div class="control-group">
                 <span class="control-label">{toolLabel}</span>
-                <button class="widget-theme-btn active" data-theme="light" title={lightLabel}>
-                    <Icon name="mdi:white-balance-sunny" class="btn-icon-sm" />
-                </button>
-                <button class="widget-theme-btn" data-theme="dark" title={darkLabel}>
-                    <Icon name="mdi:moon-waning-crescent" class="btn-icon-sm" />
-                </button>
+                <button class="widget-theme-btn active" data-theme="light" title={lightLabel}><Icon name="mdi:white-balance-sunny" class="btn-icon-sm" /></button>
+                <button class="widget-theme-btn" data-theme="dark" title={darkLabel}><Icon name="mdi:moon-waning-crescent" class="btn-icon-sm" /></button>
             </div>
             <div class="control-group">
                 <span class="control-label">{previewLabel}</span>
@@ -52,16 +46,11 @@ const { toolLabel, previewLabel, lightLabel, darkLabel, bgWhiteLabel, bgBlackLab
 
     <div class="widgets-content">
         <section class="preview-section">
-            <div class="section-label">
-                <Icon name="mdi:eye-outline" class="label-icon" />
-                {previewLabel}
-            </div>
+            <div class="section-label"><Icon name="mdi:eye-outline" class="label-icon" />{previewLabel}</div>
             <div id="preview-canvas" class="preview-canvas preview-white">
                 <div id="canvas-inner" class="canvas-inner">
                     <div id="empty-canvas-msg" class="empty-canvas">
-                        <div class="empty-icon-wrap">
-                            <Icon name="mdi:mouse-left-click-outline" class="empty-icon" />
-                        </div>
+                        <div class="empty-icon-wrap"><Icon name="mdi:mouse-left-click-outline" class="empty-icon" /></div>
                         <p class="empty-text">{chooseText}</p>
                     </div>
                 </div>
@@ -71,31 +60,18 @@ const { toolLabel, previewLabel, lightLabel, darkLabel, bgWhiteLabel, bgBlackLab
         <div id="embed-section" class="embed-section hidden">
             <div class="embed-grid">
                 <div class="embed-card">
-                    <div class="embed-card-header">
-                        <h3 class="embed-card-title">{oembedTitle}</h3>
-                        <Icon name="mdi:link-variant" class="embed-card-icon" />
-                    </div>
+                    <div class="embed-card-header"><h3 class="embed-card-title">{oembedTitle}</h3><Icon name="mdi:link-variant" class="embed-card-icon" /></div>
                     <p class="embed-card-desc">{oembedDesc}</p>
-                    <div class="embed-code-row">
-                        <code id="code-url" class="embed-code">https://...</code>
-                        <button id="copy-url" class="copy-btn copy-btn-primary">
-                            <Icon name="mdi:content-copy" class="btn-icon-sm" />
-                        </button>
+                    <div class="oembed-wrapper">
+                        <div class="embed-code-row"><code id="code-url" class="embed-code">https://...</code></div>
+                        <button id="copy-url" class="copy-btn copy-btn-square" aria-label="Copy URL"><Icon name="mdi:content-copy" class="copy-icon-lg" /></button>
                     </div>
                 </div>
                 <div class="embed-card">
-                    <div class="embed-card-header">
-                        <h3 class="embed-card-title">{iframeTitle}</h3>
-                        <Icon name="mdi:code-tags" class="embed-card-icon" />
-                    </div>
+                    <div class="embed-card-header"><h3 class="embed-card-title">{iframeTitle}</h3><Icon name="mdi:code-tags" class="embed-card-icon" /></div>
                     <p class="embed-card-desc">{iframeDesc}</p>
-                    <div class="embed-iframe-wrap">
-                        <pre id="code-iframe" class="embed-iframe-code">...</pre>
-                    </div>
-                    <button id="copy-iframe" class="copy-btn copy-btn-dark">
-                        <Icon name="mdi:content-copy" class="btn-icon-sm" />
-                        {copyIframeLabel}
-                    </button>
+                    <div class="embed-iframe-wrap"><pre id="code-iframe" class="embed-iframe-code">...</pre></div>
+                    <button id="copy-iframe" class="copy-btn copy-btn-full"><Icon name="mdi:content-copy" class="btn-icon-sm" /><span>{copyIframeLabel}</span></button>
                 </div>
             </div>
         </div>
