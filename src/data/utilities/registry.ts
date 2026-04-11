@@ -18,6 +18,7 @@ import { home } from './categories/home';
 import { files } from './categories/files';
 import { social } from './categories/social';
 import { music } from './categories/music';
+import { health } from './categories/health';
 import type { CategoryDefinition } from './types';
 
 export type { CategoryDefinition };
@@ -43,6 +44,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     files,
     social,
     music,
+    health,
 ];
 
 export const ALL_TOOL_ENTRIES = CATEGORIES.flatMap(c => c.toolsWithColors.map(t => t.toolEntry));

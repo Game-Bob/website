@@ -114,4 +114,9 @@ export const slugMapping: Record<string, Record<string, string>> = {
         fr: "musique",
         es: "musica",
     },
+    health: {
+        en: "health",
+        fr: "sante",
+        es: "salud",
+    },
 };
