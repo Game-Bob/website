@@ -2,22 +2,8 @@ import type { UtilityData } from "./widgets-studio";
 import { renderWidget } from "./widgets-render";
 import { toggleGroup } from "./widgets-filter";
 
-function updateBadge(category: string) {
-    const badge = document.getElementById("current-category-badge");
-    if (badge) { badge.textContent = category; badge.classList.remove("hidden"); }
-}
-
-function setTextContent(id: string, text: string) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = text;
-}
-
-function updateUI(utData: UtilityData, category: string) {
-    setTextContent("current-title", utData.title);
-    setTextContent("current-desc", utData.description ?? "");
+function updateUI(_utData: UtilityData, _category: string) {
     document.getElementById("embed-section")?.classList.remove("hidden");
-    updateBadge(category);
-    if (window.innerWidth < 1024) document.getElementById("current-title")?.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
 export function activateButton(btn: HTMLElement, flatUtilities: UtilityData[], theme: string) {
