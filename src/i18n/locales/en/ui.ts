@@ -21,7 +21,7 @@ export default {
     related_utils_title: "More utilities from",
     back_to_utils: "Back to Utilities",
     hub_title: "Tools Studio",
-    hub_desc: "Choose a category to explore our specialized cycling tools.",
+    hub_desc: "Choose a category to explore our specialized utility tools.",
     hub_count: "tools available",
     search_placeholder: "Search tools or categories...",
     no_results: "No tools found matching your search.",
