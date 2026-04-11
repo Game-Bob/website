@@ -17,6 +17,7 @@ import { textiles } from './categories/textiles';
 import { home } from './categories/home';
 import { files } from './categories/files';
 import { social } from './categories/social';
+import { music } from './categories/music';
 import type { CategoryDefinition } from './types';
 
 export type { CategoryDefinition };
@@ -41,6 +42,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     home,
     files,
     social,
+    music,
 ];
 
 export const ALL_TOOL_ENTRIES = CATEGORIES.flatMap(c => c.toolsWithColors.map(t => t.toolEntry));
