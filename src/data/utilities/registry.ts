@@ -20,6 +20,7 @@ import { social } from './categories/social';
 import { music } from './categories/music';
 import { health } from './categories/health';
 import { sports } from './categories/sports';
+import { nature } from './categories/nature';
 import type { CategoryDefinition } from './types';
 
 export type { CategoryDefinition };
@@ -47,6 +48,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     music,
     health,
     sports,
+    nature,
 ];
 
 export const ALL_TOOL_ENTRIES = CATEGORIES.flatMap(c => c.toolsWithColors.map(t => t.toolEntry));
