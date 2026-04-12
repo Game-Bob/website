@@ -24,6 +24,7 @@ import { nature } from './categories/nature';
 import { developer } from './categories/developer';
 import { hardware } from './categories/hardware';
 import { coffee } from './categories/coffee';
+import { printing3d } from './categories/printing3d';
 import type { CategoryDefinition } from './types';
 
 export type { CategoryDefinition };
@@ -55,6 +56,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     developer,
     hardware,
     coffee,
+    printing3d,
 ];
 
 export const ALL_TOOL_ENTRIES = CATEGORIES.flatMap(c => c.toolsWithColors.map(t => t.toolEntry));
