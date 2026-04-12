@@ -134,4 +134,9 @@ export const slugMapping: Record<string, Record<string, string>> = {
         fr: "developpement-web",
         es: "desarrollo-web",
     },
+    hardware: {
+        en: "hardware-tools",
+        fr: "outils-materiels",
+        es: "hardware",
+    },
 };

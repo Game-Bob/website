@@ -22,6 +22,7 @@ import { health } from './categories/health';
 import { sports } from './categories/sports';
 import { nature } from './categories/nature';
 import { developer } from './categories/developer';
+import { hardware } from './categories/hardware';
 import type { CategoryDefinition } from './types';
 
 export type { CategoryDefinition };
@@ -51,6 +52,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     sports,
     nature,
     developer,
+    hardware,
 ];
 
 export const ALL_TOOL_ENTRIES = CATEGORIES.flatMap(c => c.toolsWithColors.map(t => t.toolEntry));
