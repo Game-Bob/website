@@ -1,6 +1,6 @@
 {
     "name": "gamebob-website",
-    "version": "1.51.0",
+    "version": "1.52.0",
     "type": "module",
     "private": true,
     "scripts": {
@@ -29,6 +29,7 @@
         "@jjlmoya/utils-converters": "^1.7.0",
         "@jjlmoya/utils-cooking": "^1.11.0",
         "@jjlmoya/utils-creative": "^1.6.0",
+        "@jjlmoya/utils-developer": "^1.2.0",
         "@jjlmoya/utils-drones": "^1.6.0",
         "@jjlmoya/utils-education": "^1.9.0",
         "@jjlmoya/utils-files": "^1.2.0",
