@@ -25,6 +25,8 @@ import { developer } from './categories/developer';
 import { hardware } from './categories/hardware';
 import { coffee } from './categories/coffee';
 import { printing3d } from './categories/printing3d';
+import { streaming } from './categories/streaming';
+import { finance } from './categories/finance';
 import type { CategoryDefinition } from './types';
 
 export type { CategoryDefinition };
@@ -57,6 +59,8 @@ export const CATEGORIES: CategoryDefinition[] = [
     hardware,
     coffee,
     printing3d,
+    streaming,
+    finance,
 ];
 
 export const ALL_TOOL_ENTRIES = CATEGORIES.flatMap(c => c.toolsWithColors.map(t => t.toolEntry));

@@ -149,4 +149,14 @@ export const slugMapping: Record<string, Record<string, string>> = {
         fr: "impression-3d",
         es: "impresion-3d",
     },
+    streaming: {
+        en: "streaming",
+        fr: "streaming",
+        es: "streaming",
+    },
+    finance: {
+        en: "finance",
+        fr: "finances",
+        es: "finanzas",
+    },
 };
