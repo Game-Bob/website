@@ -164,4 +164,9 @@ export const slugMapping: Record<string, Record<string, string>> = {
         fr: "statistiques",
         es: "estadistica",
     },
+    diy: {
+        en: "diy",
+        fr: "diy",
+        es: "diy",
+    },
 };
