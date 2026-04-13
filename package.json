@@ -52,6 +52,7 @@
         "@jjlmoya/utils-streaming": "^1.2.0",
         "@jjlmoya/utils-textiles": "^1.4.0",
         "@jjlmoya/utils-travel": "^1.1.0",
+        "@jjlmoya/utils-work": "^1.2.0",
         "@types/qrcode": "^1.5.6",
         "astro": "^6.0.0",
         "astro-icon": "^1.1.5",
