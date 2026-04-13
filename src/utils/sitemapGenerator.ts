@@ -19,17 +19,19 @@ async function resolveCatPath(catDef: any, lang: Language): Promise<string | nul
   const cat = await catDef.entry.i18n[lang]?.();
   return cat ? `${getLocalizedSlug(lang, 'utilities')}/${getLocalizedSlug(lang, 'categories')}/${cat.slug}` : null;
 }
-async function resolveToolPath(catDef: any, toolDef: any, lang: Language): Promise<string | null> {
+async function getExternalToolPath(toolDef: any, lang: Language): Promise<string | null> {
+  const tool = await toolDef.entry.i18n[lang]?.();
+  return tool ? `${getLocalizedSlug(lang, 'utilities')}/${tool.slug}` : null;
+}
+async function getInternalToolPath(catDef: any, toolDef: any, lang: Language): Promise<string | null> {
   const tool = await toolDef.entry.i18n[lang]?.();
   if (!tool) return null;
-  // Para jjlmoya.es (externalLanguages), la ruta es directa: /utilidades/tool-slug/
-  const isExternal = lang in externalLanguages;
-  if (isExternal) {
-    return `${getLocalizedSlug(lang, 'utilities')}/${tool.slug}`;
-  }
-  // Para gamebob.dev, incluye categoría: /utilities/categories/category-slug/tool-slug/
   const cat = await catDef.entry.i18n[lang]?.();
   return cat ? `${getLocalizedSlug(lang, 'utilities')}/${getLocalizedSlug(lang, 'categories')}/${cat.slug}/${tool.slug}` : null;
+}
+async function resolveToolPath(catDef: any, toolDef: any, lang: Language): Promise<string | null> {
+  if (lang in externalLanguages) return getExternalToolPath(toolDef, lang);
+  return getInternalToolPath(catDef, toolDef, lang);
 }
 async function buildHreflangFor(resolve: (lang: Language) => Promise<string | null>): Promise<Record<string, string>> {
   const hreflang: Record<string, string> = {};
@@ -37,6 +39,8 @@ async function buildHreflangFor(resolve: (lang: Language) => Promise<string | nu
     const path = await resolve(lang as Language);
     if (path) hreflang[lang] = `${base}/${path}/`;
   }
+  const enPath = await resolve('en');
+  if (enPath) hreflang['x-default'] = `${BASE_URL}/en/${enPath}/`;
   return hreflang;
 }
 
@@ -76,7 +80,9 @@ async function getCategoryUrls(lang: Language): Promise<SitemapEntry[]> {
 }
 
 function buildHreflang(path: string): Record<string, string> {
-  return Object.fromEntries(allLangBases().map(({ lang, base }) => [lang, `${base}${path}`]));
+  const entries = allLangBases().map(({ lang, base }) => [lang, `${base}${path}`]);
+  entries.push(['x-default', `${BASE_URL}/en${path}`]);
+  return Object.fromEntries(entries);
 }
 function getStaticUrls(lang: Language): SitemapEntry[] {
   const lPath = toLangPath(lang);
@@ -97,8 +103,6 @@ function renderUrl({ url, hreflang, changefreq, priority }: SitemapEntry): strin
 
 export async function generateSitemap(lang: Language): Promise<string> {
   const allUrls = [...getStaticUrls(lang), ...await getCategoryUrls(lang)];
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${allUrls.map(renderUrl).join('\n')}
-</urlset>`;
+  const header = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">';
+  return `${header}\n${allUrls.map(renderUrl).join('\n')}\n</urlset>`;
 }
