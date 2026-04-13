@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { SUPPORTED_LANGUAGES, getLocalizedSlug } from "../src/i18n/utils";
+import { SUPPORTED_LANGUAGES, getLocalizedSlug, externalLanguages } from "../src/i18n/utils";
 import { CATEGORIES } from "../src/data/utilities/registry";
 import { generateSitemap } from "../src/utils/sitemapGenerator";
 import type { Language } from "../src/i18n/utils";
@@ -66,4 +66,21 @@ describe("Sitemap Coverage", () => {
       expect(sitemapUrls.length, message).toBe(expectedUrls.length);
     });
   }
+
+  it("Hreflang alternates for es tools (jjlmoya.es) should be /utilidades/tool-slug/ without /categorias/", async () => {
+    const sitemap = await generateSitemap('en');
+    const allHrefs = sitemap.match(/<xhtml:link[^>]*hreflang="es"[^>]*href="([^"]+)"[^>]*\/>/g) || [];
+
+    const esToolUrls = allHrefs
+      .map(h => h.match(/href="([^"]+)"/)?.[1])
+      .filter((url): url is string => !!url && url.includes('jjlmoya.es/utilidades/') && url.split('/').filter(Boolean).length === 2);
+
+    esToolUrls.forEach(url => {
+      const pathPart = new URL(url).pathname;
+      const segments = pathPart.split('/').filter(Boolean);
+      expect(segments.length).toBe(2);
+      expect(segments[0]).toBe('utilidades');
+      expect(url).not.toContain('/categorias/');
+    });
+  });
 });

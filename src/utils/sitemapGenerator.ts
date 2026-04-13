@@ -20,9 +20,16 @@ async function resolveCatPath(catDef: any, lang: Language): Promise<string | nul
   return cat ? `${getLocalizedSlug(lang, 'utilities')}/${getLocalizedSlug(lang, 'categories')}/${cat.slug}` : null;
 }
 async function resolveToolPath(catDef: any, toolDef: any, lang: Language): Promise<string | null> {
-  const cat = await catDef.entry.i18n[lang]?.();
   const tool = await toolDef.entry.i18n[lang]?.();
-  return (cat && tool) ? `${getLocalizedSlug(lang, 'utilities')}/${getLocalizedSlug(lang, 'categories')}/${cat.slug}/${tool.slug}` : null;
+  if (!tool) return null;
+  // Para jjlmoya.es (externalLanguages), la ruta es directa: /utilidades/tool-slug/
+  const isExternal = lang in externalLanguages;
+  if (isExternal) {
+    return `${getLocalizedSlug(lang, 'utilities')}/${tool.slug}`;
+  }
+  // Para gamebob.dev, incluye categoría: /utilities/categories/category-slug/tool-slug/
+  const cat = await catDef.entry.i18n[lang]?.();
+  return cat ? `${getLocalizedSlug(lang, 'utilities')}/${getLocalizedSlug(lang, 'categories')}/${cat.slug}/${tool.slug}` : null;
 }
 async function buildHreflangFor(resolve: (lang: Language) => Promise<string | null>): Promise<Record<string, string>> {
   const hreflang: Record<string, string> = {};
