@@ -30,6 +30,7 @@ import { finance } from './categories/finance';
 import { statistics } from './categories/statistics';
 import { diy } from './categories/diy';
 import { work } from './categories/work';
+import { tools } from './categories/tools';
 import type { CategoryDefinition } from './types';
 
 export type { CategoryDefinition };
@@ -67,6 +68,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     statistics,
     diy,
     work,
+    tools,
 ];
 
 export const ALL_TOOL_ENTRIES = CATEGORIES.flatMap(c => c.toolsWithColors.map(t => t.toolEntry));

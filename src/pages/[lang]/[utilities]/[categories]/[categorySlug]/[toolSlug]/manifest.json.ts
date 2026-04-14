@@ -46,7 +46,7 @@ export const GET: APIRoute = ({ props }) => {
 
     const manifest = {
         name: title,
-        short_name: title.length > 12 ? title.substring(0, 12) : title,
+        short_name: title.length > 12 ? title.split(' ').map(w => w[0]).join('') : title,
         description,
         start_url: startUrl,
         scope: startUrl,
