@@ -20,11 +20,11 @@ async function resolveCatPath(catDef: any, lang: Language): Promise<string | nul
   return cat ? `${getLocalizedSlug(lang, 'utilities')}/${getLocalizedSlug(lang, 'categories')}/${cat.slug}` : null;
 }
 async function getExternalToolPath(toolDef: any, lang: Language): Promise<string | null> {
-  const tool = await toolDef.entry.i18n[lang]?.();
+  const tool = await toolDef.i18n[lang]?.();
   return tool ? `${getLocalizedSlug(lang, 'utilities')}/${tool.slug}` : null;
 }
 async function getInternalToolPath(catDef: any, toolDef: any, lang: Language): Promise<string | null> {
-  const tool = await toolDef.entry.i18n[lang]?.();
+  const tool = await toolDef.i18n[lang]?.();
   if (!tool) return null;
   const cat = await catDef.entry.i18n[lang]?.();
   return cat ? `${getLocalizedSlug(lang, 'utilities')}/${getLocalizedSlug(lang, 'categories')}/${cat.slug}/${tool.slug}` : null;
@@ -48,8 +48,8 @@ async function getToolUrls(catDef: any, cat: any, lang: Language): Promise<Sitem
   const u = getLocalizedSlug(lang, 'utilities');
   const c = getLocalizedSlug(lang, 'categories');
   const urls: SitemapEntry[] = [];
-  for (const toolDef of catDef.AllTools) {
-    const tool = await toolDef.entry.i18n[lang]?.();
+  for (const { toolEntry: toolDef } of catDef.toolsWithColors) {
+    const tool = await toolDef.i18n[lang]?.();
     if (!tool) continue;
     urls.push({
       url: `${BASE_URL}${toLangPath(lang)}/${u}/${c}/${cat.slug}/${tool.slug}/`,
