@@ -1,10 +1,9 @@
 import { slugMapping } from "./utils";
 
-export function getUtilityUrl(lang: string, categoryKey: string, toolSlug?: string) {
+export function getUtilityUrl(lang: string, categorySlug: string, toolSlug?: string) {
     const uSlug = slugMapping.utilities[lang];
     const cSlug = slugMapping.categories[lang];
-    const bSlug = slugMapping[categoryKey][lang];
-    let path = `/${lang}/${uSlug}/${cSlug}/${bSlug}/`;
+    let path = `/${lang}/${uSlug}/${cSlug}/${categorySlug}/`;
     if (toolSlug) path += `${toolSlug}/`;
     return path;
 }

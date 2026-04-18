@@ -26,5 +26,6 @@ export default {
     search_placeholder: "Rechercher des outils ou des catégories...",
     no_results: "Aucun outil ne correspond à votre recherche.",
     tool_singular: "outil",
-    tool_plural: "outils"
+    tool_plural: "outils",
+    select_language: "Choisir la langue"
 };

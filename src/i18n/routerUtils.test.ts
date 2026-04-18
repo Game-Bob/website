@@ -13,17 +13,17 @@ describe('getUtilitiesHubUrl', () => {
 
 describe('getUtilityUrl', () => {
     it('should generate utility URL with category and tool slug', () => {
-        const url = getUtilityUrl('en', 'bikes', 'gear-calculator');
+        const url = getUtilityUrl('en', 'cycling', 'gear-calculator');
         expect(url).toBe('/en/utilities/categories/cycling/gear-calculator/');
     });
 
     it('should generate category URL without tool slug', () => {
-        const url = getUtilityUrl('en', 'bikes');
+        const url = getUtilityUrl('en', 'cycling');
         expect(url).toBe('/en/utilities/categories/cycling/');
     });
 
     it('should work for French', () => {
-        const url = getUtilityUrl('fr', 'bikes', 'gear-calculator');
+        const url = getUtilityUrl('fr', 'cyclisme', 'gear-calculator');
         expect(url).toBe('/fr/utilitaires/categories/cyclisme/gear-calculator/');
     });
 });

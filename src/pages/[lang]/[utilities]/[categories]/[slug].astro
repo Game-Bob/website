@@ -15,9 +15,10 @@ export async function getStaticPaths() {
 
         for (const catDef of CATEGORIES) {
             const section = await buildSection(lang, catDef);
+            const enCat = await catDef.entry.i18n['en']!();
             paths.push({
                 params: { lang, utilities: utilitiesParam, categories: categoriesParam, slug: section.slug },
-                props: { lang, section, categoryEntry: catDef.entry, CategorySEOComponent: catDef.SEOComponent, imageSlug: slugMapping[catDef.key].en, categoryKey: catDef.key },
+                props: { lang, section, categoryEntry: catDef.entry, CategorySEOComponent: catDef.SEOComponent, imageSlug: enCat.slug, categoryKey: catDef.key },
             });
         }
     }

@@ -1,5 +1,5 @@
 ---
-import { languages, externalLanguages, getLocalizedSlug, SUPPORTED_LANGUAGES, type Language } from "../../i18n/utils";
+import { languages, externalLanguages, getLocalizedSlug, useTranslations, SUPPORTED_LANGUAGES, type Language } from "../../i18n/utils";
 import { getTranslatedUrl, getExternalLanguageUrl } from "../../i18n/routerUtils";
 import MobileMenu from "./MobileMenu.astro";
 import LanguageSheet from "./LanguageSheet.astro";
@@ -14,6 +14,7 @@ const lang = SUPPORTED_LANGUAGES.includes(langFromPath as Language) ? (langFromP
 interface Props { className?: string; }
 const { className = "" } = Astro.props;
 
+const t = useTranslations(lang);
 const aSlug = getLocalizedSlug(lang, "apps");
 const uSlug = getLocalizedSlug(lang, "utilities");
 const aPath = `/${lang}/${aSlug}/`;
@@ -41,8 +42,8 @@ const transUrls = await Promise.all(
     <div class="nav-container">
         <a href={`/${lang}/`} class="nav-logo">Game<span>Bob</span></a>
         <div class="nav-links">
-            <a href={aPath} class={`nav-link ${pathname.includes(aSlug) ? "nav-active" : ""}`}>apps</a>
-            <a href={uPath} class={`nav-link ${pathname.includes(uSlug) ? "nav-active" : ""}`}>utilities</a>
+            <a href={aPath} class={`nav-link ${pathname.includes(aSlug) ? "nav-active" : ""}`}>{t("menu.apps")}</a>
+            <a href={uPath} class={`nav-link ${pathname.includes(uSlug) ? "nav-active" : ""}`}>{t("menu.utilities")}</a>
             <div class="nav-separator"></div>
             <div class="nav-actions">
                 <ThemeToggle />
@@ -60,12 +61,12 @@ const transUrls = await Promise.all(
     </div>
 </nav>
 
-<MobileMenu aPath={aPath} uPath={uPath} aSlug={aSlug} uSlug={uSlug} pathname={pathname}>
+<MobileMenu aPath={aPath} uPath={uPath} aSlug={aSlug} uSlug={uSlug} aLabel={t("menu.apps")} uLabel={t("menu.utilities")} pathname={pathname}>
     <ThemeToggle slot="theme-toggle" mobile />
     <LanguageTrigger slot="language-trigger" />
 </MobileMenu>
 
-<LanguageSheet transUrls={transUrls} currentLang={lang} />
+<LanguageSheet transUrls={transUrls} currentLang={lang} title={t("ui.select_language")} />
 
 <script>
     function setupHeader() {

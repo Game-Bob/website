@@ -26,5 +26,6 @@ export default {
     search_placeholder: "Search tools or categories...",
     no_results: "No tools found matching your search.",
     tool_singular: "tool",
-    tool_plural: "tools"
+    tool_plural: "tools",
+    select_language: "Select Language"
 };

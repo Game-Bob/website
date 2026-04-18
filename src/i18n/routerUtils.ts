@@ -1,10 +1,18 @@
 import { slugMapping, externalLanguages } from "./utils";
-import { ALL_TOOL_ENTRIES } from "../data/utilities/registry";
+import { ALL_TOOL_ENTRIES, CATEGORIES } from "../data/utilities/registry";
 export { getUtilityUrl, getUtilitiesHubUrl } from "./urlBuilder";
 
 function translateFromMapping(segment: string, lang: string, targetLang: string): string | undefined {
     for (const mapping of Object.values(slugMapping)) {
         if (mapping[lang] === segment) return mapping[targetLang];
+    }
+}
+
+async function translateFromCategories(segment: string, lang: string, targetLang: string): Promise<string | undefined> {
+    for (const cat of CATEGORIES) {
+        if (!cat.entry.i18n[lang] || !cat.entry.i18n[targetLang]) continue;
+        const current = await cat.entry.i18n[lang]();
+        if (current.slug === segment) return (await cat.entry.i18n[targetLang]()).slug;
     }
 }
 
@@ -18,6 +26,7 @@ async function translateFromTools(segment: string, lang: string, targetLang: str
 
 async function translateSegment(segment: string, lang: string, targetLang: string) {
     return translateFromMapping(segment, lang, targetLang)
+        ?? await translateFromCategories(segment, lang, targetLang)
         ?? await translateFromTools(segment, lang, targetLang)
         ?? segment;
 }

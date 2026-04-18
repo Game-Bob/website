@@ -10,7 +10,7 @@ export async function buildSection(lang: Language, def: CategoryDefinition): Pro
         def.toolsWithColors.map(async ({ toolEntry, color }: { toolEntry: any; color: string }) => {
             const content = await toolEntry.i18n[lang]!();
             return {
-                href: getUtilityUrl(lang, def.key, content.slug),
+                href: getUtilityUrl(lang, cat.slug, content.slug),
                 iconBg: color,
                 iconFg: toolEntry.icons.fg,
                 title: content.title,

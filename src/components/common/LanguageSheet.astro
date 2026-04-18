@@ -4,10 +4,11 @@ import "./LanguageSheet.css";
 interface Props {
     transUrls: Array<{ lang: string; url: string }>;
     currentLang: string;
+    title?: string;
     languageNames?: Record<string, string>;
 }
 
-const { transUrls, currentLang, languageNames = {} } = Astro.props;
+const { transUrls, currentLang, title = "Select Language", languageNames = {} } = Astro.props;
 
 const defaultNames: Record<string, string> = {
     en: "English",
@@ -23,7 +24,7 @@ const getLanguageName = (lang: string) =>
     <div class="lang-sheet-backdrop"></div>
     <div class="lang-sheet-content">
         <div class="lang-sheet-header">
-            <h3>Select Language</h3>
+            <h3>{title}</h3>
             <button id="lang-sheet-close" class="lang-sheet-close" aria-label="Close">×</button>
         </div>
         <div class="lang-sheet-list">
