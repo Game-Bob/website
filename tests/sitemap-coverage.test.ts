@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { SUPPORTED_LANGUAGES, getLocalizedSlug, externalLanguages } from "../src/i18n/utils";
+import { SUPPORTED_LANGUAGES, getLocalizedSlug } from "../src/i18n/utils";
 import { CATEGORIES } from "../src/data/utilities/registry";
 import { generateSitemap } from "../src/utils/sitemapGenerator";
 import type { Language } from "../src/i18n/utils";

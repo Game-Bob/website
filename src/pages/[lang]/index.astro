@@ -1,16 +1,16 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import HomeTemplate from "../../components/home/HomeTemplate.astro";
-import { useTranslations } from "../../i18n/utils";
+import { SUPPORTED_LANGUAGES, useTranslations, type Language } from "../../i18n/utils";
 
 export function getStaticPaths() {
-    return [{ params: { lang: "en" } }, { params: { lang: "fr" } }];
+    return SUPPORTED_LANGUAGES.map((lang) => ({ params: { lang } }));
 }
 
 const { lang } = Astro.params;
-const t = useTranslations(lang as "en" | "fr");
+const t = useTranslations(lang as Language);
 ---
 
 <Layout title={t("home.title")} description={t("home.description")} lang={lang as string}>
-    <HomeTemplate lang={lang as "en" | "fr"} />
+    <HomeTemplate lang={lang as Language} />
 </Layout>

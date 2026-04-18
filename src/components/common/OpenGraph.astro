@@ -4,12 +4,20 @@ interface Props {
     description: string;
     imageURL: URL;
     url: URL;
+    lang?: string;
     article?: boolean;
     publishedTime?: string;
     modifiedTime?: string;
 }
 
-const { title, description, imageURL, url, article, publishedTime, modifiedTime } = Astro.props;
+const { title, description, imageURL, url, lang = "en", article, publishedTime, modifiedTime } = Astro.props;
+
+const ogLocaleMap: Record<string, string> = {
+    en: "en_US", fr: "fr_FR", de: "de_DE", it: "it_IT", pt: "pt_PT",
+    nl: "nl_NL", sv: "sv_SE", pl: "pl_PL", id: "id_ID", tr: "tr_TR",
+    ru: "ru_RU", ja: "ja_JP", ko: "ko_KR", zh: "zh_CN",
+};
+const ogLocale = ogLocaleMap[lang] ?? "en_US";
 ---
 
 <meta property="og:type" content={article ? "article" : "website"} />
@@ -20,7 +28,7 @@ const { title, description, imageURL, url, article, publishedTime, modifiedTime 
 <meta property="og:image:secure_url" content={imageURL} />
 <meta property="og:image:alt" content={description} />
 <meta property="og:site_name" content="jjlmoya" />
-<meta property="og:locale" content="es_ES" />
+<meta property="og:locale" content={ogLocale} />
 
 {
     article && (

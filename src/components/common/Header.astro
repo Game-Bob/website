@@ -48,11 +48,7 @@ const transUrls = await Promise.all(
             <div class="nav-actions">
                 <ThemeToggle />
                 <div class="nav-separator sm-only"></div>
-                <div class="lang-switcher">
-                    {transUrls.map(({ lang: l, url }) => (
-                        <a href={url} class={`lang-link ${l === lang ? 'active' : ''}`}>{l}</a>
-                    ))}
-                </div>
+                <LanguageTrigger />
             </div>
         </div>
         <button id="menu-toggle" class="menu-toggle" aria-label="Menu">

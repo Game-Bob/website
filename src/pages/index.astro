@@ -2,7 +2,7 @@
 import "../styles/tokens.css";
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="root-html">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,7 +10,7 @@ import "../styles/tokens.css";
     <meta name="robots" content="noindex, follow" />
     <link rel="icon" type="image/webp" href="/favicon.webp" />
     <meta http-equiv="refresh" content="0; url=/en/" />
-    <script is:inline>(function(){const l=(navigator.language||'en').split('-')[0];window.location.replace(l==='fr'?'/fr/':'/en/');})();</script>
+    <script is:inline>(function(){const supported=['en','fr','de','it','pt','nl','sv','pl','id','tr','ru','ja','ko','zh'];const l=(navigator.language||'en').split('-')[0];const lang=supported.includes(l)?l:'en';document.getElementById('root-html').lang=lang;window.location.replace('/'+lang+'/');})();</script>
 
 <style>
     *,

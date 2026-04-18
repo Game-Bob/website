@@ -1,5 +1,6 @@
 ---
 import "./LanguageSheet.css";
+import { languages } from "../../i18n/utils";
 
 interface Props {
     transUrls: Array<{ lang: string; url: string }>;
@@ -10,14 +11,13 @@ interface Props {
 
 const { transUrls, currentLang, title = "Select Language", languageNames = {} } = Astro.props;
 
-const defaultNames: Record<string, string> = {
-    en: "English",
-    fr: "Français",
+const allNames: Record<string, string> = {
+    ...languages,
     es: "Español",
+    ...languageNames,
 };
 
-const getLanguageName = (lang: string) =>
-    languageNames[lang] || defaultNames[lang] || lang;
+const getLanguageName = (lang: string) => allNames[lang] || lang;
 ---
 
 <div id="mobile-lang-sheet" class="mobile-lang-sheet">

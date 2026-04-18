@@ -39,6 +39,9 @@ for (const altLang of SUPPORTED_LANGUAGES) {
     alternateUrls.push({ lang: altLang, url: altUrl.href });
 }
 
+const enPath = await getTranslatedUrl(Astro.url.pathname, lang, "en");
+const xDefaultUrl = new URL(enPath, Astro.site);
+
 for (const [extLang, extUrl] of Object.entries(externalLanguages)) {
     const externalUrl = await getExternalLanguageUrl({
         pathname: Astro.url.pathname,
@@ -52,6 +55,10 @@ for (const [extLang, extUrl] of Object.entries(externalLanguages)) {
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>{fullTitle}</title>
+<meta name="title" content={fullTitle} />
+<meta name="description" content={description} />
+
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 <link rel="icon" type="image/webp" href="/favicon.webp" sizes="any" />
 <link rel="apple-touch-icon" href={isUtility ? image : "/apple-touch-icon-brand.webp"} />
@@ -64,22 +71,20 @@ for (const [extLang, extUrl] of Object.entries(externalLanguages)) {
 <meta name="generator" content={Astro.generator} />
 <meta name="theme-color" content="#0f172a" />
 <meta name="author" content="jjlmoya" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 
 <link rel="canonical" href={canonicalURL} />
 {alternateUrls.map(({ lang: altLang, url }) => (
     <link rel="alternate" hreflang={altLang} href={url} />
 ))}
-<link rel="alternate" hreflang="x-default" href={canonicalURL} />
-
-<title>{fullTitle}</title>
-<meta name="title" content={fullTitle} />
-<meta name="description" content={description} />
+<link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
 
 <OpenGraph
     title={fullTitle}
     description={description}
     imageURL={imageURL}
     url={Astro.url}
+    lang={lang}
     article={article}
     publishedTime={publishedTime}
     modifiedTime={modifiedTime}

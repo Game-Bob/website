@@ -1,16 +1,17 @@
 ---
 import LogoSection from "./LogoSection.astro";
 import HomeNav from "./HomeNav.astro";
+import { type Language } from "../../i18n/utils";
 import "./HomeTemplate.css";
 
 interface Props {
-    lang: "en" | "fr" | "es";
+    lang: Language;
 }
 
 const { lang } = Astro.props;
 ---
 
 <main class="home-template">
-    <LogoSection lang={lang as any} />
-    <HomeNav lang={lang as any} />
+    <LogoSection lang={lang} />
+    <HomeNav lang={lang} />
 </main>

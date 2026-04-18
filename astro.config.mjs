@@ -8,7 +8,7 @@ export default defineConfig({
     integrations: [icon()],
     i18n: {
         defaultLocale: "en",
-        locales: ["en", "fr"],
+        locales: ["en", "fr", "de", "it", "pt", "nl", "sv", "pl", "id", "tr", "ru", "ja", "ko", "zh"],
         routing: {
             prefixDefaultLocale: true,
             redirectToDefaultLocale: false,
@@ -18,9 +18,6 @@ export default defineConfig({
     compressHTML: true,
     server: {
         port: 4322,
-        watch: {
-            ignored: [".vercel/**", "dist/**"],
-        },
     },
     preview: {
         port: 4322,
@@ -28,7 +25,7 @@ export default defineConfig({
     vite: {
         server: {
             watch: {
-                ignored: [".vercel/**", "dist/**"],
+                ignored: (path) => path.includes('.vercel') || path.includes('/dist/'),
             },
         },
         optimizeDeps: {

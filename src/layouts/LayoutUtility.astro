@@ -26,7 +26,8 @@ const {
 
 const currentPath = Astro.url.pathname;
 const pathSegments = currentPath.split('/').filter(Boolean);
-const langFromUrl = pathSegments[0] === 'en' || pathSegments[0] === 'fr' ? pathSegments[0] : "en";
+const LANGS = ['en','fr','de','it','pt','nl','sv','pl','id','tr','ru','ja','ko','zh'];
+const langFromUrl = LANGS.includes(pathSegments[0]) ? pathSegments[0] : "en";
 const lang = propLang || langFromUrl;
 const categorySlug = pathSegments[3] || "";
 const oembedUrl = `${Astro.url.origin}/api/oembed.json?url=${encodeURIComponent(`${Astro.url.origin}${currentPath}`)}`;
@@ -36,6 +37,7 @@ const oembedUrl = `${Astro.url.origin}/api/oembed.json?url=${encodeURIComponent(
     <UtilityStructuredData
         title={title} description={description} url={currentPath}
         category={propCategory} faqItems={faqItems} howToSteps={howToSteps}
+        lang={lang}
         slot="head"
     />
     <link rel="alternate" type="application/json+oembed" href={oembedUrl} title={title} slot="head" />
