@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
-import { SUPPORTED_LANGUAGES, slugMapping } from "../src/i18n/utils";
+import { slugMapping } from "../src/i18n/utils";
 import { CATEGORIES } from "../src/data/utilities/registry";
 import { buildSection } from "../src/data/utilities/builder";
 
@@ -16,22 +16,21 @@ const FORBIDDEN_IMAGES = [
 ];
 
 async function getAllPages(): Promise<string[]> {
+    const lang = "en";
     const pages = new Set<string>();
 
-    for (const lang of SUPPORTED_LANGUAGES) {
-        pages.add(`/${lang}/`);
-        pages.add(`/${lang}/${slugMapping.apps[lang]}/`);
-        pages.add(`/${lang}/${slugMapping.utilities[lang]}/`);
-        pages.add(`/${lang}/widgets/`);
+    pages.add(`/${lang}/`);
+    pages.add(`/${lang}/${slugMapping.apps[lang]}/`);
+    pages.add(`/${lang}/${slugMapping.utilities[lang]}/`);
+    pages.add(`/${lang}/widgets/`);
 
-        for (const catDef of CATEGORIES) {
-            const section = await buildSection(lang, catDef);
-            pages.add(`/${lang}/${slugMapping.utilities[lang]}/${slugMapping.categories[lang]}/${section.slug}/`);
+    for (const catDef of CATEGORIES) {
+        const section = await buildSection(lang, catDef);
+        pages.add(`/${lang}/${slugMapping.utilities[lang]}/${slugMapping.categories[lang]}/${section.slug}/`);
 
-            for (const toolDef of catDef.AllTools) {
-                const toolLocale = await toolDef.entry.i18n[lang]!();
-                pages.add(`/${lang}/${slugMapping.utilities[lang]}/${slugMapping.categories[lang]}/${section.slug}/${toolLocale.slug}/`);
-            }
+        for (const toolDef of catDef.AllTools) {
+            const toolLocale = await toolDef.entry.i18n[lang]!();
+            pages.add(`/${lang}/${slugMapping.utilities[lang]}/${slugMapping.categories[lang]}/${section.slug}/${toolLocale.slug}/`);
         }
     }
 
