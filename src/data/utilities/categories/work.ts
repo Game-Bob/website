@@ -1,4 +1,4 @@
-import { workCategory as entry, workCategorySEO as SEOComponent, ALL_TOOLS as WORK_TOOLS } from '@jjlmoya/utils-work';
+import { workCategory as entry, ALL_TOOLS as WORK_TOOLS } from '@jjlmoya/utils-work';
 import type { CategoryDefinition } from '../types';
 
 const TOOL_COLORS = [
@@ -16,8 +16,6 @@ const TOOL_COLORS = [
 export const work: CategoryDefinition = {
     key: 'work',
     entry,
-    SEOComponent,
     theme: 'blue',
     toolsWithColors: WORK_TOOLS.map((tool, i) => ({ toolEntry: tool.entry, color: TOOL_COLORS[i] ?? '#3b82f6' })),
-    AllTools: WORK_TOOLS,
 };

@@ -5,6 +5,7 @@ import Breadcrumb from "../../../../components/ui/Breadcrumb.astro";
 import { SUPPORTED_LANGUAGES, slugMapping, type Language } from "../../../../i18n/utils";
 import { CATEGORIES } from "../../../../data/utilities/registry";
 import { buildSection } from "../../../../data/utilities/builder";
+import { loadCategoryComponents } from "../../../../data/utilities/loadCategory";
 
 export async function getStaticPaths() {
     const paths = [];
@@ -18,19 +19,20 @@ export async function getStaticPaths() {
             const enCat = await catDef.entry.i18n['en']!();
             paths.push({
                 params: { lang, utilities: utilitiesParam, categories: categoriesParam, slug: section.slug },
-                props: { lang, section, categoryEntry: catDef.entry, CategorySEOComponent: catDef.SEOComponent, imageSlug: enCat.slug, categoryKey: catDef.key },
+                props: { lang, section, categoryEntry: catDef.entry, imageSlug: enCat.slug, categoryKey: catDef.key },
             });
         }
     }
     return paths;
 }
 
-const { lang: langProp, section, categoryEntry, CategorySEOComponent, imageSlug, categoryKey } = Astro.props;
+const { lang: langProp, section, categoryEntry, imageSlug, categoryKey } = Astro.props;
 const lang = langProp as Language;
 const content = await categoryEntry.i18n[lang]!();
 const finalImageSlug = categoryKey === "converters" ? "universal-image-converter" : imageSlug;
 const image = `/images/utilities/${finalImageSlug}.webp`;
 const description = content.description;
+const { CategorySEO: CategorySEOComponent } = await loadCategoryComponents(categoryKey);
 ---
 
 <Layout title={content.title} description={description} image={image} lang={lang}>

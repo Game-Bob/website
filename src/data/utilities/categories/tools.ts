@@ -1,4 +1,4 @@
-import { toolsCategory as entry, toolsCategorySEO as SEOComponent, ALL_TOOLS as TOOLS_TOOLS } from '@jjlmoya/utils-tools';
+import { toolsCategory as entry, ALL_TOOLS as TOOLS_TOOLS } from '@jjlmoya/utils-tools';
 import type { CategoryDefinition } from '../types';
 
 const TOOL_COLORS = [
@@ -19,8 +19,6 @@ const TOOL_COLORS = [
 export const tools: CategoryDefinition = {
     key: 'tools',
     entry,
-    SEOComponent,
     theme: 'violet',
     toolsWithColors: TOOLS_TOOLS.map((tool, i) => ({ toolEntry: tool.entry, color: TOOL_COLORS[i] ?? '#6366f1' })),
-    AllTools: TOOLS_TOOLS,
 };

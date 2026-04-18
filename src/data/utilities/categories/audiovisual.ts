@@ -1,10 +1,9 @@
-import { audiovisualCategory, audiovisualCategorySEO, timelapseCalculator, exifCleaner, subtitleSync, chromaticLens, printQualityCalculator, tvDistance, imageCompressor, collageMaker, videoFrameExtractor, privacyBlur, ALL_TOOLS as AUDIOVISUAL_TOOLS } from '@jjlmoya/utils-audiovisual';
+import { audiovisualCategory, timelapseCalculator, exifCleaner, subtitleSync, chromaticLens, printQualityCalculator, tvDistance, imageCompressor, collageMaker, videoFrameExtractor, privacyBlur } from '@jjlmoya/utils-audiovisual';
 import type { CategoryDefinition } from '../types';
 
 export const audiovisual: CategoryDefinition = {
     key: "audiovisual",
     entry: audiovisualCategory,
-    SEOComponent: audiovisualCategorySEO,
     theme: "violet",
     toolsWithColors: [
         { toolEntry: timelapseCalculator, color: "#8b5cf6" },
@@ -18,5 +17,4 @@ export const audiovisual: CategoryDefinition = {
         { toolEntry: videoFrameExtractor, color: "#84cc16" },
         { toolEntry: privacyBlur, color: "#14b8a6" },
     ],
-    AllTools: AUDIOVISUAL_TOOLS,
 };

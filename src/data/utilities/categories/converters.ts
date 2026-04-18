@@ -1,10 +1,9 @@
-import { convertersCategory, ConvertersCategorySEO, pngAJpg, jpgAPng, webpAPng, webpAJpg, pngAWebp, jpgAWebp, svgAPng, svgAJpg, imagenBase64, bmpAJpg, bmpAPng, bmpAWebp, avifAJpg, avifAPng, avifAWebp, gifAJpg, gifAPng, gifAWebp, pngAIco, jpgAIco, webpAIco, ALL_TOOLS as CONVERTERS_TOOLS } from '@jjlmoya/utils-converters';
+import { convertersCategory, pngAJpg, jpgAPng, webpAPng, webpAJpg, pngAWebp, jpgAWebp, svgAPng, svgAJpg, imagenBase64, bmpAJpg, bmpAPng, bmpAWebp, avifAJpg, avifAPng, avifAWebp, gifAJpg, gifAPng, gifAWebp, pngAIco, jpgAIco, webpAIco } from '@jjlmoya/utils-converters';
 import type { CategoryDefinition } from '../types';
 
 export const converters: CategoryDefinition = {
     key: "converters",
     entry: convertersCategory,
-    SEOComponent: ConvertersCategorySEO,
     theme: "amber",
     toolsWithColors: [
         { toolEntry: pngAJpg, color: "#f59e0b" },
@@ -29,5 +28,4 @@ export const converters: CategoryDefinition = {
         { toolEntry: jpgAIco, color: "#15803d" },
         { toolEntry: webpAIco, color: "#166534" },
     ],
-    AllTools: CONVERTERS_TOOLS,
 };

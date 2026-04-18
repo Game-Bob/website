@@ -2,13 +2,14 @@
 import { SUPPORTED_LANGUAGES, slugMapping, type Language } from "../../../../../i18n/utils";
 import LibraryUtilityLayout from "../../../../../components/utilities/LibraryUtilityLayout.astro";
 import { CATEGORIES } from "../../../../../data/utilities/registry";
+import { loadCategoryComponents } from "../../../../../data/utilities/loadCategory";
 import { buildSection } from "../../../../../data/utilities/builder";
 
 interface Props {
     lang: Language;
-    tool: any;
+    toolId: string;
+    catKey: string;
     section: any;
-    categoryKey: string;
 }
 
 export async function getStaticPaths() {
@@ -21,11 +22,11 @@ export async function getStaticPaths() {
         for (const catDef of CATEGORIES) {
             const section = await buildSection(lang, catDef);
 
-            for (const toolDef of catDef.AllTools) {
-                const toolLocale = await toolDef.entry.i18n[lang]!();
+            for (const { toolEntry } of catDef.toolsWithColors) {
+                const toolLocale = await toolEntry.i18n[lang]!();
                 paths.push({
                     params: { lang, utilities: uParam, categories: cParam, categorySlug: section.slug, toolSlug: toolLocale.slug },
-                    props: { lang, section, tool: toolDef, categoryKey: catDef.key },
+                    props: { lang, section, toolId: toolEntry.id, catKey: catDef.key },
                 });
             }
         }
@@ -33,12 +34,14 @@ export async function getStaticPaths() {
     return paths;
 }
 
-const { lang, tool, section, categoryKey } = Astro.props;
+const { lang, toolId, catKey, section } = Astro.props;
+const { AllTools } = await loadCategoryComponents(catKey);
+const tool = AllTools.find((t: any) => t.entry.id === toolId)!;
 ---
 
 <LibraryUtilityLayout
     lang={lang}
     tool={tool}
     category={section.title}
-    categoryKey={categoryKey}
+    categoryKey={catKey}
 />

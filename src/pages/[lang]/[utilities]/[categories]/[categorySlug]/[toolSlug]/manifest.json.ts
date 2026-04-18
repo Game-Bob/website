@@ -10,8 +10,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
         for (const catDef of CATEGORIES) {
             const section = await buildSection(lang, catDef);
 
-            for (const toolDef of catDef.AllTools) {
-                const toolLocale = await toolDef.entry.i18n[lang]!();
+            for (const { toolEntry } of catDef.toolsWithColors) {
+                const toolLocale = await toolEntry.i18n[lang]!();
                 const startUrl = `/${lang}/${slugMapping.utilities[lang]}/${slugMapping.categories[lang]}/${section.slug}/${toolLocale.slug}/`;
 
                 paths.push({
@@ -26,7 +26,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
                         title: toolLocale.title,
                         description: toolLocale.description,
                         startUrl,
-                        imageSlug: toolDef.entry.id,
+                        imageSlug: toolEntry.id,
                     },
                 });
             }

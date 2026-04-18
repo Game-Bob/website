@@ -1,4 +1,4 @@
-import { filesCategory as entry, filesCategorySEO as SEOComponent, ALL_TOOLS as FILES_TOOLS } from '@jjlmoya/utils-files';
+import { filesCategory as entry, ALL_TOOLS as FILES_TOOLS } from '@jjlmoya/utils-files';
 import type { CategoryDefinition } from '../types';
 
 const TOOL_COLORS = [
@@ -15,8 +15,6 @@ const TOOL_COLORS = [
 export const files: CategoryDefinition = {
     key: "files",
     entry,
-    SEOComponent,
     theme: "cyan",
     toolsWithColors: FILES_TOOLS.map((tool, i) => ({ toolEntry: tool.entry, color: TOOL_COLORS[i] ?? "#06b6d4" })),
-    AllTools: FILES_TOOLS,
 };

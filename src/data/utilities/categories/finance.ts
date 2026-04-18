@@ -1,4 +1,4 @@
-import { financeCategory as entry, financeCategorySEO as SEOComponent, ALL_TOOLS as FINANCE_TOOLS } from '@jjlmoya/utils-finance';
+import { financeCategory as entry, ALL_TOOLS as FINANCE_TOOLS } from '@jjlmoya/utils-finance';
 import type { CategoryDefinition } from '../types';
 
 const TOOL_COLORS = [
@@ -19,8 +19,6 @@ const TOOL_COLORS = [
 export const finance: CategoryDefinition = {
     key: 'finance',
     entry,
-    SEOComponent,
     theme: 'green',
     toolsWithColors: FINANCE_TOOLS.map((tool, i) => ({ toolEntry: tool.entry, color: TOOL_COLORS[i] ?? '#16a34a' })),
-    AllTools: FINANCE_TOOLS,
 };

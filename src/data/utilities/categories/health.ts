@@ -1,4 +1,4 @@
-import { healthCategory as entry, healthCategorySEO as SEOComponent, ALL_TOOLS as HEALTH_TOOLS } from '@jjlmoya/utils-health';
+import { healthCategory as entry, ALL_TOOLS as HEALTH_TOOLS } from '@jjlmoya/utils-health';
 import type { CategoryDefinition } from '../types';
 
 const TOOL_COLORS = [
@@ -23,8 +23,6 @@ const TOOL_COLORS = [
 export const health: CategoryDefinition = {
     key: 'health',
     entry,
-    SEOComponent,
     theme: 'red',
     toolsWithColors: HEALTH_TOOLS.map((tool, i) => ({ toolEntry: tool.entry, color: TOOL_COLORS[i] ?? '#ef4444' })),
-    AllTools: HEALTH_TOOLS,
 };

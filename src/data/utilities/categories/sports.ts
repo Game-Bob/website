@@ -1,4 +1,4 @@
-import { sportsCategory as entry, sportsCategorySEO as SEOComponent, ALL_TOOLS as SPORTS_TOOLS } from '@jjlmoya/utils-sports';
+import { sportsCategory as entry, ALL_TOOLS as SPORTS_TOOLS } from '@jjlmoya/utils-sports';
 import type { CategoryDefinition } from '../types';
 
 const TOOL_COLORS = [
@@ -11,8 +11,6 @@ const TOOL_COLORS = [
 export const sports: CategoryDefinition = {
     key: 'sports',
     entry,
-    SEOComponent,
     theme: 'red',
     toolsWithColors: SPORTS_TOOLS.map((tool, i) => ({ toolEntry: tool.entry, color: TOOL_COLORS[i] ?? '#ef4444' })),
-    AllTools: SPORTS_TOOLS,
 };

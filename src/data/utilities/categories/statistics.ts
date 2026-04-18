@@ -1,4 +1,4 @@
-import { statisticsCategory as entry, statisticsCategorySEO as SEOComponent, ALL_TOOLS as STATISTICS_TOOLS } from '@jjlmoya/utils-statistics';
+import { statisticsCategory as entry, ALL_TOOLS as STATISTICS_TOOLS } from '@jjlmoya/utils-statistics';
 import type { CategoryDefinition } from '../types';
 
 const TOOL_COLORS = [
@@ -14,8 +14,6 @@ const TOOL_COLORS = [
 export const statistics: CategoryDefinition = {
     key: 'statistics',
     entry,
-    SEOComponent,
     theme: 'cyan',
     toolsWithColors: STATISTICS_TOOLS.map((tool, i) => ({ toolEntry: tool.entry, color: TOOL_COLORS[i] ?? '#0891b2' })),
-    AllTools: STATISTICS_TOOLS,
 };

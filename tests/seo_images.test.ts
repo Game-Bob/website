@@ -28,8 +28,8 @@ async function getAllPages(): Promise<string[]> {
         const section = await buildSection(lang, catDef);
         pages.add(`/${lang}/${slugMapping.utilities[lang]}/${slugMapping.categories[lang]}/${section.slug}/`);
 
-        for (const toolDef of catDef.AllTools) {
-            const toolLocale = await toolDef.entry.i18n[lang]!();
+        for (const { toolEntry } of catDef.toolsWithColors) {
+            const toolLocale = await toolEntry.i18n[lang]!();
             pages.add(`/${lang}/${slugMapping.utilities[lang]}/${slugMapping.categories[lang]}/${section.slug}/${toolLocale.slug}/`);
         }
     }

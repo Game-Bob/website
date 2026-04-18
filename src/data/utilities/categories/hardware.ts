@@ -1,4 +1,4 @@
-import { hardwareCategory as entry, hardwareCategorySEO as SEOComponent, ALL_TOOLS as HARDWARE_TOOLS } from '@jjlmoya/utils-hardware';
+import { hardwareCategory as entry, ALL_TOOLS as HARDWARE_TOOLS } from '@jjlmoya/utils-hardware';
 import type { CategoryDefinition } from '../types';
 
 const TOOL_COLORS = [
@@ -14,8 +14,6 @@ const TOOL_COLORS = [
 export const hardware: CategoryDefinition = {
     key: 'hardware',
     entry,
-    SEOComponent,
     theme: 'slate',
     toolsWithColors: HARDWARE_TOOLS.map((tool, i) => ({ toolEntry: tool.entry, color: TOOL_COLORS[i] ?? '#64748b' })),
-    AllTools: HARDWARE_TOOLS,
 };

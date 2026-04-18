@@ -1,4 +1,4 @@
-import { textilesCategory as entry, textilesCategorySEO as SEOComponent, ALL_TOOLS as TEXTILES_TOOLS } from '@jjlmoya/utils-textiles';
+import { textilesCategory as entry, ALL_TOOLS as TEXTILES_TOOLS } from '@jjlmoya/utils-textiles';
 import type { CategoryDefinition } from '../types';
 
 const TOOL_COLORS = [
@@ -19,8 +19,6 @@ const TOOL_COLORS = [
 export const textiles: CategoryDefinition = {
     key: "textiles",
     entry,
-    SEOComponent,
     theme: "purple",
     toolsWithColors: TEXTILES_TOOLS.map((tool, i) => ({ toolEntry: tool.entry, color: TOOL_COLORS[i] ?? "#8b5cf6" })),
-    AllTools: TEXTILES_TOOLS,
 };

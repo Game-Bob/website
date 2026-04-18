@@ -1,4 +1,4 @@
-import { socialCategory as entry, socialCategorySEO as SEOComponent, ALL_TOOLS as SOCIAL_TOOLS } from '@jjlmoya/utils-social';
+import { socialCategory as entry, ALL_TOOLS as SOCIAL_TOOLS } from '@jjlmoya/utils-social';
 import type { CategoryDefinition } from '../types';
 
 const TOOL_COLORS = [
@@ -14,8 +14,6 @@ const TOOL_COLORS = [
 export const social: CategoryDefinition = {
     key: "social",
     entry,
-    SEOComponent,
     theme: "red",
     toolsWithColors: SOCIAL_TOOLS.map((tool, i) => ({ toolEntry: tool.entry, color: TOOL_COLORS[i] ?? "#e11d48" })),
-    AllTools: SOCIAL_TOOLS,
 };
