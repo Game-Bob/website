@@ -31,5 +31,8 @@ export default defineConfig({
         optimizeDeps: {
             include: ["qrcode"],
         },
+        ssr: {
+            noExternal: [/@jjlmoya\//],
+        },
     },
 });

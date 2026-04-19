@@ -16,12 +16,13 @@ interface Props {
     title: string; description: string; image?: string; category?: string;
     appLinks?: AppLinks; appSlug?: string; faqItems?: FAQItem[];
     howToSteps?: HowToStep[]; hideWidget?: boolean; lang?: string;
+    toolCss?: string;
 }
 
 const {
     title, description, image, category: propCategory,
     appLinks, appSlug, faqItems, howToSteps,
-    hideWidget = false, lang: propLang
+    hideWidget = false, lang: propLang, toolCss
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -41,6 +42,7 @@ const oembedUrl = `${Astro.url.origin}/api/oembed.json?url=${encodeURIComponent(
         slot="head"
     />
     <link rel="alternate" type="application/json+oembed" href={oembedUrl} title={title} slot="head" />
+    {toolCss && <link rel="stylesheet" href={toolCss} slot="head" />}
 
     <div class="utility-layout-wrapper">
         <div class="utility-bg-gradient"></div>

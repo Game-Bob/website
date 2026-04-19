@@ -32,7 +32,8 @@ const content = await categoryEntry.i18n[lang]!();
 const finalImageSlug = categoryKey === "converters" ? "universal-image-converter" : imageSlug;
 const image = `/images/utilities/${finalImageSlug}.webp`;
 const description = content.description;
-const { CategorySEO: CategorySEOComponent } = await loadCategoryComponents(categoryKey);
+const { CategorySEO } = await loadCategoryComponents(categoryKey);
+const CategorySEOComponent = await CategorySEO();
 ---
 
 <Layout title={content.title} description={description} image={image} lang={lang}>

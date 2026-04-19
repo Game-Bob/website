@@ -16,7 +16,10 @@ interface Props {
 }
 
 const { lang, tool, category, categoryKey } = Astro.props;
-const { entry, Component, SEOComponent, BibliographyComponent } = tool;
+const { entry } = tool;
+const { default: Component } = await tool.Component();
+const { default: SEOComponent } = await tool.SEOComponent();
+const { default: BibliographyComponent } = await tool.BibliographyComponent();
 
 const content = await entry.i18n[lang]!();
 const words = content.title.split(" ");
@@ -24,11 +27,14 @@ const titleHighlight = words[0] ?? "";
 const titleBase = words.slice(1).join(" ");
 
 const enContent = await entry.i18n.en!();
+const enSlug = enContent.slug;
 
-let image = enContent.slug;
+let image = enSlug;
 if (categoryKey === "converters") {
     image = "universal-image-converter";
 }
+
+const cssHref = `/styles/lib/${categoryKey}/${enSlug}.css`;
 ---
 
 <LayoutUtility
@@ -39,6 +45,7 @@ if (categoryKey === "converters") {
     howToSteps={content.howTo}
     category={category}
     lang={lang}
+    toolCss={cssHref}
 >
     <div slot="header">
         <UtilityHeader
