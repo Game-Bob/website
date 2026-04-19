@@ -64,6 +64,15 @@ const flatUtilities = sectionsWithData.flatMap((s) =>
     </div>
 </Layout>
 
+<script is:inline>
+    if (window.location.search) {
+        const meta = document.createElement("meta");
+        meta.name = "robots";
+        meta.content = "noindex, follow";
+        document.head.appendChild(meta);
+    }
+</script>
+
 <script>
     import { initWidgetStudio } from "../../../scripts/widgets-studio";
     const raw = document.getElementById("widgets-data")?.textContent ?? "[]";

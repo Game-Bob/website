@@ -10,6 +10,8 @@ Allow: /
 User-agent: Bingbot
 Crawl-delay: 1
 Allow: /
+Disallow: /widgets?*
+Disallow: /*/widgets?*
 
 User-agent: Applebot
 User-agent: DuckDuckBot
@@ -28,6 +30,8 @@ Allow: /
 Disallow: /*?*sort=
 Disallow: /*?*filter=
 Disallow: /*?*utm_
+Disallow: /widgets?*
+Disallow: /*/widgets?*
 Crawl-delay: 1
 
 Sitemap: https://www.gamebob.dev/sitemap-index.xml
