@@ -141,4 +141,3 @@ vite.config.ts.timestamp-*
 
 .astro
 .vercel
-public/styles/lib/
