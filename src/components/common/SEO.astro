@@ -7,6 +7,7 @@ interface Props {
     title: string;
     description: string;
     image?: string;
+    favicon?: string;
     article?: boolean;
     publishedTime?: string;
     modifiedTime?: string;
@@ -17,6 +18,7 @@ const {
     title,
     description,
     image = "/og-default.webp",
+    favicon,
     article = false,
     publishedTime,
     modifiedTime,
@@ -59,9 +61,9 @@ for (const [extLang, extUrl] of Object.entries(externalLanguages)) {
 <meta name="title" content={fullTitle} />
 <meta name="description" content={description} />
 
-<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-<link rel="icon" type="image/webp" href="/favicon.webp" sizes="any" />
-<link rel="apple-touch-icon" href={isUtility ? image : "/apple-touch-icon-brand.webp"} />
+<link rel="icon" type="image/x-icon" href={favicon ?? "/favicon.ico"} />
+<link rel="icon" type="image/webp" href={favicon ?? "/favicon.webp"} sizes="any" />
+<link rel="apple-touch-icon" href={favicon ?? (isUtility ? image : "/apple-touch-icon-brand.webp")} />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />

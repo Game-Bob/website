@@ -64,7 +64,7 @@ const appSchema = {
 };
 ---
 
-<Layout title={title} description={description} image={iconPath} lang={lang} fullWidth noPaddingTop>
+<Layout title={title} description={description} image={iconPath} favicon={iconPath} lang={lang} fullWidth noPaddingTop>
     <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(appSchema)} />
     <LandingComponent locale={lang} />
 </Layout>

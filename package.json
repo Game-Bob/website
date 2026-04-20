@@ -21,7 +21,7 @@
         "@astrojs/vercel": "^10.0.4",
         "@fontsource/inter": "^5.2.8",
         "@iconify-json/mdi": "^1.2.3",
-        "@jjlmoya/apps": "^0.4.0",
+        "@jjlmoya/apps": "^0.6.0",
         "@jjlmoya/utils-alcohol": "^1.25.0",
         "@jjlmoya/utils-astronomy": "^1.16.0",
         "@jjlmoya/utils-audiovisual": "^1.17.0",
