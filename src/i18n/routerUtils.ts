@@ -1,35 +1,6 @@
 import { slugMapping, externalLanguages } from "./utils";
-import { ALL_TOOL_ENTRIES, CATEGORIES } from "../data/utilities/registry";
+import { translateSegment } from "./slugTranslator";
 export { getUtilityUrl, getUtilitiesHubUrl } from "./urlBuilder";
-
-function translateFromMapping(segment: string, lang: string, targetLang: string): string | undefined {
-    for (const mapping of Object.values(slugMapping)) {
-        if (mapping[lang] === segment) return mapping[targetLang];
-    }
-}
-
-async function translateFromCategories(segment: string, lang: string, targetLang: string): Promise<string | undefined> {
-    for (const cat of CATEGORIES) {
-        if (!cat.entry.i18n[lang] || !cat.entry.i18n[targetLang]) continue;
-        const current = await cat.entry.i18n[lang]();
-        if (current.slug === segment) return (await cat.entry.i18n[targetLang]()).slug;
-    }
-}
-
-async function translateFromTools(segment: string, lang: string, targetLang: string): Promise<string | undefined> {
-    for (const tool of ALL_TOOL_ENTRIES) {
-        if (!tool.i18n[lang] || !tool.i18n[targetLang]) continue;
-        const current = await tool.i18n[lang]();
-        if (current.slug === segment) return (await tool.i18n[targetLang]()).slug;
-    }
-}
-
-async function translateSegment(segment: string, lang: string, targetLang: string) {
-    return translateFromMapping(segment, lang, targetLang)
-        ?? await translateFromCategories(segment, lang, targetLang)
-        ?? await translateFromTools(segment, lang, targetLang)
-        ?? segment;
-}
 
 function buildTargetUrl(path: string, targetLang: string) {
     const host = externalLanguages[targetLang];
@@ -52,15 +23,25 @@ interface ExternalUrlOptions {
     externalDomain: string;
 }
 
+function resolveSlugKeys(targetLang: string) {
+    return {
+        apps: slugMapping.apps[targetLang] || 'apps',
+        utilities: slugMapping.utilities[targetLang] || 'utilidades',
+        categories: slugMapping.categories[targetLang] || 'categorias',
+    };
+}
+
+function buildAppsPath(segments: string[], appsSlug: string): string {
+    const appSlug = segments[segments.indexOf(appsSlug) + 1];
+    return appSlug ? `/${appsSlug}/${appSlug}/` : `/${appsSlug}/`;
+}
+
 function buildExternalPathSegment(segments: string[], targetLang: string): string {
-    const utilSlug = slugMapping.utilities[targetLang] || 'utilidades';
-    const hasUtil = segments.includes(utilSlug);
-
-    if (!hasUtil) return buildNonUtilPath(segments, targetLang);
-
-    const catSlug = slugMapping.categories[targetLang] || 'categorias';
-    const utilIndex = segments.indexOf(utilSlug);
-    return buildUtilPath({ segments, utilIndex, utilSlug, catSlug });
+    const slugs = resolveSlugKeys(targetLang);
+    if (segments.includes(slugs.apps)) return buildAppsPath(segments, slugs.apps);
+    if (!segments.includes(slugs.utilities)) return buildNonUtilPath(segments, targetLang);
+    const utilIndex = segments.indexOf(slugs.utilities);
+    return buildUtilPath({ segments, utilIndex, utilSlug: slugs.utilities, catSlug: slugs.categories });
 }
 
 function buildNonUtilPath(segments: string[], targetLang: string): string {

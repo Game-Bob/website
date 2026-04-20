@@ -1,0 +1,90 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+    href: string;
+    platform: 'google-play' | 'apple';
+    text: string;
+    variant?: 'solid' | 'outline';
+}
+
+const { href, platform, text, variant = 'solid' } = Astro.props;
+
+const iconName = platform === 'google-play' ? 'mdi:google-play' : 'mdi:apple';
+---
+
+<a href={href} target="_blank" rel="noopener noreferrer" class={`store-button store-button--${variant} store-button--${platform}`}>
+    <Icon name={iconName} class="store-button-icon" />
+    <span class="store-button-text">{text}</span>
+</a>
+
+<style>
+    .store-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-sm);
+        padding: 0.45rem 1rem;
+        border-radius: var(--radius-md);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        flex: 1;
+        white-space: nowrap;
+        min-height: 2.65rem;
+        letter-spacing: 0.02em;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .store-button-icon {
+        width: 1rem;
+        height: 1rem;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .store-button--apple .store-button-icon {
+        transform: translateY(-0.5px) scale(0.92);
+    }
+
+    .store-button--google-play .store-button-icon {
+        transform: scale(1.02);
+    }
+
+    .store-button--solid {
+        background: var(--text-main);
+        color: var(--bg-main);
+        border: 1px solid var(--text-main);
+    }
+
+    .store-button--solid:hover {
+        opacity: 92%;
+        transform: translateY(-1px);
+    }
+
+    .store-button--outline {
+        background: transparent;
+        color: var(--text-main);
+        border: 1px solid color-mix(in srgb, var(--color-brand-white) 20%, transparent);
+    }
+
+    .theme-light .store-button--outline {
+        border-width: 1.5px;
+        border-color: color-mix(in srgb, var(--color-brand-dark) 15%, transparent);
+    }
+
+    .store-button--outline:hover {
+        background: color-mix(in srgb, var(--color-brand-white) 5%, transparent);
+        border-color: var(--text-main);
+    }
+
+    .theme-light .store-button--outline:hover {
+        background: color-mix(in srgb, var(--color-brand-dark) 3%, transparent);
+    }
+
+    .store-button:active {
+        transform: scale(0.97);
+    }
+</style>

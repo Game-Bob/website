@@ -1,0 +1,60 @@
+.apps-hub {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: var(--space-4xl) var(--space-xl);
+}
+
+.apps-hub-header {
+    margin-bottom: var(--space-5xl);
+    position: relative;
+}
+
+.apps-hub-header::before {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--space-4xl));
+    left: calc(-1 * var(--space-xl));
+    right: calc(-1 * var(--space-xl));
+    height: 20rem;
+    background: radial-gradient(circle at top left, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.apps-hub-header-content {
+    max-width: 48rem;
+}
+
+.apps-hub-title {
+    font-size: clamp(3rem, 8vw, 4.5rem);
+    font-weight: 900;
+    color: var(--text-main);
+    margin: 0 0 var(--space-md);
+    letter-spacing: -0.05em;
+    line-height: 1;
+}
+
+.apps-hub-desc {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    font-weight: 300;
+}
+
+.apps-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2xl);
+}
+
+@media (width <= 960px) {
+    .apps-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (width <= 640px) {
+    .apps-hub {
+        padding: var(--space-2xl) var(--space-lg);
+    }
+}

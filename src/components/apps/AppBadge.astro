@@ -1,0 +1,47 @@
+---
+interface Props {
+    text: string;
+    type?: 'game' | 'app';
+}
+
+const { text, type = 'app' } = Astro.props;
+---
+
+<span class={`app-badge app-badge--${type}`}>
+    {text}
+</span>
+
+<style>
+    .app-badge {
+        --badge-text: color-mix(in srgb, var(--color-brand-white) 60%, transparent);
+        --badge-border: color-mix(in srgb, var(--color-brand-white) 15%, transparent);
+
+        display: inline-flex;
+        padding: 0.15rem 0.5rem;
+        border-radius: var(--radius-sm);
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        line-height: 1;
+        background: transparent;
+        color: var(--badge-text);
+        border: 1px solid var(--badge-border);
+        vertical-align: middle;
+        user-select: none;
+    }
+
+    .app-badge--game {
+        color: var(--color-primary);
+        border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+    }
+
+    .theme-light .app-badge {
+        --badge-text: color-mix(in srgb, var(--color-brand-dark) 50%, transparent);
+        --badge-border: color-mix(in srgb, var(--color-brand-dark) 10%, transparent);
+    }
+
+    .theme-light .app-badge--game {
+        border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+    }
+</style>

@@ -1,0 +1,70 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { SUPPORTED_LANGUAGES, slugMapping } from "../../../i18n/utils";
+import { ALL_APP_DEFINITIONS } from "@jjlmoya/apps";
+import type { KnownLocale } from "@jjlmoya/apps";
+import type { Language } from "../../../i18n/utils";
+
+export async function getStaticPaths() {
+    const paths = [];
+
+    for (const lang of SUPPORTED_LANGUAGES) {
+        for (const definition of ALL_APP_DEFINITIONS) {
+            const loader = definition.entry.i18n[lang as KnownLocale] ?? definition.entry.i18n.en;
+            const card = await loader!();
+
+            paths.push({
+                params: {
+                    lang,
+                    apps: slugMapping.apps[lang],
+                    slug: card.slug,
+                },
+                props: { lang, definition, title: card.title, description: card.description },
+            });
+        }
+    }
+
+    return paths;
+}
+
+interface Props {
+    lang: Language;
+    definition: (typeof ALL_APP_DEFINITIONS)[number];
+    title: string;
+    description: string;
+}
+
+const { lang, definition, title, description } = Astro.props;
+const { entry } = definition;
+const { default: LandingComponent } = await definition.LandingComponent() as { default: any };
+
+const iconPath = `/assets/apps/${entry.id}/icon.webp`;
+const iconUrl = new URL(iconPath, Astro.site);
+
+const operatingSystem = [
+    entry.stores.appStore ? "iOS" : null,
+    entry.stores.googlePlay ? "Android" : null,
+].filter(Boolean).join(", ");
+
+const appSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: title,
+    description,
+    applicationCategory: entry.isGame ? "GameApplication" : "MobileApplication",
+    operatingSystem,
+    image: iconUrl.href,
+    publisher: {
+        "@type": "Organization",
+        name: "GameBob Studio",
+        url: Astro.site,
+    },
+    ...(entry.stores.appStore && { installUrl: entry.stores.appStore }),
+    ...(entry.stores.googlePlay && { installUrl: entry.stores.googlePlay }),
+};
+---
+
+<Layout title={title} description={description} image={iconPath} lang={lang} fullWidth noPaddingTop>
+    <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(appSchema)} />
+    <LandingComponent locale={lang} />
+</Layout>

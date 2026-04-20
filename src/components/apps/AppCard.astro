@@ -1,0 +1,76 @@
+---
+import type { AppEntry, AppCardContent } from '@jjlmoya/apps';
+import AppBadge from './AppBadge.astro';
+import StoreButton from './StoreButton.astro';
+import './AppCard.css';
+
+interface Props {
+    lang: string;
+    entry: AppEntry;
+    card: AppCardContent;
+    landingHref: string;
+    gameBadge: string;
+    appBadge: string;
+    getOnPlay: string;
+    getOnStore: string;
+}
+
+const { lang, entry, card, landingHref, gameBadge, appBadge, getOnPlay, getOnStore } = Astro.props;
+
+const localizedAppStore = entry.stores.appStore?.replace('/us/', `/${lang}/`);
+const localizedGooglePlay = entry.stores.googlePlay ? `${entry.stores.googlePlay}${entry.stores.googlePlay.includes('?') ? '&' : '?'}hl=${lang}` : undefined;
+
+const badgeText = entry.isGame ? gameBadge : appBadge;
+const badgeType = entry.isGame ? 'game' : 'app';
+
+const hasBoth = entry.stores.appStore && entry.stores.googlePlay;
+---
+
+<article class="app-card">
+    <a href={landingHref} class="app-card-main-link">
+        <div class="app-card-visual">
+            <div class="app-card-icon-container">
+                <img
+                    src={`/assets/apps/${entry.id}/icon.webp`}
+                    alt={card.title}
+                    class="app-card-img"
+                    loading="lazy"
+                />
+                <div class="app-card-icon-gloss"></div>
+            </div>
+        </div>
+
+        <div class="app-card-details">
+            <div class="app-card-header">
+                <div class="app-card-title-group">
+                    <h2 class="app-card-name">{card.title}</h2>
+                    <div class="app-card-meta-inline">
+                        <AppBadge text={badgeText} type={badgeType} />
+                    </div>
+                </div>
+            </div>
+            <p class="app-card-tagline">{card.subtitle}</p>
+        </div>
+    </a>
+
+    <div class="app-card-footer">
+        <div class="app-card-links">
+            {localizedAppStore && (
+                <StoreButton 
+                    href={localizedAppStore} 
+                    platform="apple" 
+                    text={getOnStore} 
+                    variant="solid"
+                />
+            )}
+            {localizedGooglePlay && (
+                <StoreButton 
+                    href={localizedGooglePlay} 
+                    platform="google-play" 
+                    text={getOnPlay} 
+                    variant={hasBoth ? 'outline' : 'solid'}
+                />
+            )}
+        </div>
+    </div>
+</article>

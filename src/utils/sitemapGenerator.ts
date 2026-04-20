@@ -1,5 +1,7 @@
 import { SUPPORTED_LANGUAGES, type Language, getLocalizedSlug, externalLanguages } from '../i18n/utils';
 import { CATEGORIES } from '../data/utilities/registry';
+import { ALL_APP_DEFINITIONS } from '@jjlmoya/apps';
+import type { KnownLocale } from '@jjlmoya/apps';
 
 export interface SitemapEntry {
   url: string; lastmod?: string; changefreq?: string; priority?: number; hreflang?: Record<string, string>;
@@ -61,6 +63,30 @@ async function getToolUrls(catDef: any, cat: any, lang: Language): Promise<Sitem
   return urls;
 }
 
+async function resolveAppPath(definition: any, lang: Language): Promise<string | null> {
+  const loader = definition.entry.i18n[lang as KnownLocale] ?? definition.entry.i18n.en;
+  if (!loader) return null;
+  const card = await loader();
+  const a = getLocalizedSlug(lang, 'apps');
+  return `${a}/${card.slug}`;
+}
+
+async function getAppUrls(lang: Language): Promise<SitemapEntry[]> {
+  const urls: SitemapEntry[] = [];
+  for (const definition of ALL_APP_DEFINITIONS) {
+    const path = await resolveAppPath(definition, lang);
+    if (!path) continue;
+    const hreflang = await buildHreflangFor(l => resolveAppPath(definition, l));
+    urls.push({
+      url: `${BASE_URL}${toLangPath(lang)}/${path}/`,
+      changefreq: 'monthly',
+      priority: 0.7,
+      hreflang,
+    });
+  }
+  return urls;
+}
+
 async function getCategoryUrls(lang: Language): Promise<SitemapEntry[]> {
   const u = getLocalizedSlug(lang, 'utilities');
   const c = getLocalizedSlug(lang, 'categories');
@@ -102,7 +128,7 @@ function renderUrl({ url, hreflang, changefreq, priority }: SitemapEntry): strin
 }
 
 export async function generateSitemap(lang: Language): Promise<string> {
-  const allUrls = [...getStaticUrls(lang), ...await getCategoryUrls(lang)];
+  const allUrls = [...getStaticUrls(lang), ...await getAppUrls(lang), ...await getCategoryUrls(lang)];
   const header = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">';
   return `${header}\n${allUrls.map(renderUrl).join('\n')}\n</urlset>`;
 }
