@@ -3,14 +3,15 @@ import type { APIRoute } from 'astro';
 const robots = `User-agent: Baiduspider
 Allow: /
 Crawl-delay: 1
+Disallow: /*/widgets?*
 
 User-agent: Googlebot
 Allow: /
+Disallow: /*/widgets?*
 
 User-agent: Bingbot
 Crawl-delay: 1
 Allow: /
-Disallow: /widgets?*
 Disallow: /*/widgets?*
 
 User-agent: Applebot
@@ -30,7 +31,6 @@ Allow: /
 Disallow: /*?*sort=
 Disallow: /*?*filter=
 Disallow: /*?*utm_
-Disallow: /widgets?*
 Disallow: /*/widgets?*
 Crawl-delay: 1
 
