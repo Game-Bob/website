@@ -19,7 +19,7 @@
     box-shadow: var(--shadow-sm);
 }
 
-.icon-wrapper {
+.utility-item-compact .icon-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,13 +35,13 @@
     pointer-events: none;
 }
 
-.icon {
+.utility-item-compact .icon {
     width: 12rem;
     height: 12rem;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.content {
+.utility-item-compact-content {
     min-width: 0;
     flex: 1;
     display: flex;
@@ -51,7 +51,7 @@
     z-index: 1;
 }
 
-.title {
+.utility-item-compact-content .title {
     font-size: 0.9rem;
     font-weight: var(--font-weight-semibold);
     color: var(--text-main);
@@ -61,7 +61,7 @@
     text-overflow: ellipsis;
 }
 
-.description {
+.utility-item-compact-content .description {
     font-size: 0.7rem;
     color: var(--text-muted);
     margin: 0;
@@ -72,7 +72,7 @@
     overflow: hidden;
 }
 
-.arrow-icon {
+.utility-item-compact .arrow-icon {
     width: 1.125rem;
     height: 1.125rem;
     color: var(--color-primary);
@@ -99,23 +99,22 @@
     }
 }
 
-
 @media (width <= 768px) {
     .utility-item-compact {
         padding: var(--space-md) var(--space-lg);
     }
 
-    .title {
+    .utility-item-compact-content .title {
         font-size: 1rem;
     }
 
-    .description {
+    .utility-item-compact-content .description {
         font-size: 0.8rem;
         -webkit-line-clamp: 2;
         line-clamp: 2;
     }
 
-    .arrow-icon {
+    .utility-item-compact .arrow-icon {
         width: 1.125rem;
         height: 1.125rem;
     }
@@ -126,19 +125,19 @@
         padding: var(--space-sm) var(--space-md);
     }
 
-    .icon-wrapper {
+    .utility-item-compact .icon-wrapper {
         width: 8rem;
         height: 8rem;
         top: -3rem;
         right: -4rem;
     }
 
-    .icon {
+    .utility-item-compact .icon {
         width: 7.5rem;
         height: 7.5rem;
     }
 
-    .title {
+    .utility-item-compact-content .title {
         font-size: 0.9rem;
     }
 }
@@ -149,11 +148,11 @@
         min-height: 140px;
     }
 
-    .title {
+    .utility-item-compact-content .title {
         font-size: 1.1rem;
     }
 
-    .description {
+    .utility-item-compact-content .description {
         font-size: 0.8rem;
         -webkit-line-clamp: 3;
         line-clamp: 3;
