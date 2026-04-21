@@ -21,12 +21,12 @@ const { title, description, href, iconFg, iconBg, category } = Astro.props;
     data-search-category={category.toLowerCase()}
 >
     <div class="icon-wrapper">
-        <Icon name={iconFg} class="icon" style={`color: ${iconBg};`} />
+        <Icon name={iconFg} class="icon" style={`color: ${iconBg};`} is:inline />
     </div>
     <div class="content">
         <h3 class="title">{title}</h3>
         <p class="description">{description}</p>
     </div>
-    <Icon name="mdi:arrow-right" class="arrow-icon" />
+    <Icon name="mdi:arrow-right" class="arrow-icon" is:inline />
 </a>
 
