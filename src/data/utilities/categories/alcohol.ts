@@ -1,4 +1,4 @@
-import { alcoholCategory as entry, cocktailBalancer, beerCooler, partyKeg, carbonationCalculator, alcoholClearance } from '@jjlmoya/utils-alcohol';
+import { alcoholCategory as entry, cocktailBalancer, beerCooler, partyKeg, carbonationCalculator, alcoholClearance, fortifiedWine, jelloShotLab } from '@jjlmoya/utils-alcohol';
 import type { CategoryDefinition } from '../types';
 
 export const alcohol: CategoryDefinition = {
@@ -11,5 +11,7 @@ export const alcohol: CategoryDefinition = {
         { toolEntry: partyKeg, color: "#f59e0b" },
         { toolEntry: carbonationCalculator, color: "#10b981" },
         { toolEntry: alcoholClearance, color: "#8b5cf6" },
+        { toolEntry: fortifiedWine, color: "#a16207" },
+        { toolEntry: jelloShotLab, color: "#ec4899" },
     ],
 };
