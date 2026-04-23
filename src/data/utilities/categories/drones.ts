@@ -1,13 +1,11 @@
-import { dronesCategory as entry, DRONE_FLIGHT_TIME_TOOL, ANTENNA_LENGTH_CALCULATOR_TOOL, GPS_COORDINATES_CONVERTER_TOOL } from '@jjlmoya/utils-drones';
+import { dronesCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-drones';
 import type { CategoryDefinition } from '../types';
+
+const categoryColor = "#10b981";
 
 export const drones: CategoryDefinition = {
     key: "drones",
     entry,
     theme: "sky",
-    toolsWithColors: [
-        { toolEntry: DRONE_FLIGHT_TIME_TOOL.entry, color: "#0ea5e9" },
-        { toolEntry: ANTENNA_LENGTH_CALCULATOR_TOOL.entry, color: "#06b6d4" },
-        { toolEntry: GPS_COORDINATES_CONVERTER_TOOL.entry, color: "#14b8a6" },
-    ],
+    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
 };

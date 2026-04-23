@@ -1,13 +1,11 @@
-import { bikeCategory, fixedGear, spokeCalculator, gearCalculator } from '@jjlmoya/utils-bike';
+import { bikeCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-bike';
 import type { CategoryDefinition } from '../types';
+
+const categoryColor = "#ef4444";
 
 export const bikes: CategoryDefinition = {
     key: "bikes",
-    entry: bikeCategory,
+    entry,
     theme: "rose",
-    toolsWithColors: [
-        { toolEntry: fixedGear, color: "#ef4444" },
-        { toolEntry: spokeCalculator, color: "#6366f1" },
-        { toolEntry: gearCalculator, color: "#10b981" },
-    ],
+    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
 };

@@ -1,20 +1,11 @@
-import { audiovisualCategory, timelapseCalculator, exifCleaner, subtitleSync, chromaticLens, printQualityCalculator, tvDistance, imageCompressor, collageMaker, videoFrameExtractor, privacyBlur } from '@jjlmoya/utils-audiovisual';
+import { audiovisualCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-audiovisual';
 import type { CategoryDefinition } from '../types';
+
+const categoryColor = "#ec4899";
 
 export const audiovisual: CategoryDefinition = {
     key: "audiovisual",
-    entry: audiovisualCategory,
+    entry,
     theme: "violet",
-    toolsWithColors: [
-        { toolEntry: timelapseCalculator, color: "#8b5cf6" },
-        { toolEntry: exifCleaner, color: "#6366f1" },
-        { toolEntry: subtitleSync, color: "#ec4899" },
-        { toolEntry: chromaticLens, color: "#f59e0b" },
-        { toolEntry: printQualityCalculator, color: "#10b981" },
-        { toolEntry: tvDistance, color: "#3b82f6" },
-        { toolEntry: imageCompressor, color: "#ef4444" },
-        { toolEntry: collageMaker, color: "#06b6d4" },
-        { toolEntry: videoFrameExtractor, color: "#84cc16" },
-        { toolEntry: privacyBlur, color: "#14b8a6" },
-    ],
+    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
 };

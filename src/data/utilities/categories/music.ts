@@ -1,18 +1,11 @@
-import { musicCategory as entry, ALL_TOOLS as MUSIC_TOOLS } from '@jjlmoya/utils-music';
+import { musicCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-music';
 import type { CategoryDefinition } from '../types';
 
-const TOOL_COLORS = [
-    '#7c3aed',
-    '#8b5cf6',
-    '#6d28d9',
-    '#9333ea',
-    '#a855f7',
-    '#c026d3',
-];
+const categoryColor = "#d946ef";
 
 export const music: CategoryDefinition = {
-    key: 'music',
+    key: "music",
     entry,
-    theme: 'violet',
-    toolsWithColors: MUSIC_TOOLS.map((tool, i) => ({ toolEntry: tool.entry, color: TOOL_COLORS[i] ?? '#7c3aed' })),
+    theme: "violet",
+    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
 };

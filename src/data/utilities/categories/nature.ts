@@ -1,16 +1,11 @@
-import { natureCategory as entry, ALL_TOOLS as NATURE_TOOLS } from '@jjlmoya/utils-nature';
+import { natureCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-nature';
 import type { CategoryDefinition } from '../types';
 
-const TOOL_COLORS = [
-    '#16a34a',
-    '#15803d',
-    '#166534',
-    '#14532d',
-];
+const categoryColor = "#22c55e";
 
 export const nature: CategoryDefinition = {
-    key: 'nature',
+    key: "nature",
     entry,
-    theme: 'green',
-    toolsWithColors: NATURE_TOOLS.map((tool, i) => ({ toolEntry: tool.entry, color: TOOL_COLORS[i] ?? '#16a34a' })),
+    theme: "green",
+    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
 };

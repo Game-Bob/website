@@ -1,22 +1,11 @@
-import { diyCategory as entry, ALL_TOOLS as DIY_TOOLS } from '@jjlmoya/utils-diy';
+import { diyCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-diy';
 import type { CategoryDefinition } from '../types';
 
-const TOOL_COLORS = [
-    '#f97316',
-    '#fb923c',
-    '#fdba74',
-    '#fed7aa',
-    '#fecaca',
-    '#fca5a5',
-    '#f87171',
-    '#ef4444',
-    '#dc2626',
-    '#b91c1c',
-];
+const categoryColor = "#f59e0b";
 
 export const diy: CategoryDefinition = {
-    key: 'diy',
+    key: "diy",
     entry,
-    theme: 'orange',
-    toolsWithColors: DIY_TOOLS.map((tool, i) => ({ toolEntry: tool.entry, color: TOOL_COLORS[i] ?? '#f97316' })),
+    theme: "orange",
+    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
 };

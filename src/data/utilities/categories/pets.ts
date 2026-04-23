@@ -1,12 +1,11 @@
-import { petsCategory as entry, petAge, petRation } from '@jjlmoya/utils-pets';
+import { petsCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-pets';
 import type { CategoryDefinition } from '../types';
+
+const categoryColor = "#fbbf24";
 
 export const pets: CategoryDefinition = {
     key: "pets",
     entry,
     theme: "amber",
-    toolsWithColors: [
-        { toolEntry: petAge, color: "#f59e0b" },
-        { toolEntry: petRation, color: "#10b981" },
-    ],
+    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
 };

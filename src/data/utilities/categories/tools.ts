@@ -1,24 +1,11 @@
-import { toolsCategory as entry, ALL_TOOLS as TOOLS_TOOLS } from '@jjlmoya/utils-tools';
+import { toolsCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-tools';
 import type { CategoryDefinition } from '../types';
 
-const TOOL_COLORS = [
-    '#6366f1',
-    '#8b5cf6',
-    '#a78bfa',
-    '#7c3aed',
-    '#6d28d9',
-    '#5b21b6',
-    '#4c1d95',
-    '#818cf8',
-    '#c4b5fd',
-    '#ddd6fe',
-    '#ede9fe',
-    '#f5f3ff',
-];
+const categoryColor = "#6b7280";
 
 export const tools: CategoryDefinition = {
-    key: 'tools',
+    key: "tools",
     entry,
-    theme: 'violet',
-    toolsWithColors: TOOLS_TOOLS.map((tool, i) => ({ toolEntry: tool.entry, color: TOOL_COLORS[i] ?? '#6366f1' })),
+    theme: "violet",
+    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
 };

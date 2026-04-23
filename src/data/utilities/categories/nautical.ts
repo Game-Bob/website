@@ -1,16 +1,11 @@
-import { nauticalCategory, tideCalculator, underKeel, nauticalConverter, sailArea, speedConverter, endurance } from '@jjlmoya/utils-nautical';
+import { nauticalCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-nautical';
 import type { CategoryDefinition } from '../types';
+
+const categoryColor = "#0284c7";
 
 export const nautical: CategoryDefinition = {
     key: "nautical",
-    entry: nauticalCategory,
+    entry,
     theme: "cyan",
-    toolsWithColors: [
-        { toolEntry: tideCalculator, color: "#06b6d4" },
-        { toolEntry: underKeel, color: "#0891b2" },
-        { toolEntry: nauticalConverter, color: "#0e7490" },
-        { toolEntry: sailArea, color: "#164e63" },
-        { toolEntry: speedConverter, color: "#083344" },
-        { toolEntry: endurance, color: "#067e8a" },
-    ],
+    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
 };

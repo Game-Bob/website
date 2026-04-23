@@ -1,16 +1,11 @@
-import { creativeCategory, excuseGenerator, fortuneCookie, synesthesiaPainter, zalgoGenerator, beadPatternGenerator, diceRoller } from '@jjlmoya/utils-creative';
+import { creativeCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-creative';
 import type { CategoryDefinition } from '../types';
+
+const categoryColor = "#a855f7";
 
 export const creative: CategoryDefinition = {
     key: "creative",
-    entry: creativeCategory,
+    entry,
     theme: "fuchsia",
-    toolsWithColors: [
-        { toolEntry: excuseGenerator, color: "#d946ef" },
-        { toolEntry: fortuneCookie, color: "#c026d3" },
-        { toolEntry: synesthesiaPainter, color: "#a21caf" },
-        { toolEntry: zalgoGenerator, color: "#86198f" },
-        { toolEntry: beadPatternGenerator, color: "#701c9a" },
-        { toolEntry: diceRoller, color: "#581c87" },
-    ],
+    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
 };

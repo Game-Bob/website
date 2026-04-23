@@ -1,12 +1,11 @@
-import { educationCategory as entry, WEIGHTED_GRADE_CALCULATOR_TOOL, CITATION_GENERATOR_TOOL } from '@jjlmoya/utils-education';
+import { educationCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-education';
 import type { CategoryDefinition } from '../types';
+
+const categoryColor = "#8b5cf6";
 
 export const education: CategoryDefinition = {
     key: "education",
     entry,
     theme: "blue",
-    toolsWithColors: [
-        { toolEntry: WEIGHTED_GRADE_CALCULATOR_TOOL.entry, color: "#3b82f6" },
-        { toolEntry: CITATION_GENERATOR_TOOL.entry, color: "#60a5fa" },
-    ],
+    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
 };

@@ -1,14 +1,11 @@
-import { astronomyCategory as entry, bortleVisualizer, deepSpaceScope, starExposureCalculator, telescopeResolution } from '@jjlmoya/utils-astronomy';
+import { astronomyCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-astronomy';
 import type { CategoryDefinition } from '../types';
+
+const categoryColor = "#6366f1";
 
 export const astronomy: CategoryDefinition = {
     key: "astronomy",
     entry,
     theme: "indigo",
-    toolsWithColors: [
-        { toolEntry: bortleVisualizer, color: "#6366f1" },
-        { toolEntry: deepSpaceScope, color: "#8b5cf6" },
-        { toolEntry: starExposureCalculator, color: "#0ea5e9" },
-        { toolEntry: telescopeResolution, color: "#10b981" },
-    ],
+    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
 };

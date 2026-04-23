@@ -1,14 +1,11 @@
-import { streamingCategory as entry, ALL_TOOLS as STREAMING_TOOLS } from '@jjlmoya/utils-streaming';
+import { streamingCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-streaming';
 import type { CategoryDefinition } from '../types';
 
-const TOOL_COLORS = [
-    '#7c3aed',
-    '#06b6d4',
-];
+const categoryColor = "#8b5cf6";
 
 export const streaming: CategoryDefinition = {
-    key: 'streaming',
+    key: "streaming",
     entry,
-    theme: 'violet',
-    toolsWithColors: STREAMING_TOOLS.map((tool, i) => ({ toolEntry: tool.entry, color: TOOL_COLORS[i] ?? '#7c3aed' })),
+    theme: "violet",
+    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
 };
