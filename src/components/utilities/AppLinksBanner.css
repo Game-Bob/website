@@ -206,7 +206,7 @@
     display: none;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .app-banner-container {
         padding: var(--space-sm) var(--space-md);
     }
@@ -217,7 +217,7 @@
     }
 
     .text-info {
-        gap: 0.25rem;
+        gap: var(--space-2xs);
     }
 
     .heading {
