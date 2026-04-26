@@ -137,7 +137,7 @@ body.is-widget .utility-tool-container > div:first-child {
 
 @media (width <= 640px) {
     .utility-main-container {
-        padding-top: var(--space-2xl);
+        padding-top: 6rem;
     }
 }
 
