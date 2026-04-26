@@ -206,6 +206,44 @@
     display: none;
 }
 
+@media (max-width: 768px) {
+    .app-banner-container {
+        padding: var(--space-sm) var(--space-md);
+    }
+
+    .banner-content {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+
+    .text-info {
+        gap: 0.25rem;
+    }
+
+    .heading {
+        font-size: 0.75rem;
+    }
+
+    .subtitle {
+        display: none;
+    }
+
+    .store-links {
+        flex: none;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .store-link {
+        padding: var(--space-2xs) var(--space-sm);
+    }
+
+    .link-icon {
+        width: var(--space-md);
+        height: var(--space-md);
+    }
+}
+
 @keyframes pulse-slow {
     0%,
     100% {
