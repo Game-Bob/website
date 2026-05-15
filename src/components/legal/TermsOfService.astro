@@ -1,0 +1,385 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+    content: {
+        title: string;
+        subtitle: string;
+        intro: string;
+        license_title: string;
+        license_content: string;
+        usage_title: string;
+        usage_content: string;
+        usage_items: string[];
+        property_title: string;
+        property_content: string;
+        privacy_data_title: string;
+        privacy_data_content: string;
+        third_party_title: string;
+        third_party_content: string;
+        liability_title: string;
+        liability_content: string;
+        modifications_title: string;
+        modifications_content: string;
+        jurisdiction_title: string;
+        jurisdiction_content: string;
+        contact_title: string;
+        contact_content: string;
+        contact_email: string;
+        contact_web: string;
+    };
+}
+
+const { content } = Astro.props;
+---
+
+<div class="legal-container">
+    <header class="legal-hero">
+        <div class="hero-label">{content.subtitle}</div>
+        <h1 class="hero-title">{content.title}<span>.</span></h1>
+        <p class="hero-desc">{content.intro}</p>
+    </header>
+
+    <div class="legal-layout">
+        <aside class="legal-sidebar">
+            <nav class="toc">
+                <a href="#license" class="toc-link"><span>01</span> License</a>
+                <a href="#usage" class="toc-link"><span>02</span> Usage</a>
+                <a href="#property" class="toc-link"><span>03</span> Property</a>
+                <a href="#privacy" class="toc-link"><span>04</span> Privacy</a>
+                <a href="#third-party" class="toc-link"><span>05</span> Third Party</a>
+                <a href="#liability" class="toc-link"><span>06</span> Liability</a>
+                <a href="#mods" class="toc-link"><span>07</span> Modifications</a>
+                <a href="#legal" class="toc-link"><span>08</span> Legal</a>
+                <a href="#contact" class="toc-link"><span>09</span> Contact</a>
+            </nav>
+        </aside>
+
+        <main class="legal-main">
+            <div class="legal-card">
+                <section id="license" class="content-section">
+                    <h2 class="section-heading"><span>01</span> {content.license_title.replace(/^\d+\s+/, '')}</h2>
+                    <div class="section-body">
+                        <p>{content.license_content}</p>
+                    </div>
+                </section>
+
+                <section id="usage" class="content-section">
+                    <h2 class="section-heading"><span>02</span> {content.usage_title.replace(/^\d+\s+/, '')}</h2>
+                    <div class="section-body">
+                        <p>{content.usage_content}</p>
+                        <ul class="custom-list">
+                            {content.usage_items.map((item) => (
+                                <li>{item}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="property" class="content-section">
+                    <h2 class="section-heading"><span>03</span> {content.property_title.replace(/^\d+\s+/, '')}</h2>
+                    <div class="section-body">
+                        <p>{content.property_content}</p>
+                    </div>
+                </section>
+
+                <section id="privacy" class="content-section">
+                    <h2 class="section-heading"><span>04</span> {content.privacy_data_title.replace(/^\d+\s+/, '')}</h2>
+                    <div class="section-body">
+                        <p>{content.privacy_data_content}</p>
+                    </div>
+                </section>
+
+                <section id="third-party" class="content-section">
+                    <h2 class="section-heading"><span>05</span> {content.third_party_title.replace(/^\d+\s+/, '')}</h2>
+                    <div class="section-body">
+                        <p>{content.third_party_content}</p>
+                    </div>
+                </section>
+
+                <section id="liability" class="content-section">
+                    <h2 class="section-heading"><span>06</span> {content.liability_title.replace(/^\d+\s+/, '')}</h2>
+                    <div class="section-body">
+                        <p>{content.liability_content}</p>
+                    </div>
+                </section>
+
+                <section id="mods" class="content-section">
+                    <h2 class="section-heading"><span>07</span> {content.modifications_title.replace(/^\d+\s+/, '')}</h2>
+                    <div class="section-body">
+                        <p>{content.modifications_content}</p>
+                    </div>
+                </section>
+
+                <section id="legal" class="content-section">
+                    <h2 class="section-heading"><span>08</span> {content.jurisdiction_title.replace(/^\d+\s+/, '')}</h2>
+                    <div class="section-body">
+                        <p>{content.jurisdiction_content}</p>
+                    </div>
+                </section>
+
+                <section id="contact" class="content-section">
+                    <h2 class="section-heading"><span>09</span> {content.contact_title.replace(/^\d+\s+/, '')}</h2>
+                    <div class="section-body">
+                        <p>{content.contact_content}</p>
+                        <div class="contact-card">
+                            <div class="contact-item">
+                                <Icon name="mdi:email-outline" />
+                                <div>
+                                    <label>Email</label>
+                                    <a href={`mailto:${content.contact_email}`}>{content.contact_email}</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <Icon name="mdi:web" />
+                                <div>
+                                    <label>jjlmoya website</label>
+                                    <a href={content.contact_web} target="_blank" rel="noopener noreferrer">{content.contact_web.replace('https://', '')}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <div class="legal-footer">
+                <p>GameBob &copy; {new Date().getFullYear()} — Built with passion.</p>
+            </div>
+        </main>
+    </div>
+</div>
+
+<style>
+    .legal-container {
+        max-width: 75rem;
+        margin: 0 auto;
+        padding: var(--space-4xl) var(--space-xl);
+    }
+
+    .legal-hero {
+        margin-bottom: var(--space-4xl);
+        text-align: left;
+    }
+
+    .hero-label {
+        font-size: 0.8125rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--color-primary);
+        margin-bottom: var(--space-md);
+    }
+
+    .hero-title {
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        font-weight: 900;
+        color: var(--text-main);
+        letter-spacing: -0.06em;
+        line-height: 1;
+        margin-bottom: var(--space-lg);
+    }
+
+    .hero-title span {
+        color: var(--color-primary);
+    }
+
+    .hero-desc {
+        font-size: 1.125rem;
+        color: var(--text-muted);
+        max-width: 45rem;
+        line-height: 1.6;
+    }
+
+    .legal-layout {
+        display: grid;
+        grid-template-columns: 18rem 1fr;
+        gap: var(--space-3xl);
+        align-items: flex-start;
+    }
+
+    .legal-sidebar {
+        position: sticky;
+        top: 6.5rem;
+    }
+
+    .toc {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3xs);
+        padding: var(--space-md);
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-lg);
+    }
+
+    .toc-link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        padding: var(--space-sm) var(--space-md);
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        border-radius: var(--radius-base);
+        transition: all 0.2s;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .toc-link span {
+        font-family: monospace;
+        font-size: 0.75rem;
+        color: var(--color-primary);
+        opacity: 0.6;
+    }
+
+    .toc-link:hover {
+        background: var(--glass-border);
+        color: var(--text-main);
+        transform: translateX(8px);
+    }
+
+    .legal-card {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-3xl);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-5xl);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .section-heading {
+        display: flex;
+        align-items: baseline;
+        gap: var(--space-md);
+        margin-bottom: var(--space-lg);
+        font-size: 1.75rem;
+        font-weight: 900;
+        color: var(--text-main);
+        letter-spacing: -0.04em;
+    }
+
+    .section-heading span {
+        font-size: 1rem;
+        font-family: monospace;
+        color: var(--color-primary);
+        opacity: 0.5;
+    }
+
+    .section-body p {
+        font-size: 1.125rem;
+        color: var(--text-muted);
+        line-height: 1.8;
+        margin: 0;
+    }
+
+    .custom-list {
+        list-style: none;
+        padding: 0;
+        margin: var(--space-lg) 0 0;
+    }
+
+    .custom-list li {
+        position: relative;
+        padding-left: var(--space-xl);
+        margin-bottom: var(--space-md);
+        font-size: 1.125rem;
+        color: var(--text-muted);
+        line-height: 1.8;
+    }
+
+    .custom-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.8rem;
+        width: 0.75rem;
+        height: 2px;
+        background: var(--color-primary);
+    }
+
+    .contact-card {
+        margin-top: var(--space-2xl);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-xl);
+        padding: var(--space-xl);
+        background: var(--glass-border);
+        border-radius: var(--radius-lg);
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-md);
+    }
+
+    .contact-item svg {
+        font-size: 1.5rem;
+        color: var(--color-primary);
+        margin-top: 0.25rem;
+    }
+
+    .contact-item label {
+        display: block;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+        margin-bottom: var(--space-3xs);
+    }
+
+    .contact-item a {
+        color: var(--text-main);
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1rem;
+        transition: color 0.2s;
+    }
+
+    .contact-item a:hover {
+        color: var(--color-primary);
+    }
+
+    .legal-footer {
+        margin-top: var(--space-2xl);
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+    }
+
+    @media (max-width: 1024px) {
+        .legal-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .legal-sidebar {
+            display: none;
+        }
+
+        .legal-card {
+            padding: var(--space-xl);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .legal-container {
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+        }
+
+        .section-heading {
+            font-size: 1.25rem;
+        }
+
+        .contact-card {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

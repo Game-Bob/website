@@ -1,0 +1,304 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+    content: {
+        title: string;
+        intro: string;
+        introduction_title: string;
+        introduction_content: string;
+        data_collection_title: string;
+        data_collection_content: string;
+        security_philosophy_title: string;
+        security_philosophy_content: string;
+        third_party_title: string;
+        third_party_content: string[];
+        child_protection_title: string;
+        child_protection_content: string;
+        changes_contact_title: string;
+        changes_contact_content: string;
+    };
+}
+
+const { content } = Astro.props;
+---
+
+<div class="legal-container">
+    <div class="legal-hero">
+        <h1 class="hero-title">{content.title}<span>.</span></h1>
+        <p class="hero-desc">{content.intro}</p>
+    </div>
+
+    <div class="legal-layout">
+        <aside class="legal-sidebar">
+            <nav class="toc">
+                <a href="#intro" class="toc-link"><span>01</span> {content.introduction_title}</a>
+                <a href="#data" class="toc-link"><span>02</span> {content.data_collection_title}</a>
+                <a href="#security" class="toc-link"><span>03</span> {content.security_philosophy_title}</a>
+                <a href="#third-party" class="toc-link"><span>04</span> {content.third_party_title}</a>
+                <a href="#children" class="toc-link"><span>05</span> {content.child_protection_title}</a>
+                <a href="#contact" class="toc-link"><span>06</span> {content.changes_contact_title}</a>
+            </nav>
+        </aside>
+
+        <main class="legal-main">
+            <div class="legal-card">
+                <section id="intro" class="content-section">
+                    <div class="section-header">
+                        <Icon name="mdi:information-outline" class="section-icon" />
+                        <h2>{content.introduction_title}</h2>
+                    </div>
+                    <div class="section-body">
+                        <p>{content.introduction_content}</p>
+                    </div>
+                </section>
+
+                <section id="data" class="content-section">
+                    <div class="section-header">
+                        <Icon name="mdi:database-outline" class="section-icon" />
+                        <h2>{content.data_collection_title}</h2>
+                    </div>
+                    <div class="section-body">
+                        <p>{content.data_collection_content}</p>
+                    </div>
+                </section>
+
+                <section id="security" class="content-section">
+                    <div class="section-header">
+                        <Icon name="mdi:shield-check-outline" class="section-icon" />
+                        <h2>{content.security_philosophy_title}</h2>
+                    </div>
+                    <div class="section-body">
+                        <p>{content.security_philosophy_content}</p>
+                    </div>
+                </section>
+
+                <section id="third-party" class="content-section">
+                    <div class="section-header">
+                        <Icon name="mdi:account-group-outline" class="section-icon" />
+                        <h2>{content.third_party_title}</h2>
+                    </div>
+                    <div class="section-body">
+                        <ul class="custom-list">
+                            {content.third_party_content.map((item) => (
+                                <li>{item}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="children" class="content-section">
+                    <div class="section-header">
+                        <Icon name="mdi:baby-face-outline" class="section-icon" />
+                        <h2>{content.child_protection_title}</h2>
+                    </div>
+                    <div class="section-body">
+                        <p>{content.child_protection_content}</p>
+                    </div>
+                </section>
+
+                <section id="contact" class="content-section">
+                    <div class="section-header">
+                        <Icon name="mdi:email-outline" class="section-icon" />
+                        <h2>{content.changes_contact_title}</h2>
+                    </div>
+                    <div class="section-body">
+                        <p>{content.changes_contact_content}</p>
+                    </div>
+                </section>
+            </div>
+            
+            <div class="legal-footer">
+                <p>GameBob &copy; {new Date().getFullYear()} — Built with passion.</p>
+            </div>
+        </main>
+    </div>
+</div>
+
+<style>
+    .legal-container {
+        max-width: 75rem;
+        margin: 0 auto;
+        padding: var(--space-4xl) var(--space-xl);
+    }
+
+    .legal-hero {
+        margin-bottom: var(--space-4xl);
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: clamp(3rem, 10vw, 5.5rem);
+        font-weight: 900;
+        color: var(--text-main);
+        letter-spacing: -0.06em;
+        line-height: 1;
+        margin-bottom: var(--space-lg);
+    }
+
+    .hero-title span {
+        color: var(--color-primary);
+        text-shadow: 0 0 30px color-mix(in srgb, var(--color-primary), transparent 70%);
+    }
+
+    .hero-desc {
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        max-width: 40rem;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .legal-layout {
+        display: grid;
+        grid-template-columns: 18rem 1fr;
+        gap: var(--space-3xl);
+        align-items: flex-start;
+    }
+
+    .legal-sidebar {
+        position: sticky;
+        top: 6.5rem;
+    }
+
+    .toc {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+        padding: var(--space-md);
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-lg);
+        backdrop-filter: blur(10px);
+    }
+
+    .toc-link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        padding: var(--space-sm) var(--space-md);
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 600;
+        border-radius: var(--radius-base);
+        transition: all 0.2s;
+    }
+
+    .toc-link span {
+        font-family: monospace;
+        font-size: 0.75rem;
+        opacity: 0.5;
+        color: var(--color-primary);
+    }
+
+    .toc-link:hover {
+        background: var(--glass-border);
+        color: var(--text-main);
+        transform: translateX(5px);
+    }
+
+    .legal-card {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-3xl);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4xl);
+        backdrop-filter: blur(10px);
+        box-shadow: var(--shadow-xl);
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        margin-bottom: var(--space-lg);
+        color: var(--color-primary);
+    }
+
+    .section-icon {
+        font-size: 1.75rem;
+    }
+
+    .section-header h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--text-main);
+        letter-spacing: -0.02em;
+    }
+
+    .section-body p {
+        font-size: 1.125rem;
+        color: var(--text-muted);
+        line-height: 1.8;
+        margin: 0;
+    }
+
+    .custom-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .custom-list li {
+        position: relative;
+        padding-left: var(--space-xl);
+        margin-bottom: var(--space-md);
+        font-size: 1.125rem;
+        color: var(--text-muted);
+        line-height: 1.8;
+    }
+
+    .custom-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.8rem;
+        width: 0.75rem;
+        height: 2px;
+        background: var(--color-primary);
+        box-shadow: 0 0 10px var(--color-primary);
+    }
+
+    .legal-footer {
+        margin-top: var(--space-2xl);
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+    }
+
+    @media (max-width: 1024px) {
+        .legal-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .legal-sidebar {
+            display: none;
+        }
+
+        .legal-card {
+            padding: var(--space-xl);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .legal-container {
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.25rem;
+        }
+
+        .section-body p, .custom-list li {
+            font-size: 1rem;
+        }
+    }
+</style>

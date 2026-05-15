@@ -12,6 +12,12 @@ export async function getTranslatedUrl(pathname: string, lang: string, targetLan
     if (!pathname || pathname === '/') return buildTargetUrl('', targetLang);
     const segments = pathname.split('/').filter(Boolean);
     if (segments[0] === lang) segments.shift();
+    
+    const fullPath = segments.join('/');
+    for (const mapping of Object.values(slugMapping)) {
+        if (mapping[lang] === fullPath) return buildTargetUrl(mapping[targetLang], targetLang);
+    }
+
     const translated = await Promise.all(segments.map(s => translateSegment(s, lang, targetLang)));
     return buildTargetUrl(translated.join('/'), targetLang);
 }
@@ -45,8 +51,9 @@ function buildExternalPathSegment(segments: string[], targetLang: string): strin
 }
 
 function buildNonUtilPath(segments: string[], targetLang: string): string {
-    const lastSegment = segments[segments.length - 1];
-    return lastSegment && lastSegment !== targetLang ? `/${lastSegment}/` : '/';
+    const startIdx = segments[0]?.startsWith('http') ? 2 : 0;
+    const filtered = segments.slice(startIdx).filter(s => s !== targetLang);
+    return filtered.length > 0 ? `/${filtered.join('/')}/` : '/';
 }
 
 function buildUtilPath(opts: { segments: string[]; utilIndex: number; utilSlug: string; catSlug: string }): string {

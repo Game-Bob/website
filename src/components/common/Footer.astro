@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { SUPPORTED_LANGUAGES, useTranslations, type Language, getLocalizedSlug, externalLanguages } from "../../i18n/utils";
 import "./Footer.css";
 
 interface Props {
@@ -7,11 +8,28 @@ interface Props {
 }
 
 const { className = "" } = Astro.props;
+
+const pathname = new URL(Astro.request.url).pathname;
+const langFromPath = pathname.split('/')[1] || "en";
+const lang = SUPPORTED_LANGUAGES.includes(langFromPath as Language) ? (langFromPath as Language) : "en" as Language;
+const t = useTranslations(lang);
+
+const getLegalUrl = (key: 'privacy' | 'terms') => {
+    const host = externalLanguages[lang];
+    const slug = getLocalizedSlug(lang, key);
+    return host ? `${host}/${slug}/` : `/${lang}/${slug}/`;
+};
 ---
 
 <footer class={`site-footer ${className}`}>
     <div class="footer-content-wrapper">
         <p class="footer-copyright-text">&copy; {new Date().getFullYear()} Juan José López Moya</p>
+
+        <div class="footer-legal-links">
+            <a href={getLegalUrl('privacy')} class="footer-link">{t("legal.privacy.title")}</a>
+            <span class="footer-separator">•</span>
+            <a href={getLegalUrl('terms')} class="footer-link">{t("legal.terms.title")}</a>
+        </div>
 
         <div class="footer-social-links">
             <a href="https://www.linkedin.com/in/jjlmoya/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
