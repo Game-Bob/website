@@ -18,7 +18,29 @@
     margin: 0;
     color: var(--text-muted);
     font-weight: var(--font-weight-normal);
+}
+
+.footer-legal-links {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: center;
+    justify-content: center;
     flex: 1;
+}
+
+.footer-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-link:hover {
+    color: var(--color-primary);
+}
+
+.footer-separator {
+    color: var(--border-base);
+    font-size: 0.6rem;
 }
 
 .footer-social-links {

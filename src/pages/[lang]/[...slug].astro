@@ -1,12 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { useTranslations, slugMapping } from "../../i18n/utils";
+import { useTranslations, slugMapping, SUPPORTED_LANGUAGES } from "../../i18n/utils";
 
 export function getStaticPaths() {
     const paths = [];
-    const langs = ["en", "fr"];
 
-    for (const lang of langs) {
+    for (const lang of SUPPORTED_LANGUAGES) {
         paths.push({
             params: { lang, slug: slugMapping.apps[lang] },
             props: { key: "apps", lang },
@@ -16,7 +15,7 @@ export function getStaticPaths() {
 }
 
 const { key, lang } = Astro.props;
-const t = useTranslations(lang as "en" | "fr");
+const t = useTranslations(lang as any);
 const titleKey = `menu.${key}`;
 ---
 

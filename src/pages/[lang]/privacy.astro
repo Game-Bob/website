@@ -1,0 +1,31 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PrivacyPolicy from "../../components/legal/PrivacyPolicy.astro";
+import { useTranslations, SUPPORTED_LANGUAGES } from "../../i18n/utils";
+
+export function getStaticPaths() {
+    return SUPPORTED_LANGUAGES.map((lang) => ({
+        params: { lang },
+    }));
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as any);
+const legalContent = t("legal.privacy");
+---
+
+<Layout 
+    title={`${legalContent.title} | GameBob`} 
+    description={legalContent.introduction_content} 
+    lang={lang}
+>
+    <main class="page-container">
+        <PrivacyPolicy content={legalContent} />
+    </main>
+</Layout>
+
+<style>
+    .page-container {
+        min-height: 100vh;
+    }
+</style>

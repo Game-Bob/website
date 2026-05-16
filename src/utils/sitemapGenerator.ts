@@ -115,7 +115,14 @@ function getStaticUrls(lang: Language): SitemapEntry[] {
   const u = getLocalizedSlug(lang, 'utilities');
   const a = getLocalizedSlug(lang, 'apps');
   const e = (path: string, cf: string, p: number): SitemapEntry => ({ url: `${BASE_URL}${lPath}${path}`, changefreq: cf, priority: p, hreflang: buildHreflang(path) });
-  return [e('/', 'daily', 1.0), e(`/${a}/`, 'weekly', 0.8), e(`/${u}/`, 'weekly', 0.8), e('/widgets/', 'weekly', 0.8)];
+  return [
+    e('/', 'daily', 1.0), 
+    e(`/${a}/`, 'weekly', 0.8), 
+    e(`/${u}/`, 'weekly', 0.8), 
+    e('/widgets/', 'weekly', 0.8),
+    e('/privacy/', 'monthly', 0.4),
+    e('/terms/', 'monthly', 0.4)
+  ];
 }
 
 function renderUrl({ url, hreflang, changefreq, priority }: SitemapEntry): string {
