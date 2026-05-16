@@ -8,15 +8,21 @@ function buildTargetUrl(path: string, targetLang: string) {
     return path ? `${prefix}${path}/` : prefix;
 }
 
+function findMappingMatch(path: string, lang: string, targetLang: string): string | null {
+    for (const mapping of Object.values(slugMapping)) {
+        if (mapping[lang] === path) return mapping[targetLang];
+    }
+    return null;
+}
+
 export async function getTranslatedUrl(pathname: string, lang: string, targetLang: string) {
     if (!pathname || pathname === '/') return buildTargetUrl('', targetLang);
     const segments = pathname.split('/').filter(Boolean);
     if (segments[0] === lang) segments.shift();
     
     const fullPath = segments.join('/');
-    for (const mapping of Object.values(slugMapping)) {
-        if (mapping[lang] === fullPath) return buildTargetUrl(mapping[targetLang], targetLang);
-    }
+    const match = findMappingMatch(fullPath, lang, targetLang);
+    if (match) return buildTargetUrl(match, targetLang);
 
     const translated = await Promise.all(segments.map(s => translateSegment(s, lang, targetLang)));
     return buildTargetUrl(translated.join('/'), targetLang);
