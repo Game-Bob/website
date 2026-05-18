@@ -4,16 +4,8 @@ import { SUPPORTED_LANGUAGES } from "../../i18n/utils";
 
 const TEAM_ID = "63D7H6T9N3";
 
-function getBundleId(entry: any): string | null {
-    if (!entry.stores.appStore) {
-        return null;
-    }
-    const googlePlayUrl = entry.stores.googlePlay;
-    if (!googlePlayUrl) {
-        return null;
-    }
-    const urlObj = new URL(googlePlayUrl);
-    return urlObj.searchParams.get("id");
+function getBundleId(entry: any): string {
+    return entry.packageId;
 }
 
 async function getAppPaths(entry: any): Promise<string[]> {
@@ -34,13 +26,11 @@ export const GET: APIRoute = async () => {
 
     for (const definition of ALL_APP_DEFINITIONS) {
         const bundleId = getBundleId(definition.entry);
-        if (bundleId) {
-            const paths = await getAppPaths(definition.entry);
-            details.push({
-                appID: `${TEAM_ID}.${bundleId}`,
-                paths,
-            });
-        }
+        const paths = await getAppPaths(definition.entry);
+        details.push({
+            appID: `${TEAM_ID}.${bundleId}`,
+            paths,
+        });
     }
 
     const association = {
