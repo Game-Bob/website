@@ -16,6 +16,16 @@
     filter: drop-shadow(0 0 12px var(--color-primary));
 }
 
+.theme-light .kitty-svg {
+    filter: none;
+    opacity: 70%;
+}
+
+.theme-light .kitty-svg:hover {
+    filter: none;
+    opacity: 100%;
+}
+
 .kitty-eyes {
     transform-origin: 16px 11px;
     animation: kitty-eyes-blink 6s infinite;

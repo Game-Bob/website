@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { SUPPORTED_LANGUAGES, useTranslations, type Language, getLocalizedSlug, externalLanguages } from "../../i18n/utils";
+import NotFoundKitty from "../not-found/NotFoundKitty.astro";
 import "./Footer.css";
 
 interface Props {
@@ -49,5 +50,9 @@ const getLegalUrl = (key: 'privacy' | 'terms') => {
         <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="license noopener noreferrer" class="footer-license-link">
             CC BY-NC 4.0
         </a>
+
+        <div class="footer-kitty-column">
+            <NotFoundKitty />
+        </div>
     </div>
 </footer>
