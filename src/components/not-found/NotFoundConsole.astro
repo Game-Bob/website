@@ -1,0 +1,39 @@
+---
+import NotFoundKitty from "./NotFoundKitty.astro";
+import "./NotFoundConsole.css";
+
+interface Props {
+    title: string;
+    subtitle: string;
+    desc: string;
+    consoleError: string;
+    consoleStatus: string;
+    consoleAction: string;
+    path: string;
+}
+
+const { title, subtitle, desc, consoleError, consoleStatus, consoleAction, path } = Astro.props;
+---
+
+<div class="console-wrapper">
+    <div class="console-bezel">
+        <div class="console-screen">
+            <div class="crt-glow"></div>
+            <div class="screen-content">
+                <NotFoundKitty />
+                <div class="glitch-container">
+                    <h1 class="glitch-text" data-text="404">404</h1>
+                </div>
+                <div class="status-badge">{subtitle}</div>
+                <div class="console-terminal">
+                    <div class="terminal-line error">{consoleError}</div>
+                    <div class="terminal-line path">&gt; FILE: {path}</div>
+                    <div class="terminal-line status">&gt; {consoleStatus}</div>
+                    <div class="terminal-line action">&gt; {consoleAction}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="console-reflection"></div>
+    <p class="console-description">{desc}</p>
+</div>

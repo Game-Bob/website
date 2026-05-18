@@ -1,0 +1,85 @@
+.header-kitty-container {
+    position: absolute;
+    bottom: -1.65rem;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    z-index: 1;
+    pointer-events: none;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-logo:hover .header-kitty-container {
+    transform: translateX(-50%) translateY(-0.15rem) scale(1.15);
+}
+
+.header-kitty-svg {
+    width: 4.25rem;
+    height: 4.25rem;
+    clip-path: inset(0 0 50% 0);
+    filter: drop-shadow(1px 0 0 var(--color-brand-white)) 
+            drop-shadow(-1px 0 0 var(--color-brand-white)) 
+            drop-shadow(0 1px 0 var(--color-brand-white)) 
+            drop-shadow(0 -1px 0 var(--color-brand-white));
+    opacity: 8%;
+    transition: all 0.25s ease;
+}
+
+.theme-light .header-kitty-svg {
+    filter: drop-shadow(1px 0 0 var(--color-primary)) 
+            drop-shadow(-1px 0 0 var(--color-primary)) 
+            drop-shadow(0 1px 0 var(--color-primary)) 
+            drop-shadow(0 -1px 0 var(--color-primary));
+    opacity: 8%;
+}
+
+.nav-logo:hover .header-kitty-svg {
+    opacity: 100%;
+}
+
+.nav-logo:hover .theme-light .header-kitty-svg {
+    opacity: 100%;
+}
+
+.header-kitty-eyes {
+    transform-origin: 16px 11px;
+    animation: kitty-eyes-blink 6s infinite;
+}
+
+.header-kitty-pupils {
+    transform-origin: 16px 11px;
+    animation: kitty-pupils-look-up 6s infinite;
+}
+
+.nav-logo:hover .header-kitty-pupils {
+    animation: kitty-pupils-invaded 4.5s ease-in-out infinite;
+}
+
+@keyframes kitty-eyes-blink {
+    0%, 92%, 96%, 100% {
+        transform: scaleY(1);
+    }
+
+    94% {
+        transform: scaleY(0.1);
+    }
+}
+
+@keyframes kitty-pupils-look-up {
+    0%, 92%, 96%, 100% {
+        transform: scaleY(1);
+    }
+
+    94% {
+        transform: scaleY(0.1);
+    }
+}
+
+@keyframes kitty-pupils-invaded {
+    0%, 35%, 85%, 100% {
+        transform: translate(0, 0);
+    }
+
+    45%, 75% {
+        transform: translate(0, 1px);
+    }
+}

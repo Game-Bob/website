@@ -28,10 +28,24 @@
     letter-spacing: -0.06em;
     transition: all 0.3s;
     position: relative;
+    z-index: 5;
+    background: var(--nav-bg);
+    padding: 0 var(--space-sm);
+    border-radius: var(--border-radius-sm);
 }
 
-.nav-logo span {
+.logo-bob {
     color: var(--color-primary);
+}
+
+.logo-ame {
+    position: relative;
+    z-index: 5;
+}
+
+.logo-text-front {
+    position: relative;
+    z-index: 2;
 }
 
 .nav-logo::after {

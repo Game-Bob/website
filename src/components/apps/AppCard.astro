@@ -2,6 +2,7 @@
 import type { AppEntry, AppCardContent } from '@jjlmoya/apps';
 import AppBadge from './AppBadge.astro';
 import StoreButton from './StoreButton.astro';
+import CatEarDecorator from './CatEarDecorator.astro';
 import './AppCard.css';
 
 interface Props {
@@ -26,7 +27,8 @@ const badgeType = entry.isGame ? 'game' : 'app';
 const hasBoth = entry.stores.appStore && entry.stores.googlePlay;
 ---
 
-<article class="app-card">
+<article class="app-card js-dynamic-cat-card">
+    <CatEarDecorator />
     <a href={landingHref} class="app-card-main-link">
         <div class="app-card-visual">
             <div class="app-card-icon-container">

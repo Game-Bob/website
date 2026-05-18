@@ -93,3 +93,19 @@
         justify-content: center;
     }
 }
+
+.footer-kitty-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-kitty-column .kitty-container {
+    margin-bottom: 0;
+}
+
+.footer-kitty-column .kitty-svg {
+    width: 5.5rem;
+    height: 5.5rem;
+}
+
