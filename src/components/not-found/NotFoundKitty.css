@@ -8,17 +8,19 @@
 .kitty-svg {
     width: 6rem;
     height: 6rem;
-    filter: drop-shadow(0 0 6px var(--color-primary));
+    filter: drop-shadow(0 0 2px var(--color-brand-white));
+    opacity: 60%;
     transition: all 0.25s ease;
 }
 
 .kitty-svg:hover {
-    filter: drop-shadow(0 0 12px var(--color-primary));
+    filter: drop-shadow(0 0 4px var(--color-brand-white));
+    opacity: 100%;
 }
 
 .theme-light .kitty-svg {
     filter: none;
-    opacity: 70%;
+    opacity: 80%;
 }
 
 .theme-light .kitty-svg:hover {
