@@ -5,6 +5,7 @@ import MobileMenu from "./MobileMenu.astro";
 import LanguageSheet from "./LanguageSheet.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import LanguageTrigger from "./LanguageTrigger.astro";
+import HeaderKitty from "./HeaderKitty.astro";
 import "./Header.css";
 
 const pathname = new URL(Astro.request.url).pathname;
@@ -40,7 +41,9 @@ const transUrls = await Promise.all(
 
 <nav class={`main-nav ${className}`} id="main-nav">
     <div class="nav-container">
-        <a href={`/${lang}/`} class="nav-logo">Game<span>Bob</span></a>
+        <a href={`/${lang}/`} class="nav-logo">
+            G<span class="logo-ame"><span class="logo-text-front">ame</span><HeaderKitty /></span><span class="logo-bob">Bob</span>
+        </a>
         <div class="nav-links">
             <a href={aPath} class={`nav-link ${pathname.includes(aSlug) ? "nav-active" : ""}`}>{t("menu.apps")}</a>
             <a href={uPath} class={`nav-link ${pathname.includes(uSlug) ? "nav-active" : ""}`}>{t("menu.utilities")}</a>
