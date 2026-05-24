@@ -7,7 +7,7 @@ async function convertToWebp(input, output, width = null, height = null) {
       pipeline = pipeline.resize(width, height);
     }
     await pipeline
-      .toFormat('webp', { quality: 100 })
+      .toFormat('webp', { quality: 90 })
       .toFile(output);
   } catch (error) {
     process.exit(1);
