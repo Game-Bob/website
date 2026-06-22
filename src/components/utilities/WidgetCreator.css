@@ -138,3 +138,46 @@
 .button-studio:hover .btn-icon {
     transform: translateX(2px);
 }
+
+@media (width <= 768px) {
+    .widget-inner {
+        padding: var(--space-md);
+    }
+
+    .widget-flex {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-md);
+    }
+
+    .widget-copy {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+
+    .widget-title {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        font-size: 0.9rem;
+    }
+
+    .widget-description {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        font-size: 0.75rem;
+    }
+
+    .widget-action {
+        width: 100%;
+    }
+
+    .button-studio {
+        width: 100%;
+        justify-content: center;
+        padding: var(--space-sm) var(--space-md);
+    }
+}
+
