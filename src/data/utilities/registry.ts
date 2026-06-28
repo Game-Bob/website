@@ -33,6 +33,7 @@ import { work } from './categories/work';
 import { tools } from './categories/tools';
 import { chrono } from './categories/chrono';
 import { tabletop } from './categories/tabletop';
+import { forensicScience } from './categories/forensic-science';
 import type { CategoryDefinition } from './types';
 
 export type { CategoryDefinition };
@@ -73,6 +74,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     tools,
     chrono,
     tabletop,
+    forensicScience,
 ];
 
 export const ALL_TOOL_ENTRIES = CATEGORIES.flatMap(c => c.toolsWithColors.map(t => t.toolEntry));

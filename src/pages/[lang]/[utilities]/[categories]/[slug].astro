@@ -92,11 +92,23 @@ const CategorySEOComponent = await CategorySEO();
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: var(--space-lg);
+        margin-bottom: var(--space-4xl);
     }
 
     @media (width <= 768px) {
         .category-page {
             padding: var(--space-lg) var(--space-sm);
         }
+
+        .utilities-grid {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
+
+<style is:global>
+    .seo-article {
+        margin-top: var(--space-4xl);
+    }
+</style>
+
