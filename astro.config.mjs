@@ -5,6 +5,9 @@ import vercel from "@astrojs/vercel";
 export default defineConfig({
     site: "https://www.gamebob.dev",
     adapter: vercel(),
+    build: {
+        inlineStylesheets: "always",
+    },
     integrations: [icon()],
     i18n: {
         defaultLocale: "en",
