@@ -6,6 +6,7 @@ import AppLinksBanner from "../components/utilities/AppLinksBanner.astro";
 import UtilityStructuredData from "../components/utilities/UtilityStructuredData.astro";
 import FAQSection from "../components/utilities/FAQSection.astro";
 import WidgetCreator from "../components/utilities/WidgetCreator.astro";
+import ZoomControl from "../components/utilities/ZoomControl.astro";
 import "./LayoutUtility.css";
 
 interface AppLinks { android?: string; ios?: string; }
@@ -43,6 +44,16 @@ const oembedUrl = `${Astro.url.origin}/api/oembed.json?url=${encodeURIComponent(
     />
     <link rel="alternate" type="application/json+oembed" href={oembedUrl} title={title} slot="head" />
     {toolCss && <link rel="stylesheet" href={toolCss} slot="head" />}
+    <script is:inline slot="head">
+        (function() {
+            const savedZoom = localStorage.getItem("gamebob-utility-zoom");
+            if (savedZoom) {
+                const style = document.createElement("style");
+                style.textContent = `.utility-tool-container { zoom: ${savedZoom}; }`;
+                document.head.appendChild(style);
+            }
+        })();
+    </script>
 
     <div class="utility-layout-wrapper">
         <div class="utility-bg-gradient"></div>
@@ -58,6 +69,9 @@ const oembedUrl = `${Astro.url.origin}/api/oembed.json?url=${encodeURIComponent(
                 </slot>
             </div>
             <div class="utility-tool-container"><slot /></div>
+            <div class="no-widget-hidden">
+                <ZoomControl />
+            </div>
             {!hideWidget && <WidgetCreator title={title} url={currentPath} lang={lang} />}
             {faqItems && faqItems.length > 0 && (
                 <div class="no-widget-hidden">
