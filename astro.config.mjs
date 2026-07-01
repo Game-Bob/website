@@ -29,7 +29,7 @@ export default defineConfig({
             },
         },
         optimizeDeps: {
-            include: ["qrcode", "interactjs"],
+            include: ["qrcode", "interactjs", "leaflet"],
         },
         ssr: {
             noExternal: [/@jjlmoya\//],
