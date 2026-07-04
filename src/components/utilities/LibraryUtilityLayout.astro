@@ -2,6 +2,7 @@
 import LayoutUtility from "../../layouts/LayoutUtility.astro";
 import UtilityHeader from "./UtilityHeader.astro";
 import { type Language } from "../../i18n/utils";
+import packageJson from "../../../package.json";
 
 interface Props {
     lang: Language;
@@ -34,7 +35,15 @@ if (categoryKey === "converters") {
     image = "universal-image-converter";
 }
 
-const cssHref = `/styles/lib/${categoryKey}/${enSlug}.css`;
+const getPackageVersion = (key: string): string => {
+    const pkgName = `@jjlmoya/utils-${key}`;
+    const deps = packageJson.dependencies as Record<string, string>;
+    const range = deps[pkgName] || packageJson.version;
+    return range.replace(/^[\^~]/, "");
+};
+
+const version = getPackageVersion(categoryKey ?? "");
+const cssHref = `/styles/lib/${categoryKey}/${enSlug}.css?version=${version}`;
 ---
 
 <LayoutUtility
