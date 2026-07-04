@@ -5,6 +5,7 @@ const categoryColor = "#ec4899";
 
 export const audiovisual: CategoryDefinition = {
     key: "audiovisual",
+    packageName: "@jjlmoya/utils-audiovisual",
     entry,
     theme: "violet",
     toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),

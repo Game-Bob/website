@@ -5,6 +5,7 @@ const categoryColor = "#ef4444";
 
 export const health: CategoryDefinition = {
     key: "health",
+    packageName: "@jjlmoya/utils-health",
     entry,
     theme: "red",
     toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),

@@ -18,12 +18,13 @@ interface Props {
     appLinks?: AppLinks; appSlug?: string; faqItems?: FAQItem[];
     howToSteps?: HowToStep[]; hideWidget?: boolean; lang?: string;
     toolCss?: string;
+    assetVersion?: string;
 }
 
 const {
     title, description, image, category: propCategory,
     appLinks, appSlug, faqItems, howToSteps,
-    hideWidget = false, lang: propLang, toolCss
+    hideWidget = false, lang: propLang, toolCss, assetVersion
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -35,7 +36,7 @@ const categorySlug = pathSegments[3] || "";
 const oembedUrl = `${Astro.url.origin}/api/oembed.json?url=${encodeURIComponent(`${Astro.url.origin}${currentPath}`)}`;
 ---
 
-<Layout title={title} description={description} image={image} fullWidth={true} lang={lang}>
+<Layout title={title} description={description} image={image} fullWidth={true} lang={lang} assetVersion={assetVersion}>
     <UtilityStructuredData
         title={title} description={description} url={currentPath}
         category={propCategory} faqItems={faqItems} howToSteps={howToSteps}

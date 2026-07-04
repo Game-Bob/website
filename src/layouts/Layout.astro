@@ -22,6 +22,7 @@ interface Props {
     fullWidth?: boolean;
     noPaddingTop?: boolean;
     lang?: string;
+    assetVersion?: string;
 }
 
 const {
@@ -35,13 +36,14 @@ const {
     headerClass = "",
     footerClass = "",
     lang = "en",
+    assetVersion,
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang={lang} class="theme-dark">
     <head>
-        <SEO title={title} description={description} image={image} favicon={favicon} lang={lang} />
+        <SEO title={title} description={description} image={image} favicon={favicon} lang={lang} assetVersion={assetVersion} />
         <slot name="head" />
 
         <script is:inline>

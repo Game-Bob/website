@@ -5,6 +5,7 @@ const categoryColor = "#ec4899";
 
 export const games: CategoryDefinition = {
     key: "games",
+    packageName: "@jjlmoya/utils-games",
     entry,
     theme: "purple",
     toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),

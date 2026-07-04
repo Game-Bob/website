@@ -63,6 +63,9 @@ export const GET: APIRoute = ({ props }) => {
     };
 
     return new Response(JSON.stringify(manifest, null, 2), {
-        headers: { 'Content-Type': 'application/manifest+json' },
+        headers: {
+            'Content-Type': 'application/manifest+json',
+            'Cache-Control': 'public, max-age=0, must-revalidate',
+        },
     });
 };

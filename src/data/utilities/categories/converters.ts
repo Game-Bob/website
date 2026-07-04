@@ -5,6 +5,7 @@ const categoryColor = "#06b6d4";
 
 export const converters: CategoryDefinition = {
     key: "converters",
+    packageName: "@jjlmoya/utils-converters",
     entry,
     theme: "amber",
     toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),

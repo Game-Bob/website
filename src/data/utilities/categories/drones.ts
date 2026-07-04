@@ -5,6 +5,7 @@ const categoryColor = "#10b981";
 
 export const drones: CategoryDefinition = {
     key: "drones",
+    packageName: "@jjlmoya/utils-drones",
     entry,
     theme: "sky",
     toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),

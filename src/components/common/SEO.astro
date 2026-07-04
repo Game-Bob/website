@@ -2,6 +2,7 @@
 import { getTranslatedUrl, getExternalLanguageUrl } from "../../i18n/routerUtils";
 import { SUPPORTED_LANGUAGES, externalLanguages } from "../../i18n/utils";
 import OpenGraph from "./OpenGraph.astro";
+import packageJson from "../../../package.json";
 
 interface Props {
     title: string;
@@ -12,6 +13,7 @@ interface Props {
     publishedTime?: string;
     modifiedTime?: string;
     lang?: string;
+    assetVersion?: string;
 }
 
 const {
@@ -23,11 +25,17 @@ const {
     publishedTime,
     modifiedTime,
     lang = "en",
+    assetVersion = packageJson.version,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const fullTitle = title;
-const imageURL = new URL(image, Astro.url);
+const appendVersion = (url: string, version = assetVersion): string => {
+    if (!url) return url;
+    const separator = url.includes("?") ? "&" : "?";
+    return `${url}${separator}version=${version}`;
+};
+const imageURL = new URL(appendVersion(image), Astro.url);
 
 const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
 const isUtility = pathSegments.length === 5;
@@ -37,8 +45,7 @@ const alternateUrls: Array<{ lang: string; url: string }> = [];
 
 for (const altLang of SUPPORTED_LANGUAGES) {
     const translatedPath = await getTranslatedUrl(Astro.url.pathname, lang, altLang);
-    const altUrl = new URL(translatedPath, Astro.site);
-    alternateUrls.push({ lang: altLang, url: altUrl.href });
+    alternateUrls.push({ lang: altLang, url: new URL(translatedPath, Astro.site).href });
 }
 
 const enPath = await getTranslatedUrl(Astro.url.pathname, lang, "en");
@@ -61,15 +68,15 @@ for (const [extLang, extUrl] of Object.entries(externalLanguages)) {
 <meta name="title" content={fullTitle} />
 <meta name="description" content={description} />
 
-<link rel="icon" type="image/x-icon" href={favicon ?? "/favicon.ico"} />
-<link rel="icon" type="image/webp" href={favicon ?? "/favicon.webp"} sizes="any" />
-<link rel="apple-touch-icon" href={favicon ?? (isUtility ? image : "/apple-touch-icon-brand.webp")} />
+<link rel="icon" type="image/x-icon" href={appendVersion(favicon ?? "/favicon.ico", packageJson.version)} />
+<link rel="icon" type="image/webp" href={appendVersion(favicon ?? "/favicon.webp", packageJson.version)} sizes="any" />
+<link rel="apple-touch-icon" href={appendVersion(favicon ?? (isUtility ? image : "/apple-touch-icon-brand.webp"), packageJson.version)} />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content={isUtility ? title : "jjlmoya"} />
 <meta name="apple-mobile-web-app-start-url" content={isUtility ? Astro.url.pathname : "/"} />
-<link rel="manifest" href={manifestUrl} />
+<link rel="manifest" href={appendVersion(manifestUrl)} />
 <meta name="generator" content={Astro.generator} />
 <meta name="theme-color" content="#0f172a" />
 <meta name="author" content="jjlmoya" />
@@ -81,30 +88,14 @@ for (const [extLang, extUrl] of Object.entries(externalLanguages)) {
 ))}
 <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
 
-<OpenGraph
-    title={fullTitle}
-    description={description}
-    imageURL={imageURL}
-    url={Astro.url}
-    lang={lang}
-    article={article}
-    publishedTime={publishedTime}
-    modifiedTime={modifiedTime}
-/>
+<OpenGraph title={fullTitle} description={description} imageURL={imageURL} url={Astro.url} lang={lang} article={article} publishedTime={publishedTime} modifiedTime={modifiedTime} />
 
-<script
-    is:inline
-    type="application/ld+json"
-    set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Person",
-        name: "jjlmoya",
-        url: Astro.site,
-        sameAs: ["https://twitter.com/jjlmoya", "https://github.com/jjlmoya"],
-        jobTitle: "Creative Developer",
-        worksFor: {
-            "@type": "Organization",
-            name: "GameBob Studio",
-        },
-    })}
-/>
+<script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "jjlmoya",
+    url: Astro.site,
+    sameAs: ["https://twitter.com/jjlmoya", "https://github.com/jjlmoya"],
+    jobTitle: "Creative Developer",
+    worksFor: { "@type": "Organization", name: "GameBob Studio" },
+})} />
