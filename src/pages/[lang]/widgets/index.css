@@ -519,12 +519,7 @@
 .embed-grid {
     display: grid;
     gap: var(--space-xl);
-}
-
-@media (width >= 1024px) {
-    .embed-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+    grid-template-columns: 1fr;
 }
 
 .embed-card {
