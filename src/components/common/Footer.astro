@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import { SUPPORTED_LANGUAGES, useTranslations, type Language, getLocalizedSlug, externalLanguages } from "../../i18n/utils";
 import NotFoundKitty from "../not-found/NotFoundKitty.astro";
+import packageJson from "../../../package.json";
 import "./Footer.css";
 
 interface Props {
@@ -24,7 +25,7 @@ const getLegalUrl = (key: 'privacy' | 'terms') => {
 
 <footer class={`site-footer ${className}`}>
     <div class="footer-content-wrapper">
-        <p class="footer-copyright-text">&copy; {new Date().getFullYear()} Juan José López Moya</p>
+        <p class="footer-copyright-text">&copy; {new Date().getFullYear()} Juan José López Moya <span class="footer-version">v{packageJson.version}</span></p>
 
         <div class="footer-legal-links">
             <a href={getLegalUrl('privacy')} class="footer-link">{t("legal.privacy.title")}</a>

@@ -27,7 +27,10 @@ export const GET: APIRoute = ({ request }) => {
     if (!validation.valid) {
         return new Response(JSON.stringify({ error: validation.error }), {
             status: 400,
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                "Cache-Control": "no-store",
+            },
         });
     }
 
@@ -50,6 +53,7 @@ export const GET: APIRoute = ({ request }) => {
         headers: {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
+            "Cache-Control": "public, max-age=3600, s-maxage=3600, must-revalidate",
         },
     });
 };

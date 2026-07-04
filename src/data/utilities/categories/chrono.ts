@@ -5,6 +5,7 @@ const categoryColor = "#d97706";
 
 export const chrono: CategoryDefinition = {
     key: "chrono",
+    packageName: "@jjlmoya/utils-chrono",
     entry,
     theme: "amber",
     toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),

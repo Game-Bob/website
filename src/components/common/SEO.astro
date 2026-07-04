@@ -13,6 +13,7 @@ interface Props {
     publishedTime?: string;
     modifiedTime?: string;
     lang?: string;
+    assetVersion?: string;
 }
 
 const {
@@ -24,14 +25,15 @@ const {
     publishedTime,
     modifiedTime,
     lang = "en",
+    assetVersion = packageJson.version,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const fullTitle = title;
-const appendVersion = (url: string): string => {
+const appendVersion = (url: string, version = assetVersion): string => {
     if (!url) return url;
     const separator = url.includes("?") ? "&" : "?";
-    return `${url}${separator}version=${packageJson.version}`;
+    return `${url}${separator}version=${version}`;
 };
 const imageURL = new URL(appendVersion(image), Astro.url);
 
@@ -66,9 +68,9 @@ for (const [extLang, extUrl] of Object.entries(externalLanguages)) {
 <meta name="title" content={fullTitle} />
 <meta name="description" content={description} />
 
-<link rel="icon" type="image/x-icon" href={appendVersion(favicon ?? "/favicon.ico")} />
-<link rel="icon" type="image/webp" href={appendVersion(favicon ?? "/favicon.webp")} sizes="any" />
-<link rel="apple-touch-icon" href={appendVersion(favicon ?? (isUtility ? image : "/apple-touch-icon-brand.webp"))} />
+<link rel="icon" type="image/x-icon" href={appendVersion(favicon ?? "/favicon.ico", packageJson.version)} />
+<link rel="icon" type="image/webp" href={appendVersion(favicon ?? "/favicon.webp", packageJson.version)} sizes="any" />
+<link rel="apple-touch-icon" href={appendVersion(favicon ?? (isUtility ? image : "/apple-touch-icon-brand.webp"), packageJson.version)} />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -86,16 +88,7 @@ for (const [extLang, extUrl] of Object.entries(externalLanguages)) {
 ))}
 <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
 
-<OpenGraph
-    title={fullTitle}
-    description={description}
-    imageURL={imageURL}
-    url={Astro.url}
-    lang={lang}
-    article={article}
-    publishedTime={publishedTime}
-    modifiedTime={modifiedTime}
-/>
+<OpenGraph title={fullTitle} description={description} imageURL={imageURL} url={Astro.url} lang={lang} article={article} publishedTime={publishedTime} modifiedTime={modifiedTime} />
 
 <script is:inline type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",

@@ -1,5 +1,47 @@
+# Cloudflare Pages headers.
+# HTML stays revalidatable; versioned tool CSS and hashed build assets cache hard.
+
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+
 /.well-known/*
   Cache-Control: no-cache, no-store, must-revalidate
 
-/*
-  Cache-Control: public, max-age=604800, must-revalidate
+/robots.txt
+  Cache-Control: public, max-age=3600, s-maxage=3600, must-revalidate
+
+/sitemap-*.xml
+  Cache-Control: public, max-age=3600, s-maxage=3600, must-revalidate
+
+/sitemap-index.xml
+  Cache-Control: public, max-age=3600, s-maxage=3600, must-revalidate
+
+/manifest.json
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*/manifest.json
+  Cache-Control: public, max-age=0, must-revalidate
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/styles/lib/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=86400, s-maxage=2592000, stale-while-revalidate=604800
+
+/assets/*
+  Cache-Control: public, max-age=86400, s-maxage=2592000, stale-while-revalidate=604800
+
+/favicon*
+  Cache-Control: public, max-age=86400, s-maxage=2592000, stale-while-revalidate=604800
+
+/apple-touch-icon*
+  Cache-Control: public, max-age=86400, s-maxage=2592000, stale-while-revalidate=604800
+
+/brand-final-48.webp
+  Cache-Control: public, max-age=86400, s-maxage=2592000, stale-while-revalidate=604800
+
+/og-default.webp
+  Cache-Control: public, max-age=86400, s-maxage=2592000, stale-while-revalidate=604800

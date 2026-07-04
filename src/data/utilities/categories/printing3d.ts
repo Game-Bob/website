@@ -5,6 +5,7 @@ const categoryColor = "#f43f5e";
 
 export const printing3d: CategoryDefinition = {
     key: "printing3d",
+    packageName: "@jjlmoya/utils-printing3d",
     entry,
     theme: "orange",
     toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),

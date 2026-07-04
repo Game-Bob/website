@@ -5,6 +5,7 @@ const categoryColor = "#06b6d4";
 
 export const science: CategoryDefinition = {
     key: "science",
+    packageName: "@jjlmoya/utils-science",
     entry,
     theme: "violet",
     toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),

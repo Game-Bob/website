@@ -8,6 +8,7 @@ interface Props {
     lang: Language;
     category?: string;
     categoryKey?: string;
+    packageName: string;
     tool: {
         entry: any;
         Component: any;
@@ -16,7 +17,7 @@ interface Props {
     };
 }
 
-const { lang, tool, category, categoryKey } = Astro.props;
+const { lang, tool, category, categoryKey, packageName } = Astro.props;
 const { entry } = tool;
 const { default: Component } = await tool.Component();
 const { default: SEOComponent } = await tool.SEOComponent();
@@ -35,14 +36,16 @@ if (categoryKey === "converters") {
     image = "universal-image-converter";
 }
 
-const getPackageVersion = (key: string): string => {
-    const pkgName = `@jjlmoya/utils-${key}`;
+const getPackageVersion = (pkgName: string): string => {
     const deps = packageJson.dependencies as Record<string, string>;
-    const range = deps[pkgName] || packageJson.version;
+    const range = deps[pkgName];
+    if (!range) {
+        throw new Error(`Missing dependency version for utility package: ${pkgName}`);
+    }
     return range.replace(/^[\^~]/, "");
 };
 
-const version = getPackageVersion(categoryKey ?? "");
+const version = getPackageVersion(packageName);
 const cssHref = `/styles/lib/${categoryKey}/${enSlug}.css?version=${version}`;
 ---
 
@@ -55,6 +58,7 @@ const cssHref = `/styles/lib/${categoryKey}/${enSlug}.css?version=${version}`;
     category={category}
     lang={lang}
     toolCss={cssHref}
+    assetVersion={version}
 >
     <div slot="header">
         <UtilityHeader

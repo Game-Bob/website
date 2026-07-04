@@ -5,6 +5,7 @@ const categoryColor = "#7c3aed";
 
 export const forensicScience: CategoryDefinition = {
     key: "forensic-science",
+    packageName: "@jjlmoya/utils-forensic-science",
     entry,
     theme: "violet",
     toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
