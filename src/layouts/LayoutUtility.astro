@@ -33,7 +33,6 @@ const LANGS = ['en','fr','de','it','pt','nl','sv','pl','id','tr','ru','ja','ko',
 const langFromUrl = LANGS.includes(pathSegments[0]) ? pathSegments[0] : "en";
 const lang = propLang || langFromUrl;
 const categorySlug = pathSegments[3] || "";
-const oembedUrl = `${Astro.url.origin}/api/oembed.json?url=${encodeURIComponent(`${Astro.url.origin}${currentPath}`)}`;
 ---
 
 <Layout title={title} description={description} image={image} fullWidth={true} lang={lang} assetVersion={assetVersion}>
@@ -43,7 +42,6 @@ const oembedUrl = `${Astro.url.origin}/api/oembed.json?url=${encodeURIComponent(
         lang={lang}
         slot="head"
     />
-    <link rel="alternate" type="application/json+oembed" href={oembedUrl} title={title} slot="head" />
     {toolCss && <link rel="stylesheet" href={toolCss} slot="head" />}
     <script is:inline slot="head">
         (function() {

@@ -57,7 +57,6 @@ export function initWidgetStudio(flatUtilities: UtilityData[]) {
         btn.addEventListener("click", () => activateButton(btn as HTMLElement, flatUtilities, activeTheme));
     });
 
-    setupCopy("copy-url", "code-url");
     setupCopy("copy-iframe", "code-iframe");
 
     activateFromUrl(flatUtilities, activeTheme);
