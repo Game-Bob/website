@@ -6,6 +6,7 @@ import LanguageSheet from "./LanguageSheet.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import LanguageTrigger from "./LanguageTrigger.astro";
 import HeaderKitty from "./HeaderKitty.astro";
+import { getLandingPath } from "../../data/landings";
 import "./Header.css";
 
 const pathname = new URL(Astro.request.url).pathname;
@@ -20,6 +21,9 @@ const aSlug = getLocalizedSlug(lang, "apps");
 const uSlug = getLocalizedSlug(lang, "utilities");
 const aPath = `/${lang}/${aSlug}/`;
 const uPath = `/${lang}/${uSlug}/`;
+const teamPath = await getLandingPath("team", lang);
+const isTeamActive = teamPath ? pathname === teamPath : false;
+const teamLabel = "Team";
 
 const transUrls = await Promise.all(
     Object.keys({ ...languages, ...externalLanguages }).map(async (l) => {
@@ -47,6 +51,7 @@ const transUrls = await Promise.all(
         <div class="nav-links">
             <a href={aPath} class={`nav-link ${pathname.includes(aSlug) ? "nav-active" : ""}`}>{t("menu.apps")}</a>
             <a href={uPath} class={`nav-link ${pathname.includes(uSlug) ? "nav-active" : ""}`}>{t("menu.utilities")}</a>
+            {teamPath && <a href={teamPath} class={`nav-link ${isTeamActive ? "nav-active" : ""}`}>{teamLabel}</a>}
             <div class="nav-separator"></div>
             <div class="nav-actions">
                 <ThemeToggle />
@@ -60,7 +65,7 @@ const transUrls = await Promise.all(
     </div>
 </nav>
 
-<MobileMenu aPath={aPath} uPath={uPath} aSlug={aSlug} uSlug={uSlug} aLabel={t("menu.apps")} uLabel={t("menu.utilities")} pathname={pathname}>
+<MobileMenu aPath={aPath} uPath={uPath} teamPath={teamPath} aSlug={aSlug} uSlug={uSlug} aLabel={t("menu.apps")} uLabel={t("menu.utilities")} teamLabel={teamLabel} pathname={pathname}>
     <ThemeToggle slot="theme-toggle" mobile />
     <LanguageTrigger slot="language-trigger" />
 </MobileMenu>

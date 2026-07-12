@@ -2,6 +2,7 @@ import { SUPPORTED_LANGUAGES, type Language, getLocalizedSlug, externalLanguages
 import { CATEGORIES } from '../data/utilities/registry';
 import { ALL_APP_DEFINITIONS } from '@jjlmoya/apps';
 import type { KnownLocale } from '@jjlmoya/apps';
+import { ALL_LANDING_DEFINITIONS } from '@jjlmoya/landings';
 
 export interface SitemapEntry {
   url: string; lastmod?: string; changefreq?: string; priority?: number; hreflang?: Record<string, string>;
@@ -87,6 +88,28 @@ async function getAppUrls(lang: Language): Promise<SitemapEntry[]> {
   return urls;
 }
 
+async function resolveLandingPath(definition: any, lang: Language): Promise<string | null> {
+  const loader = definition.entry.i18n[lang as KnownLocale] ?? definition.entry.i18n.en;
+  if (!loader) return null;
+  const card = await loader();
+  return card.slug;
+}
+
+async function getLandingUrls(lang: Language): Promise<SitemapEntry[]> {
+  const urls: SitemapEntry[] = [];
+  for (const definition of ALL_LANDING_DEFINITIONS) {
+    const path = await resolveLandingPath(definition, lang);
+    if (!path) continue;
+    urls.push({
+      url: `${BASE_URL}${toLangPath(lang)}/${path}/`,
+      changefreq: 'monthly',
+      priority: 0.6,
+      hreflang: await buildHreflangFor(l => resolveLandingPath(definition, l)),
+    });
+  }
+  return urls;
+}
+
 async function getCategoryUrls(lang: Language): Promise<SitemapEntry[]> {
   const u = getLocalizedSlug(lang, 'utilities');
   const c = getLocalizedSlug(lang, 'categories');
@@ -135,7 +158,7 @@ function renderUrl({ url, hreflang, changefreq, priority }: SitemapEntry): strin
 }
 
 export async function generateSitemap(lang: Language): Promise<string> {
-  const allUrls = [...getStaticUrls(lang), ...await getAppUrls(lang), ...await getCategoryUrls(lang)];
+  const allUrls = [...getStaticUrls(lang), ...await getAppUrls(lang), ...await getLandingUrls(lang), ...await getCategoryUrls(lang)];
   const header = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">';
   return `${header}\n${allUrls.map(renderUrl).join('\n')}\n</urlset>`;
 }
