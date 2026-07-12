@@ -30,7 +30,7 @@ const seo = {
 };
 const cssPath = definition.entry.publicAssets?.cssPath;
 const versionedCssPath = cssPath ? `${cssPath}${cssPath.includes("?") ? "&" : "?"}version=${LANDINGS_VERSION}` : null;
-const { default: LandingComponent } = await definition.LandingComponent();
+const LandingComponent = (await definition.LandingComponent()).default as any;
 ---
 
 <Layout
