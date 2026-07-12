@@ -1,5 +1,6 @@
 import { slugMapping, externalLanguages } from "./utils";
 import { translateSegment } from "./slugTranslator";
+import { ALL_LANDING_DEFINITIONS } from "@jjlmoya/landings";
 export { getUtilityUrl, getUtilitiesHubUrl } from "./urlBuilder";
 
 function buildTargetUrl(path: string, targetLang: string) {
@@ -15,17 +16,46 @@ function findMappingMatch(path: string, lang: string, targetLang: string): strin
     return null;
 }
 
+function getLandingLoaders(definition: (typeof ALL_LANDING_DEFINITIONS)[number], lang: string, targetLang: string) {
+    const current = definition.entry.i18n[lang as any] ?? definition.entry.i18n.en;
+    const target = definition.entry.i18n[targetLang as any] ?? definition.entry.i18n.en;
+    return current && target ? { current, target } : null;
+}
+
+async function findLandingMatch(path: string, lang: string, targetLang: string): Promise<string | null> {
+    for (const definition of ALL_LANDING_DEFINITIONS) {
+        const loaders = getLandingLoaders(definition, lang, targetLang);
+        if (!loaders) continue;
+
+        const currentCard = await loaders.current();
+        if (currentCard.slug !== path) continue;
+
+        const targetCard = await loaders.target();
+        return targetCard.slug;
+    }
+
+    return null;
+}
+
+async function resolveTranslatedPath(opts: { segments: string[]; fullPath: string; lang: string; targetLang: string }): Promise<string> {
+    const { segments, fullPath, lang, targetLang } = opts;
+    const mappingMatch = findMappingMatch(fullPath, lang, targetLang);
+    if (mappingMatch) return mappingMatch;
+
+    const landingMatch = await findLandingMatch(fullPath, lang, targetLang);
+    if (landingMatch) return landingMatch;
+
+    const translated = await Promise.all(segments.map(s => translateSegment(s, lang, targetLang)));
+    return translated.join('/');
+}
+
 export async function getTranslatedUrl(pathname: string, lang: string, targetLang: string) {
     if (!pathname || pathname === '/') return buildTargetUrl('', targetLang);
     const segments = pathname.split('/').filter(Boolean);
     if (segments[0] === lang) segments.shift();
     
     const fullPath = segments.join('/');
-    const match = findMappingMatch(fullPath, lang, targetLang);
-    if (match) return buildTargetUrl(match, targetLang);
-
-    const translated = await Promise.all(segments.map(s => translateSegment(s, lang, targetLang)));
-    return buildTargetUrl(translated.join('/'), targetLang);
+    return buildTargetUrl(await resolveTranslatedPath({ segments, fullPath, lang, targetLang }), targetLang);
 }
 
 interface ExternalUrlOptions {
@@ -85,7 +115,9 @@ export async function getExternalLanguageUrl(options: ExternalUrlOptions): Promi
         return translatedPath;
     }
 
-    const pathSegments = translatedPath.split('/').filter(Boolean);
+    const pathSegments = translatedPath.startsWith('http')
+        ? new URL(translatedPath).pathname.split('/').filter(Boolean)
+        : translatedPath.split('/').filter(Boolean);
     const segment = buildExternalPathSegment(pathSegments, targetLang);
 
     return `${externalDomain}${segment}`;
