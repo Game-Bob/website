@@ -19,14 +19,15 @@ export async function getStaticPaths() {
             const enCat = await catDef.entry.i18n['en']!();
             paths.push({
                 params: { lang, utilities: utilitiesParam, categories: categoriesParam, slug: section.slug },
-                props: { lang, section, categoryEntry: catDef.entry, imageSlug: enCat.slug, categoryKey: catDef.key },
+                props: { lang, section, categoryEntry: catDef.entry, imageSlug: enCat.slug,
+                    categoryKey: catDef.key, noindex: catDef.noindex ?? false },
             });
         }
     }
     return paths;
 }
 
-const { lang: langProp, section, categoryEntry, imageSlug, categoryKey } = Astro.props;
+const { lang: langProp, section, categoryEntry, imageSlug, categoryKey, noindex } = Astro.props;
 const lang = langProp as Language;
 const content = await categoryEntry.i18n[lang]!();
 const finalImageSlug = categoryKey === "converters" ? "universal-image-converter" : imageSlug;
@@ -36,7 +37,7 @@ const { CategorySEO } = await loadCategoryComponents(categoryKey);
 const CategorySEOComponent = await CategorySEO();
 ---
 
-<Layout title={content.title} description={description} image={image} lang={lang}>
+<Layout title={content.title} description={description} image={image} lang={lang} noindex={noindex}>
     <div class="breadcrumb-wrapper">
         <Breadcrumb lang={lang} title={section.title} />
     </div>

@@ -11,6 +11,7 @@ interface Props {
     catKey: string;
     packageName: string;
     section: any;
+    noindex: boolean;
 }
 
 export async function getStaticPaths() {
@@ -27,7 +28,14 @@ export async function getStaticPaths() {
                 const toolLocale = await toolEntry.i18n[lang]!();
                 paths.push({
                     params: { lang, utilities: uParam, categories: cParam, categorySlug: section.slug, toolSlug: toolLocale.slug },
-                    props: { lang, section, toolId: toolEntry.id, catKey: catDef.key, packageName: catDef.packageName },
+                    props: {
+                        lang,
+                        section,
+                        toolId: toolEntry.id,
+                        catKey: catDef.key,
+                        packageName: catDef.packageName,
+                        noindex: catDef.noindex ?? false,
+                    },
                 });
             }
         }
@@ -35,7 +43,7 @@ export async function getStaticPaths() {
     return paths;
 }
 
-const { lang, toolId, catKey, packageName, section } = Astro.props;
+const { lang, toolId, catKey, packageName, section, noindex } = Astro.props;
 const { AllTools } = await loadCategoryComponents(catKey);
 const tool = AllTools.find((t: any) => t.entry.id === toolId)!;
 ---
@@ -46,4 +54,5 @@ const tool = AllTools.find((t: any) => t.entry.id === toolId)!;
     category={section.title}
     categoryKey={catKey}
     packageName={packageName}
+    noindex={noindex}
 />

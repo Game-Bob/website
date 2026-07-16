@@ -8,5 +8,6 @@ export const finance: CategoryDefinition = {
     packageName: "@jjlmoya/utils-finance",
     entry,
     theme: "green",
+    noindex: true,
     toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
 };

@@ -9,6 +9,7 @@ interface Props {
     category?: string;
     categoryKey?: string;
     packageName: string;
+    noindex?: boolean;
     tool: {
         entry: any;
         Component: any;
@@ -17,7 +18,7 @@ interface Props {
     };
 }
 
-const { lang, tool, category, categoryKey, packageName } = Astro.props;
+const { lang, tool, category, categoryKey, packageName, noindex = false } = Astro.props;
 const { entry } = tool;
 const { default: Component } = await tool.Component();
 const { default: SEOComponent } = await tool.SEOComponent();
@@ -59,6 +60,7 @@ const cssHref = `/styles/lib/${categoryKey}/${enSlug}.css?version=${version}`;
     lang={lang}
     toolCss={cssHref}
     assetVersion={version}
+    noindex={noindex}
 >
     <div slot="header">
         <UtilityHeader
