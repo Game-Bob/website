@@ -4,4 +4,5 @@ export default {
     description: "Ontdek onze collectie tools en spellen die zijn ontworpen om je digitale workflow en entertainment naar een hoger niveau te tillen.",
     explore_apps: "Apps verkennen",
     explore_utils: "Hulpmiddelen verkennen",
+    meow: "miauw",
 };

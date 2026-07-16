@@ -14,6 +14,7 @@ interface Props {
     modifiedTime?: string;
     lang?: string;
     assetVersion?: string;
+    noindex?: boolean;
 }
 
 const {
@@ -26,6 +27,7 @@ const {
     modifiedTime,
     lang = "en",
     assetVersion = packageJson.version,
+    noindex = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -67,6 +69,7 @@ for (const [extLang, extUrl] of Object.entries(externalLanguages)) {
 <title>{fullTitle}</title>
 <meta name="title" content={fullTitle} />
 <meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex, follow" />}
 
 <link rel="icon" type="image/x-icon" href={appendVersion(favicon ?? "/favicon.ico", packageJson.version)} />
 <link rel="icon" type="image/webp" href={appendVersion(favicon ?? "/favicon.webp", packageJson.version)} sizes="any" />
@@ -83,10 +86,10 @@ for (const [extLang, extUrl] of Object.entries(externalLanguages)) {
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 
 <link rel="canonical" href={canonicalURL} />
-{alternateUrls.map(({ lang: altLang, url }) => (
+{!noindex && alternateUrls.map(({ lang: altLang, url }) => (
     <link rel="alternate" hreflang={altLang} href={url} />
 ))}
-<link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
+{!noindex && <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />}
 
 <OpenGraph title={fullTitle} description={description} imageURL={imageURL} url={Astro.url} lang={lang} article={article} publishedTime={publishedTime} modifiedTime={modifiedTime} />
 

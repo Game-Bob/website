@@ -1,108 +1,113 @@
 ---
-import "../styles/tokens.css";
+import "../styles/global.css";
+import "./index.css";
+import "@fontsource/inter/300.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/900.css";
 import packageJson from "../../package.json";
+import { SUPPORTED_LANGUAGES, languages, externalLanguages } from "../i18n/utils";
+import { translations } from "../i18n";
+import esHome from "../i18n/locales/es/home";
+import Footer from "../components/common/Footer.astro";
+import ThemeToggle from "../components/common/ThemeToggle.astro";
+
+const BASE_URL = "https://www.gamebob.dev";
+const spanishUrl = `${externalLanguages.es}/`;
+const languageOptions = [
+    { code: "en", name: languages.en, href: "/en/", meow: translations.en.home.meow },
+    { code: "es", name: "Español", href: spanishUrl, meow: esHome.meow },
+    ...SUPPORTED_LANGUAGES.filter(code => code !== "en").map(code => ({
+        code,
+        name: languages[code],
+        href: `/${code}/`,
+        meow: translations[code].home.meow,
+    })),
+];
+const placements = [
+    [12, 16, 1.25, -5], [80, 13, 1.12, 4], [29, 9, 0.88, 2], [88, 35, 1.08, -3],
+    [10, 43, 0.92, 5], [78, 72, 1.18, -4], [16, 74, 1.02, -2], [58, 10, 0.82, -5],
+    [91, 62, 0.9, 4], [8, 88, 0.86, -4], [40, 88, 1.04, 3], [72, 47, 0.88, 5],
+    [90, 88, 1.2, -3], [42, 14, 0.84, 4], [17, 59, 1.15, -5],
+];
+const languageComposition = languageOptions.map((language, index) => ({
+    ...language,
+    x: placements[index][0],
+    y: placements[index][1],
+    scale: placements[index][2],
+    tilt: placements[index][3],
+    delay: `${-(index % 5) * 0.55}s`,
+}));
+const description = "Choose your language to explore GameBob's free online tools, calculators and interactive utilities.";
 ---
-<!DOCTYPE html>
-<html lang="en" id="root-html">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GameBob</title>
-    <link rel="canonical" href="https://www.gamebob.dev/en/" />
-    <link rel="icon" type="image/webp" href={`/favicon.webp?version=${packageJson.version}`} />
-    <meta http-equiv="refresh" content="0; url=/en/" />
-    <script is:inline>(function(){const supported=['en','fr','de','it','pt','nl','sv','pl','id','tr','ru','ja','ko','zh'];const l=(navigator.language||'en').split('-')[0];const lang=supported.includes(l)?l:'en';document.getElementById('root-html').lang=lang;window.location.replace('/'+lang+'/');})();</script>
 
-<style>
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+<!doctype html>
+<html lang="en" class="theme-dark">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>GameBob — Free online tools in your language</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={`${BASE_URL}/`} />
+        {SUPPORTED_LANGUAGES.map(code => (
+            <link rel="alternate" hreflang={code} href={`${BASE_URL}/${code}/`} />
+        ))}
+        <link rel="alternate" hreflang="es" href={spanishUrl} />
+        <link rel="alternate" hreflang="x-default" href={`${BASE_URL}/`} />
+        <link rel="icon" type="image/x-icon" href={`/favicon.ico?version=${packageJson.version}`} />
+        <link rel="icon" type="image/webp" href={`/favicon.webp?version=${packageJson.version}`} sizes="any" />
+        <link rel="apple-touch-icon" href={`/apple-touch-icon-brand.webp?version=${packageJson.version}`} />
+        <meta name="theme-color" content="#020617" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="GameBob — Free online tools in your language" />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={`${BASE_URL}/`} />
+        <meta property="og:image" content={`${BASE_URL}/og-default.webp`} />
+        <script is:inline>
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "light") {
+                document.documentElement.classList.remove("theme-dark");
+                document.documentElement.classList.add("theme-light");
+            }
+        </script>
+    </head>
+    <body class="language-gateway">
+        <main class="language-stage" id="language-stage">
+            <h1 class="visually-hidden">Choose your language</h1>
+            <div class="gateway-theme-toggle"><ThemeToggle /></div>
+            <div class="fluid-field" aria-hidden="true"><span class="fluid-one"></span><span class="fluid-two"></span><span class="fluid-three"></span></div>
 
-    body {
-        background: var(--bg-page);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        width: 100vw;
-        overflow: hidden;
-    }
+            <div class="brand-portal" aria-hidden="true">
+                <div class="portal-aura"></div>
+                <div class="portal-refraction"></div>
+                <div class="portal-copy">
+                    <div class="portal-logo">Game<span>Bob</span></div>
+                    <div class="portal-meow-ceremony">
+                        <span class="meow-spark meow-spark-one">✦</span>
+                        <span class="meow-spark meow-spark-two">✧</span>
+                        <span class="meow-spark meow-spark-three">·</span>
+                        <div class="portal-meow" id="portal-meow"></div>
+                        <span class="meow-thread"></span>
+                    </div>
+                </div>
+            </div>
 
-    .splash {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: var(--space-xl);
-        animation: fade-in 0.6s ease-out both;
-    }
-
-    .logo {
-        font-size: clamp(2.5rem, 8vw, 4.5rem);
-        font-weight: 900;
-        letter-spacing: -0.04em;
-        color: var(--text-main);
-    }
-
-    .logo span {
-        color: var(--accent);
-    }
-
-    .tagline {
-        font-size: 0.95rem;
-        color: var(--text-muted);
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-    }
-
-    .dots {
-        display: flex;
-        gap: var(--space-sm);
-    }
-
-    .dot {
-        width: var(--space-3xs);
-        height: var(--space-3xs);
-        border-radius: var(--radius-full);
-        background: var(--accent);
-        animation: bounce 1.2s ease-in-out infinite;
-    }
-    .dot:nth-child(2) { animation-delay: 0.2s; }
-    .dot:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes bounce {
-        0%, 80%, 100% {
-            transform: scale(0.6);
-            opacity: 40%;
-        }
-
-        40% {
-            transform: scale(1);
-            opacity: 100%;
-        }
-    }
-
-    @keyframes fade-in {
-        from {
-            opacity: 0%;
-            transform: translateY(12px);
-        }
-
-        to {
-            opacity: 100%;
-            transform: translateY(0);
-        }
-    }
-</style>
-</head>
-<body>
-    <div class="splash">
-        <div class="logo">Game<span>Bob</span></div>
-        <div class="tagline">Free tools for everyone</div>
-        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-    </div>
-</body>
+            <nav class="language-nav" aria-label="Choose your language">
+                <ul class="language-constellation">
+                    {languageComposition.map(({ code, name, href, meow, x, y, scale, tilt, delay }) => (
+                        <li class="language-node" style={`--x:${x}%;--y:${y}%;--scale:${scale};--tilt:${tilt}deg;--delay:${delay}`}>
+                            <a href={href} lang={code} hreflang={code} data-language={code} data-meow={meow} aria-label={name}>
+                                <span>{name}</span>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+        </main>
+        <Footer />
+        <script>
+            import { setupLanguageGateway } from "../scripts/language-gateway";
+            setupLanguageGateway();
+        </script>
+    </body>
 </html>

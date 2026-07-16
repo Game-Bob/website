@@ -8,5 +8,6 @@ export const health: CategoryDefinition = {
     packageName: "@jjlmoya/utils-health",
     entry,
     theme: "red",
+    noindex: true,
     toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
 };

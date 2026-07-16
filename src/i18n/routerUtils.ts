@@ -1,6 +1,6 @@
 import { slugMapping, externalLanguages } from "./utils";
 import { translateSegment } from "./slugTranslator";
-import { ALL_LANDING_DEFINITIONS } from "@jjlmoya/landings";
+import { ALL_LANDING_DEFINITIONS, type KnownLocale } from "@jjlmoya/landings";
 export { getUtilityUrl, getUtilitiesHubUrl } from "./urlBuilder";
 
 function buildTargetUrl(path: string, targetLang: string) {
@@ -17,8 +17,8 @@ function findMappingMatch(path: string, lang: string, targetLang: string): strin
 }
 
 function getLandingLoaders(definition: (typeof ALL_LANDING_DEFINITIONS)[number], lang: string, targetLang: string) {
-    const current = definition.entry.i18n[lang as any] ?? definition.entry.i18n.en;
-    const target = definition.entry.i18n[targetLang as any] ?? definition.entry.i18n.en;
+    const current = definition.entry.i18n[lang as KnownLocale] ?? definition.entry.i18n.en;
+    const target = definition.entry.i18n[targetLang as KnownLocale] ?? definition.entry.i18n.en;
     return current && target ? { current, target } : null;
 }
 

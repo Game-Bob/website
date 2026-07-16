@@ -77,4 +77,6 @@ export const CATEGORIES: CategoryDefinition[] = [
     forensicScience,
 ];
 
+export const INDEXABLE_CATEGORIES = CATEGORIES.filter(({ noindex }) => !noindex);
+
 export const ALL_TOOL_ENTRIES = CATEGORIES.flatMap(c => c.toolsWithColors.map(t => t.toolEntry));

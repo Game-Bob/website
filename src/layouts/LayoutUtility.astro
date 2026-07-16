@@ -19,12 +19,13 @@ interface Props {
     howToSteps?: HowToStep[]; hideWidget?: boolean; lang?: string;
     toolCss?: string;
     assetVersion?: string;
+    noindex?: boolean;
 }
 
 const {
     title, description, image, category: propCategory,
     appLinks, appSlug, faqItems, howToSteps,
-    hideWidget = false, lang: propLang, toolCss, assetVersion
+    hideWidget = false, lang: propLang, toolCss, assetVersion, noindex = false
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -35,7 +36,7 @@ const lang = propLang || langFromUrl;
 const categorySlug = pathSegments[3] || "";
 ---
 
-<Layout title={title} description={description} image={image} fullWidth={true} lang={lang} assetVersion={assetVersion}>
+<Layout title={title} description={description} image={image} fullWidth={true} lang={lang} assetVersion={assetVersion} noindex={noindex}>
     <UtilityStructuredData
         title={title} description={description} url={currentPath}
         category={propCategory} faqItems={faqItems} howToSteps={howToSteps}

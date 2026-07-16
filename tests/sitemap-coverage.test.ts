@@ -3,7 +3,7 @@ import { SUPPORTED_LANGUAGES, getLocalizedSlug } from "../src/i18n/utils";
 import { CATEGORIES } from "../src/data/utilities/registry";
 import { generateSitemap } from "../src/utils/sitemapGenerator";
 import type { Language } from "../src/i18n/utils";
-import { ALL_LANDING_DEFINITIONS } from "@jjlmoya/landings";
+import { ALL_LANDING_DEFINITIONS, type KnownLocale } from "@jjlmoya/landings";
 
 type ToolContent = { slug: string };
 type CatContent = { slug: string };
@@ -22,7 +22,7 @@ beforeAll(async () => {
                 ),
             ]),
             ...ALL_LANDING_DEFINITIONS.map(({ entry }) =>
-                (entry.i18n[lang as any] ?? entry.i18n.en)?.().then((c: LandingContent) => c && landingCache.set(`${lang}:${entry.id}`, c))
+                (entry.i18n[lang as KnownLocale] ?? entry.i18n.en)?.().then((c: LandingContent) => c && landingCache.set(`${lang}:${entry.id}`, c))
             ),
         ])
     );
