@@ -4,4 +4,5 @@ export default {
     description: "Discover our collection of tools and games designed to elevate your digital workflow and entertainment.",
     explore_apps: "Explore Apps",
     explore_utils: "Explore Utilities",
+    meow: "meow",
 };
