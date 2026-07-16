@@ -4,7 +4,7 @@ import icon from "astro-icon";
 export default defineConfig({
     site: "https://www.gamebob.dev",
     build: {
-        inlineStylesheets: "always",
+        inlineStylesheets: "auto",
     },
     integrations: [icon()],
     i18n: {
