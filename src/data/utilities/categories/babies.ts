@@ -1,4 +1,5 @@
-import { babiesCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-babies';
+import { babiesCategory as entry } from '@jjlmoya/utils-babies/data';
+import { ALL_ENTRIES } from '@jjlmoya/utils-babies/entries';
 import type { CategoryDefinition } from '../types';
 
 const categoryColor = "#f472b6";
@@ -8,5 +9,5 @@ export const babies: CategoryDefinition = {
     packageName: "@jjlmoya/utils-babies",
     entry,
     theme: "pink",
-    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
+    toolsWithColors: ALL_ENTRIES.map(toolEntry => ({ toolEntry, color: categoryColor })),
 };

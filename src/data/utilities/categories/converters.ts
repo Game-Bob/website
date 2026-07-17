@@ -1,4 +1,5 @@
-import { convertersCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-converters';
+import { convertersCategory as entry } from '@jjlmoya/utils-converters/data';
+import { ALL_ENTRIES } from '@jjlmoya/utils-converters/entries';
 import type { CategoryDefinition } from '../types';
 
 const categoryColor = "#06b6d4";
@@ -8,5 +9,5 @@ export const converters: CategoryDefinition = {
     packageName: "@jjlmoya/utils-converters",
     entry,
     theme: "amber",
-    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
+    toolsWithColors: ALL_ENTRIES.map(toolEntry => ({ toolEntry, color: categoryColor })),
 };

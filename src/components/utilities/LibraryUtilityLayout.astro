@@ -2,6 +2,7 @@
 import LayoutUtility from "../../layouts/LayoutUtility.astro";
 import UtilityHeader from "./UtilityHeader.astro";
 import { type Language } from "../../i18n/utils";
+import type { UtilityItem } from "../../data/utilities/types";
 import packageJson from "../../../package.json";
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
     category?: string;
     categoryKey?: string;
     packageName: string;
+    relatedUtilities?: UtilityItem[];
     noindex?: boolean;
     tool: {
         entry: any;
@@ -18,7 +20,7 @@ interface Props {
     };
 }
 
-const { lang, tool, category, categoryKey, packageName, noindex = false } = Astro.props;
+const { lang, tool, category, categoryKey, packageName, relatedUtilities = [], noindex = false } = Astro.props;
 const { entry } = tool;
 const { default: Component } = await tool.Component();
 const { default: SEOComponent } = await tool.SEOComponent();
@@ -61,6 +63,7 @@ const cssHref = `/styles/lib/${categoryKey}/${enSlug}.css?version=${version}`;
     toolCss={cssHref}
     assetVersion={version}
     noindex={noindex}
+    {relatedUtilities}
 >
     <div slot="header">
         <UtilityHeader

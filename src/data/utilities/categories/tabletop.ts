@@ -1,4 +1,5 @@
-import { tabletopCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-tabletop';
+import { tabletopCategory as entry } from '@jjlmoya/utils-tabletop/data';
+import { ALL_ENTRIES } from '@jjlmoya/utils-tabletop/entries';
 import type { CategoryDefinition } from '../types';
 
 const categoryColor = "#6366f1";
@@ -8,5 +9,5 @@ export const tabletop: CategoryDefinition = {
     packageName: "@jjlmoya/utils-tabletop",
     entry,
     theme: "indigo",
-    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
+    toolsWithColors: ALL_ENTRIES.map(toolEntry => ({ toolEntry, color: categoryColor })),
 };

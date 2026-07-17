@@ -1,6 +1,6 @@
 ---
-import { languages, externalLanguages, getLocalizedSlug, useTranslations, SUPPORTED_LANGUAGES, type Language } from "../../i18n/utils";
-import { getTranslatedUrl, getExternalLanguageUrl } from "../../i18n/routerUtils";
+import { getLocalizedSlug, useTranslations, SUPPORTED_LANGUAGES, type Language } from "../../i18n/utils";
+import type { AlternateUrl } from "../../i18n/routeAlternates";
 import MobileMenu from "./MobileMenu.astro";
 import LanguageSheet from "./LanguageSheet.astro";
 import ThemeToggle from "./ThemeToggle.astro";
@@ -13,8 +13,11 @@ const pathname = new URL(Astro.request.url).pathname;
 const langFromPath = pathname.split('/')[1] || "en";
 const lang = SUPPORTED_LANGUAGES.includes(langFromPath as Language) ? (langFromPath as Language) : "en" as Language;
 
-interface Props { className?: string; }
-const { className = "" } = Astro.props;
+interface Props {
+    className?: string;
+    alternateUrls: AlternateUrl[];
+}
+const { className = "", alternateUrls } = Astro.props;
 
 const t = useTranslations(lang);
 const aSlug = getLocalizedSlug(lang, "apps");
@@ -25,22 +28,6 @@ const teamPath = await getLandingPath("team", lang);
 const isTeamActive = teamPath ? pathname === teamPath : false;
 const teamLabel = "Team";
 
-const transUrls = await Promise.all(
-    Object.keys({ ...languages, ...externalLanguages }).map(async (l) => {
-        if (externalLanguages[l]) {
-            return {
-                lang: l,
-                url: await getExternalLanguageUrl({
-                    pathname,
-                    currentLang: lang,
-                    targetLang: l,
-                    externalDomain: externalLanguages[l]
-                })
-            };
-        }
-        return { lang: l, url: await getTranslatedUrl(pathname, lang, l) };
-    })
-);
 ---
 
 <nav class={`main-nav ${className}`} id="main-nav">
@@ -70,7 +57,7 @@ const transUrls = await Promise.all(
     <LanguageTrigger slot="language-trigger" />
 </MobileMenu>
 
-<LanguageSheet transUrls={transUrls} currentLang={lang} title={t("ui.select_language")} />
+<LanguageSheet transUrls={alternateUrls} currentLang={lang} title={t("ui.select_language")} />
 
 <script>
     function setupHeader() {

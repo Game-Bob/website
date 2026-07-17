@@ -1,4 +1,5 @@
-import { sportsCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-sports';
+import { sportsCategory as entry } from '@jjlmoya/utils-sports/data';
+import { ALL_ENTRIES } from '@jjlmoya/utils-sports/entries';
 import type { CategoryDefinition } from '../types';
 
 const categoryColor = "#ef4444";
@@ -8,5 +9,5 @@ export const sports: CategoryDefinition = {
     packageName: "@jjlmoya/utils-sports",
     entry,
     theme: "red",
-    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
+    toolsWithColors: ALL_ENTRIES.map(toolEntry => ({ toolEntry, color: categoryColor })),
 };

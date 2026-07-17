@@ -1,4 +1,5 @@
-import { healthCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-health';
+import { healthCategory as entry } from '@jjlmoya/utils-health/data';
+import { ALL_ENTRIES } from '@jjlmoya/utils-health/entries';
 import type { CategoryDefinition } from '../types';
 
 const categoryColor = "#ef4444";
@@ -9,5 +10,5 @@ export const health: CategoryDefinition = {
     entry,
     theme: "red",
     noindex: true,
-    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
+    toolsWithColors: ALL_ENTRIES.map(toolEntry => ({ toolEntry, color: categoryColor })),
 };

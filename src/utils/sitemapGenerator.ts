@@ -1,7 +1,7 @@
 import { SUPPORTED_LANGUAGES, type Language, getLocalizedSlug, externalLanguages } from '../i18n/utils';
 import { INDEXABLE_CATEGORIES } from '../data/utilities/registry';
-import { ALL_APP_DEFINITIONS } from '@jjlmoya/apps';
-import type { KnownLocale } from '@jjlmoya/apps';
+import { ALL_APP_ENTRIES } from '@jjlmoya/apps/data';
+import type { KnownLocale } from '@jjlmoya/apps/data';
 import { ALL_LANDING_DEFINITIONS } from '@jjlmoya/landings';
 
 export interface SitemapEntry {
@@ -64,8 +64,8 @@ async function getToolUrls(catDef: any, cat: any, lang: Language): Promise<Sitem
   return urls;
 }
 
-async function resolveAppPath(definition: any, lang: Language): Promise<string | null> {
-  const loader = definition.entry.i18n[lang as KnownLocale] ?? definition.entry.i18n.en;
+async function resolveAppPath(entry: any, lang: Language): Promise<string | null> {
+  const loader = entry.i18n[lang as KnownLocale] ?? entry.i18n.en;
   if (!loader) return null;
   const card = await loader();
   const a = getLocalizedSlug(lang, 'apps');
@@ -74,10 +74,10 @@ async function resolveAppPath(definition: any, lang: Language): Promise<string |
 
 async function getAppUrls(lang: Language): Promise<SitemapEntry[]> {
   const urls: SitemapEntry[] = [];
-  for (const definition of ALL_APP_DEFINITIONS) {
-    const path = await resolveAppPath(definition, lang);
+  for (const entry of ALL_APP_ENTRIES) {
+    const path = await resolveAppPath(entry, lang);
     if (!path) continue;
-    const hreflang = await buildHreflangFor(l => resolveAppPath(definition, l));
+    const hreflang = await buildHreflangFor(l => resolveAppPath(entry, l));
     urls.push({
       url: `${BASE_URL}${toLangPath(lang)}/${path}/`,
       changefreq: 'monthly',

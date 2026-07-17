@@ -1,4 +1,5 @@
-import { dronesCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-drones';
+import { dronesCategory as entry } from '@jjlmoya/utils-drones/data';
+import { ALL_ENTRIES } from '@jjlmoya/utils-drones/entries';
 import type { CategoryDefinition } from '../types';
 
 const categoryColor = "#10b981";
@@ -8,5 +9,5 @@ export const drones: CategoryDefinition = {
     packageName: "@jjlmoya/utils-drones",
     entry,
     theme: "sky",
-    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
+    toolsWithColors: ALL_ENTRIES.map(toolEntry => ({ toolEntry, color: categoryColor })),
 };

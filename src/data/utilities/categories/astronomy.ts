@@ -1,4 +1,5 @@
-import { astronomyCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-astronomy';
+import { astronomyCategory as entry } from '@jjlmoya/utils-astronomy/data';
+import { ALL_ENTRIES } from '@jjlmoya/utils-astronomy/entries';
 import type { CategoryDefinition } from '../types';
 
 const categoryColor = "#6366f1";
@@ -8,5 +9,5 @@ export const astronomy: CategoryDefinition = {
     packageName: "@jjlmoya/utils-astronomy",
     entry,
     theme: "indigo",
-    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
+    toolsWithColors: ALL_ENTRIES.map(toolEntry => ({ toolEntry, color: categoryColor })),
 };

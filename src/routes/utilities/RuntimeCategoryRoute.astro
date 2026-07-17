@@ -1,0 +1,113 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CardUtility from '../../components/utilities/CardUtility.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import { getUtilityUrl } from '../../i18n/urlBuilder';
+import { SUPPORTED_LANGUAGES, type Language } from '../../i18n/languages';
+
+interface Props {
+    CategorySEO: any;
+    categoryEntry: any;
+    categoryEntries: any[];
+    toolColors: Record<string, string>;
+    categoryKey: string;
+    noindex: boolean;
+}
+
+const { CategorySEO, categoryEntry, categoryEntries, toolColors, categoryKey, noindex } = Astro.props;
+const langSegment = Astro.url.pathname.split('/').filter(Boolean)[0] ?? 'en';
+const lang = (SUPPORTED_LANGUAGES as readonly string[]).includes(langSegment)
+    ? langSegment as Language
+    : 'en';
+const categoryLoader = categoryEntry.i18n[lang] ?? categoryEntry.i18n.en;
+if (!categoryLoader) throw new Error(`Missing ${categoryKey} category locale: ${lang}`);
+
+const content = await categoryLoader();
+const englishLoader = categoryEntry.i18n.en ?? categoryLoader;
+const englishContent = await englishLoader();
+const utilities = await Promise.all(categoryEntries.map(async entry => {
+    const loader = entry.i18n[lang] ?? entry.i18n.en;
+    if (!loader) throw new Error(`Missing ${entry.id} locale: ${lang}`);
+    const toolContent = await loader();
+    const color = toolColors[entry.id];
+    if (!color) throw new Error(`Missing utility color for ${entry.id}`);
+    return {
+        href: getUtilityUrl(lang, content.slug, toolContent.slug),
+        iconBg: entry.icons.bg,
+        iconFg: entry.icons.fg,
+        title: toolContent.title,
+        description: toolContent.description,
+        seoDescription: toolContent.seoDescription,
+        color,
+    };
+}));
+const imageSlug = categoryKey === 'converters' ? 'universal-image-converter' : englishContent.slug;
+const image = `/images/utilities/${imageSlug}.webp`;
+---
+
+<Layout title={content.title} description={content.description} {image} {lang} {noindex}>
+    <div class="breadcrumb-wrapper">
+        <Breadcrumb {lang} title={content.title} />
+    </div>
+    <section class="category-page">
+        <header class="category-header">
+            <h1 class="category-title">{content.title}</h1>
+            <p class="category-description">{content.description}</p>
+        </header>
+
+        <div class="utilities-grid">
+            {utilities.map(utility => <CardUtility {...utility} {lang} />)}
+        </div>
+
+        <CategorySEO locale={lang} />
+    </section>
+</Layout>
+
+<style>
+    .breadcrumb-wrapper {
+        padding-block-start: var(--space-xl);
+        padding-inline: var(--space-md);
+    }
+
+    .category-page {
+        max-width: 1200px;
+        padding: var(--space-xl) var(--space-md);
+        margin: 0 auto;
+    }
+
+    .category-header {
+        margin-block-end: var(--space-xl);
+        text-align: center;
+    }
+
+    .category-title {
+        margin: 0;
+        color: var(--text-main);
+        font-size: clamp(3.5rem, 9vw, 7rem);
+        font-weight: 900;
+        letter-spacing: -0.06em;
+        text-transform: lowercase;
+    }
+
+    .category-description {
+        margin-block-start: 1rem;
+        color: var(--text-muted);
+        font-size: 1.25rem;
+    }
+
+    .utilities-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: var(--space-lg);
+        margin-block-end: var(--space-4xl);
+    }
+
+    @media (width <= 768px) {
+        .category-page { padding: var(--space-lg) var(--space-sm); }
+        .utilities-grid { grid-template-columns: 1fr; }
+    }
+</style>
+
+<style is:global>
+    .seo-article { margin-top: var(--space-4xl); }
+</style>
