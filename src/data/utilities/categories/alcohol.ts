@@ -1,4 +1,5 @@
-import { alcoholCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-alcohol';
+import { alcoholCategory as entry } from '@jjlmoya/utils-alcohol/data';
+import { ALL_ENTRIES } from '@jjlmoya/utils-alcohol/entries';
 import type { CategoryDefinition } from '../types';
 
 const categoryColor = "#f43f5e";
@@ -8,5 +9,5 @@ export const alcohol: CategoryDefinition = {
     packageName: "@jjlmoya/utils-alcohol",
     entry,
     theme: "amber",
-    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
+    toolsWithColors: ALL_ENTRIES.map(toolEntry => ({ toolEntry, color: categoryColor })),
 };

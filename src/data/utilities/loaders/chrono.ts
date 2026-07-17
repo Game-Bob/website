@@ -1,1 +1,1 @@
-export { ALL_TOOLS as AllTools, chronoCategorySEO as CategorySEO } from '@jjlmoya/utils-chrono';
+export const CategorySEO = () => import("@jjlmoya/utils-chrono/category-seo").then(module => module.default);

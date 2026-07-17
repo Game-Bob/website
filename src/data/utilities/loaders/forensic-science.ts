@@ -1,1 +1,1 @@
-export { ALL_TOOLS as AllTools, ForensicCategorySEO as CategorySEO } from '@jjlmoya/utils-forensic-science';
+export const CategorySEO = () => import("@jjlmoya/utils-forensic-science/category-seo").then(module => module.default);

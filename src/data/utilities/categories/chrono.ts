@@ -1,4 +1,5 @@
-import { chronoCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-chrono';
+import { chronoCategory as entry } from '@jjlmoya/utils-chrono/data';
+import { ALL_ENTRIES } from '@jjlmoya/utils-chrono/entries';
 import type { CategoryDefinition } from '../types';
 
 const categoryColor = "#d97706";
@@ -8,5 +9,5 @@ export const chrono: CategoryDefinition = {
     packageName: "@jjlmoya/utils-chrono",
     entry,
     theme: "amber",
-    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
+    toolsWithColors: ALL_ENTRIES.map(toolEntry => ({ toolEntry, color: categoryColor })),
 };

@@ -1,4 +1,5 @@
-import { educationCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-education';
+import { educationCategory as entry } from '@jjlmoya/utils-education/data';
+import { ALL_ENTRIES } from '@jjlmoya/utils-education/entries';
 import type { CategoryDefinition } from '../types';
 
 const categoryColor = "#8b5cf6";
@@ -8,5 +9,5 @@ export const education: CategoryDefinition = {
     packageName: "@jjlmoya/utils-education",
     entry,
     theme: "blue",
-    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
+    toolsWithColors: ALL_ENTRIES.map(toolEntry => ({ toolEntry, color: categoryColor })),
 };

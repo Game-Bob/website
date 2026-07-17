@@ -1,12 +1,13 @@
 import { defineConfig } from "astro/config";
 import icon from "astro-icon";
+import isolatedContentRoutes from "./src/integrations/isolatedContentRoutes.mjs";
 
 export default defineConfig({
     site: "https://www.gamebob.dev",
     build: {
         inlineStylesheets: "auto",
     },
-    integrations: [icon()],
+    integrations: [isolatedContentRoutes(), icon()],
     i18n: {
         defaultLocale: "en",
         locales: ["en", "fr", "de", "it", "pt", "nl", "sv", "pl", "id", "tr", "ru", "ja", "ko", "zh"],

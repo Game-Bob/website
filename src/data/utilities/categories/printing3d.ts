@@ -1,4 +1,5 @@
-import { printing3dCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-printing3d';
+import { printing3dCategory as entry } from '@jjlmoya/utils-printing3d/data';
+import { ALL_ENTRIES } from '@jjlmoya/utils-printing3d/entries';
 import type { CategoryDefinition } from '../types';
 
 const categoryColor = "#f43f5e";
@@ -8,5 +9,5 @@ export const printing3d: CategoryDefinition = {
     packageName: "@jjlmoya/utils-printing3d",
     entry,
     theme: "orange",
-    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
+    toolsWithColors: ALL_ENTRIES.map(toolEntry => ({ toolEntry, color: categoryColor })),
 };

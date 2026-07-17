@@ -1,4 +1,5 @@
-import { travelCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-travel';
+import { travelCategory as entry } from '@jjlmoya/utils-travel/data';
+import { ALL_ENTRIES } from '@jjlmoya/utils-travel/entries';
 import type { CategoryDefinition } from '../types';
 
 const categoryColor = "#14b8a6";
@@ -8,5 +9,5 @@ export const travel: CategoryDefinition = {
     packageName: "@jjlmoya/utils-travel",
     entry,
     theme: "blue",
-    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
+    toolsWithColors: ALL_ENTRIES.map(toolEntry => ({ toolEntry, color: categoryColor })),
 };

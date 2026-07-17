@@ -1,1 +1,1 @@
-export { ALL_TOOLS as AllTools, streamingCategorySEO as CategorySEO } from '@jjlmoya/utils-streaming';
+export const CategorySEO = () => import("@jjlmoya/utils-streaming/category-seo").then(module => module.default);

@@ -1,0 +1,33 @@
+---
+import LibraryUtilityLayout from '../../components/utilities/LibraryUtilityLayout.astro';
+import { developerCategory } from '@jjlmoya/utils-developer/data';
+import { SUPPORTED_LANGUAGES, type Language } from '../../i18n/languages';
+
+interface Props {
+    tool: {
+        entry: any;
+        Component: any;
+        SEOComponent: any;
+        BibliographyComponent: any;
+    };
+}
+
+const { tool } = Astro.props;
+const langSegment = Astro.url.pathname.split('/').filter(Boolean)[0] ?? 'en';
+const lang = (SUPPORTED_LANGUAGES as readonly string[]).includes(langSegment)
+    ? langSegment as Language
+    : 'en';
+const categoryLoader = developerCategory.i18n[lang] ?? developerCategory.i18n.en;
+
+if (!categoryLoader) throw new Error(`Missing developer category locale: ${lang}`);
+
+const category = await categoryLoader();
+---
+
+<LibraryUtilityLayout
+    lang={lang}
+    {tool}
+    category={category.title}
+    categoryKey="developer"
+    packageName="@jjlmoya/utils-developer"
+/>

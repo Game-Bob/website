@@ -1,7 +1,7 @@
 import { slugMapping } from "./utils";
 import { ALL_TOOL_ENTRIES, CATEGORIES } from "../data/utilities/registry";
-import { ALL_APP_DEFINITIONS } from "@jjlmoya/apps";
-import type { KnownLocale } from "@jjlmoya/apps";
+import { ALL_APP_ENTRIES } from "@jjlmoya/apps/data";
+import type { KnownLocale } from "@jjlmoya/apps/data";
 
 export function translateFromMapping(segment: string, lang: string, targetLang: string): string | undefined {
     for (const mapping of Object.values(slugMapping)) {
@@ -25,15 +25,15 @@ export async function translateFromTools(segment: string, lang: string, targetLa
     }
 }
 
-function getAppLoaders(definition: (typeof ALL_APP_DEFINITIONS)[number], lang: string, targetLang: string) {
-    const current = definition.entry.i18n[lang as KnownLocale] ?? definition.entry.i18n.en;
-    const target = definition.entry.i18n[targetLang as KnownLocale] ?? definition.entry.i18n.en;
+function getAppLoaders(entry: (typeof ALL_APP_ENTRIES)[number], lang: string, targetLang: string) {
+    const current = entry.i18n[lang as KnownLocale] ?? entry.i18n.en;
+    const target = entry.i18n[targetLang as KnownLocale] ?? entry.i18n.en;
     return current && target ? { current, target } : null;
 }
 
 export async function translateFromApps(segment: string, lang: string, targetLang: string): Promise<string | undefined> {
-    for (const definition of ALL_APP_DEFINITIONS) {
-        const loaders = getAppLoaders(definition, lang, targetLang);
+    for (const entry of ALL_APP_ENTRIES) {
+        const loaders = getAppLoaders(entry, lang, targetLang);
         if (!loaders) continue;
         const current = await loaders.current();
         if (current.slug === segment) return (await loaders.target()).slug;
