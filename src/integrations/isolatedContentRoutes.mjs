@@ -68,8 +68,8 @@ function writeGeneratedRoute(filename, source) {
     return pathToFileURL(destination);
 }
 
-function utilityAdapter(runtime) {
-    return `---\nimport RuntimeUtilityRoute from '../../src/routes/utilities/RuntimeUtilityRoute.astro';\nimport { ${runtime.exportName} } from '${runtime.packageName}/runtime/${runtime.subpath}';\n---\n\n<RuntimeUtilityRoute tool={${runtime.exportName}} />\n`;
+function utilityAdapter(runtime, category) {
+    return `---\nimport RuntimeUtilityRoute from '../../src/routes/utilities/RuntimeUtilityRoute.astro';\nimport { ${runtime.exportName} } from '${runtime.packageName}/runtime/${runtime.subpath}';\n---\n\n<RuntimeUtilityRoute tool={${runtime.exportName}} categoryKey="${category.key}" packageName="${category.packageName}" />\n`;
 }
 
 function appAdapter(runtime) {
@@ -97,7 +97,7 @@ for (const { category, runtimes } of utilityRuntimeGroups) {
     for (const runtime of runtimes) {
         const entrypoint = writeGeneratedRoute(
             `${category.key}-${runtime.subpath.replaceAll(/[^a-zA-Z0-9-]/g, '-')}.astro`,
-            utilityAdapter(runtime),
+            utilityAdapter(runtime, category),
         );
         for (const lang of SUPPORTED_LANGUAGES) {
             const categoryLoader = category.entry.i18n[lang] ?? category.entry.i18n.en;
