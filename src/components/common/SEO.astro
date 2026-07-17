@@ -1,6 +1,5 @@
 ---
-import { getTranslatedUrl, getExternalLanguageUrl } from "../../i18n/routerUtils";
-import { SUPPORTED_LANGUAGES, externalLanguages } from "../../i18n/utils";
+import type { AlternateUrl } from "../../i18n/routeAlternates";
 import OpenGraph from "./OpenGraph.astro";
 import packageJson from "../../../package.json";
 
@@ -15,6 +14,7 @@ interface Props {
     lang?: string;
     assetVersion?: string;
     noindex?: boolean;
+    alternateUrls: AlternateUrl[];
 }
 
 const {
@@ -28,6 +28,7 @@ const {
     lang = "en",
     assetVersion = packageJson.version,
     noindex = false,
+    alternateUrls,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -43,25 +44,12 @@ const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
 const isUtility = pathSegments.length === 5;
 const manifestUrl = isUtility ? `${Astro.url.pathname}manifest.json` : "/manifest.json";
 
-const alternateUrls: Array<{ lang: string; url: string }> = [];
-
-for (const altLang of SUPPORTED_LANGUAGES) {
-    const translatedPath = await getTranslatedUrl(Astro.url.pathname, lang, altLang);
-    alternateUrls.push({ lang: altLang, url: new URL(translatedPath, Astro.site).href });
-}
-
-const enPath = await getTranslatedUrl(Astro.url.pathname, lang, "en");
+const absoluteAlternateUrls = alternateUrls.map(({ lang: altLang, url }) => ({
+    lang: altLang,
+    url: new URL(url, Astro.site).href,
+}));
+const enPath = alternateUrls.find(({ lang: altLang }) => altLang === "en")?.url ?? "/en/";
 const xDefaultUrl = new URL(enPath, Astro.site);
-
-for (const [extLang, extUrl] of Object.entries(externalLanguages)) {
-    const externalUrl = await getExternalLanguageUrl({
-        pathname: Astro.url.pathname,
-        currentLang: lang,
-        targetLang: extLang,
-        externalDomain: extUrl
-    });
-    alternateUrls.push({ lang: extLang, url: externalUrl });
-}
 ---
 
 <meta charset="utf-8" />
@@ -86,7 +74,7 @@ for (const [extLang, extUrl] of Object.entries(externalLanguages)) {
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 
 <link rel="canonical" href={canonicalURL} />
-{!noindex && alternateUrls.map(({ lang: altLang, url }) => (
+{!noindex && absoluteAlternateUrls.map(({ lang: altLang, url }) => (
     <link rel="alternate" hreflang={altLang} href={url} />
 ))}
 {!noindex && <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />}

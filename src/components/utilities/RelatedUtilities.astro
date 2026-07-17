@@ -2,23 +2,18 @@
 import { useTranslations, type Language } from "../../i18n/utils";
 import CardUtility from "./CardUtility.astro";
 import "./RelatedUtilities.css";
-import { getSections } from "../../data/utilities/index";
+import type { UtilityItem } from "../../data/utilities/types";
 
 interface Props {
     category: string;
     currentPath: string;
     lang?: string;
+    utilities?: UtilityItem[];
 }
 
-const { currentPath, lang = "en" } = Astro.props;
+const { category, currentPath, lang = "en", utilities = [] } = Astro.props;
 const t = useTranslations(lang as Language);
-
-const pathSegments = currentPath.split('/').filter(Boolean);
-const categorySlug = pathSegments[3] ?? "";
-
-const sections = await getSections(lang as Language);
-const section = sections.find(s => s.slug === categorySlug);
-const relatedUtilities = section?.utilities.filter((u: { href: string }) => u.href !== currentPath) ?? [];
+const relatedUtilities = utilities.filter(utility => utility.href !== currentPath);
 ---
 
 {
@@ -26,7 +21,7 @@ const relatedUtilities = section?.utilities.filter((u: { href: string }) => u.hr
         <section class="related-section">
             <h2 class="related-title">
                 {t("ui.related_utils_title")}{" "}
-                <span class="category-highlight">{section?.title}</span>
+                <span class="category-highlight">{category}</span>
             </h2>
             <div class="related-grid">
                 {relatedUtilities.map((u) => (

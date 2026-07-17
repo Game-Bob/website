@@ -1,6 +1,6 @@
 ---
 import LibraryUtilityLayout from '../../components/utilities/LibraryUtilityLayout.astro';
-import { CATEGORIES } from '../../data/utilities/registry';
+import { getUtilityUrl } from '../../i18n/urlBuilder';
 import { SUPPORTED_LANGUAGES, type Language } from '../../i18n/languages';
 
 interface Props {
@@ -10,28 +10,46 @@ interface Props {
         SEOComponent: any;
         BibliographyComponent: any;
     };
+    categoryEntry: any;
+    categoryEntries: any[];
+    toolColors: Record<string, string>;
     categoryKey: string;
     packageName: string;
 }
 
-const { tool, categoryKey, packageName } = Astro.props;
+const { tool, categoryEntry, categoryEntries, toolColors, categoryKey, packageName } = Astro.props;
 const langSegment = Astro.url.pathname.split('/').filter(Boolean)[0] ?? 'en';
 const lang = (SUPPORTED_LANGUAGES as readonly string[]).includes(langSegment)
     ? langSegment as Language
     : 'en';
-const categoryEntry = CATEGORIES.find(category => category.key === categoryKey)?.entry;
-if (!categoryEntry) throw new Error(`Unknown utility category: ${categoryKey}`);
 const categoryLoader = categoryEntry.i18n[lang] ?? categoryEntry.i18n.en;
 
 if (!categoryLoader) throw new Error(`Missing ${categoryKey} category locale: ${lang}`);
 
 const category = await categoryLoader();
+const relatedUtilities = await Promise.all(categoryEntries.map(async entry => {
+    const loader = entry.i18n[lang] ?? entry.i18n.en;
+    if (!loader) throw new Error(`Missing ${entry.id} locale: ${lang}`);
+    const content = await loader();
+    const color = toolColors[entry.id];
+    if (!color) throw new Error(`Missing utility color for ${entry.id}`);
+    return {
+        href: getUtilityUrl(lang, category.slug, content.slug),
+        iconBg: color,
+        iconFg: entry.icons.fg,
+        title: content.title,
+        description: content.description,
+        seoDescription: content.seoDescription,
+        color,
+    };
+}));
 ---
 
 <LibraryUtilityLayout
     lang={lang}
     {tool}
     category={category.title}
+    {relatedUtilities}
     {categoryKey}
     {packageName}
 />
