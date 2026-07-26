@@ -61,6 +61,8 @@ Disallow: /*?*utm_
 Disallow: /*/widgets?*
 
 Sitemap: https://www.gamebob.dev/sitemap-index.xml
+Sitemap: https://www.gamebob.dev/en/concepts/sitemap-index.xml
+Sitemap: https://www.gamebob.dev/en/games/sitemap-index.xml
 `;
 
 export const GET: APIRoute = () => {

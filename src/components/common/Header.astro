@@ -1,72 +1,30 @@
 ---
-import { getLocalizedSlug, useTranslations, SUPPORTED_LANGUAGES, type Language } from "../../i18n/utils";
+import IdentityHeader from "@jjlmoya/identity/header";
+import {
+    getActiveNavigationSection,
+    getSiteNavigation,
+} from "@jjlmoya/identity/navigation";
+import { IDENTITY_HEADER_LABELS } from "../../i18n/identity";
+import { SUPPORTED_LANGUAGES, useTranslations, type Language } from "../../i18n/utils";
 import type { AlternateUrl } from "../../i18n/routeAlternates";
-import MobileMenu from "./MobileMenu.astro";
 import LanguageSheet from "./LanguageSheet.astro";
-import ThemeToggle from "./ThemeToggle.astro";
 import LanguageTrigger from "./LanguageTrigger.astro";
-import HeaderKitty from "./HeaderKitty.astro";
-import { getLandingPath } from "../../data/landings";
-import "./Header.css";
 
-const pathname = new URL(Astro.request.url).pathname;
-const langFromPath = pathname.split('/')[1] || "en";
-const lang = SUPPORTED_LANGUAGES.includes(langFromPath as Language) ? (langFromPath as Language) : "en" as Language;
+interface Props { className?: string; alternateUrls: AlternateUrl[]; }
 
-interface Props {
-    className?: string;
-    alternateUrls: AlternateUrl[];
-}
 const { className = "", alternateUrls } = Astro.props;
-
-const t = useTranslations(lang);
-const aSlug = getLocalizedSlug(lang, "apps");
-const uSlug = getLocalizedSlug(lang, "utilities");
-const aPath = `/${lang}/${aSlug}/`;
-const uPath = `/${lang}/${uSlug}/`;
-const teamPath = await getLandingPath("team", lang);
-const isTeamActive = teamPath ? pathname === teamPath : false;
-const teamLabel = "Team";
-
+const pathname = Astro.url.pathname;
+const languageFromPath = pathname.split("/")[1] || "en";
+const language = SUPPORTED_LANGUAGES.includes(languageFromPath as Language) ? languageFromPath as Language : "en";
+const translate = useTranslations(language);
+const navigation = getSiteNavigation({
+    language,
+    activeSection: getActiveNavigationSection(pathname, language),
+});
 ---
 
-<nav class={`main-nav ${className}`} id="main-nav">
-    <div class="nav-container">
-        <a href={`/${lang}/`} class="nav-logo">
-            G<span class="logo-ame"><span class="logo-text-front">ame</span><HeaderKitty /></span><span class="logo-bob">Bob</span>
-        </a>
-        <div class="nav-links">
-            <a href={aPath} class={`nav-link ${pathname.includes(aSlug) ? "nav-active" : ""}`}>{t("menu.apps")}</a>
-            <a href={uPath} class={`nav-link ${pathname.includes(uSlug) ? "nav-active" : ""}`}>{t("menu.utilities")}</a>
-            {teamPath && <a href={teamPath} class={`nav-link ${isTeamActive ? "nav-active" : ""}`}>{teamLabel}</a>}
-            <div class="nav-separator"></div>
-            <div class="nav-actions">
-                <ThemeToggle />
-                <div class="nav-separator sm-only"></div>
-                <LanguageTrigger />
-            </div>
-        </div>
-        <button id="menu-toggle" class="menu-toggle" aria-label="Menu">
-            <span class="toggle-line line-1"></span><span class="toggle-line line-2"></span>
-        </button>
-    </div>
-</nav>
-
-<MobileMenu aPath={aPath} uPath={uPath} teamPath={teamPath} aSlug={aSlug} uSlug={uSlug} aLabel={t("menu.apps")} uLabel={t("menu.utilities")} teamLabel={teamLabel} pathname={pathname}>
-    <ThemeToggle slot="theme-toggle" mobile />
-    <LanguageTrigger slot="language-trigger" />
-</MobileMenu>
-
-<LanguageSheet transUrls={alternateUrls} currentLang={lang} title={t("ui.select_language")} />
-
-<script>
-    function setupHeader() {
-        document.getElementById("menu-toggle")?.addEventListener("click", (e) => {
-            e.stopPropagation();
-            window.toggleMobileMenu?.();
-        });
-    }
-
-    document.addEventListener("astro:page-load", setupHeader);
-    setupHeader();
-</script>
+<IdentityHeader identity="gamebob" homeUrl={`/${language}/`} {navigation} labels={IDENTITY_HEADER_LABELS[language]} class={className}>
+    <LanguageTrigger slot="desktop-actions" />
+    <LanguageTrigger slot="mobile-actions" />
+</IdentityHeader>
+<LanguageSheet transUrls={alternateUrls} currentLang={language} title={translate("ui.select_language")} />

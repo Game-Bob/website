@@ -106,7 +106,10 @@ const description = "Choose your language to explore GameBob's free online tools
         </main>
         <Footer />
         <script>
+            import { installEcosystemTracking } from "@jjlmoya/tracking";
             import { setupLanguageGateway } from "../scripts/language-gateway";
+
+            installEcosystemTracking();
             setupLanguageGateway();
         </script>
     </body>
