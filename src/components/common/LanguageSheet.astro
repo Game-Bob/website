@@ -41,9 +41,15 @@ const getLanguageName = (lang: string) => allNames[lang] || lang;
 <script>
     function setupLanguageSheet() {
         const langSheet = document.getElementById("mobile-lang-sheet");
-        if (!langSheet) return;
+        if (!langSheet || langSheet.dataset.languageSheetReady === "true") return;
+        langSheet.dataset.languageSheetReady = "true";
 
-        const closeLangSheet = () => langSheet.classList.remove("active");
+        const closeLangSheet = () => {
+            langSheet.classList.remove("active");
+            document.querySelectorAll("[data-language-trigger]").forEach((trigger) => {
+                trigger.setAttribute("aria-expanded", "false");
+            });
+        };
         document.getElementById("lang-sheet-close")?.addEventListener("click", closeLangSheet);
         document.querySelector(".lang-sheet-backdrop")?.addEventListener("click", closeLangSheet);
 

@@ -19,6 +19,13 @@
     width: 100%;
     max-width: 29.5rem;
     cursor: default;
+    position: relative;
+    z-index: 2;
+}
+
+.app-card:focus,
+.app-card:focus-within {
+    outline: none;
 }
 
 .theme-light .app-card {
@@ -29,9 +36,9 @@
 }
 
 .app-card:hover {
-    border-color: color-mix(in srgb, var(--color-primary) 35%, transparent);
     transform: translateY(-4px);
     box-shadow: 0 25px 50px -12px var(--card-shadow-color);
+    z-index: 3;
 }
 
 .theme-light .app-card:hover {
@@ -46,6 +53,10 @@
     text-decoration: none;
     color: inherit;
     cursor: pointer;
+}
+
+.app-card-main-link:focus {
+    outline: none;
 }
 
 .app-card-icon-container {
@@ -129,6 +140,93 @@
 .app-card-links {
     display: flex;
     gap: var(--space-base);
+}
+
+@keyframes peek-up {
+    0% {
+        transform: translateY(1.85rem);
+        opacity: 0%;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 100%;
+    }
+}
+
+.app-card-ears {
+    position: absolute;
+    top: -1.8rem;
+    width: 4.8rem;
+    height: 1.85rem;
+    pointer-events: none;
+    z-index: -1;
+    transform: translateY(1.85rem);
+    opacity: 0%;
+    animation-name: peek-up;
+    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.app-card:hover .app-card-ears {
+    transform: translateY(-0.18rem) scale(1.03);
+}
+
+@keyframes ear-twitch {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    2% {
+        transform: rotate(-3deg) scaleY(0.95);
+    }
+
+    4% {
+        transform: rotate(2deg) scaleY(1.02);
+    }
+
+    6% {
+        transform: rotate(-2deg);
+    }
+
+    8%, 100% {
+        transform: rotate(0deg);
+    }
+}
+
+.ear-variant {
+    width: 100%;
+    height: 100%;
+    transform-origin: bottom center;
+    animation: ear-twitch 5s ease-in-out infinite;
+    animation-delay: 1.5s;
+}
+
+.app-card-ears-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    fill: var(--bg-muted);
+    stroke: var(--card-inner-border);
+    stroke-width: 1.5px;
+}
+
+.app-card-ears-svg path {
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+
+.theme-light .app-card-ears-svg {
+    fill: var(--bg-surface);
+}
+
+.ear-inner {
+    fill: color-mix(in srgb, var(--color-secondary) 18%, transparent);
+    stroke: none;
+}
+
+.theme-light .ear-inner {
+    fill: color-mix(in srgb, var(--color-secondary) 12%, transparent);
 }
 
 @media (width <= 640px) {

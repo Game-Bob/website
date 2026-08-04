@@ -4,4 +4,5 @@ export default {
     description: "Temukan koleksi alat dan game kami yang dirancang untuk meningkatkan alur kerja digital dan hiburan Anda.",
     explore_apps: "Jelajahi Aplikasi",
     explore_utils: "Jelajahi Utilitas",
+    meow: "meong",
 };

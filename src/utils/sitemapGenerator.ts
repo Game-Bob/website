@@ -1,7 +1,8 @@
 import { SUPPORTED_LANGUAGES, type Language, getLocalizedSlug, externalLanguages } from '../i18n/utils';
-import { CATEGORIES } from '../data/utilities/registry';
-import { ALL_APP_DEFINITIONS } from '@jjlmoya/apps';
-import type { KnownLocale } from '@jjlmoya/apps';
+import { INDEXABLE_CATEGORIES } from '../data/utilities/registry';
+import { ALL_APP_ENTRIES } from '@jjlmoya/apps/data';
+import type { KnownLocale } from '@jjlmoya/apps/data';
+import { ALL_LANDING_DEFINITIONS } from '@jjlmoya/landings';
 
 export interface SitemapEntry {
   url: string; lastmod?: string; changefreq?: string; priority?: number; hreflang?: Record<string, string>;
@@ -63,8 +64,8 @@ async function getToolUrls(catDef: any, cat: any, lang: Language): Promise<Sitem
   return urls;
 }
 
-async function resolveAppPath(definition: any, lang: Language): Promise<string | null> {
-  const loader = definition.entry.i18n[lang as KnownLocale] ?? definition.entry.i18n.en;
+async function resolveAppPath(entry: any, lang: Language): Promise<string | null> {
+  const loader = entry.i18n[lang as KnownLocale] ?? entry.i18n.en;
   if (!loader) return null;
   const card = await loader();
   const a = getLocalizedSlug(lang, 'apps');
@@ -73,10 +74,10 @@ async function resolveAppPath(definition: any, lang: Language): Promise<string |
 
 async function getAppUrls(lang: Language): Promise<SitemapEntry[]> {
   const urls: SitemapEntry[] = [];
-  for (const definition of ALL_APP_DEFINITIONS) {
-    const path = await resolveAppPath(definition, lang);
+  for (const entry of ALL_APP_ENTRIES) {
+    const path = await resolveAppPath(entry, lang);
     if (!path) continue;
-    const hreflang = await buildHreflangFor(l => resolveAppPath(definition, l));
+    const hreflang = await buildHreflangFor(l => resolveAppPath(entry, l));
     urls.push({
       url: `${BASE_URL}${toLangPath(lang)}/${path}/`,
       changefreq: 'monthly',
@@ -87,11 +88,33 @@ async function getAppUrls(lang: Language): Promise<SitemapEntry[]> {
   return urls;
 }
 
+async function resolveLandingPath(definition: any, lang: Language): Promise<string | null> {
+  const loader = definition.entry.i18n[lang as KnownLocale] ?? definition.entry.i18n.en;
+  if (!loader) return null;
+  const card = await loader();
+  return card.slug;
+}
+
+async function getLandingUrls(lang: Language): Promise<SitemapEntry[]> {
+  const urls: SitemapEntry[] = [];
+  for (const definition of ALL_LANDING_DEFINITIONS) {
+    const path = await resolveLandingPath(definition, lang);
+    if (!path) continue;
+    urls.push({
+      url: `${BASE_URL}${toLangPath(lang)}/${path}/`,
+      changefreq: 'monthly',
+      priority: 0.6,
+      hreflang: await buildHreflangFor(l => resolveLandingPath(definition, l)),
+    });
+  }
+  return urls;
+}
+
 async function getCategoryUrls(lang: Language): Promise<SitemapEntry[]> {
   const u = getLocalizedSlug(lang, 'utilities');
   const c = getLocalizedSlug(lang, 'categories');
   const urls: SitemapEntry[] = [];
-  for (const catDef of CATEGORIES) {
+  for (const catDef of INDEXABLE_CATEGORIES) {
     const cat = await catDef.entry.i18n[lang]?.();
     if (!cat) continue;
     urls.push({
@@ -110,12 +133,26 @@ function buildHreflang(path: string): Record<string, string> {
   entries.push(['x-default', `${BASE_URL}/en${path}`]);
   return Object.fromEntries(entries);
 }
+
+function getLanguageSelectorUrl(): SitemapEntry {
+  const hreflang = Object.fromEntries(allLangBases().map(({ lang, base }) => [lang, `${base}/`]));
+  hreflang['x-default'] = `${BASE_URL}/`;
+  return { url: `${BASE_URL}/`, changefreq: 'monthly', priority: 1.0, hreflang };
+}
+
 function getStaticUrls(lang: Language): SitemapEntry[] {
   const lPath = toLangPath(lang);
   const u = getLocalizedSlug(lang, 'utilities');
   const a = getLocalizedSlug(lang, 'apps');
   const e = (path: string, cf: string, p: number): SitemapEntry => ({ url: `${BASE_URL}${lPath}${path}`, changefreq: cf, priority: p, hreflang: buildHreflang(path) });
-  return [e('/', 'daily', 1.0), e(`/${a}/`, 'weekly', 0.8), e(`/${u}/`, 'weekly', 0.8), e('/widgets/', 'weekly', 0.8)];
+  return [
+    e('/', 'daily', 1.0), 
+    e(`/${a}/`, 'weekly', 0.8), 
+    e(`/${u}/`, 'weekly', 0.8), 
+    e('/widgets/', 'weekly', 0.8),
+    e('/privacy/', 'monthly', 0.4),
+    e('/terms/', 'monthly', 0.4)
+  ];
 }
 
 function renderUrl({ url, hreflang, changefreq, priority }: SitemapEntry): string {
@@ -128,7 +165,8 @@ function renderUrl({ url, hreflang, changefreq, priority }: SitemapEntry): strin
 }
 
 export async function generateSitemap(lang: Language): Promise<string> {
-  const allUrls = [...getStaticUrls(lang), ...await getAppUrls(lang), ...await getCategoryUrls(lang)];
+  const selectorUrl = lang === 'en' ? [getLanguageSelectorUrl()] : [];
+  const allUrls = [...selectorUrl, ...getStaticUrls(lang), ...await getAppUrls(lang), ...await getLandingUrls(lang), ...await getCategoryUrls(lang)];
   const header = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">';
   return `${header}\n${allUrls.map(renderUrl).join('\n')}\n</urlset>`;
 }

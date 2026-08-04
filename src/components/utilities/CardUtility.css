@@ -10,6 +10,8 @@
     overflow: hidden;
     text-decoration: none;
     color: inherit;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .card-utility:hover {
@@ -71,6 +73,8 @@
     letter-spacing: -0.025em;
     transition: color 0.3s;
     line-height: 1.2;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .card-utility:hover .card-title {
@@ -118,4 +122,14 @@
 
 .card-utility:hover .arrow-icon {
     transform: translateX(4px);
+}
+
+@media (width <= 768px) {
+    .card-utility {
+        padding: var(--space-lg);
+    }
+
+    .card-title {
+        font-size: 1.35rem;
+    }
 }

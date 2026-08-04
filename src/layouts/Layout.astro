@@ -4,6 +4,9 @@ import "./Layout.css";
 import SEO from "../components/common/SEO.astro";
 import Footer from "../components/common/Footer.astro";
 import Header from "../components/common/Header.astro";
+import { getRouteAlternates } from "../i18n/routeAlternates";
+import ThemeBoot from "@jjlmoya/identity/theme-boot";
+import "@jjlmoya/identity/styles.css";
 
 import "@fontsource/inter/300.css";
 import "@fontsource/inter/400.css";
@@ -22,6 +25,8 @@ interface Props {
     fullWidth?: boolean;
     noPaddingTop?: boolean;
     lang?: string;
+    assetVersion?: string;
+    noindex?: boolean;
 }
 
 const {
@@ -35,28 +40,27 @@ const {
     headerClass = "",
     footerClass = "",
     lang = "en",
+    assetVersion,
+    noindex = false,
 } = Astro.props;
+const alternateUrls = getRouteAlternates(Astro.url.pathname, lang);
 ---
 
 <!doctype html>
-<html lang={lang} class="theme-dark">
+<html lang={lang} data-identity="gamebob">
     <head>
-        <SEO title={title} description={description} image={image} favicon={favicon} lang={lang} />
+        <SEO title={title} description={description} image={image} favicon={favicon} lang={lang} assetVersion={assetVersion} noindex={noindex} {alternateUrls} />
         <slot name="head" />
 
-        <script is:inline>
-            
-            const savedTheme = localStorage.getItem("theme");
-            if (savedTheme === "light") {
-                document.documentElement.classList.remove("theme-dark");
-                document.documentElement.classList.add("theme-light");
-            } else {
-                document.documentElement.classList.add("theme-dark");
-            }
+        <ThemeBoot defaultTheme="theme-dark" />
+        <script>
+            import { installEcosystemTracking } from "@jjlmoya/tracking";
+
+            installEcosystemTracking();
         </script>
     </head>
     <body class={`body-layout ${bodyClass}`}>
-        <Header className={headerClass} />
+        <Header className={headerClass} {alternateUrls} />
 
         <main class={`main-content ${fullWidth ? "full-width" : ""} ${noPaddingTop ? "no-padding-top" : ""} ${Astro.props.mainClass || ""}`}>
             <slot />

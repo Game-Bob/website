@@ -1,0 +1,90 @@
+---
+import { Icon } from 'astro-icon/components';
+import LegalSection from './LegalSection.astro';
+import './TermsOfService.css';
+
+interface Props {
+    content: {
+        title: string;
+        subtitle: string;
+        intro: string;
+        license_title: string;
+        license_content: string;
+        usage_title: string;
+        usage_content: string;
+        usage_items: string[];
+        property_title: string;
+        property_content: string;
+        privacy_data_title: string;
+        privacy_data_content: string;
+        third_party_title: string;
+        third_party_content: string;
+        liability_title: string;
+        liability_content: string;
+        modifications_title: string;
+        modifications_content: string;
+        jurisdiction_title: string;
+        jurisdiction_content: string;
+        contact_title: string;
+        contact_content: string;
+        contact_email: string;
+        contact_web: string;
+    };
+}
+
+const { content } = Astro.props;
+const cleanTitle = (t: string) => t.replace(/^\d+\s+/, '');
+---
+
+<div class="legal-container">
+    <header class="legal-hero">
+        <div class="hero-label">{content.subtitle}</div>
+        <h1 class="hero-title">{content.title}<span>.</span></h1>
+        <p class="hero-desc">{content.intro}</p>
+    </header>
+
+    <div class="legal-layout">
+        <aside class="legal-sidebar">
+            <nav class="toc">
+                <a href="#license" class="toc-link"><span>01</span> License</a>
+                <a href="#usage" class="toc-link"><span>02</span> Usage</a>
+                <a href="#property" class="toc-link"><span>03</span> Property</a>
+                <a href="#privacy" class="toc-link"><span>04</span> Privacy</a>
+                <a href="#third-party" class="toc-link"><span>05</span> Third Party</a>
+                <a href="#liability" class="toc-link"><span>06</span> Liability</a>
+                <a href="#mods" class="toc-link"><span>07</span> Modifications</a>
+                <a href="#legal" class="toc-link"><span>08</span> Legal</a>
+                <a href="#contact" class="toc-link"><span>09</span> Contact</a>
+            </nav>
+        </aside>
+
+        <main class="legal-main">
+            <div class="legal-card">
+                <LegalSection id="license" title={cleanTitle(content.license_title)} number="01">
+                    <p>{content.license_content}</p>
+                </LegalSection>
+
+                <LegalSection id="usage" title={cleanTitle(content.usage_title)} number="02">
+                    <p>{content.usage_content}</p>
+                    <ul class="custom-list">{content.usage_items.map((item) => (<li>{item}</li>))}</ul>
+                </LegalSection>
+
+                <LegalSection id="property" title={cleanTitle(content.property_title)} number="03"><p>{content.property_content}</p></LegalSection>
+                <LegalSection id="privacy" title={cleanTitle(content.privacy_data_title)} number="04"><p>{content.privacy_data_content}</p></LegalSection>
+                <LegalSection id="third-party" title={cleanTitle(content.third_party_title)} number="05"><p>{content.third_party_content}</p></LegalSection>
+                <LegalSection id="liability" title={cleanTitle(content.liability_title)} number="06"><p>{content.liability_content}</p></LegalSection>
+                <LegalSection id="mods" title={cleanTitle(content.modifications_title)} number="07"><p>{content.modifications_content}</p></LegalSection>
+                <LegalSection id="legal" title={cleanTitle(content.jurisdiction_title)} number="08"><p>{content.jurisdiction_content}</p></LegalSection>
+
+                <LegalSection id="contact" title={cleanTitle(content.contact_title)} number="09">
+                    <p>{content.contact_content}</p>
+                    <div class="contact-card">
+                        <div class="contact-item"><Icon name="mdi:email-outline" /><div><label>Email</label><a href={`mailto:${content.contact_email}`}>{content.contact_email}</a></div></div>
+                        <div class="contact-item"><Icon name="mdi:web" /><div><label>jjlmoya website</label><a href={content.contact_web} target="_blank" rel="noopener noreferrer">{content.contact_web.replace('https://', '')}</a></div></div>
+                    </div>
+                </LegalSection>
+            </div>
+            <div class="legal-footer"><p>GameBob &copy; {new Date().getFullYear()} — Built with passion.</p></div>
+        </main>
+    </div>
+</div>

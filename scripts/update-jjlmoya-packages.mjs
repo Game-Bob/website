@@ -17,10 +17,18 @@ function main() {
         const devDependencies = pkg.devDependencies || {};
         const allDeps = { ...dependencies, ...devDependencies };
         
-        const jjlmoyaDeps = Object.keys(allDeps).filter(name => name.startsWith("@jjlmoya/"));
+        const filter = process.argv[2];
+        let jjlmoyaDeps = Object.keys(allDeps).filter(name => name.startsWith("@jjlmoya/"));
+
+        if (filter) {
+            jjlmoyaDeps = jjlmoyaDeps.filter(name => name.includes(filter));
+        }
 
         if (jjlmoyaDeps.length === 0) {
-            console.log("No se encontraron dependencias del namespace @jjlmoya.");
+            console.log(filter 
+                ? `No se encontraron dependencias que coincidan con "${filter}".`
+                : "No se encontraron dependencias del namespace @jjlmoya."
+            );
             return;
         }
 
@@ -29,12 +37,14 @@ function main() {
         for (const name of jjlmoyaDeps) {
             const currentRaw = allDeps[name];
             const current = currentRaw.replace(/[\^~]/, "");
+            const isExact = currentRaw === current;
             
             try {
                 const latest = execSync(`npm view ${name} version`).toString().trim();
 
-                if (current !== latest) {
-                    console.log(`${COLOR.CYAN}[ACTUALIZANDO]${COLOR.RESET} ${name}: ${current} -> ${latest}`);
+                if (current !== latest || !isExact) {
+                    const target = current === latest ? `${latest} (version exacta)` : latest;
+                    console.log(`${COLOR.CYAN}[ACTUALIZANDO]${COLOR.RESET} ${name}: ${currentRaw} -> ${target}`);
                     changes.push({ name, isDev: !!devDependencies[name] });
                 } else {
                     console.log(`${COLOR.GREEN}[OK]${COLOR.RESET} ${name} ya está en la última versión (${latest})`);
@@ -48,11 +58,11 @@ function main() {
         const devDepsToInstall = changes.filter(c => c.isDev).map(c => `${c.name}@latest`);
 
         if (depsToInstall.length > 0) {
-            execSync(`npm install ${depsToInstall.join(" ")}`, { stdio: "inherit" });
+            execSync(`npm install ${depsToInstall.join(" ")} --save-exact`, { stdio: "inherit" });
         }
 
         if (devDepsToInstall.length > 0) {
-            execSync(`npm install ${devDepsToInstall.join(" ")} --save-dev`, { stdio: "inherit" });
+            execSync(`npm install ${devDepsToInstall.join(" ")} --save-dev --save-exact`, { stdio: "inherit" });
         }
 
         if (changes.length > 0) {

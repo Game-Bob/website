@@ -1,11 +1,14 @@
-import { financeCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-finance';
+import { financeCategory as entry } from '@jjlmoya/utils-finance/data';
+import { ALL_ENTRIES } from '@jjlmoya/utils-finance/entries';
 import type { CategoryDefinition } from '../types';
 
 const categoryColor = "#059669";
 
 export const finance: CategoryDefinition = {
     key: "finance",
+    packageName: "@jjlmoya/utils-finance",
     entry,
     theme: "green",
-    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
+    noindex: true,
+    toolsWithColors: ALL_ENTRIES.map(toolEntry => ({ toolEntry, color: categoryColor })),
 };

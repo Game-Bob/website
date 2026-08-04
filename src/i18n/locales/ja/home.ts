@@ -4,4 +4,5 @@ export default {
     description: "デジタルワークフローとエンターテインメントを豊かにするツールとゲームのコレクションをご覧ください。",
     explore_apps: "アプリを見る",
     explore_utils: "ユーティリティを見る",
+    meow: "ニャー",
 };

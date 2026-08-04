@@ -9,17 +9,13 @@ interface Props {
     bgWhiteLabel: string;
     bgBlackLabel: string;
     bgGridLabel: string;
-    explorerTitle: string;
-    explorerDesc: string;
     chooseText: string;
-    oembedTitle: string;
-    oembedDesc: string;
     iframeTitle: string;
     iframeDesc: string;
     copyIframeLabel: string;
 }
 
-const { toolLabel, previewLabel, lightLabel, darkLabel, bgWhiteLabel, bgBlackLabel, bgGridLabel, explorerDesc, chooseText, oembedTitle, oembedDesc, iframeTitle, iframeDesc, copyIframeLabel } = Astro.props;
+const { toolLabel, previewLabel, lightLabel, darkLabel, bgWhiteLabel, bgBlackLabel, bgGridLabel, chooseText, iframeTitle, iframeDesc, copyIframeLabel } = Astro.props;
 ---
 
 <main class="widgets-main">
@@ -54,14 +50,6 @@ const { toolLabel, previewLabel, lightLabel, darkLabel, bgWhiteLabel, bgBlackLab
 
         <div id="embed-section" class="embed-section hidden">
             <div class="embed-grid">
-                <div class="embed-card">
-                    <div class="embed-card-header"><h3 class="embed-card-title">{oembedTitle}</h3><Icon name="mdi:link-variant" class="embed-card-icon" /></div>
-                    <p class="embed-card-desc">{oembedDesc}</p>
-                    <div class="oembed-wrapper">
-                        <div class="embed-code-row"><code id="code-url" class="embed-code">https://...</code></div>
-                        <button id="copy-url" class="copy-btn copy-btn-square" aria-label="Copy URL"><Icon name="mdi:content-copy" class="copy-icon-lg" /></button>
-                    </div>
-                </div>
                 <div class="embed-card">
                     <div class="embed-card-header"><h3 class="embed-card-title">{iframeTitle}</h3><Icon name="mdi:code-tags" class="embed-card-icon" /></div>
                     <p class="embed-card-desc">{iframeDesc}</p>

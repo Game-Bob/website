@@ -1,0 +1,81 @@
+---
+import LegalSection from './LegalSection.astro';
+import './PrivacyPolicy.css';
+
+interface Props {
+    content: {
+        title: string;
+        intro: string;
+        introduction_title: string;
+        introduction_content: string;
+        data_collection_title: string;
+        data_collection_content: string;
+        security_philosophy_title: string;
+        security_philosophy_content: string;
+        third_party_title: string;
+        third_party_content: string[];
+        child_protection_title: string;
+        child_protection_content: string;
+        changes_contact_title: string;
+        changes_contact_content: string;
+    };
+}
+
+const { content } = Astro.props;
+---
+
+<div class="legal-container">
+    <div class="legal-hero">
+        <h1 class="hero-title">{content.title}<span>.</span></h1>
+        <p class="hero-desc">{content.intro}</p>
+    </div>
+
+    <div class="legal-layout">
+        <aside class="legal-sidebar">
+            <nav class="toc">
+                <a href="#intro" class="toc-link"><span>01</span> {content.introduction_title}</a>
+                <a href="#data" class="toc-link"><span>02</span> {content.data_collection_title}</a>
+                <a href="#security" class="toc-link"><span>03</span> {content.security_philosophy_title}</a>
+                <a href="#third-party" class="toc-link"><span>04</span> {content.third_party_title}</a>
+                <a href="#children" class="toc-link"><span>05</span> {content.child_protection_title}</a>
+                <a href="#contact" class="toc-link"><span>06</span> {content.changes_contact_title}</a>
+            </nav>
+        </aside>
+
+        <main class="legal-main">
+            <div class="legal-card">
+                <LegalSection id="intro" title={content.introduction_title} icon="mdi:information-outline" number="01" showIcon>
+                    <p>{content.introduction_content}</p>
+                </LegalSection>
+
+                <LegalSection id="data" title={content.data_collection_title} icon="mdi:database-outline" number="02" showIcon>
+                    <p>{content.data_collection_content}</p>
+                </LegalSection>
+
+                <LegalSection id="security" title={content.security_philosophy_title} icon="mdi:shield-check-outline" number="03" showIcon>
+                    <p>{content.security_philosophy_content}</p>
+                </LegalSection>
+
+                <LegalSection id="third-party" title={content.third_party_title} icon="mdi:account-group-outline" number="04" showIcon>
+                    <ul class="custom-list">
+                        {content.third_party_content.map((item) => (
+                            <li>{item}</li>
+                        ))}
+                    </ul>
+                </LegalSection>
+
+                <LegalSection id="children" title={content.child_protection_title} icon="mdi:baby-face-outline" number="05" showIcon>
+                    <p>{content.child_protection_content}</p>
+                </LegalSection>
+
+                <LegalSection id="contact" title={content.changes_contact_title} icon="mdi:email-outline" number="06" showIcon>
+                    <p>{content.changes_contact_content}</p>
+                </LegalSection>
+            </div>
+            
+            <div class="legal-footer">
+                <p>GameBob &copy; {new Date().getFullYear()} — Built with passion.</p>
+            </div>
+        </main>
+    </div>
+</div>

@@ -61,12 +61,15 @@ Disallow: /*?*utm_
 Disallow: /*/widgets?*
 
 Sitemap: https://www.gamebob.dev/sitemap-index.xml
+Sitemap: https://www.gamebob.dev/en/concepts/sitemap-index.xml
+Sitemap: https://www.gamebob.dev/en/games/sitemap-index.xml
 `;
 
 export const GET: APIRoute = () => {
   return new Response(robots, {
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'public, max-age=3600, s-maxage=3600, must-revalidate',
     },
   });
 };

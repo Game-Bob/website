@@ -1,0 +1,48 @@
+---
+import Layout from "./Layout.astro";
+import type { Language } from "../i18n/languages";
+import { getLandingCard } from "../data/landings";
+import { LANDINGS_VERSION } from "@jjlmoya/landings/version";
+
+interface Props {
+    landingId: string;
+    lang: Language;
+}
+
+const { landingId, lang } = Astro.props;
+const { ALL_LANDING_DEFINITIONS } = await import("@jjlmoya/landings");
+
+const definition = ALL_LANDING_DEFINITIONS.find((landing) => landing.entry.id === landingId);
+if (!definition) {
+    throw new Error(`Landing with ID "${landingId}" not found`);
+}
+
+const card = await getLandingCard(definition, lang);
+if (!card) {
+    throw new Error(`Landing "${landingId}" has no content for locale "${lang}"`);
+}
+
+const seo = {
+    title: card.title,
+    description: card.description,
+    ...definition.entry.seo,
+    ...card.seo,
+};
+const cssPath = definition.entry.publicAssets?.cssPath;
+const versionedCssPath = cssPath ? `${cssPath}${cssPath.includes("?") ? "&" : "?"}version=${LANDINGS_VERSION}` : null;
+const LandingComponent = (await definition.LandingComponent()).default as any;
+---
+
+<Layout
+    title={seo.title ?? card.title ?? landingId}
+    description={seo.description ?? card.description ?? ""}
+    image={seo.openGraphImage ?? seo.image}
+    fullWidth
+    noPaddingTop
+    mainClass="layout-main-landing"
+    lang={lang}
+>
+    {versionedCssPath && <link slot="head" rel="preload" href={versionedCssPath} as="style" />}
+    {versionedCssPath && <link slot="head" rel="stylesheet" href={versionedCssPath} />}
+    <LandingComponent locale={lang} />
+</Layout>

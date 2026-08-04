@@ -15,7 +15,7 @@
 
 .highlight {
     display: inline-block;
-    padding-right: 0.2em;
+    margin-right: 0.2em;
     background: linear-gradient(to right, var(--color-primary), var(--color-accent));
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -40,7 +40,16 @@
 }
 
 @media (width <=768px) {
+    .utility-header {
+        margin-bottom: var(--space-lg);
+    }
+
     .title {
-        font-size: var(--space-1-5xl);
+        font-size: clamp(1.5rem, 5vw, 2.25rem);
+        margin-bottom: var(--space-sm);
+    }
+
+    .description {
+        font-size: 0.9rem;
     }
 }

@@ -1,0 +1,156 @@
+{
+    "en": {
+        "title": "404 - Page Not Found",
+        "subtitle": "Game Over",
+        "desc": "The page you are looking for has vanished into another dimension.",
+        "btnHome": "Go Home",
+        "btnApps": "Explore Apps",
+        "btnTools": "Explore Tools",
+        "consoleError": "ERROR 404: RESOURCE_NOT_FOUND",
+        "consoleStatus": "STATUS: GAME OVER",
+        "consoleAction": "ACTION: INSERT COIN OR RETRY"
+    },
+    "fr": {
+        "title": "404 - Page Non Trouvée",
+        "subtitle": "Game Over",
+        "desc": "La page que vous recherchez a disparu dans une autre dimension.",
+        "btnHome": "Accueil",
+        "btnApps": "Découvrir les Apps",
+        "btnTools": "Explorer les Outils",
+        "consoleError": "ERREUR 404 : RESSOURCE_NON_TROUVÉE",
+        "consoleStatus": "STATUT : FIN DE PARTIE",
+        "consoleAction": "ACTION : INSÉRER UNE PIÈCE OU RÉESSAYER"
+    },
+    "de": {
+        "title": "404 - Seite nicht gefunden",
+        "subtitle": "Game Over",
+        "desc": "Die gesuchte Seite ist in eine andere Dimension verschwunden.",
+        "btnHome": "Startseite",
+        "btnApps": "Apps durchsuchen",
+        "btnTools": "Tools durchsuchen",
+        "consoleError": "FEHLER 404: RESSOURCE_NICHT_GEFUNDEN",
+        "consoleStatus": "STATUS: SPIEL VORBEI",
+        "consoleAction": "AKTION: MÜNZE EINWERFEN ODER WIEDERHOLEN"
+    },
+    "it": {
+        "title": "404 - Pagina non trovata",
+        "subtitle": "Game Over",
+        "desc": "La pagina che stai cercando è svanita in un'altra dimensione.",
+        "btnHome": "Home Page",
+        "btnApps": "Esplora le App",
+        "btnTools": "Esplora Strumenti",
+        "consoleError": "ERRORE 404: RISORSA_NON_TROVATA",
+        "consoleStatus": "STATO: FINE GIOCO",
+        "consoleAction": "AZIONE: INSERISCI MONETA O RIPROVA"
+    },
+    "pt": {
+        "title": "404 - Página Não Encontrada",
+        "subtitle": "Game Over",
+        "desc": "A página que procura desapareceu noutra dimensão.",
+        "btnHome": "Página Inicial",
+        "btnApps": "Explorar Apps",
+        "btnTools": "Explorar Ferramentas",
+        "consoleError": "ERRO 404: RECURSO_NÃO_ENCONTRADO",
+        "consoleStatus": "ESTADO: FIM DE JOGO",
+        "consoleAction": "AÇÃO: INSERIR MOEDA OU TENTAR NOVAMENTE"
+    },
+    "nl": {
+        "title": "404 - Pagina niet gevonden",
+        "subtitle": "Game Over",
+        "desc": "De pagina die je zoekt is verdwenen naar een andere dimensie.",
+        "btnHome": "Startpagina",
+        "btnApps": "Apps ontdekken",
+        "btnTools": "Tools verkennen",
+        "consoleError": "FOUT 404: BRON_NIET_GEVONDEN",
+        "consoleStatus": "STATUS: GAME OVER",
+        "consoleAction": "ACTIE: MUNT INVOEREN OF OPNIEUW PROBEREN"
+    },
+    "sv": {
+        "title": "404 - Sidan hittades inte",
+        "subtitle": "Game Over",
+        "desc": "Sidan du letar efter har försvunnit till en annan dimension.",
+        "btnHome": "Startsida",
+        "btnApps": "Utforska appar",
+        "btnTools": "Utforska verktyg",
+        "consoleError": "FEL 404: RESURS_HITTADES_INTE",
+        "consoleStatus": "STATUS: GAME OVER",
+        "consoleAction": "ÅTGÄRD: SÄTT I MYNT ELLER FÖRSÖK IGEN"
+    },
+    "pl": {
+        "title": "404 - Nie znaleziono strony",
+        "subtitle": "Game Over",
+        "desc": "Strona, której szukasz, zniknęła w innym wymiarze.",
+        "btnHome": "Strona główna",
+        "btnApps": "Przeglądaj aplikacje",
+        "btnTools": "Przeglądaj narzędzia",
+        "consoleError": "BŁĄD 404: ZASÓB_NIE_ZNALEZIONY",
+        "consoleStatus": "STATUS: KONIEC GRY",
+        "consoleAction": "DZIAŁANIE: WRZUĆ MONETĘ LUB SPRÓBUJ PONOWNIE"
+    },
+    "id": {
+        "title": "404 - Halaman Tidak Ditemukan",
+        "subtitle": "Game Over",
+        "desc": "Halaman yang Anda cari telah lenyap ke dimensi lain.",
+        "btnHome": "Beranda",
+        "btnApps": "Jelajahi Aplikasi",
+        "btnTools": "Jelajahi Alat",
+        "consoleError": "KESALAHAN 404: SUMBER_DAYA_TIDAK_DITEMUKAN",
+        "consoleStatus": "STATUS: PERMAINAN BERAKHIR",
+        "consoleAction": "TINDAKAN: MASUKKAN KOIN ATAU COBA LAGI"
+    },
+    "tr": {
+        "title": "404 - Sayfa Bulunamadı",
+        "subtitle": "Game Over",
+        "desc": "Aradığınız sayfa başka bir boyutta kayboldu.",
+        "btnHome": "Ana Sayfa",
+        "btnApps": "Uygulamaları Keşfet",
+        "btnTools": "Araçları Keşfet",
+        "consoleError": "HATA 404: KAYNAK_BULUNAMADI",
+        "consoleStatus": "DURUM: OYUN BİTTİ",
+        "consoleAction": "EYLEM: JETON YATIRIN VEYA TEKRAR DENEYİN"
+    },
+    "ru": {
+        "title": "404 - Страница не найдена",
+        "subtitle": "Game Over",
+        "desc": "Страница, которую вы ищете, исчезла в другом измерении.",
+        "btnHome": "На главную",
+        "btnApps": "Все приложения",
+        "btnTools": "Все инструменты",
+        "consoleError": "ОШИБКА 404: РЕСУРС_НЕ_НАЙДЕН",
+        "consoleStatus": "СТАТУС: ИГРА ОКОНЧЕНА",
+        "consoleAction": "ДЕЙСТВИЕ: ВСТАВЬТЕ МОНЕТУ ИЛИ ПОВТОРИТЕ"
+    },
+    "ja": {
+        "title": "404 - ページが見つかりません",
+        "subtitle": "ゲームオーバー",
+        "desc": "お探しのページは別の次元に消え去りました。",
+        "btnHome": "ホームに戻る",
+        "btnApps": "アプリを探す",
+        "btnTools": "ツールを探す",
+        "consoleError": "エラー 404: リソースが見つかりません",
+        "consoleStatus": "ステータス: ゲームオーバー",
+        "consoleAction": "アクション: コインを入れて再試行してください"
+    },
+    "ko": {
+        "title": "404 - 페이지를 찾을 수 없습니다",
+        "subtitle": "게임 오버",
+        "desc": "찾으시는 페이지가 다른 차원으로 사라졌습니다.",
+        "btnHome": "홈으로 가기",
+        "btnApps": "앱 탐색",
+        "btnTools": "도구 탐색",
+        "consoleError": "오류 404: 리소스를 찾을 수 없음",
+        "consoleStatus": "상태: game over",
+        "consoleAction": "작업: 코인을 넣거나 다시 시도하십시오"
+    },
+    "zh": {
+        "title": "404 - 页面未找到",
+        "subtitle": "游戏结束",
+        "desc": "您寻找의 页面已消失在另一个维度中。",
+        "btnHome": "返回首页",
+        "btnApps": "探索应用",
+        "btnTools": "探索工具",
+        "consoleError": "错误 404: 未找到资源",
+        "consoleStatus": "状态: 游戏结束",
+        "consoleAction": "操作: 投入硬币 or 重试"
+    }
+}

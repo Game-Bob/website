@@ -1,11 +1,13 @@
-import { developerCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-developer';
+import { developerCategory as entry } from '@jjlmoya/utils-developer/data';
+import { ALL_ENTRIES } from '@jjlmoya/utils-developer/entries';
 import type { CategoryDefinition } from '../types';
 
 const categoryColor = "#3b82f6";
 
 export const developer: CategoryDefinition = {
     key: "developer",
+    packageName: "@jjlmoya/utils-developer",
     entry,
     theme: "blue",
-    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
+    toolsWithColors: ALL_ENTRIES.map(toolEntry => ({ toolEntry, color: categoryColor })),
 };

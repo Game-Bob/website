@@ -9,21 +9,25 @@ interface Props {
 const { class: className = "" } = Astro.props;
 ---
 
-<button id="mobile-lang-trigger" class={`mobile-icon-btn ${className}`} aria-label="Change language">
+<button class={`mobile-icon-btn ${className}`} data-language-trigger aria-label="Change language" aria-controls="mobile-lang-sheet" aria-expanded="false">
     <Icon name="mdi:translate" class="lang-icon" />
 </button>
 
 <script>
     function setupLanguageTrigger() {
-        const langTrigger = document.getElementById("mobile-lang-trigger");
         const langSheet = document.getElementById("mobile-lang-sheet");
+        if (!langSheet) return;
 
-        if (langTrigger && langSheet) {
+        document.querySelectorAll<HTMLElement>("[data-language-trigger]").forEach((langTrigger) => {
+            if (langTrigger.dataset.languageTriggerReady === "true") return;
+            langTrigger.dataset.languageTriggerReady = "true";
+
             langTrigger.addEventListener("click", (e) => {
                 e.stopPropagation();
                 langSheet.classList.add("active");
+                langTrigger.setAttribute("aria-expanded", "true");
             });
-        }
+        });
     }
 
     document.addEventListener("astro:page-load", setupLanguageTrigger);

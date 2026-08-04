@@ -1,11 +1,13 @@
-import { homeCategory as entry, ALL_TOOLS } from '@jjlmoya/utils-home';
+import { homeCategory as entry } from '@jjlmoya/utils-home/data';
+import { ALL_ENTRIES } from '@jjlmoya/utils-home/entries';
 import type { CategoryDefinition } from '../types';
 
 const categoryColor = "#f97316";
 
 export const home: CategoryDefinition = {
     key: "home",
+    packageName: "@jjlmoya/utils-home",
     entry,
     theme: "green",
-    toolsWithColors: ALL_TOOLS.map(tool => ({ toolEntry: tool.entry, color: categoryColor })),
+    toolsWithColors: ALL_ENTRIES.map(toolEntry => ({ toolEntry, color: categoryColor })),
 };

@@ -1,7 +1,9 @@
 export interface CategoryDefinition {
     key: string;
+    packageName: string;
     entry: any;
     theme: string;
+    noindex?: boolean;
     toolsWithColors: Array<{ toolEntry: any; color: string }>;
 }
 

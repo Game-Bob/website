@@ -1,6 +1,6 @@
 .theme-toggle {
-    background: transparent;
-    border: 1px solid var(--glass-border);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
     border-radius: var(--radius-base);
     width: var(--space-1-5xl);
     height: var(--space-1-5xl);
@@ -11,6 +11,7 @@
     color: var(--text-main);
     transition: all 0.2s ease;
     padding: 0;
+    box-shadow: var(--shadow-sm);
 }
 
 .theme-toggle:hover {
@@ -18,9 +19,9 @@
     border-color: var(--color-primary);
 }
 
-.mobile-icon-btn {
-    background: transparent;
-    border: 1px solid var(--glass-border);
+.mobile-theme-toggle {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
     border-radius: var(--radius-base);
     width: 2.5rem;
     height: 2.5rem;
@@ -32,22 +33,24 @@
     transition: all 0.2s ease;
     padding: 0;
     font-size: 1.5rem;
+    box-shadow: var(--shadow-sm);
 }
 
-.mobile-icon-btn:hover {
+.mobile-theme-toggle:hover {
     background: var(--glass-bg);
     border-color: var(--color-primary);
 }
 
-.mobile-icon-btn:active {
+.mobile-theme-toggle:active {
     transform: scale(0.95);
 }
 
 .theme-icon {
-    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
 }
 
-.mobile-icon-btn .theme-icon {
-    font-size: 1.5rem;
+.mobile-theme-toggle .theme-icon {
+    width: 1.5rem;
+    height: 1.5rem;
 }
-

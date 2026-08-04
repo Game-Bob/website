@@ -1,0 +1,48 @@
+---
+import EarClassic from './ears/EarClassic.astro';
+import EarCurved from './ears/EarCurved.astro';
+import EarFolded from './ears/EarFolded.astro';
+import EarTufted from './ears/EarTufted.astro';
+import EarNotched from './ears/EarNotched.astro';
+import EarAlert from './ears/EarAlert.astro';
+import EarCyber from './ears/EarCyber.astro';
+import EarTiger from './ears/EarTiger.astro';
+---
+
+<div class="app-card-ears-container">
+    <div class="ear-variant" data-ear-index="0" style="display: none;"><EarClassic /></div>
+    <div class="ear-variant" data-ear-index="1" style="display: none;"><EarCurved /></div>
+    <div class="ear-variant" data-ear-index="2" style="display: none;"><EarFolded /></div>
+    <div class="ear-variant" data-ear-index="3" style="display: none;"><EarTufted /></div>
+    <div class="ear-variant" data-ear-index="4" style="display: none;"><EarNotched /></div>
+    <div class="ear-variant" data-ear-index="5" style="display: none;"><EarAlert /></div>
+    <div class="ear-variant" data-ear-index="6" style="display: none;"><EarCyber /></div>
+    <div class="ear-variant" data-ear-index="7" style="display: none;"><EarTiger /></div>
+</div>
+
+<script is:inline>
+    (function() {
+        const cards = document.querySelectorAll('.js-dynamic-cat-card:not([data-cat-randomized])');
+        cards.forEach(card => {
+            card.setAttribute('data-cat-randomized', 'true');
+            const side = Math.random() < 0.5 ? 'left' : 'right';
+            const earsContainer = card.querySelector('.app-card-ears-container');
+            if (earsContainer) {
+                earsContainer.classList.add('app-card-ears');
+                earsContainer.style[side] = '2.5rem';
+                
+                const delay = (0.2 + Math.random() * 1.0).toFixed(2);
+                const duration = (0.9 + Math.random() * 0.7).toFixed(2);
+                earsContainer.style.animationDelay = `${delay}s`;
+                earsContainer.style.animationDuration = `${duration}s`;
+                earsContainer.style.animationFillMode = 'both';
+
+                const earIndex = Math.floor(Math.random() * 8);
+                const activeEar = earsContainer.querySelector(`.ear-variant[data-ear-index="${earIndex}"]`);
+                if (activeEar) {
+                    activeEar.style.display = 'block';
+                }
+            }
+        });
+    })();
+</script>

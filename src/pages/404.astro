@@ -1,0 +1,53 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SUPPORTED_LANGUAGES, slugMapping, type Language } from "../i18n/utils";
+import localization404 from "../i18n/locales/404.json";
+import NotFoundConsole from "../components/not-found/NotFoundConsole.astro";
+import NotFoundActions from "../components/not-found/NotFoundActions.astro";
+
+const pathname = new URL(Astro.request.url).pathname;
+const firstSegment = pathname.split("/")[1] || "en";
+const lang: Language = SUPPORTED_LANGUAGES.includes(firstSegment as Language)
+    ? (firstSegment as Language)
+    : "en";
+
+const localizedText = (localization404 as Record<string, any>)[lang] || localization404.en;
+const appsSlug = slugMapping.apps[lang] || "apps";
+const utilitiesSlug = slugMapping.utilities[lang] || "utilities";
+---
+
+<Layout title={localizedText.title} description={localizedText.desc} lang={lang}>
+    <div class="not-found-container">
+        <NotFoundConsole
+            title={localizedText.title}
+            subtitle={localizedText.subtitle}
+            desc={localizedText.desc}
+            consoleError={localizedText.consoleError}
+            consoleStatus={localizedText.consoleStatus}
+            consoleAction={localizedText.consoleAction}
+            path={pathname}
+        />
+        <NotFoundActions
+            btnHome={localizedText.btnHome}
+            btnApps={localizedText.btnApps}
+            btnTools={localizedText.btnTools}
+            lang={lang}
+            appsSlug={appsSlug}
+            utilitiesSlug={utilitiesSlug}
+        />
+    </div>
+</Layout>
+
+<style>
+    .not-found-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100vh - 200px);
+        padding: var(--space-xl) var(--space-md);
+        width: 100%;
+        max-width: var(--space-max);
+        margin: 0 auto;
+    }
+</style>

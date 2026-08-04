@@ -1,0 +1,41 @@
+---
+import { Icon } from "astro-icon/components";
+import "./NotFoundActions.css";
+
+interface Props {
+    btnHome: string;
+    btnApps: string;
+    btnTools: string;
+    lang: string;
+    appsSlug: string;
+    utilitiesSlug: string;
+}
+
+const { btnHome, btnApps, btnTools, lang, appsSlug, utilitiesSlug } = Astro.props;
+const homePath = `/${lang}/`;
+const appsPath = `/${lang}/${appsSlug}/`;
+const toolsPath = `/${lang}/${utilitiesSlug}/`;
+---
+
+<div class="actions-grid">
+    <a href={homePath} class="action-card card-home">
+        <div class="card-icon">
+            <Icon name="mdi:home-outline" />
+        </div>
+        <span class="card-label">{btnHome}</span>
+    </a>
+    
+    <a href={appsPath} class="action-card card-apps">
+        <div class="card-icon">
+            <Icon name="mdi:rocket-launch-outline" />
+        </div>
+        <span class="card-label">{btnApps}</span>
+    </a>
+    
+    <a href={toolsPath} class="action-card card-tools">
+        <div class="card-icon">
+            <Icon name="mdi:hammer-screwdriver" />
+        </div>
+        <span class="card-label">{btnTools}</span>
+    </a>
+</div>
