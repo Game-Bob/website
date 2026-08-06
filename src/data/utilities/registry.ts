@@ -10,6 +10,7 @@ import { creative } from './categories/creative';
 import { drones } from './categories/drones';
 import { education } from './categories/education';
 import { games } from './categories/games';
+import { gamesDevelopment } from './categories/games-development';
 import { nautical } from './categories/nautical';
 import { science } from './categories/science';
 import { travel } from './categories/travel';
@@ -51,6 +52,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     drones,
     education,
     games,
+    gamesDevelopment,
     nautical,
     science,
     travel,
