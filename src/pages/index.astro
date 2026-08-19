@@ -38,7 +38,7 @@ const languageComposition = languageOptions.map((language, index) => ({
     tilt: placements[index][3],
     delay: `${-(index % 5) * 0.55}s`,
 }));
-const description = "Choose your language to explore GameBob's free online tools, calculators and interactive utilities.";
+const description = "Choose your language to explore GameBob's Studio";
 ---
 
 <!doctype html>
@@ -46,7 +46,7 @@ const description = "Choose your language to explore GameBob's free online tools
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>GameBob — Free online tools in your language</title>
+        <title>GameBob Studio</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={`${BASE_URL}/`} />
         {SUPPORTED_LANGUAGES.map(code => (
@@ -59,7 +59,7 @@ const description = "Choose your language to explore GameBob's free online tools
         <link rel="apple-touch-icon" href={`/apple-touch-icon-brand.webp?version=${packageJson.version}`} />
         <meta name="theme-color" content="#020617" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="GameBob — Free online tools in your language" />
+        <meta property="og:title" content="GameBob Studio" />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={`${BASE_URL}/`} />
         <meta property="og:image" content={`${BASE_URL}/og-default.webp`} />
