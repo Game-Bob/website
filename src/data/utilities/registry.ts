@@ -21,6 +21,7 @@ import { social } from './categories/social';
 import { music } from './categories/music';
 import { health } from './categories/health';
 import { sports } from './categories/sports';
+import { motor } from './categories/motor';
 import { nature } from './categories/nature';
 import { developer } from './categories/developer';
 import { hardware } from './categories/hardware';
@@ -63,6 +64,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     music,
     health,
     sports,
+    motor,
     nature,
     developer,
     hardware,
