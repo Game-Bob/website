@@ -8,7 +8,8 @@ export async function buildSection(lang: Language, def: CategoryDefinition): Pro
 
     const utilities = await Promise.all(
         def.toolsWithColors.map(async ({ toolEntry, color }: { toolEntry: any; color: string }) => {
-            const content = await toolEntry.i18n[lang]!();
+            const loader = toolEntry.i18n[lang] ?? toolEntry.i18n.en;
+            const content = await loader!();
             return {
                 href: getUtilityUrl(lang, cat.slug, content.slug),
                 iconBg: color,

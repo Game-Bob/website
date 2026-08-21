@@ -11,7 +11,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
             const section = await buildSection(lang, catDef);
 
             for (const { toolEntry } of catDef.toolsWithColors) {
-                const toolLocale = await toolEntry.i18n[lang]!();
+                const toolLoader = toolEntry.i18n[lang] ?? toolEntry.i18n.en;
+                const toolLocale = await toolLoader!();
                 const startUrl = `/${lang}/${slugMapping.utilities[lang]}/${slugMapping.categories[lang]}/${section.slug}/${toolLocale.slug}/`;
 
                 paths.push({

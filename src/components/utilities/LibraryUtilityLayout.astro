@@ -26,7 +26,8 @@ const { default: Component } = await tool.Component();
 const { default: SEOComponent } = await tool.SEOComponent();
 const { default: BibliographyComponent } = await tool.BibliographyComponent();
 
-const content = await entry.i18n[lang]!();
+const loader = entry.i18n[lang] ?? entry.i18n.en;
+const content = await loader!();
 const words = content.title.split(" ");
 const titleHighlight = words[0] ?? "";
 const titleBase = words.slice(1).join(" ");
