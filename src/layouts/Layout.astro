@@ -49,6 +49,7 @@ const alternateUrls = getRouteAlternates(Astro.url.pathname, lang);
 <!doctype html>
 <html lang={lang} data-identity="gamebob">
     <head>
+        <meta http-equiv="Permissions-Policy" content="camera=(self)" />
         <SEO title={title} description={description} image={image} favicon={favicon} lang={lang} assetVersion={assetVersion} noindex={noindex} {alternateUrls} />
         <slot name="head" />
 

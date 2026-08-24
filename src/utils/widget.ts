@@ -22,7 +22,7 @@ function buildLoaderHtml(widgetId: string, bg: string, isDark: boolean): string 
 }
 
 function buildIframeHtml(widgetId: string, finalWidgetUrl: string): string {
-    return `\x3Ciframe id="${widgetId}" src="${finalWidgetUrl}&id=${widgetId}" width="100%" height="400" frameborder="0" scrolling="no" style="display: block; opacity: 0; transition: opacity 0.4s, height 0.3s ease; border: none;" onload="window._jjshow()">\x3C/iframe>`;
+    return `\x3Ciframe id="${widgetId}" src="${finalWidgetUrl}&id=${widgetId}" width="100%" height="400" frameborder="0" scrolling="no" allow="camera" style="display: block; opacity: 0; transition: opacity 0.4s, height 0.3s ease; border: none;" onload="window._jjshow()">\x3C/iframe>`;
 }
 
 function buildFooterHtml(finalCleanUrl: string, bg: string, isDark: boolean): string {
