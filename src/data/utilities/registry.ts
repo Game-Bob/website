@@ -1,6 +1,7 @@
 import { bikes } from './categories/bikes';
 import { pets } from './categories/pets';
 import { alcohol } from './categories/alcohol';
+import { aquarium } from './categories/aquarium';
 import { astronomy } from './categories/astronomy';
 import { audiovisual } from './categories/audiovisual';
 import { babies } from './categories/babies';
@@ -44,6 +45,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     bikes,
     pets,
     alcohol,
+    aquarium,
     astronomy,
     audiovisual,
     babies,
