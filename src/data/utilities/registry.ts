@@ -38,6 +38,8 @@ import { chrono } from './categories/chrono';
 import { tabletop } from './categories/tabletop';
 import { books } from './categories/books';
 import { forensicScience } from './categories/forensic-science';
+import { genealogy } from './categories/genealogy';
+import { language } from './categories/language';
 import type { CategoryDefinition } from './types';
 
 export type { CategoryDefinition };
@@ -83,6 +85,8 @@ export const CATEGORIES: CategoryDefinition[] = [
     tabletop,
     books,
     forensicScience,
+    genealogy,
+    language,
 ];
 
 export const INDEXABLE_CATEGORIES = CATEGORIES.filter(({ noindex }) => !noindex);
