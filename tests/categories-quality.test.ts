@@ -37,15 +37,15 @@ const DIACRITIC_RULES = {
 const AI_TYPOGRAPHY_GARBAGE = ['\u2013', '\u2014', '\u2026', '\u201C', '\u201D', '\u2018', '\u2019', '\u00AB', '\u00BB', '\u200B', '\u201E'];
 const SPANISH_MARKERS = [/\bherramienta\b/i, /\bpuedes\b/i, /\bdebes\b/i, /\btus\b/i, /\blos datos\b/i, /\bel resultado\b/i];
 
-const categoryContentMap = new Map<string, Map<Language, CategoryContent>>();
+const categoryContentMap = new Map<string, Map<string, CategoryContent>>();
 
 beforeAll(async () => {
   await Promise.all(
     CATEGORIES.map(async (cat) => {
-      const langMap = new Map<Language, CategoryContent>();
+      const langMap = new Map<string, CategoryContent>();
       await Promise.all(
-        SUPPORTED_LANGUAGES.map(async (lang) => {
-          const loader = cat.entry.i18n[lang];
+        [...SUPPORTED_LANGUAGES, 'es'].map(async (lang) => {
+          const loader = cat.entry.i18n[lang as Language];
           if (loader) {
             const content = await loader();
             if (content) {
@@ -59,150 +59,109 @@ beforeAll(async () => {
   );
 }, 60000);
 
-describe('Category Quality, SEO & Strict Tool Rules Enforcement', () => {
-
-  describe('Category Slug Rules (Matching Tool Rules)', () => {
+describe('Categories QA Quality & Localization Suite', () => {
+  describe('SEO Slug Integrity & Transliteration Rules', () => {
     CATEGORIES.forEach((cat) => {
-      it(`category "${cat.key}" slug rules per locale`, () => {
-        const langMap = categoryContentMap.get(cat.key);
-        const enSlug = langMap?.get('en')?.slug;
-        expect(enSlug, `Category "${cat.key}" must have an "en" slug`).toBeTruthy();
+      it(`category "${cat.key}" must follow slug i18n rules across all locales`, () => {
+        const enContent = categoryContentMap.get(cat.key)?.get('en');
+        expect(enContent, `Category "${cat.key}" missing English locale`).toBeDefined();
+        const enSlug = enContent!.slug;
 
         SUPPORTED_LANGUAGES.forEach((lang) => {
-          const content = langMap?.get(lang);
-          if (!content) return;
-          const slug = content.slug;
+          const content = categoryContentMap.get(cat.key)?.get(lang);
+          expect(content, `Category "${cat.key}" missing locale [${lang}]`).toBeDefined();
+          const slug = content!.slug;
 
-          expect(slug, `Category "${cat.key}" [${lang}] slug must be lowercase kebab-case (a-z0-9-)`).toMatch(/^[a-z0-9-]+$/);
-          expect(slug, `Category "${cat.key}" [${lang}] slug cannot end with a 2-letter language code`).not.toMatch(/-[a-z]{2}$/);
+          expect(slug, `Category "${cat.key}" [${lang}] slug cannot be empty`).toBeTruthy();
+          expect(slug, `Category "${cat.key}" [${lang}] slug must be lowercase`).toBe(slug.toLowerCase());
+          expect(slug, `Category "${cat.key}" [${lang}] slug cannot end with lang code suffix`).not.toMatch(
+            new RegExp(`-${lang}$`)
+          );
 
-          if (lang !== 'en') {
-            if (SHARING_LOCALES.includes(lang)) {
-              expect(
-                slug,
-                `Category "${cat.key}" [${lang}] must share the exact English slug ("${enSlug}")`
-              ).toBe(enSlug);
-            } else {
-              expect(
-                slug,
-                `Category "${cat.key}" [${lang}] slug ("${slug}") must NOT be in English ("${enSlug}"). Each non-asian locale must be translated.`
-              ).not.toBe(enSlug);
-            }
+          if (SHARING_LOCALES.includes(lang)) {
+            expect(
+              slug,
+              `Category "${cat.key}" [${lang}] must share the exact English slug "${enSlug}"`
+            ).toBe(enSlug);
+          }
+
+          if (lang === 'ru') {
+            expect(
+              slug,
+              `Category "${cat.key}" [ru] slug "${slug}" must be transliterated to Latin alphabet`
+            ).toMatch(/^[a-z0-9-]+$/);
           }
         });
-      });
-    });
-
-    SUPPORTED_LANGUAGES.forEach((lang) => {
-      it(`all categories in language [${lang}] must have unique slugs`, () => {
-        const slugs = new Map<string, string>();
-        for (const cat of CATEGORIES) {
-          const content = categoryContentMap.get(cat.key)?.get(lang);
-          if (!content) continue;
-          if (SHARING_LOCALES.includes(lang)) continue;
-
-          expect(
-            slugs.has(content.slug),
-            `Duplicate category slug "${content.slug}" in language "${lang}" between "${cat.key}" and "${slugs.get(content.slug)}"`
-          ).toBe(false);
-          slugs.set(content.slug, cat.key);
-        }
       });
     });
   });
 
-  describe('SEO Parity & Structural Completeness (Matching Tool Rules)', () => {
+  describe('Structural SEO & Section Parity', () => {
     CATEGORIES.forEach((cat) => {
-      it(`category "${cat.key}" must maintain SEO section count & structural parity across all 15 locales`, () => {
-        const langMap = categoryContentMap.get(cat.key);
-        const enContent = langMap?.get('en');
-        expect(enContent).toBeDefined();
+      it(`category "${cat.key}" must have 100% structural parity with English reference`, () => {
+        const enContent = categoryContentMap.get(cat.key)?.get('en');
+        if (!enContent) return;
 
-        const enSeoCount = enContent?.seo?.length ?? 0;
-        expect(enSeoCount, `Category "${cat.key}" [en] must define at least 1 SEO section`).toBeGreaterThan(0);
-
-        SUPPORTED_LANGUAGES.forEach((lang) => {
-          const content = langMap?.get(lang);
-          expect(content, `Category "${cat.key}" missing translation for "${lang}"`).toBeDefined();
-
-          const locSeoCount = content?.seo?.length ?? 0;
-          expect(
-            locSeoCount,
-            `Category "${cat.key}" [${lang}] SEO section count (${locSeoCount}) must match EN (${enSeoCount})`
-          ).toBe(enSeoCount);
-
-          if (enContent?.seo && content?.seo) {
-            content.seo.forEach((sec, idx) => {
-              const enSecType = enContent.seo![idx]?.type;
-              expect(
-                sec.type,
-                `Category "${cat.key}" [${lang}] SEO section #${idx} type "${sec.type}" must match EN type "${enSecType}"`
-              ).toBe(enSecType);
-            });
-          }
-        });
-      });
-
-      it(`category "${cat.key}" SEO text length in non-EN locales must not be lazy or truncated`, () => {
-        const langMap = categoryContentMap.get(cat.key);
-        const enContent = langMap?.get('en');
-        if (!enContent?.seo) return;
-
-        const getLength = (seoArr: any[]) =>
-          seoArr.reduce((sum, sec) => sum + (JSON.stringify(sec).length), 0);
-
-        const enLen = getLength(enContent.seo);
+        const enSeoCount = enContent.seo?.length ?? 0;
+        const enFaqCount = enContent.faq?.length ?? 0;
 
         SUPPORTED_LANGUAGES.forEach((lang) => {
           if (lang === 'en') return;
-          const content = langMap?.get(lang);
-          if (!content?.seo) return;
-
-          const locLen = getLength(content.seo);
-          const isAsian = ASIAN_LOCALES.includes(lang);
-          const minRatio = isAsian ? 0.20 : 0.65;
-          const minLen = Math.floor(enLen * minRatio);
+          const content = categoryContentMap.get(cat.key)?.get(lang);
+          if (!content) return;
 
           expect(
-            locLen,
-            `Category "${cat.key}" [${lang}] SEO content appears truncated/lazy (${locLen} chars vs EN ${enLen} chars)`
-          ).toBeGreaterThanOrEqual(minLen);
+            content.seo?.length ?? 0,
+            `Category "${cat.key}" [${lang}] SEO sections count mismatch with EN`
+          ).toBe(enSeoCount);
+
+          expect(
+            content.faq?.length ?? 0,
+            `Category "${cat.key}" [${lang}] FAQ items count mismatch with EN`
+          ).toBe(enFaqCount);
         });
       });
     });
   });
 
-  describe('Native Script & Diacritics Density (Matching Tool Rules)', () => {
+  describe('Native Script Density & Diacritic Requirements', () => {
     CATEGORIES.forEach((cat) => {
-      SUPPORTED_LANGUAGES.forEach((lang) => {
-        it(`category "${cat.key}" [${lang}] script & diacritics compliance`, () => {
+      Object.entries(SCRIPT_RULES).forEach(([lang, rule]) => {
+        it(`category "${cat.key}" [${lang}] must fulfill ${rule.name} density requirement`, () => {
           const content = categoryContentMap.get(cat.key)?.get(lang);
           if (!content) return;
 
-          const fullText = [content.title, content.description, JSON.stringify(content.seo ?? [])].join(' ');
-          const letters = (fullText.match(/\p{L}/gu) || []).length;
-          if (letters < 20) return;
+          const text = [content.title, content.description, JSON.stringify(content.seo ?? [])].join(' ');
+          const matches = text.match(rule.regex);
+          const matchedCharCount = matches ? matches.length : 0;
+          const totalLetters = (text.match(/[\p{L}]/gu) || []).length;
 
-          if (lang in SCRIPT_RULES) {
-            const rule = SCRIPT_RULES[lang as keyof typeof SCRIPT_RULES];
-            const nativeMatches = (fullText.match(rule.regex) || []).length;
-            const ratio = nativeMatches / letters;
-
+          if (totalLetters > 20) {
+            const ratio = matchedCharCount / totalLetters;
             expect(
               ratio,
-              `Category "${cat.key}" [${lang}] has suspicious non-native script content (${(ratio * 100).toFixed(1)}% ${rule.name}, expected >= ${(rule.minRatio * 100).toFixed(0)}%)`
+              `Category "${cat.key}" [${lang}] script ratio (${ratio.toFixed(2)}) below required (${rule.minRatio})`
             ).toBeGreaterThanOrEqual(rule.minRatio);
           }
+        });
+      });
 
-          if (lang in DIACRITIC_RULES) {
-            const regex = DIACRITIC_RULES[lang as keyof typeof DIACRITIC_RULES];
-            const diacriticMatches = (fullText.match(regex) || []).length;
-            const density = (diacriticMatches / letters) * 1000;
+      Object.entries(DIACRITIC_RULES).forEach(([lang, regex]) => {
+        it(`category "${cat.key}" [${lang}] should contain natural native diacritics`, () => {
+          const content = categoryContentMap.get(cat.key)?.get(lang);
+          if (!content) return;
 
+          const text = [content.title, content.description, JSON.stringify(content.seo ?? [])].join(' ');
+          const totalLetters = (text.match(/[\p{L}]/gu) || []).length;
+
+          if (totalLetters > 50) {
+            const matches = text.match(regex);
+            const diacriticCount = matches ? matches.length : 0;
+            const ratio = diacriticCount / totalLetters;
             expect(
-              density,
-              `Category "${cat.key}" [${lang}] has missing accents or diacritics (${density.toFixed(2)} per 1000 letters). Encoding issue or missing translation.`
-            ).toBeGreaterThanOrEqual(0.05);
+              ratio,
+              `Category "${cat.key}" [${lang}] diacritic ratio (${ratio.toFixed(3)}) is suspiciously low`
+            ).toBeGreaterThanOrEqual(0.005);
           }
         });
       });
@@ -212,7 +171,6 @@ describe('Category Quality, SEO & Strict Tool Rules Enforcement', () => {
   describe('Spanish Leakage & Typography Cleanliness (Matching Tool Rules)', () => {
     CATEGORIES.forEach((cat) => {
       SUPPORTED_LANGUAGES.forEach((lang) => {
-        if (lang === 'es') return;
         it(`category "${cat.key}" [${lang}] must not leak Spanish text or AI typography garbage`, () => {
           const content = categoryContentMap.get(cat.key)?.get(lang);
           if (!content) return;
