@@ -36,6 +36,7 @@ import { work } from './categories/work';
 import { tools } from './categories/tools';
 import { chrono } from './categories/chrono';
 import { tabletop } from './categories/tabletop';
+import { books } from './categories/books';
 import { forensicScience } from './categories/forensic-science';
 import type { CategoryDefinition } from './types';
 
@@ -80,6 +81,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     tools,
     chrono,
     tabletop,
+    books,
     forensicScience,
 ];
 
