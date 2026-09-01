@@ -40,6 +40,7 @@ import { books } from './categories/books';
 import { forensicScience } from './categories/forensic-science';
 import { genealogy } from './categories/genealogy';
 import { language } from './categories/language';
+import { civic } from './categories/civic';
 import type { CategoryDefinition } from './types';
 
 export type { CategoryDefinition };
@@ -87,6 +88,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     forensicScience,
     genealogy,
     language,
+    civic,
 ];
 
 export const INDEXABLE_CATEGORIES = CATEGORIES.filter(({ noindex }) => !noindex);
