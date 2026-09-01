@@ -23,7 +23,8 @@ if (!loader) throw new Error(`Missing app locale for ${entry.id}: ${lang}`);
 const card = await loader();
 const { default: LandingComponent } = await app.LandingComponent() as { default: any };
 const iconPath = `/assets/apps/${entry.id}/icon.webp`;
-const iconUrl = new URL(iconPath, Astro.site);
+const openGraphImagePath = entry.media?.openGraphImage ?? iconPath;
+const openGraphImageUrl = new URL(openGraphImagePath, Astro.site);
 const operatingSystem = [
     entry.stores.appStore ? 'iOS' : null,
     entry.stores.googlePlay ? 'Android' : null,
@@ -36,7 +37,7 @@ const appSchema = {
     description: card.description,
     applicationCategory: entry.isGame ? 'GameApplication' : 'MobileApplication',
     operatingSystem,
-    image: iconUrl.href,
+    image: openGraphImageUrl.href,
     publisher: {
         '@type': 'Organization',
         name: 'GameBob Studio',
@@ -47,7 +48,7 @@ const appSchema = {
 };
 ---
 
-<Layout title={card.title} description={card.description} image={iconPath} favicon={iconPath} lang={lang} fullWidth noPaddingTop>
+<Layout title={card.title} description={card.description} image={openGraphImagePath} favicon={iconPath} lang={lang} fullWidth noPaddingTop>
     <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(appSchema)} />
     <LandingComponent locale={lang} />
 </Layout>

@@ -21,8 +21,8 @@ export const lexiCrash: Application = {
     benefitsTitle: { main: "Supera tus propios", highlighted: "límites mentales" },
     quote: { text: "La agilidad mental es el puente entre el caos de las letras y la victoria de las palabras.", author: "LexiCrash Team" },
     media: {
-        icon: "/assets/apps/lexi-crash/icon.webp", showcase: "/assets/apps/lexi-crash/icon.webp",
-        hero: "/assets/apps/lexi-crash/screenshot_2.webp", screenshots: ["/assets/apps/lexi-crash/screenshot_2.webp", "/assets/apps/lexi-crash/screenshot_3.webp", "/assets/apps/lexi-crash/screenshot_1.webp"],
+        icon: "/assets/apps/lexi-crash/icon.webp", showcase: "/assets/apps/lexi-crash/arcade-master/08-banner.webp",
+        hero: "/assets/apps/lexi-crash/arcade-master/08-banner.webp", screenshots: ["/assets/apps/lexi-crash/arcade-master/01-home.webp", "/assets/apps/lexi-crash/arcade-master/05-crash.webp", "/assets/apps/lexi-crash/arcade-master/03-stats.webp"],
     },
     stores: { googlePlay: "https://play.google.com/store/apps/details?id=com.gamebob.lexicrash", appStore: "https://apps.apple.com/es/app/lexicrash/id6758558703" },
     benefits: [
