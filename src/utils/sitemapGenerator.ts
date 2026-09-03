@@ -1,5 +1,5 @@
 import { SUPPORTED_LANGUAGES, type Language, getLocalizedSlug, externalLanguages } from '../i18n/utils';
-import { INDEXABLE_CATEGORIES } from '../data/utilities/registry';
+import { SITEMAP_CATEGORIES } from '../data/utilities/registry';
 import { ALL_APP_ENTRIES } from '@jjlmoya/apps/data';
 import type { KnownLocale } from '@jjlmoya/apps/data';
 import { ALL_LANDING_DEFINITIONS } from '@jjlmoya/landings';
@@ -114,7 +114,7 @@ async function getCategoryUrls(lang: Language): Promise<SitemapEntry[]> {
   const u = getLocalizedSlug(lang, 'utilities');
   const c = getLocalizedSlug(lang, 'categories');
   const urls: SitemapEntry[] = [];
-  for (const catDef of INDEXABLE_CATEGORIES) {
+  for (const catDef of SITEMAP_CATEGORIES) {
     const cat = await catDef.entry.i18n[lang]?.();
     if (!cat) continue;
     urls.push({

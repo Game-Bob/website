@@ -1,6 +1,6 @@
 import { beforeAll, describe, it, expect } from "vitest";
 import { SUPPORTED_LANGUAGES, getLocalizedSlug } from "../src/i18n/utils";
-import { CATEGORIES } from "../src/data/utilities/registry";
+import { SITEMAP_CATEGORIES } from "../src/data/utilities/registry";
 import { generateSitemap } from "../src/utils/sitemapGenerator";
 import type { Language } from "../src/i18n/utils";
 import { ALL_LANDING_DEFINITIONS, type KnownLocale } from "@jjlmoya/landings";
@@ -15,7 +15,7 @@ const landingCache = new Map<string, LandingContent>();
 beforeAll(async () => {
     await Promise.all(
         SUPPORTED_LANGUAGES.flatMap(lang => [
-            ...CATEGORIES.flatMap(cat => [
+            ...SITEMAP_CATEGORIES.flatMap(cat => [
                 cat.entry.i18n[lang]?.().then((c: CatContent) => c && catCache.set(`${lang}:${cat.key}`, c)),
                 ...cat.toolsWithColors.map(({ toolEntry }: { toolEntry: any }) =>
                     toolEntry.i18n[lang]?.().then((c: ToolContent) => c && toolCache.set(`${lang}:${toolEntry.id}`, c))
@@ -54,7 +54,7 @@ function getLandingExpectedUrls(lang: Language, parts: UrlParts): string[] {
 function getCategoryExpectedUrls(lang: Language, parts: UrlParts): string[] {
     const { baseUrl, langPath, utilitiesSlug, categoriesSlug } = parts;
     const urls: string[] = [];
-    for (const cat of CATEGORIES) {
+    for (const cat of SITEMAP_CATEGORIES) {
         const catContent = catCache.get(`${lang}:${cat.key}`);
         if (!catContent) continue;
         urls.push(`${baseUrl}${langPath}/${utilitiesSlug}/${categoriesSlug}/${catContent.slug}/`);

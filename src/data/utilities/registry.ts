@@ -92,3 +92,7 @@ export const CATEGORIES: CategoryDefinition[] = [
 ];
 
 export const INDEXABLE_CATEGORIES = CATEGORIES.filter(({ noindex }) => !noindex);
+
+export const SITEMAP_CATEGORIES = INDEXABLE_CATEGORIES.filter(
+    ({ key }) => !new Set(['civic', 'tabletop']).has(key),
+);
