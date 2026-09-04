@@ -1,5 +1,5 @@
 import { SUPPORTED_LANGUAGES, type Language, getLocalizedSlug, externalLanguages } from '../i18n/utils';
-import { SITEMAP_CATEGORIES } from '../data/utilities/registry';
+import { INDEXABLE_CATEGORIES } from '../data/utilities/registry';
 import { ALL_APP_ENTRIES } from '@jjlmoya/apps/data';
 import type { KnownLocale } from '@jjlmoya/apps/data';
 import { ALL_LANDING_DEFINITIONS } from '@jjlmoya/landings';
@@ -114,7 +114,7 @@ async function getCategoryUrls(lang: Language): Promise<SitemapEntry[]> {
   const u = getLocalizedSlug(lang, 'utilities');
   const c = getLocalizedSlug(lang, 'categories');
   const urls: SitemapEntry[] = [];
-  for (const catDef of SITEMAP_CATEGORIES) {
+  for (const catDef of INDEXABLE_CATEGORIES) {
     const cat = await catDef.entry.i18n[lang]?.();
     if (!cat) continue;
     urls.push({
@@ -146,9 +146,9 @@ function getStaticUrls(lang: Language): SitemapEntry[] {
   const a = getLocalizedSlug(lang, 'apps');
   const e = (path: string, cf: string, p: number): SitemapEntry => ({ url: `${BASE_URL}${lPath}${path}`, changefreq: cf, priority: p, hreflang: buildHreflang(path) });
   return [
-    e('/', 'daily', 1.0), 
-    e(`/${a}/`, 'weekly', 0.8), 
-    e(`/${u}/`, 'weekly', 0.8), 
+    e('/', 'daily', 1.0),
+    e(`/${a}/`, 'weekly', 0.8),
+    e(`/${u}/`, 'weekly', 0.8),
     e('/widgets/', 'weekly', 0.8),
     e('/privacy/', 'monthly', 0.4),
     e('/terms/', 'monthly', 0.4)

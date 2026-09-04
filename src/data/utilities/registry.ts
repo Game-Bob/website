@@ -93,6 +93,9 @@ export const CATEGORIES: CategoryDefinition[] = [
 
 export const INDEXABLE_CATEGORIES = CATEGORIES.filter(({ noindex }) => !noindex);
 
-export const SITEMAP_CATEGORIES = INDEXABLE_CATEGORIES.filter(
-    ({ key }) => !new Set(['civic', 'tabletop']).has(key),
+export const MFE_UTILITY_KEYS = new Set(CATEGORIES.map(({ key }) => key));
+export const LEGACY_ROUTE_CATEGORIES = CATEGORIES.filter(
+    ({ key }) => !MFE_UTILITY_KEYS.has(key),
 );
+
+export const SITEMAP_CATEGORIES = INDEXABLE_CATEGORIES;
