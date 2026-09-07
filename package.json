@@ -15,7 +15,8 @@
         "test": "vitest run",
         "verify:runtimes": "node scripts/verify-jjlmoya-runtime-contracts.mjs",
         "prepare": "husky",
-        "update": "node scripts/update-jjlmoya-packages.mjs"
+        "update": "node scripts/update-jjlmoya-packages.mjs",
+        "mfe:add": "node scripts/add-mfe.mjs"
     },
     "dependencies": {
         "@fontsource/inter": "^5.2.8",
