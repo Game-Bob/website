@@ -13,6 +13,7 @@ import { education } from './categories/education';
 import { games } from './categories/games';
 import { gamesDevelopment } from './categories/games-development';
 import { nautical } from './categories/nautical';
+import { performingArts } from './categories/performing-arts';
 import { science } from './categories/science';
 import { travel } from './categories/travel';
 import { textiles } from './categories/textiles';
@@ -62,6 +63,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     games,
     gamesDevelopment,
     nautical,
+    performingArts,
     science,
     travel,
     textiles,
