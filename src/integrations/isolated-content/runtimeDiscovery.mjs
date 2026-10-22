@@ -50,6 +50,7 @@ function runtimeDefinition(packageName, runtimeDirectory, options) {
         packageName,
         subpath: runtimeDirectory.name,
         exportName: exportNames[0],
+        pagePaths: [...indexSource.matchAll(/\bpath\s*:\s*['"]([a-z0-9-]+(?:\/[a-z0-9-]+)*)['"]/g)].map(match => match[1]),
         definition: { entry: definition },
     };
 }

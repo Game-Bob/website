@@ -1,0 +1,12 @@
+---
+import type { AppDefinition, KnownLocale } from '@jjlmoya/apps';
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
+interface Props { app: AppDefinition; pagePath: string; }
+const { app, pagePath } = Astro.props;
+const locale = Astro.url.pathname.split('/').filter(Boolean)[0] as KnownLocale;
+const page = app.pages?.find(candidate => candidate.path === pagePath);
+if (!page) throw new Error(`Missing app page: ${app.entry.id}/${pagePath}`);
+const basePath = Astro.url.pathname.replace(/\/+$/, '').slice(0, -(pagePath.length + 1));
+const { default: Page } = await page.Component() as { default: AstroComponentFactory };
+---
+<Page {locale} {basePath} />

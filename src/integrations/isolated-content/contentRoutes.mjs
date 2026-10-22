@@ -1,5 +1,5 @@
 import { addLocalizedRouteGroup } from '../../i18n/languageRouteManifest.ts';
-import { appAdapter, writeGeneratedRoute } from './routeAdapters.mjs';
+import { appAdapter, appPageAdapter, writeGeneratedRoute } from './routeAdapters.mjs';
 import { appPath, isExternalLanguage, landingPath, localizedContent } from './localizedContent.mjs';
 
 async function localizedUrls(entry, routeLanguages, pathBuilder) {
@@ -19,10 +19,18 @@ async function appRuntimeRoute(runtime, routeLanguages) {
         appAdapter(runtime),
     );
     const localized = await localizedUrls(runtime.definition.entry, routeLanguages, appPath);
+    const pageRoutes = (runtime.pagePaths ?? []).flatMap(pagePath => {
+        const pageEntrypoint = writeGeneratedRoute(
+            `app-${runtime.subpath}-${pagePath.replaceAll('/', '-')}.astro`,
+            appPageAdapter(runtime, pagePath),
+        );
+        return localized.results.filter(({ lang }) => !isExternalLanguage(lang))
+            .map(({ url }) => ({ pattern: `${url}${pagePath}`, entrypoint: pageEntrypoint }));
+    });
     return {
         routes: localized.results
             .filter(({ lang }) => !isExternalLanguage(lang))
-            .map(({ url }) => ({ pattern: url.slice(0, -1), entrypoint })),
+            .map(({ url }) => ({ pattern: url.slice(0, -1), entrypoint })).concat(pageRoutes),
         urls: localized.urls,
     };
 }

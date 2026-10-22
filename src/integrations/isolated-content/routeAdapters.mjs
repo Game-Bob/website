@@ -36,3 +36,7 @@ export function categoryAdapter(category) {
 export function appAdapter(runtime) {
     return `---\nimport RuntimeAppRoute from '../../src/routes/apps/RuntimeAppRoute.astro';\nimport { ${runtime.exportName} } from '${runtime.packageName}/runtime/${runtime.subpath}';\n---\n\n<RuntimeAppRoute app={${runtime.exportName}} />\n`;
 }
+
+export function appPageAdapter(runtime, pagePath) {
+    return `---\nimport RuntimeAppPageRoute from '../../src/routes/apps/RuntimeAppPageRoute.astro';\nimport { ${runtime.exportName} } from '${runtime.packageName}/runtime/${runtime.subpath}';\n---\n<RuntimeAppPageRoute app={${runtime.exportName}} pagePath=${JSON.stringify(pagePath)} />\n`;
+}

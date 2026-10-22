@@ -32,3 +32,6 @@ jobs:
             - name: Build Project
               run: npm run build
 
+            - name: Tests
+              run: npm test -- --minWorkers=1 --maxWorkers=1
+

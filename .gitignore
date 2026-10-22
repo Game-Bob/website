@@ -148,3 +148,4 @@ vite.config.ts.timestamp-*
 /public/images/utilities/*.webp
 !/public/images/utilities/index.webp
 .vercel
+/public/assets/apps/ztreak/runtime/
