@@ -61,7 +61,7 @@ const isAppLanding = /^\/[^/]+\/apps\/[^/]+\/?$/.test(Astro.url.pathname);
             installEcosystemTracking();
         </script>
     </head>
-    <body class={`body-layout ${bodyClass}`}>
+    <body class={`body-layout ${isAppLanding ? "app-landing-page" : ""} ${bodyClass}`}>
         <Header className={headerClass} {alternateUrls} />
 
         <main class={`main-content ${fullWidth ? "full-width" : ""} ${noPaddingTop ? "no-padding-top" : ""} ${Astro.props.mainClass || ""}`}>

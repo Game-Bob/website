@@ -1,3 +1,7 @@
+body.app-landing-page [class~="gamebob-header__bob"] {
+    color: var(--color-gamebob-primary-text-light);
+}
+
 .body-layout {
     min-height: 100vh;
     display: flex;
