@@ -44,6 +44,7 @@ const {
     noindex = false,
 } = Astro.props;
 const alternateUrls = getRouteAlternates(Astro.url.pathname, lang);
+const isAppLanding = /^\/[^/]+\/apps\/[^/]+\/?$/.test(Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -53,7 +54,7 @@ const alternateUrls = getRouteAlternates(Astro.url.pathname, lang);
         <SEO title={title} description={description} image={image} favicon={favicon} lang={lang} assetVersion={assetVersion} noindex={noindex} {alternateUrls} />
         <slot name="head" />
 
-        <ThemeBoot defaultTheme="theme-dark" />
+        <ThemeBoot defaultTheme={isAppLanding ? "theme-system" : "theme-dark"} />
         <script>
             import { installEcosystemTracking } from "@jjlmoya/tracking";
 
